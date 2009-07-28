@@ -1,0 +1,48 @@
+<h2><?php echo $lang['edit']?></h2>
+<form id="addform" action="./modify.php" method="post" enctype="multipart/form-data" onsubmit="return inputCheck()">
+<fieldset>
+<legend><?php echo $lang['entry']?></legend>
+<p>
+<input type="text" id="y" name="y" size="4" value="<?php echo $item['time']['Y']?>" class="bordered" />/
+<input type="text" id="m" name="m" size="2" value="<?php echo $item['time']['m']?>" class="bordered" />/
+<input type="text" id="d" name="d" size="2" value="<?php echo $item['time']['d']?>" class="bordered" />@
+<input type="text" id="h" name="h" size="2" value="<?php echo $item['time']['H']?>" class="bordered" />:
+<input type="text" id="i" name="i" size="2" value="<?php echo $item['time']['i']?>" class="bordered" />:
+<input type="text" id="s" name="s" size="2" value="<?php echo $item['time']['s']?>" class="bordered" />
+</p>
+<p>
+<input type="text" id="title" name="title" value="<?php echo $item['title']?>" size="30" />
+<label for="title"><?php echo $lang['title']?></label>
+</p>
+<p>
+<input type="text" id="file-name" name="file_name" value="<?php echo $item['file_name']?>" size="30" />
+<label for="file-name"><?php echo $lang['filename']?></label>
+</p>
+<p><?php echo $lang['filetype']?>：<?php echo $item['file_type']?><br /><?php echo $lang['filesize']?>：<?php echo $item['file_size']?></p>
+<p>
+<input type="checkbox" name="replace_file" /> <?php echo $lang['replacements']?> : <input type="file" name="binfile" />
+</p>
+<p>
+<textarea id="comment" name="comment" rows="20">
+<?php echo $item['comment']?>
+</textarea>
+<?php echo $item['smiley_button']?>
+</p>
+<?php echo $item['attachments']?>
+</fieldset>
+<fieldset>
+<legend><?php echo $lang['tag']?></legend>
+<?php foreach ($item['tag_cloud'] as $row):?>
+<input type="checkbox" id="tag<?php echo $row[0]?>" name="tag[]" value="<?php echo $row[0]?>" <?php echo $row[3]?>/>
+<label for="tag<?php echo $row[0]?>"><?php echo $row[1]?></label> (<?php echo $row[2]?>)
+<?php endforeach?>
+</fieldset>
+<fieldset>
+<p class="submit-button">
+<input type="radio" id="draft" name="draft" value="1"<?php echo $item['draft_status_1']?> /><label for="draft"><?php echo $lang['draft']?></label>
+<input type="radio" id="publish" name="draft" value="0"<?php echo $item['draft_status_0']?> /><label for="publish"><?php echo $lang['publish']?></label>
+<input type="hidden" id="id" name="id" value="<?php echo $item['id']?>" />
+<input type="hidden" name="MAX_FILE_SIZE" value="102400000" />
+<input accesskey="s" type="submit" id="submit-button" value="<?php echo $lang['save']?>" />
+</p>
+</form>

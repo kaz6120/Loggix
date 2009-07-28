@@ -1,0 +1,247 @@
+<div class="section" id="LoggixExpander">
+<h2>Loggix Expander</h2>
+<ul>
+<li><a href="#about">What is Loggix Expander</a></li>
+<li><a href="#how-to-use">How to use</a></li>
+<li><a href="#LoggixExpanderStructure">Loggix Expander Structure</a></li>
+<li><a href="#LoggixExpanderTutorial">Making Expander Module Tutorial</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</div>
+
+<div class="section" id="about">
+<h3>What is Loggix Expander</h3>
+<p>Loggix Expander is the library module to create a module which can load text files to generaete webpages. It can load <code>.html</code>、<code>.php</code>、<code>.txt</code>、<code>.text</code> files to make static page contents. You can embe php executed result in the contents.</p>
+<p>【Loggix Expander Structure】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">data</code> (directory for store text files)
+      <ul>
+       <li><code class="filename">default.html</code> (called by default)</li>
+       <li><code class="filename">page1.php</code> (called by ?id=page1)</li>
+       <li><code class="filename">page2.txt</code> (called by ?id=page2)</li>
+       <li><code class="filename">page3.text</code> (called by ?id=page3)</li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (Front controller)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>(X)HTML theme which Expander module use is cascaded from main theme, but you can use its own theme for the Expander contents, which means if you create "About" page, you can add its own theme which has different style from main theme.</p>
+<p>【Loggix Expander theme file structure】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">theme</code> (This is used only this module)
+      <ul>
+       <li><code class="filename">base.html</code></li>
+       <li><code class="filename">navigation.html</code></li>
+       <li><code class="filename">archives.html</code></li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (Front controller)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+
+</div>
+
+<div class="section" id="how-to-use">
+<h3>How to use</h3>
+<p>Expander Module will load texts in /data/ directory, but act differently by its extensions.</p>
+<h4><code>.html</code>、<code>.inc.php</code>、 <code>.php</code></h4>
+<p>Files with these extensions will be loaded as normal (X)HTML fiels. Inline <code>&lt;?php ?&gt;</code> will be parsed.</p>
+<h4 class="important"><code>.txt</code></h4>
+<p>Files with this extension will be treated as pre-formatted text.</p>
+<h4 class="important"><code>.text</code></h4>
+<p>Files with this extension will be treated as Markdown text, and will be rendered in XHTML automatically. ( like files with .html extensions, you can use inline PHP code in it. See :<a href="http://daringfireball.net/" title="Daring Fireball" class="ex-ref">Daring Fireball</a> if you don't know much about Markdown.(↓)</p>
+<p class="ref"><a href="http://daringfireball.net/projects/markdown/" title="Daring Fireball: Markdown" class="ex-ref">Markdown</a></p>
+<p>Loggix uses PHP version of Markdown which is plubished here :<a href="http://www.michelf.com/projects/php-markdown/" title="PHP Markdown" class="ex-ref">PHP Markdown</a></p>
+<h5>How to write Markdown</h5>
+<ul class="ref">
+<li><a href="http://daringfireball.net/projects/markdown/basics" title="Daring Fireball: Markdown Basics" class="ex-ref">Daring Fireball: Markdown Basics</a></li>
+<li><a href="http://www.michelf.com/projects/php-markdown/concepts/" title="PHP Markdown: Concepts" class="ex-ref">PHP Markdown: Concepts</a></li>
+</ul>
+<h5>Markdown Example</h5>
+<p>This is a sample markdown document used in Expander module.</p>
+<ul class="ref">
+<li><a href="./index.php?id=markdown-sample">Markdown Sample</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixExpanderStructure">
+<h3>Loggix Expander Structure</h3>
+<p>Directory strucute is almost same as Loggix's base structure.</p>
+<p>【Loggix Expander Structure Example】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(lower-case with no prefix)
+    <ul>
+     <li><code class="dirname">admin</code> (Admin directory)</li>
+     <li><code class="dirname">data</code> (Contents file directory)</li>
+     <li><code class="dirname">images</code> (Image file directory)</li>
+     <li><code class="dirname">lang</code> (Language file directory)</li>
+     <li><code class="dirname">lib</code> (Class library directory)</li>
+     <li><code class="dirname">plugins</code> (Plugin directory)</li>
+     <li><code class="dirname">theme</code> (Theme file directory)</li>
+     <li><code class="filename">index.php</code> (Front controller)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>All of the directories are options. Minimum structure will be like this.</p>
+<p>【Loggix Expander Minimum】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(lower-case with no prefix)
+    <ul>
+     <li><code class="dirname">data</code> (Content file directory)
+      <ul>
+       <li><code class="filename">default.html</code> (default content file)</li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (Front controller)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixExpanderTutorial">
+<h3>How to make Expander Module Tutorial</h3>
+
+<p>Okay, Let's make actural example module to understand how Loggix_Expander works.</p>
+
+<h5>STEP 1</h5>
+<p>First of all, create these files.</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">data</code>
+      <ul>
+       <li><code class="filename">default.html</code></li>
+       <li><code class="filename">test.php</code></li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h5>STEP 2</h5>
+<p>Open <code class="filename">index.php</code>, the front controller file, with your favorite text editor and edit like this:</p>
+<pre class="php-source">
+<span class="php-source-keyword">&lt;?php</span>
+<span class="php-source-comment">// Path to top directory</span>
+<var class="php-source-var">$relativePath</var>     = '../..';
+
+<span class="php-source-comment">// Set include path</span>
+set_include_path(<var class="php-source-var">$relativePath</var> . '/lib/Loggix/');
+
+<span class="php-source-comment">// Load required classes.</span>
+<span class="php-source-keyword">require_once</span> 'Application.php';
+<span class="php-source-keyword">require_once</span> 'Expander.php';
+<span class="php-source-keyword">require_once</span> 'Module/Helloworld.php';
+
+<span class="php-source-comment">// Genarate instance of Loggix_Application.</span>
+<span class="php-source-comment">// This is important to extends base header or navigation blocks.</span>
+<var class="php-source-var">$app</var> = new Loggix_Application;
+
+<span class="php-source-comment">// Create a new instance of Loggix_Expander.</span>
+<span class="php-source-comment">// This is needed to parse files in <code class="filename">data</code> directory.</span>
+<var class="php-source-var">$exp</var> = <span class="php-source-keyword">new</span> Loggix_Expander;
+
+<span class="php-source-comment">// Get session status from  $app object.</span>
+<span class="php-source-comment">// This is required to controll admin functions.</span>
+<var class="php-source-var">$sessionState</var> = <var class="php-source-var">$app</var>->getSessionState();
+
+<span class="php-source-comment">// Create an instanse from Hello world class.</span>
+<var class="php-source-var">$aLoggixHelloworld</var> = <span class="php-source-keyword">new</span> Loggix_Module_Helloworld;
+
+<span class="php-source-comment">// Put variables in $module</span>
+<var class="php-source-var">$module</var>['LM']['HelloworldString'] = <var class="php-source-var">$aLoggixHelloworld</var>->sayHello();
+
+<span class="php-source-comment">// Put title, contens data in  $item variable.</span>
+<span class="php-source-comment">// Here, we don't need pager or search result, so let it remain empty as "''".</span>
+<var class="php-source-var">$item</var> = <span class="php-source-keyword">array</span>(
+    'title'    => <var class="php-source-var">$app</var>->setTitle(<var class="php-source-var">$module</var>['LM']['HelloworldString']),
+    'contents' => <var class="php-source-var">$exp</var>->getContent(),
+    'pager'    => '',
+    'result'   => ''
+);
+
+<span class="php-source-comment">// Add $item values into the display() method</span>
+<span class="php-source-comment">// of the instanse of Loggix_Application.</span>
+<var class="php-source-var">$app</var>->display(<var class="php-source-var">$item</var>, <var class="php-source-var">$sessionState</var>);
+
+</pre>
+
+<p>Edit "default.html" like this:</p>
+
+<pre class="code">
+&lt;h2&gt;<span class="php-source-keyword">&lt;?php</span> echo <span class="php-source-var">$module</span>['LM']['HelloworldString']<span class="php-source-keyword">?&gt;</span>&lt;/h2&gt;
+</pre>
+
+<h5>STEP 3</h5>
+
+<p>Hit:</p>
+<p>http://yourloggix.com/modules/example/」</p>
+<p>If you can see "Hello, World" like shown below, module creation is succeeded.</p>
+<p><img src="./data/images/helloworld.png" alt="Hello World" /></p>
+
+<h5>STEP 4</h5>
+
+<p>Edit "test.php".</p>
+
+<pre class="code">
+<span class="php-source-keyword">&lt;?php</span> phpinfo();<span class="php-source-keyword">?&gt;</span>
+</pre>
+
+<p>Hit:</p>
+<p>http://yourloggix.com/modules/example/index.php<span class="important">?id=test</span></p>
+<p>If you cna see the result of <code>phpinfo()</code>, module creation is succeeded.</p>
+
+</div>
+
+<div class="section" id="faq">
+<h3><abbr title="Frequently Asked Questions">FAQ</abbr></h3>
+<dl>
+<dt class="question">Q : Can I create Expander module in Expander module?</dt>
+<dd class="answer">A : Yes, you can.</dd>
+<dd class="reason">You can create Expander module anywhere you want.</dd>
+<dt class="question">Q : Why named "Expander"?</dt>
+<dd class="answer">A : Because it expands the contents.</dd>
+<dt class="question">Q : Are Expander module contents depend on Loggix's database or Loggix_Core class?</dt>
+<dd class="answer">A : No, they aren't.</dd>
+<dd class="reason">Expander module doesn't rely on Loggix's database, core class, session class, nor module class. You can create Expander module contents with only using <code>Loggix_View</code> and <code>Loggix_Expander</code> classes. You don't have to care about sessions or database. For example, content you are reading now is created with <code>Loggix_View</code>, <code>Loggix_Expander</code>, and <code>PEAR::HTML_AJAX</code>.</dd>
+</dl>
+</div>
+

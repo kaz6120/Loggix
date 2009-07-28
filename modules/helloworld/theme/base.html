@@ -1,0 +1,32 @@
+<?php echo $this->getXmlVersion()?>
+<?php echo $this->getDTD()?>
+<title><?php echo $item['title']?></title>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getStyle()?>" media="screen" />
+</header>
+<body>
+<!-- Begin #wrapper -->
+<div id="wrapper">
+<!-- Begin #header -->
+<div id="header">
+<h1><a href="<?php echo $this->getDir()?>/index.php"><?php echo $item['site_title']?></a></h1>
+<p>This is a sample module</p>
+</div>
+<!-- Begin #contents -->
+<div id="content">
+<div class="section">
+<?php echo $item['result']?>
+<?php echo $item['contents']?></div>
+<?php echo $item['pager']?>
+</div>
+<!-- Begin #navigation -->
+<div id="navigation">
+<?php echo $item['navigation']?>
+</div>
+<!-- Begin #footer -->
+<div id="footer">
+<address>Copyright (c) Sample</address>
+<p id="page-generation">Page generation : <?php echo $item['gt']?> seconds.</p>
+</div>
+</div><!-- End #wrapper -->
+</body>
+</html>

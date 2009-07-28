@@ -1,0 +1,51 @@
+<!-- Begin #comments -->
+<div id="comments">
+<h4><?php echo $lang['comments'], ' (', $item['comments']['num'], ')'?></h4>
+<?php echo $item['comments']['list']?>
+<!-- Comment form -->
+<body>
+</body>  
+<form id="addform" action="<?php echo $item['cd']?>/modules/comment/post.php" method="post">
+<fieldset>
+<legend>Post Your Comment</legend>
+<p>
+<input type="text" id="user-name" name="user_name" value="<?php echo $item['user_cookie']['user_name']?>" />
+<label for="user-name" id="user-name-label"><?php echo $lang['comment']['visitor_name']?> <span class="notice">*</span></label>
+(<a href="javascript:;" id="toggle-options" class="toggle-switch"><?php echo $lang['comment']['visitor_options']?></a>)
+</p>
+<div id="options" class="toggle">
+<p>
+<input type="text" id="user-email" name="user_email" value="<?php echo $item['user_cookie']['user_email']?>" />
+<label for="user_email" id="user-email-label">E-Mail</label>
+</p>
+<p>
+<input type="text" id="user-uri" name="user_uri" value="<?php echo $item['user_cookie']['user_uri']?>" size="30" />
+<label for="user-uri" id="user-uri-label"><abbr title="Uniform Resource Identifier">URI</abbr></label>
+</p>
+<p>
+<input type="checkbox" id="remember-me" name="loggix_comment_cookie"<?php echo $item['user_cookie']['status']?> />
+<label for="remember-me" id="remember-me-label"><?php echo $lang['comment']['remember_me']?></label>
+</p>
+<p>
+<input type="text" id="comment-title" name="title" value="Re:<?php echo $item['title']?>" size="30" />
+<label for="comment-title" id="comment-title-label"><?php echo $lang['comment']['visitor_comment_title']?></label>
+</p>
+</div>
+<p>
+<label for="comment" id="comment-label"><?php echo $lang['comment']['visitor_comment']?> <span class="notice">*</span> </label><br />
+<textarea rows="10" cols="50" id="comment" name="comment"></textarea>
+<?php echo $item['smiley_button']?>
+</p>
+<p>
+<input type="password" id="user-pass" name="user_pass" value="" />
+<label for="user-pass" id="user-pass-label"><?php echo $lang['comment']['visitor_password']?> <span class="notice">*</span></label>
+</p>
+<p><span class="notice">*</span><?php echo $lang['comment']['explanation']?></p>
+<p id="comment-submit">
+<input type="hidden" name="parent_key" value="<?php echo $item['comments']['parent_key']?>" />
+<input type="hidden" name="refer_id" value="<?php echo $item['id']?>" />
+<input type="submit" value="<?php echo $lang['post']?>" />
+</p>
+</fieldset>
+</form>
+</div>

@@ -1,0 +1,199 @@
+<div class="section">
+<h2>SQLiteデータベース</h2>
+<ul>
+<li><a href="#databaseStrucuture">データベースの構造</a></li>
+<li><a href="#backup">データベースファイルのバックアップ</a></li>
+</ul>
+
+<h3 id="datsabaseStructure">データベースの構造</h3>
+<div class="loggix-structure">
+<h4>ユーザー用テーブル</h4>
+<table>
+<caption>loggix_user</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">user_id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">user_name</td><td class="value"></td></tr>
+<tr><td class="key">user_pass</td><td class="value"></td></tr>
+<tr><td class="key">user_nickname</td><td class="value"></td></tr>
+<tr><td class="key">user_mail</td><td class="value"></td></tr>
+<tr><td class="key">user_date</td><td class="value"></td></tr>
+<tr><td class="key">user_status</td><td class="value">INTEGER DEFAULT 0</td></tr>
+</table>
+
+<table>
+<caption>loggix_session</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">PRIMARY KEY</td></tr>
+<tr><td class="key">sess_var</td><td class="value"></td></tr>
+<tr><td class="key">sess_date</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_config</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">config_key</td><td class="value"></td></tr>
+<tr><td class="key">config_value</td><td class="value"></td></tr>
+</table>
+
+</div>
+
+<div class="loggix-structure">
+<h4>エントリー用テーブル群</h4>
+
+<table>
+<caption>loggix_log</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">title</td><td class="value"></td></tr>
+<tr><td class="key">href</td><td class="value"></td></tr>
+<tr><td class="key">comment</td><td class="value"></td></tr>
+<tr><td class="key">text_mode</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">excerpt</td><td class="value"></td></tr>
+<tr><td class="key">date</td><td class="value"></td></tr>
+<tr><td class="key">mod</td><td class="value"></td></tr>
+<tr><td class="key">draft</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">ping_uri</td><td class="value"></td></tr>
+<tr><td class="key">allow_comments</td><td class="value">INTEGER DEFAULT 1</td></tr>
+<tr><td class="key">allow_pings</td><td class="value">INTEGER DEFAULT 1</td></tr>
+<tr><td class="key">author</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_log_tag</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">tag_name</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_log_tag_map</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">log_id</td><td class="value">REFERENCES loggix_log(id)</td></tr>
+<tr><td class="key">tag_id</td><td class="value">REFERENCES loggix_log_tag(id)</td></tr>
+</table>
+</div>
+
+<div class="loggix-structure">
+<h4>ダウンローダー用テーブル群</h4>
+
+<table>
+<caption>loggix_downloads_meta</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">file_title</td><td class="value"> </td></tr>
+<tr><td class="key">file_type</td><td class="value"></td></tr>
+<tr><td class="key">file_name</td><td class="value"></td></tr>
+<tr><td class="key">file_size</td><td class="value"></td></tr>
+<tr><td class="key">file_date</td><td class="value"></td></tr>
+<tr><td class="key">file_mod</td><td class="value"></td></tr>
+<tr><td class="key">file_comment</td><td class="value"></td></tr>
+<tr><td class="key">text_mode</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">file_count</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">draft</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">author</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_downloads_data</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">masterid</td><td class="value">INTEGER DEFAULT 0</td></tr>
+<tr><td class="key">file_data</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_downloads_tag</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">tag_name</td><td class="value"></td></tr>
+</table>
+
+<table>
+<caption>loggix_downloads_tag_map</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">log_id</td><td class="value">REFERENCES loggix_downloads_meta(id)</td></tr>
+<tr><td class="key">tag_id</td><td class="value">REFERENCES loggix_downloads_tag(id)</td></tr>
+</table>
+</div>
+
+
+<div class="loggix-structure">
+<h4>トラックバックシステム用テーブル</h4>
+<table>
+<caption>loggix_trackback</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td><tr>
+<tr><td class="key">blog_id</td><td class="value">default 0</td><tr>
+<tr><td class="key">title</td><td class="value"></td><tr>
+<tr><td class="key">excerpt</td><td class="value"></td><tr>
+<tr><td class="key">url</td><td class="value"></td><tr>
+<tr><td class="key">name</td><td class="value"></td><tr>
+<tr><td class="key">date</td><td class="value"></td><tr>
+<tr><td class="key">trash</td><td class="value">default 0</td></tr>
+</table>
+</div>
+
+<div class="loggix-structure">
+<h4>コメントシステム用テーブル</h4>
+<table>
+<caption>loggix_comment</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td></tr>
+<tr><td class="key">tid</td><td class="value"></td></tr>
+<tr><td class="key">parent_key</td><td class="value">default 1</td></tr>
+<tr><td class="key">title</td><td class="value"></td></tr>
+<tr><td class="key">comment</td><td class="value"></td></tr>
+<tr><td class="key">user_name</td><td class="value"></td></tr>
+<tr><td class="key">user_pass</td><td class="value"></td></tr>
+<tr><td class="key">user_mail</td><td class="value"></td></tr>
+<tr><td class="key">user_uri</td><td class="value"></td></tr>
+<tr><td class="key">type</td><td class="value"></td></tr>
+<tr><td class="key">date</td><td class="value"></td></tr>
+<tr><td class="key">mod</td><td class="value"></td></tr>
+<tr><td class="key">user_ip</td><td class="value"></td></tr>
+<tr><td class="key">refer_id</td><td class="value"></td></tr>
+<tr><td class="key">trash</td><td class="value">default 0</td></tr>
+</table>
+</div>
+
+<div class="loggix-structure">
+<h4>アクセスログ保存用テーブル</h4>
+<table>
+<caption>loggix_access</caption>
+<tr><th>フィールド名</th><th>値</th></tr>
+<tr><td class="key">id</td><td class="value">INTEGER PRIMARY KEY</td><tr>
+<tr><td class="key">referer</td><td class="value"></td><tr>
+<tr><td class="key">user_agent</td><td class="value"></td><tr>
+<tr><td class="key">remote_host</td><td class="value"></td><tr>
+<tr><td class="key">date</td><td class="value"></td><tr>
+<tr><td class="key">hour</td><td class="value"></td></tr>
+</table>
+</div>
+
+<h3 id="backup">データベースファイルのバックアップ</h3>
+<div class="comment">
+<p>Loggixの使用するSQLiteデータベースファイルのバックアップと復元方法です。ターミナルからsqliteコマンドを使って行います。(sqliteコマンドがない場合は事前にSQLiteのサイトからダウンロードし、インストールしておく必要があります。)</p>
+<h4 class="important">【バックアップと復元】</h4>
+<p>(1) SQLファイルにバックアップ。</p>
+<pre class="sh">
+$ echo '.dump' | sqlite loggix.sqlite.db | cat &gt; loggix.sqlite.sql
+</pre>
+<p>(2) SQLファイルから新規データベースに復元。</p>
+<pre class="sh">
+$ sqlite loggix.sqlite.db &lt; loggix.sqlite.sql
+</pre>
+<p>このバックアップ処理と復元処理を連続して行うことで肥大したSQLiteデータベースファイルの最適化を施すことも出来ます。</p>
+<h5>参照URI</h5>
+
+<ul>
+<li>
+<a href="http://www.net-newbie.com/sqlite/sqlite.html" title="sqlite: SQLite データベースと会話するプログラム" class="ex-ref">sqlite: sqlite データベースと会話するプログラム</a>
+</li>
+<li>
+<a href="http://www.yakushima-hotline.jp/2005/04/23/sqlite104" title="sqlite に対する特殊なコマンド - シンプルなURL" class="ex-ref">sqlite に対する特殊なコマンド - シンプルなURL</a>
+</li>
+</ul>
+</div>
+</div>

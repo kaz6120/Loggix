@@ -1,0 +1,41 @@
+<h2><?php echo $lang['edit']?></h2>
+<div class="section">
+<form id="addform" action="<?php echo $_SERVER['PHP_SELF']?>" method="post" onsubmit="return ForumInputCheck()">
+<fieldset>
+<legend><?php echo $lang['comments']?> No.<?php echo $item['comments']['id']?></legend>
+<p>
+<input type="text" accesskey="n" tabindex="2" id="user_name" name="user_name" value="<?php echo $item['comments']['user_name']?>" class="bordered" />
+<label for="user_name"><?php echo $lang['comment']['visitor_name']?> <span class="notice">*</span></label>
+</p>
+<p>
+<input type="text" accesskey="u" tabindex="4" id="user_uri" name="user_uri" value="<?php echo $item['comments']['user_uri']?>" size="30" class="bordered" />
+<label for="user_uri">URI</label>
+</p>
+<p>
+<input type="text" accesskey="t" tabindex="5" id="title" name="title" value="<?php echo $item['comments']['title']?>" size="30" class="bordered" />
+<label for="title"><?php echo $lang['title']?></label>
+</p>
+<p>
+<label for="comment"><?php echo $lang['comment']['visitor_comment']?> <span class="notice">*</span> </label>
+<br />
+<textarea accesskey="c" tabindex="7" rows="10" cols="50" id="comment" name="comment"><?php echo $item['comments']['comment']?></textarea>
+<?php echo $item['smiley_button']?>
+</p>
+<p>
+<input accesskey="p" tabindex="9" type="password" name="user_pass" value="<?php echo $item['admin']['password']?>" class="bordered" />
+<label for="user_pass"><?php echo $lang['comment']['visitor_password']?> <span class="notice">*</span></label>
+</p>
+<p><span class="notice">*</span><?php echo $lang['comment']['explanation']?></p>
+<p id="comment-submit">
+<input type="radio" tabindex="6" accesskey="m" name="mod_del" value="0" checked="checked" />
+<?php echo $lang['save']?> 
+<input type="radio" tabindex="6" accesskey="d" name="mod_del" value="1" />
+<?php echo $lang['delete']?> 
+<input type="hidden" name="id" value="<?php echo $item['comments']['id']?>" />
+<input type="hidden" name="refer_id" value="<?php echo $item['comments']['refer_id']?>" />
+<input type="submit" accesskey="o" tabindex="10" value="OK" />
+</p>
+</fieldset>
+<?php echo $item['admin']['button']?>
+</form>
+</div>

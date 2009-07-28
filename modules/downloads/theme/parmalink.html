@@ -1,0 +1,23 @@
+<h2>Download ID : <?php echo $item['id']?></h2>
+<div class="section">
+<h3><?php echo $item['title']?></h3>
+<div class="comment">
+<div class="download">
+<p><strong><a href="./dl.php?id=<?php echo $item['id']?>"><?php echo $item['file_name']?></a></strong> ( <?php echo $item['file_type']?> : <?php echo $item['file_size']?>)</p>
+<p class="md5">MD5 : <?php echo $item['md5']?></p>
+</div>
+<?php echo $item['comment']?>
+</div>
+<div class="footer">
+<ul>
+<li class="postdate"><?php echo date('M d, Y G:i a',strtotime($item['file_date']))?></li>
+<li class="tag"><?php echo $item['tag']?></li>
+</ul>
+</div>
+<?php if ($session_state == 'on') : ?>
+<ul class="admin-menu">
+<li><a href="./admin/edit.php?id=<?php echo $item['id']?>"><?php echo $lang['edit']?></a></li>
+<li><a href="./admin/drafts.php?id=<?php echo $item['id']?>"><?php echo $lang['draft']?></a></li>
+</ul>
+<?php endif?>
+</div>

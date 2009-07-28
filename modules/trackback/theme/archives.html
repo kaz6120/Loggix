@@ -1,0 +1,13 @@
+<h2>Trackbacks</h2>
+<?php foreach($items as $item): ?>
+<div class="section">
+<h3><a href="<?php echo $this->getDir(), '/index.php?id=', $item['refer_id']?>"><?php echo $item['refer_title']?></a></h3>
+<p class="date"><?php echo date('M d, Y G:i a',strtotime($item['refer_date']))?></p>
+<ol class="trackbacks">
+<?php foreach ($item['reps'] as $rep):?>
+<li><a href="<?php echo $this->getDir(), '/index.php?id=', $item['refer_id'], '#tb', $rep['id'], '">', date('Y/m/d H:i a',strtotime($rep['date'])),'</a> <span class="author">',$rep['name']?></span></li>
+<?php endforeach;?>
+</ol>
+</div>
+<?php endforeach; ?>
+

@@ -1,0 +1,50 @@
+<table id="calendar" summary="Archive calendar of this weblog">
+<caption><?php echo $item['calendar']['caption']?></caption>
+<thead>
+<tr>
+<th colspan="7" abbr="Year and Month">
+<!-- Begin Monthly Archives -->
+<ul id="archives">
+ <li> 
+  <a id="current-month" href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['this_month']?>&amp;ex=1"><?php echo $item['calendar']['year_and_month']?></a>
+  <ul id="arcvhies-by-year">
+<?php foreach($item['calendar']['year_array'] as $year => $value1 ): ?>
+   <li class="archive-by-year"><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $value1?>&amp;ex=1"><?php echo $value1,'年'?></a>
+    <ul>
+<?php foreach($item['calendar']['month_array'] as $month => $value2 ): ?>
+<?php if ($value1 == $value2) :?>
+     <li class="archive-by-month"><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $month?>&amp;ex=1"><?php echo date('n月', strtotime($month))?></a></li>
+<?php endif?>
+<?php endforeach?>
+    </ul>
+   </li>
+<?php endforeach?>
+  </ul>
+ </li>
+</ul>
+<!-- End Monthy Archives -->
+</th>
+</tr>
+<tr>
+<th abbr="Sun" class="sunday"><?php echo $item['calendar']['day_of_the_week'][0]?></th>
+<th abbr="Mon"><?php echo $item['calendar']['day_of_the_week'][1]?></th>
+<th abbr="Tue"><?php echo $item['calendar']['day_of_the_week'][2]?></th>
+<th abbr="Wed"><?php echo $item['calendar']['day_of_the_week'][3]?></th>
+<th abbr="Thu"><?php echo $item['calendar']['day_of_the_week'][4]?></th>
+<th abbr="Fri"><?php echo $item['calendar']['day_of_the_week'][5]?></th>
+<th abbr="Sat"><?php echo $item['calendar']['day_of_the_week'][6]?></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="7">
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['prev_month']?>&amp;ex=1" class="prev-month"><?php echo $item['calendar']['prev_month_link']?></a> | 
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['next_month']?>&amp;ex=1" class="next-month"><?php echo $item['calendar']['next_month_link']?></a>
+</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<?php echo $item['calendar']['body']?></tbody>
+</table>
+

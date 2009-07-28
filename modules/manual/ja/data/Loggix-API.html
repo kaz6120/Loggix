@@ -1,0 +1,154 @@
+<div class="section" id="LoggixApi">
+<h2>Loggix <abbr title="Application Programming Interface">API</abbr></h2>
+<ul>
+<li><a href="#LoggixCore">Loggixのコアクラス</a></li>
+<li><a href="#LoggixModule">Loggixのモジュールクラス</a></li>
+<li><a href="#CodingStandards">標準コーディング規約</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section">
+<p>このドキュメントは<a href="../../../lib/Loggix/doc/">Loggix API Documentation</a>を読み進める開発者のための事前知識としてのLoggixの開発コンセプトとAPI(アプリケーションプログラミングインターフェイス)の補足解説です。</p>
+<p><a href="./data/images/loggix_layers.png" class="colorbox" title="Loggix Class Layer"><img src="./data/images/loggix_layers.png"></a></p>
+<div class="section" id="LoggixCore">
+<h3>Loggixのコアクラス</h3>
+<p class="description">
+Loggixシステムの基幹部分を構成するクラス群です。<code class="filename">/lib/Loggix/</code>ディレクトリ直下に配置されるクラス及び関数ファイル群のことを指します。Loggix API Documentationでのパッケージ名が「Loggix_*」になっているものがこれにあたります。
+</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code>
+    <ul>
+     <li><code class="filename">Application.php</code></li>
+     <li><code class="filename">Core.php</code></li>
+     <li><code class="filename">Expander.php</code></li>
+     <li><code class="filename">Plugin.php</code></li>
+     <li><code class="filename">Utility.php</code></li>
+     <li><code class="filename">View.php</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixModule">
+<h3>Loggixのモジュールクラス</h3>
+<p class="description">
+Loggixのモジュールクラスとは、<code class="filename">/lib/Loggix/Module/</code>ディレクトリに配置して機能拡張を実現するクラスライブラリのことを指します。標準ではいくつかのモジュールが入っています。このディレクトリに配置されたモジュールはLoggixアプリケーションが生成されるときに自動的にロードされるようになっています。標準モジュールを削除して自分で改造・開発したモジュールを追加したり出来ます。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code>
+    <ul>
+     <li><code class="filename">Module.php</code>
+     <li><code class="dirname">Module</code>
+      <ul>
+       <li><code class="filename">Calendar.php</code></li>
+       <li><code class="filename">Comment.php</code></li>
+       <li><code class="filename">Helloworld.php</code></li>
+       <li><code class="filename">Rss.php</code></li>
+       <li><code class="filename">Trackback.php</code></li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h4>Loggix_Module継承クラスの開発</h4>
+<p>新規にLoggix_Moduleクラスを継承してクラスを開発する場合は以下のルールに従って行います。</p>
+<ol>
+<li>継承クラスは特に明確な目的が無い限り、<code>Loggix_Module</code>クラスを継承して下さい。Loggixのコアクラス群が提供する全てのメソッドにアクセス出来るようになります。</li>
+<li>ファイル名はクラス名と同じにし、他のクラスと重複するのを避けるために必ず接頭辞を付けます。(<a href="#CodingExample">開発の例</a>参照)</li>
+<li>Loggixにデフォルトで含まれるLoggix_Moduleの接頭辞は「<span class="important">Loggix_Module_</span>」としていますが、これは<span class="important">「Loggix_Moduleをextends(継承)している」</span>ことを表しています。<span class="note">(サードパーティ製のモジュールは改名せずそのまま同梱しています。)</span>　このように、Loggix_Moduleを継承して開発するモジュールの接頭辞は基本的に「<span class="important">Loggix_Module_</span>」とするもの、とします。</li>
+<li>モジュールは<code>class</code>を使ってのパッケージ化を推奨します。</li>
+<li>モジュールの返す変数は必ずクリエイターコードを第一グループ変数として含めます。
+<div class="example">
+<var>$module[<span class="important">'LM'</span>]['foo']</var>
+</div>
+Loggix Projectが標準で添付しているモジュールのクリエイターコードは「LM」(<span class="important">L</span>OGGiX <span class="important">M</span>odule)となっています。Loggix Project以外の開発者が作る場合はこれと重複しないクリエイターコードを命名するのが望ましいです。クリエイターコードは大文字でなるべく短いものを推奨とします。クリエイターコード内で単語を区切る場合は「_(アンダースコア)」を使用します。
+</li>
+<li>推奨される<a href="#CodingStandards">標準コーディング規約</a>に従ってコーディングを行って下さい。</li>
+</ol>
+<h4 id="CodingExample">開発の例</h4>
+<p>例えば以下のような「Example」というクラスを作る場合、ファイル名と配置は以下のようになります。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code></li>
+    <ul>
+     <li><code class="dirname">Module</code>
+      <ul>
+       <li><code class="filename"><span class="important">Example</span>.php</code> (モジュールクラスファイル)</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>コード内でのクラスの命名はこのようになります。</p>
+<pre class="php">&lt;?php
+class Loggix_Module_Example extends Loggix_Module
+{
+    public function getFoo()
+    {
+        return $module['LM']['foo'] = 'Foo';
+    }
+}
+</pre>
+<h4>Loggix_Moduleクラスを利用して作成したコンテンツモジュールの配置</h4>
+<p>Loggix_Moduleを利用して作成したコンテンツモジュールは基本的にLoggixのメインディレクトリ構成と同じ構成となるものとします。「modules」ディレクトリに以下のように配置します。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(接頭辞なし小文字)
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>モジュールは便宜上<code class="filename">/modules/</code>以下に配置することを基本としますが、ディレクトリ配置はURI名に関わる部分ですので、ユーザーによっては「<code>/modules/</code>」がモジュールのアドレスの前につくのを嫌う場合があるかもしれません。その場合は<code class="filename">/modules/</code>以外の場所に配置することも可能です。(その際はライブラリを読み込むパスの記述に注意して下さい)</p>
+</div>
+
+
+<!-- BEGIN SECTION -->
+<div class="section" id="CodingStandards">
+<h3>標準コーディング規約</h3>
+<p class="description">
+Loggixのモジュール開発は、以下のコーディング規約に準拠して下さい。
+</p>
+<ul class="ref">
+<li><a href="http://pear.php.net/manual/ja/standards.php" title="PEAR :: Manual :: 標準コーディング規約" class="ex-ref">PEAR :: Manual :: 標準コーディング規約</a></li>
+<li><a href="http://framework.zend.com/manual/en/coding-standard.html" title="Zend Framework: Manual: Zend Framework PHP Coding Standard" class="ex-ref">Zend Framework PHP Coding Standard</a>(英語)</li>
+<li><a href="http://framework.zend.com/manual/ja/coding-standard.html" title="Zend Framework" class="ex-ref">Zend Framework PHP 標準コーディング規約</a></li>
+</ul>
+<h4>複数のコーディング規約を採用している理由</h4>
+<p>上記のコーディング規約は敵対するものではなくお互いの不足部分を補うことが出来るという考えからです。例えばPEARのコーディング規約ではグローバル変数の命名規約はありますが、通常の変数の記述スタイルまでは明記されていません。(↓)</p>
+<blockquote>
+<p>If your package needs to define global variables, their name should start with a single underscore followed by the package name and another underscore.</p>
+<p><cite><a href="http://pear.php.net/manual/en/standards.naming.php">PEAR :: Manual :: Naming Conventions</a></cite></p>
+<p>パッケージでグローバル変数を定義する必要がある場合、その名前は、 アンダースコアを前後に付けたパッケージ名で始めるべきです。 </p>
+<p><cite><a href="http://pear.php.net/manual/ja/standards.naming.php">PEAR :: Manual :: 命名規約</a></cite></p></blockquote>
+<p>対してZend Frameworkの規約ではグローバル変数の指定は記述されておらず、クラスのメンバー変数では"private"や"protected"はアンダースコアで開始し、変数は関数名と同様にキャメルキャプススタイルで記述する、と書かれています。</p>
+<blockquote>
+<p>For class member variables that are declared with the "private" or "protected" construct, the first character of the function name must be a single underscore. This is the only acceptable usage of an underscore in a function name. Member variables declared "public" may never start with an underscore.</p>
+<p>("private"や"protected"で定義されたクラスメンバー変数名、関数名はアンダースコア(_)で開始しなければいけません。関数名でアンダースコアの使用が認められる唯一の例です。"public"で定義されたメンバー変数名はアンダースコアで開始してはいけません。)</p>
+<p>Like function names (see section 3.3, above) variable names must always start with a lowercase letter and follow the "camelCaps" capitalization convention.</p>
+<p>(関数名と同様、変数名も小文字で開始し、camelCapsスタイル(単語の区切りを大文字にする)を使って命名します。)</p>
+<p><cite><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">Zend Framework: Manual</a></cite></p></blockquote>
+<p>このようにお互いに欠けている部分をうまく補う事でより汎用的で可読性と品質の高いコードが保てると考えます。</p>
+</div>
+
+</div>

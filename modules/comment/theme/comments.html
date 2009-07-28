@@ -1,0 +1,8 @@
+<?php foreach ($items as $item): ?>
+<div class="<?php echo $item['comments']['class']?>section">
+<h5 id="c<?php echo $item['comments']['id']?>"><?php echo $item['comments']['title']?></h5>
+<div class="opinion">
+<?php echo $item['comments']['comment']?><p class="author"><?php echo $item['comments']['user_name']?> @ <?php echo $item['comments']['date']?> <span class="edit"><a href="./modules/comment/edit.php?id=<?php echo $item['comments']['id']?>"><?php echo $lang['edit']?></a></span></p>
+</div>
+</div>
+<?php endforeach; ?>

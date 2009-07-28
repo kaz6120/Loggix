@@ -1,0 +1,78 @@
+<div class="section" id="startup">
+<h2>Startup Guide</h2>
+<ul>
+<li><a href="#install">Install</a></li>
+<li><a href="#preferences">Settings</a></li>
+<li><a href="#customize">Customizing</a></li>
+</ul>
+<h3 id="install">Install</h3>
+<h4>STEP1</h4>
+<p>Upload all files in <code class="dirname">public_html</code> or <code class="dirname">htdocs</code> directory of your server.</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">plubic_html / htdocs</code>
+  <ul>
+   <li><code class="dirname">loggix</code></li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>Set permissions of the directories and files shown below readable and rewritable.</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">loggix</code>
+  <ul>
+   <li><code class="dirname">data</code>
+    <ul>
+     <li><code class="dirname">resources</code>(Destination of uploaded images and files)</li>
+     <li><code class="filename">loggix.sqlite3.db</code>(SQLite3 database file)</li>
+     <li><code class="filename">loggix.sqlite.db</code>(SQLite2 database file)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<div class="note">
+<p>Loggix will read SQLite database files in order of:</p>
+<ol>
+ <li><code class="filename">loggix.sqlite3.db</code>(SQLite3 database file)</li>
+ <li><code class="filename">loggix.sqlite.db</code>(SQLite2 database file)</li>
+</ol>
+<p>so just remove <code class="filename">loggix.sqlite3.db</code> if you want to use SQLite2.</p>
+</div>
+<h4>STEP2</h4>
+<p>Open in your browser:</p>
+<p><code>http://your-domain.com/path/to/loggix/admin/login.php</code></p>
+<p>and access:</p>
+
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">loggix</code>
+  <ul>
+   <li><code class="dirname">admin</code>
+    <ul>
+     <li><code class="filename">login.php</code> <span class="important">&larr; HERE!</span></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h4>STEP3</h4>
+<p>Log in as : </p>
+<ul>
+<li>User : <strong>root</strong></li>
+<li>Password : <strong>root</strong></li>
+</ul>
+<h4>STEP4</h4>
+<p>After you logged in, create a new user account and log out. Then log in again by using a new user account and then delete the original root user account for some security reasons.</p>
+<p>And...That's it. You're ready to Loggix!</p>
+
+<h3 id="preferences">System prefereneces</h3>
+<p>Please don't forget to check your sytem preferences to change your website name, system info, etc.</p>
+
+<h3 id="customize">Customizing</h3>
+<p>All view stuffs (such as HTML template files and CSS) are in "<code class="dirname">theme</code>" directory. Please edit these files as you like with your favorite text editor to change and customize "View"</p>
+<p class="ref">See also : <a href="./index.php?id=structures">Structures</a></p>
+</div>

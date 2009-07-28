@@ -1,0 +1,85 @@
+/**
+ * RSS feed style sheet
+ *
+ * based on http://www.w3.org/2000/08/w3c-synd/style.css
+ *
+ * @since  2004-12-27 01:20:01
+ * @modify 2005-10-12 01:57:37
+ */
+
+RDF {
+    display: block;
+    padding-right: 1em;
+    padding-left: 1em;
+    background: #eeeeee url(../../../../theme/css/_shared/bg_v_stripe.png);
+}
+
+rss, channel, item, title, link {
+    display: block;
+    padding: 0.3em;
+}
+
+channel, item {
+    margin: 0.5em 1em;
+    padding: 0.8em;
+    border: 1px solid #333333;
+    background-color: #ffffff;
+}
+
+channel {
+    background-color: #454545;
+    color: #ffffff;
+    border: 1px solid #333333;
+}
+
+channel>title {
+    padding-bottom: 0.5em;
+    font-family: "HiraMinPro-W6", Times, "Times New Roman", serif;
+    font-weight: bold;
+    font-size: 2em;
+    text-align: center;
+    text-shadow: #999999 0.2em 0.2em 0.2em;
+}
+
+channel>description {
+    display: block;
+    padding: 0.3em;
+    margin-top: 6pt;
+    font-style: italic;
+    font-family: Times, "Times New Roman", serif;
+    font-size: 1.2em;
+}
+
+
+item>title {
+    text-align: left;
+    margin-top: 5px;
+    margin-bottom: 3px;
+    font-family: "HiraMinPro-W6", Times, "Times New Roman", serif;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-shadow: #999999 0.2em 0.2em 0.2em;
+    border-bottom: 1px dotted #666666;
+}
+
+date {
+    margin: 1em;
+}    
+
+link {
+    text-decoration: underline;
+    margin-left: 1em;
+}
+
+item>description {
+    display: block;
+    padding: 1em;
+}
+
+
+image, language, managingEditor, webMaster, docs, copyright,
+lastBuildDate, pubDate, rating, day, hour,
+skipDays, skipHours, textinput, name, li, encoded
+{
+    display: none;
+}

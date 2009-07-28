@@ -1,0 +1,74 @@
+<div class="section" id="basics">
+<h2>Basics</h2>
+<div class="section" id="about">
+<h3>What is Loggix?</h3>
+<p>Loggix is a log managemant system runs on PHP5+. </p>
+<ul>
+<li>Entry Management
+  <ul>
+  <li>You can post, edit, delete, search and add tags.</li>
+  <li>Archive searching with calendar.</li>
+  <li>Upload attachments.
+  <div class="note">No limitations by file types. you can updoad any kinds of files.</div></li>
+  <li>User editable comment system.</li>
+  <li>Sending and receiving trackbacks.</li>
+ </ul>
+</li>
+<li>File downloader
+ <ul>
+  <li>You can post, edit, delete, search and add tags.</li>
+  <li>You can stock any kinds of files which SQLite database can handle.
+  <div class="note">All files will be stocked in SQLite database into separated tables to avoid overhead when downloading.</div></li>
+  <li>Archive searching with calendar.</li>
+  <li>MD5 hash generation.</li>
+  <li>Download counter 
+  <div class="note">You can check this download counter when logged in.</div></li>
+ </ul>
+</li>
+<li>RSS Feeding
+ <ul>
+ <li>RSS2.0(Really Simple Sindycation)</li>
+ <li>Supports Podcast and Videocast</li>
+ </ul>
+</li>
+<li>Flexible plugin architecture.</li>
+<li>You can manage and create a static page contents with "Loggix Expander".</li>
+<li>CSS style switcher</li>
+</div>
+
+<div class="section" id="requirement">
+<h3>Requirements</h3>
+<p>Loggix runs on PHP5 or higher, OS independent, of course, runs on UNIX-like system such as Mac OS X, Linux, BSDs, and Windows.</p>
+<p>Loggix is powered by SQLite. All tables are installed already so you don't need any "INSTALL" procedures. Easy!</p>
+</div>
+
+<div class="section" id="faq">
+<h3>FAQ</h3>
+<dl>
+<dt class="question">Q : Does Loggix run on PHP4.x?</dt>
+<dd class="answer">A : No.</dd>
+<dd class="reason">Why? : Loggix uses many functions added on PHP5 and use SQLite as a database engine.</dd>
+<dt class="question">Q : Do you have any plan to release MySQL driven Loggix?</dt>
+<dd class="answer">A : No and never.</dd>
+<dd class="reason">Why? :  Loggix is built for
+<ol>
+<li>Using Lightweight database engine</li>
+<li>Easy-to-install</li>
+<li>Easy-to-backup</li>
+</ol>
+and SQLite is the answer. It also using low-level detabase drivers (No MDB or any DB layers) for quick response. Feel free to create an other DB version of Loggix, if you want to. It's free software under New BSD Lisence!</dd>
+<dt class="question">Q : How do I pronouce "Loggix"? and why "Loggix"?</dt>
+<dd class="answer">A : "ROGIKS".</dd>
+<dd class="reason">Explanation :  It comes from..
+<ol>
+<li>Log + Geeks = Loggeeks &rarr; Loggeex</li>
+<li>Log + Extreme = Logex</li>
+</ol>
+</dd>
+<dt>Q : How do I　backup or restore SQLite database file?</dt>
+<dd>A : See &rarr; <a href="#" onclick="HTML_AJAX.replace('result', './data/backup-sqlite.html')">How to backup and restore database</a></dd>
+</dl>
+</div>
+
+
+</div>

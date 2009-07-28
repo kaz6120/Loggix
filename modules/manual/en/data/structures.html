@@ -1,0 +1,180 @@
+<div class="section" id="structures">
+<h2>Structures</h2>
+<h3 id="aboutDirectoryAndFiles">About directories and files</h3>
+<p>Loggix's file structure is shown below. (Click linked icons for more details.)</p>
+<div class="loggix-structure">
+<ul>
+ <li><a href="javascript:;" id="admin-dir" class="toggle-switch">
+      <code class="dirname">admin</code>
+     </a> (System admin's directory)
+  <ul id="admin-files" class="toggle">
+   <li><code class="filename">delete.php</code></li>
+   <li><code class="filename">drafts.php</code></li>
+   <li><code class="filename">edit.php</code></li>
+   <li><code class="filename">index.php</code></li>
+   <li><code class="filename">info.php</code></li>
+   <li><code class="filename">login.php</code> (login file)<br />
+    <div class="note">Access to this file to log in.</div>
+   </li>
+   <li><code class="filename">modify.php</code></li>
+   <li><code class="filename">post.php</code></li>
+   <li><code class="filename">tags.php</code></li>
+   <li><code class="filename">users.php</code></li>
+   <li><code class="filename">write.php</code></li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="data-dir" class="toggle-switch">
+      <code class="dirname">data</code>
+     </a> (Data directory)
+  <ul id="data-files" class="toggle">
+   <div class="note">SQLite database and uploaded files and images are stocked in here.</div>
+   <li><code class="dirname">resources</code> (Directory for mages and files)</li>
+   <li><code class="filename">loggix.sqlite3.db</code> (SQLite3 database file)</li>   
+   <li><code class="filename">loggix.sqlite.db</code> (SQLite2 database file)</li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="lang-dir" class="toggle-switch">
+      <code class="dirname">lang</code>
+     </a> (Language resorce directory)
+  <ul id="lang-files" class="toggle">
+   <li><code class="filename">english.lang.php</code></li>
+   <li><code class="filename">japanese.lang.php</code></li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="lib-dir" class="toggle-switch">
+      <code class="dirname">lib</code>
+     </a> (Library file directory)
+  <ul id="lib-files" class="toggle">
+   <div class="note">
+   Loggix core libraries and thirdparty libraries such as PEAR is placed in here. See also "<a href="./index.php?id=Loggix-API">Loggix API</a>" for more info.</div>
+   <li><a href="javascript:;" id="loggix-dir" class="toggle-switch">
+        <code class="dirname">Loggix</code>
+       </a> (Loggix class files)
+    <ul id="loggix-files" class="toggle">
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Module.html">Module.php</a></code> (module class)
+     <div class="note">Extend this class to make your own module class.</div>
+     </li>
+     <li><a href="javascript:;" id="module-dir" class="toggle-switch">
+            <code class="dirname">Module</code></a> (Extended Module directory)
+      <ul id="module-files" class="toggle">
+       <div class="note">Extended modules are placed in here. All classes will be autoroaded when a Loggix application is created.</div>
+       <li><code class="filename">Calendar.php</code></li>
+       <li><code class="filename">Comment.php</code></li>
+       <li><code class="filename">Rss.php</code></li>
+       <li><code class="filename">Trackback.php</code></li>
+      </ul>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_View.html">View.php</a></code> (View class)
+     <div class="note">Loggix's template engine. It's really simple and tiny but good and fast enough to handle a view of small size website.</div>
+     </li>
+     <li><a href="javascript:;" id="view-dir" class="toggle-switch">
+            <code class="dirname">View</code></a> (Directory for subclasses of Loggix_View)
+      <ul id="view-files" class="toggle">
+       <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_View_Helper.html">Helper.php</a></code> (View helper class)</li>
+      </ul>
+     </li>
+     <li><code class="dirname">doc</code></li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Application.html">Application.php</a></code> (Application class)
+     <div class="note">This class will be used to create a Loggix applicaion.</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Core.html">Core.php</a></code> (Core class of Loggix)
+     <div class="note">Loggix core handles database controll.</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Exception.html">Exception.php</a> (Exception class)</code></li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Expander.html">Expander.php</a></code> (Loggix_Expander class)</li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Plugin.html">Plugin.php</a></code> (Plugin class)
+     <div class="note">This class adds plugin architectures to Loggix application.</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Session.html">Session.php</a> (Session class)</code></li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Utility.html">Utility.php</a> (Utility class)</code></li>
+    </ul>
+   </li>
+<li><a href="javascript:;" id="php-dir" class="toggle-switch">
+            <code class="dirname">php</code></a> (Directory for thirdparty libraries)
+ <ul id="php-files" class="toggle">
+  <div class="note">You can load files here with include or require from anywhere in Loggix applicatoin.</div>
+  <li><code class="dirname">PEAR</code></li>
+  <li><code class="filename">PEAR.php</code></li>
+ </ul>
+</li>
+</ul>
+</li>
+<li><a href="javascript:;" id="modules-dir" class="toggle-switch">
+            <code class="dirname">modules</code></a> (Directory for modules)
+ <ul id="modules-files" class="toggle">
+  <li><code class="dirname">calendar</code></li>
+  <li><code class="dirname">comment</code></li>
+  <li><code class="dirname">downloads</code></li>
+  <li><code class="dirname">helloworld</code></li>
+  <li><code class="dirname">manual</code></li>
+  <li><code class="dirname">rss</code></li>
+  <li><code class="dirname">trackback</code></li>
+  <li><code class="filename">index.html</code></li>
+ </ul>            
+</li>
+<li><a href="javascript:;" id="plugins-dir" class="toggle-switch">
+            <code class="dirname">plugins</code></a> (Directory for plugins)
+ <ul id="plugins-files" class="toggle">
+  <div class="note">Please note that all plugins here will be autoloaded.</div>
+  <li><code class="dirname">off</code> (Move plugin here to make it off)</li>
+  <li><code class="filename">captcha.php</code></li>
+  <li><code class="dirname">captcha</code></li>
+  <li><code class="filename">denyCommentByIp.php</code>
+  <li><code class="filename">denyCommentByName.php</code></li>
+  <li><code class="filename">denyTrackbackWithNoReference.php</code></li>
+  <li><code class="filename">displayEntryDeletedMessage.php</code></li>
+  <li><code class="filename">hilightKeyword.php</code></li>
+  <li><code class="filename">markdown.php</code></li>
+  <li><code class="filename">showSamplesMenu.php</code></li>
+  <li><code class="filename">showTrackbackStatus.php</code></li>
+ </ul>
+</li>
+<li><a href="javascript:;" id="theme-dir" class="toggle-switch">
+            <code class="dirname">theme</code></a> (Directory for theme files)
+ <ul id="theme-files" class="toggle">
+  <div class="note">Loggix theme files are standard (X)HTML and CSS files.</div>
+  <li><code class="dirname">admin</code> (admin theme directory)</li>
+  <li><code class="dirname">css</code> (stylesheet directory)</li>
+  <li><code class="dirname">data</code> (data theme directory)</li>
+  <li><code class="dirname">errors</code> (Error message theme directory)</li>
+  <li><code class="dirname">images</code> (Shared image files)</li>
+  <li><code class="dirname">js</code> (JavaScript files directory)</li>
+  <li><code class="filename">archives.html</code>
+    <div class="note">Arvhive view file</div>
+  </li>
+  <li><code class="filename">archives-by-date.html</code>
+    <div class="note">Archive by date view file.</div>
+  </li>
+  <li><code class="filename">archives-by-tags.html</code>
+    <div class="note">Arvhive by tags view file.</div>
+  </li>
+  <li><code class="filename">base.html</code> (<span class="important">Base (X)HTML view file.</span>)
+   <div class="note">Base (X)HTML view file.</div>
+  </li>
+  <li><code class="filename">default.html</code>
+   <div class="note">This will be used when no data is available.</div>
+  </li>
+  <li><code class="filename">navigation.html</code>
+    <div class="note">navigation view file.</div>
+  </li>
+  <li><code class="filename">parmalink.html</code>
+    <div class="note">Parmalink view file.</div>
+  </li>
+  <li><code class="filename">search-result.html</code>
+     <div class="note">Search result view file.</div>
+  </li>
+  <li><code class="filename">smiley-button.html</code>
+    <div class="note">Smiley button view file.</div>
+  </li>
+  <li><code class="filename">tag-result.html</code>
+    <div class="note">Tag search result view file.</div>
+  </li>
+ </ul>
+</li>
+<li><code class="filename">index.php</code> (Front controller)
+ <div class="note">Vistors will access this file. This script will handle all requests and controll database engine.</div>
+</li>
+</ul>
+</div>
+</div>
+

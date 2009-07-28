@@ -1,0 +1,111 @@
+<div class="section" id="markdown">
+<h2>How to write entry</h2>
+<h3>Use Markdown syntax to write entry</h3>
+<h4>What is Markdown?</h4>
+<blockquote>
+<p>Markdown is a text-to-HTML conversion tool for web writers. Markdown allows you to write using an easy-to-read, easy-to-write plain text format, then convert it to structurally valid XHTML (or HTML).</p>
+<p><cite><a href="http://daringfireball.net/projects/markdown/">Daring Fireball</a></cite></p>
+</blockquote>
+<p>Loggix implements PHP version of Markdown which is available here : <a href="http://www.michelf.com/projects/php-markdown/extra/" title="PHP Markdown Extra" class="ex-ref">PHP Markdown Extra</a></p>
+<p>Markdown is one of the best solutions for whom like to use xhtml tags and easy-to-read text mixed on web publishing.</p>
+
+<h4>Reference URIs</h4>
+<p>Plese check these sites below for more info.</p>
+<ul class="ref">
+<li><a href="http://daringfireball.net/projects/markdown/basics" title="Daring Fireball: Markdown Basics" class="ex-ref">Daring Fireball: Markdown Basics</a></li>
+<li><a href="http://www.michelf.com/projects/php-markdown/concepts/" title="PHP Markdown: Concepts" class="ex-ref">PHP Markdown: Concepts</a></li>
+</ul>
+</div>
+
+<div class="section" id="expressions">
+<h3>Using (X)HTML tags</h3>
+<p>You can also use (X)HTML tags to markup specific text with markdown syntax.</p>
+
+
+<h4 class="important">Example : </h4>
+<p>To emphasize, you can use these classes :</p>
+<ol>
+<li><code class="tag">&lt;em&gt;</code></li>
+<li><code class="tag">&lt;strong&gt;</code></li>
+<li><code class="tag">&lt;strong class="stronger"&gt;</code></li>
+<li><code class="tag">&lt;strong class="very-strong"&gt;</code></li>
+</ol>
+<p>These tags shown above can be used like this:</p>
+<div class="example">
+<code class="tag">&lt;em&gt;</code>EMPHASIZE<code class="tag">&lt;/em&gt;</code><br />
+<code class="tag">&lt;strong&gt;</code>STRONG<code class="tag">&lt;/strong&gt;</code><br />
+<code class="tag">&lt;strong class="stronger"&gt;</code>STRONGER<code class="tag">&lt;/strong&gt;</code><br />
+<code class="tag">&lt;strong class="very-strong"&gt;</code>VERY STRONG<code class="tag">&lt;/strong&gt;</code>
+</div>
+<p>...and will be rendered like this: &darr;</p>
+<div class="example">
+<em>EMPHASIZE</em>
+<strong>STRONG</strong>
+<strong class="stronger">STRONGER</strong>
+<strong class="very-strong">VERY STRONG</strong>
+</div>
+
+
+<h4 class="important">External link samples : </h4>
+
+<p>Use <code>ex-ref</code> class to define external references.</p>
+<div class="example">
+<code class="tag">&lt;a href="http://loggix.gotdns.org/" <br />
+title="Loggix Project Official Site"<br />
+class="<span class="important">ex-ref</span>"&gt;</code>Loggix Project<code class="tag">&lt;/a&gt;</code>
+</div>
+<p>will be rendered like this↓</p>
+<p><a href="http://loggix.gotdns.org/" title="Loggix Project Official Site" class="ex-ref">Loggix Project</a></p>
+<h5>References</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#navigation" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Navigation</a></li>
+</ul>
+
+<h4 class="important">Quotations Examples : </h4>
+<p>Use <code class="tag">&lt;blockquote&gt;</code> when you quote. Use <code class="tag">address</code> tag to identify the resource.</p>
+<div class="example">
+<code class="tag">&lt;blockquote&gt;</code><br />
+<code class="tag">&lt;p&gt;</code>Quote from Loggix Project<code class="tag">&lt;/p&gt;</code><br />
+<code class="tag important">&lt;address&gt;</code><br />
+<code class="tag">&lt;a href="http://loggix.gotdns.org/"&gt;</code>Loggix Project<code class="tag">&lt;/a&gt;</code><br />
+<code class="tag important">&lt;/address&gt;</code><br />
+<code class="tag">&lt;/blockquote&gt;</code>
+</div>
+<p>This will be renedered like this ↓</p>
+<blockquote cite="http://loggix.gotdns.org/">
+<p>Quote from Loggix Project</p>
+<address><a href="http://loggix.gotdns.org/">Loggix Project</a></address>
+</blockquote>
+
+<h5>References</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#quotations" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Quotations</a></li>
+</ul>
+
+<h4 class="important">Computer expressons examples : </h4>
+<p>Use <code class="tag">&lt;kbd&gt;</code> to write typed text.</p>
+<div class="example">
+<code class="tag">&lt;kbd&gt;</code>shift<code class="tag">&lt;/kbd&gt;</code><br />
+<code class="tag">&lt;kbd&gt;</code>option<code class="tag">&lt;/kbd&gt;</code><br />
+<code class="tag">&lt;kbd&gt;</code>command<code class="tag">&lt;/kbd&gt;</code><br />
++<br />
+<code class="tag">&lt;kbd class="<span class="important">important</span>"&gt;</code>S<code class="tag">&lt;/kbd&gt;</code>
+</div>
+<p>This will be rendered like this ↓</p>
+<p><kbd>shift</kbd><kbd>option</kbd><kbd>command</kbd>+<kbd class="important">S</kbd></p>
+<h5>References</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#computers" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Computers</a></li>
+</ul>
+
+</div>
+
+<div class="section" id="uploadFiles">
+<h3>Sending attachments</h3>
+<p>Use insert button to insert links or image tags to your textarea.</p>
+<p>Click to enlarge (&darr;)<br /><a href="./data/images/insert-tags.png" class="colorbox"><img src="./data/images/insert-tags-s.png" /></a></p>
+<p>All images and files will be uploaded when you post your entry.</p>
+<p>Audio and movie files will be marked as <code>&lt;!-- PODCAST= --&gt;</code>. This code will be converted to download link in RSS feeds.</p>
+</div>
+
+

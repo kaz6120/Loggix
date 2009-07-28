@@ -1,0 +1,173 @@
+<div class="section" id="structures">
+<h2>ファイルの構成</h2>
+<h3 id="aboutDirectoryAndFiles">各ディレクトリとファイルの説明</h3>
+<p>Loggixのファイル構成は以下のようになっています。(各フォルダの中身と説明を見るにはフォルダ名をクリックして下さい。)</p>
+<div class="loggix-structure">
+<ul>
+ <li><a href="javascript:;" id="admin-dir" class="toggle-switch">
+      <code class="dirname">admin</code></a> (システム管理者専用ディレクトリ)
+  <ul id="admin-files" class="toggle">
+   <li><code class="filename">delete.php</code></li>
+   <li><code class="filename">drafts.php</code></li>
+   <li><code class="filename">edit.php</code></li>
+   <li><code class="filename">index.php</code></li>
+   <li><code class="filename">info.php</code></li>
+   <li><code class="filename">login.php</code> (ログインファイル)<br />
+    <div class="note">このファイルにアクセスしてログインします</div>
+   </li>
+   <li><code class="filename">modify.php</code></li>
+   <li><code class="filename">post.php</code></li>
+   <li><code class="filename">tags.php</code></li>
+   <li><code class="filename">users.php</code></li>
+   <li><code class="filename">write.php</code></li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="data-dir" class="toggle-switch">
+      <code class="dirname">data</code></a> (データディレクトリ)
+  <ul id="data-files" class="toggle">
+   <div class="note">データベースファイルやアップロードした画像ファイルなどは全てこのディレクトリに格納されます。</div>
+   <li><code class="dirname">resources</code> (画像等のファイル格納ディレクトリ)</li>
+   <li><code class="filename">loggix.sqlite.db</code> (SQLiteデータベースファイル)</li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="lang-dir" class="toggle-switch">
+      <code class="dirname">lang</code></a> (言語リソース格納ディレクトリ)
+  <ul id="lang-files" class="toggle">
+   <li><code class="filename">english.lang.php</code></li>
+   <li><code class="filename">japanese.lang.php</code></li>
+  </ul>
+ </li>
+ <li><a href="javascript:;" id="lib-dir" class="toggle-switch">
+      <code class="dirname">lib</code></a> (ライブラリファイル格納ディレクトリ)
+  <ul id="lib-files" class="toggle">
+   <div class="note">
+   LoggixのコアライブラリやPEARなどサードパーティのライブラリはここに格納されます。クラスライブラリを使った開発についての詳細は「<a href="./index.php?id=Loggix-API">Loggix APIのコンセプトと説明</a>」を参照下さい。</div>
+   <li><a href="javascript:;" id="loggix-dir" class="toggle-switch">
+        <code class="dirname">Loggix</code></a> (Loggixクラスファイル)
+    <ul id="loggix-files" class="toggle">
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Module.html">Module.php</a></code> (モジュールクラス)
+     <div class="note">「/modules/」ディレクトリに入れるコンテンツモジュールを追加するときに使うクラスです。モジュールを作成するときはこのクラスを継承(extends)して作成します。</div>
+     </li>
+     <li><a href="javascript:;" id="module-dir" class="toggle-switch">
+            <code class="dirname">Module</code></a> (Module継承クラス格納ディレクトリ)
+      <ul id="module-files" class="toggle">
+       <div class="note">一つ上の階層にあるModuleクラスを継承したクラスファイルを保存するディレクトリです。ここに入れるクラスはLoggixが起動したときに自動的に読み込まれますので、Loggixシステム内のどこからでもクラスのインスタンスを生成して使用出来ます。</div>
+       <li><code class="filename">Calendar.php</code></li>
+       <li><code class="filename">Comment.php</code></li>
+       <li><code class="filename">Rss.php</code></li>
+       <li><code class="filename">Trackback.php</code></li>
+      </ul>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_View.html">View.php</a></code> (Viewクラス)
+     <div class="note">LoggixのView部分を処理するテンプレートエンジンクラスです。「/theme/」に入れた.htmlファイルをレンダリングする処理を行います。</div>
+     </li>
+     <li><a href="javascript:;" id="view-dir" class="toggle-switch">
+            <code class="dirname">View</code></a> (Viewの補助・サブクラス格納ディレクトリ)
+      <ul id="view-files" class="toggle">
+       <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_View_Helper.html">Helper.php</a></code> (Viewのヘルパークラス)</li>
+      </ul>
+     </li>
+     <li><code class="dirname">doc</code></li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Application.html">Application.php</a></code> (アプリケーションクラス)
+     <div class="note">Loggixアプリケーションを生成するクラスです。CoreクラスとViewクラスを使って各種処理を行う機能を実装しています。</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Core.html">Core.php</a></code> (コアクラス)
+     <div class="note">Loggixのコアクラスです。データベースとの通信やセッションの管理といったシステムの基幹部分の処理を行います。</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Exception.html">Exception.php</a> (例外処理クラス)</code></li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Expander.html">Expander.php</a></code> (エキスパンダークラス)</li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Plugin.html">Plugin.php</a></code> (プラグインクラス)
+     <div class="note">「/plugins/」に入れて使うLoggixプラグインを作成するときに継承するクラスです。</div>
+     </li>
+     <li><code class="filename"><a href="../../../lib/Loggix/doc/Loggix/Loggix_Utility.html">Utility.php</a> (ユーティリティクラス)</code></li>
+    </ul>
+   </li>
+<li><a href="javascript:;" id="php-dir" class="toggle-switch">
+            <code class="dirname">php</code></a> (サードパーティ製ライブラリ用ディレクトリ)
+ <ul id="php-files" class="toggle">
+  <div class="note">サードパーティ製のライブラリを入れるディレクトリです。このディレクトリはインクルードパスが通っていますので、Loggixアプリケーション内で「<code>require_once</code>」して呼び出して使用することが出来ます。</div>
+  <li><code class="dirname">PEAR</code></li>
+  <li><code class="filename">PEAR.php</code></li>
+ </ul>
+</li>
+</ul>
+</li>
+<li><a href="javascript:;" id="modules-dir" class="toggle-switch">
+            <code class="dirname">modules</code></a> (コンテンツモジュール格納ディレクトリ)
+ <ul id="modules-files" class="toggle">
+  <li><code class="dirname">calendar</code></li>
+  <li><code class="dirname">comment</code></li>
+  <li><code class="dirname">downloads</code></li>
+  <li><code class="dirname">helloworld</code></li>
+  <li><code class="dirname">manual</code></li>
+  <li><code class="dirname">rss</code></li>
+  <li><code class="dirname">trackback</code></li>
+  <li><code class="filename">index.html</code></li>
+ </ul>            
+</li>
+<li><a href="javascript:;" id="plugins-dir" class="toggle-switch">
+            <code class="dirname">plugins</code></a> (プラグイン格納ディレクトリ)
+ <ul id="plugins-files" class="toggle">
+  <div class="note">プラグインを格納するディレクトリです。プラグインはこのディレクトリから削除するか「off」ディレクトリに移動することで機能を停止することが出来ます。</div>
+  <li><code class="dirname">off</code></li>
+  <li><code class="filename">captcha.php</code></li>
+  <li><code class="dirname">captcha</code></li>
+  <li><code class="filename">denyCommentByIp.php</code>
+  <li><code class="filename">denyCommentByName.php</code></li>
+  <li><code class="filename">denyTrackbackWithNoReference.php</code></li>
+  <li><code class="filename">displayEntryDeletedMessage.php</code></li>
+  <li><code class="filename">hilightKeyword.php</code></li>
+  <li><code class="filename">markdown.php</code></li>
+  <li><code class="filename">showSamplesMenu.php</code></li>
+  <li><code class="filename">showTrackbackStatus.php</code></li>
+ </ul>
+</li>
+<li><a href="javascript:;" id="theme-dir" class="toggle-switch">
+            <code class="dirname">theme</code></a> (テーマファイル用ディレクトリ)
+ <ul id="theme-files" class="toggle">
+  <div class="note">LoggixのView部分で使用するテーマファイル群です。ディレクトリの構成は、「base.html」の上に各パーツ部分に相当するテンプレートファイルをはめ込んで行く形になっています。</div>
+  <li><code class="dirname">admin</code> (管理者用画面のテーマファイル)</li>
+  <li><code class="dirname">css</code> (スタイルシート格納ディレクトリ)</li>
+  <li><code class="dirname">data</code> (データ格納ディレクトリ用テーマファイル)</li>
+  <li><code class="dirname">errors</code> (エラー表示用テーマファイル)</li>
+  <li><code class="dirname">images</code> (共有画像ファイル格納ディレクトリ)</li>
+  <li><code class="dirname">js</code>　(JavaScriptファイル格納ディレクトリ)</li>
+  <li><code class="filename">archives.html</code>
+    <div class="note">アーカイブ表示用Viewファイルです。</div>
+  </li>
+  <li><code class="filename">archives-by-date.html</code>
+    <div class="note">日付別表示用Viewファイルです。</div>
+  </li>
+  <li><code class="filename">archives-by-tags.html</code>
+    <div class="note">タグ別表示用Viewファイルです。</div>
+  </li>
+  <li><code class="filename">base.html</code> (<span class="important">基盤XHTMLファイル</span>)
+   <div class="note">基盤となるXHTMLのViewファイルです。Loggixはこのファイルにコンテンツ・ナビゲーション・ページャー・検索結果などのコンテンツViewを組み込んで一番最後にブラウザに出力表示します。</div>
+  </li>
+  <li><code class="filename">default.html</code>
+   <div class="note">データが何もない時に表示されるViewファイルです。</div>
+  </li>
+  <li><code class="filename">navigation.html</code>
+    <div class="note">ナビゲーション部分のViewファイルです。</div>
+  </li>
+  <li><code class="filename">parmalink.html</code>
+    <div class="note">Parmalink表示用のViewファイルです。</div>
+  </li>
+  <li><code class="filename">search-result.html</code>
+     <div class="note">検索結果表示用のViewファイルです。</div>
+  </li>
+  <li><code class="filename">smiley-button.html</code>
+    <div class="note">スマイリーボタン表示用Viewファイルです。</div>
+  </li>
+  <li><code class="filename">tag-result.html</code>
+    <div class="note">タグの検索結果表示用Viewファイルです。</div>
+  </li>
+ </ul>
+</li>
+<li><code class="filename">index.php</code> (フロントコントローラー)
+ <div class="note">Loggixアプリケーションの、コンテンツの表示に関する全ての処理をコントロールするフロントコントローラーです。閲覧者はブラウザでこのindex.phpファイルにアクセスします。</div>
+</li>
+</ul>
+</div>
+</div>
+

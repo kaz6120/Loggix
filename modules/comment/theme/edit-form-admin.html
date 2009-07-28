@@ -1,0 +1,27 @@
+<fieldset>
+<legend><?php echo $lang['comment']['admin_menu']?></legend>
+<table summary="User Secret Info">
+<tr>
+<th colspan="2"><?php echo $lang['comment']['user_hidden_info']?></th>
+</tr>
+<tr>
+<th><?php echo $lang['comment']['ip_address']?></th><td><?php echo $item['admin']['user_ip']?></td>
+</tr>
+<tr>
+<th><?php echo $lang['comment']['email']?></th><td><?php echo $item['admin']['user_mail']?></td>
+</tr>
+<tr>
+<th><?php echo $lang['password']?></th><td><?php echo $item['admin']['user_pass']?></td>
+</tr>
+</table>
+<p id="comment-submit">
+<input type="radio" tabindex="6" accesskey="m" name="mod_del" value="0" checked="checked" />
+<?php echo $lang['save']?>
+<input type="radio" tabindex="6" accesskey="d" name="mod_del" value="1" />
+<?php echo $lang['delete']?>
+<input type="hidden" name="admin" value="yes" />
+<input type="hidden" name="id" value="<?php echo $item['comments']['id']?>" />
+<input type="hidden" name="refer_id" value="<?php echo $item['comments']['refer_id']?>" />
+<input type="submit" accesskey="o" tabindex="10" value="OK" />
+</p>
+</fieldset>

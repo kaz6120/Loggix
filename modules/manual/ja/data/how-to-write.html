@@ -1,0 +1,118 @@
+<div class="section" id="markdown">
+<h2>エントリーの書き方</h2>
+<h3>エントリーはMarkdown記法で書きます</h3>
+<h4>Markdow(マークダウン)記法とは?</h4>
+<p>マークダウンとは、<a href="http://daringfireball.net/projects/markdown/basics" title="Daring Fireball: Markdown Basics" class="ex-ref">Daring Fireball</a>が考案・開発した、(X)HTMLに自動変換するテキスト書式及びそのツールです。Loggixが採用・実装しているのはそのPHP移植版である<a href="http://www.michelf.com/projects/php-markdown/" title="PHP Markdown" class="ex-ref">PHP Markdown</a>の「<a href="http://www.michelf.com/projects/php-markdown/extra/" title="PHP Markdown Extra" class="ex-ref">PHP Markdown Extra</a>」モジュールです。</p>
+<p>マークダウンの優れている点は、マークダウン書式と通常の(X)HTMLを混在して使用出来る、という点です。つまり、面倒な記述などはマークダウンで処理させ、「ここからはタグで細かく指定して書きたい」と思う部分はタグで、というような使い方が出来ます。</p>
+<h4>書き方の例</h4>
+<p>このように(↓)書くと...</p>
+<p class="ref"><a href="./data/markdown-sample.text">markdown-sample.text</a>（文字コード：UTF-8）</p>
+<p>このように(↓)表示されます。</p>
+<p class="ref"><a href="./index.php?id=markdown-sample">Markdownサンプルドキュメント</a></p>
+<h4>書き方参考ページ</h4>
+<p>さらに詳しい情報が欲しい場合は以下のMarkdownの本家サイト及び日本語訳を掲載しているサイトを参照ください。</p>
+<ul class="ref">
+<li><a href="http://daringfireball.net/projects/markdown/basics" title="Daring Fireball: Markdown Basics" class="ex-ref">Daring Fireball: Markdown Basics</a></li>
+<li><a href="http://www.michelf.com/projects/php-markdown/concepts/" title="PHP Markdown: Concepts" class="ex-ref">PHP Markdown: Concepts</a></li>
+<li><a href="http://blog.2310.net/contents/individual/000022.php" class="ex-ref">2310::blog: Markdown文法の全訳</a></li>
+</ul>
+</div>
+
+<div class="section" id="expressions">
+<h3>タグを使って表現を広げる</h3>
+<p>Markdown記法でもHTMLタグを使わずに幅広い表現が出来ますが、MarkdownはHTMLタグを混在できるので、HTMLを知っている方はタグを使うことでさらに細かい表現が可能になります。</p>
+
+
+<h4 class="important">テキストの装飾の例：</h4>
+<p>フォントを大きくしたり強調したい場合には、</p>
+<ol>
+<li><code class="tag">&lt;em&gt;</code></li>
+<li><code class="tag">&lt;strong&gt;</code></li>
+<li><code class="tag">&lt;strong class="stronger"&gt;</code></li>
+<li><code class="tag">&lt;strong class="very-strong"&gt;</code></li>
+</ol>
+<p>などの4段階のクラスがデフォルトで用意されています。</p>
+<div class="example">
+<code class="tag">&lt;em&gt;</code>強調<code class="tag">&lt;/em&gt;</code><br />
+<code class="tag">&lt;strong&gt;</code>普通の強調<code class="tag">&lt;/strong&gt;</code><br />
+<code class="tag">&lt;strong class="stronger"&gt;</code>ちょっと強調<code class="tag">&lt;/strong&gt;</code><br />
+<code class="tag">&lt;strong class="very-strong"&gt;</code>かなり強調<code class="tag">&lt;/strong&gt;</code>
+</div>
+<p>実際の表示はこのようになります。↓</p>
+<div class="example">
+<em>強調</em>
+<strong>普通の強調</strong>
+<strong class="stronger">ちょっと強調</strong>
+<strong class="very-strong">かなり強調</strong>
+</div>
+<h5>参照URI</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#emphasis" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Emphasis</a></li>
+<li><a class="ex-ref" href="http://www.kanzaki.com/docs/html/htminfo14.html#S12" title="強調,引用,グループ化,画像などの要素 -- ごく簡単なHTMLの説明">ごく簡単なHTMLの説明　: 語句の強調とハイライト</a></li>
+</ul>
+
+<h4 class="important">外部リンクの書き方の例：</h4>
+
+<p>外部サイトへの参照リンクの場合は　<code>ex-ref</code>　クラスを使ってスタイルシートでアイコンをつけ、外部リンクである事を明確に表現する事も出来ます。「<code>ex-ref</code>」とは、「<strong>ex</strong>ternal(外部)-<strong>ref</strong>erence(リファレンス)」の略です。</p>
+<div class="example">
+<code class="tag">&lt;a href="http://loggix.gotdns.org/" <br />
+title="Loggix Project Official Site"<br />
+class="<span class="important">ex-ref</span>"&gt;</code>Loggix Project<code class="tag">&lt;/a&gt;</code>
+</div>
+<p>以上を全て適用すると、以下のようなハイパーリンクになります。↓</p>
+<p><a href="http://loggix.gotdns.org/" title="Loggix Project Official Site" class="ex-ref">Loggix Project</a></p>
+<h5>参照URI</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#navigation" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Navigation</a></li>
+<li><a class="ex-ref" href="http://www.kanzaki.com/docs/html/htminfo12.html" title="ハイパーリンク -- ごく簡単なHTMLの説明">ハイパーリンク -- ごく簡単なHTMLの説明</a></li>
+</ul>
+
+<h4 class="important">引用元リンクつきの引用文の書き方の例：</h4>
+<p>他のサイトの記事を引用する場合は<code class="tag">&lt;blockquote&gt;</code>タグを使います。<code class="tag">&lt;blockquote&gt;</code>タグ内の<code class="tag">address</code>属性で元記事のURIを下のように指定します。</p>
+<div class="example">
+<code class="tag">&lt;blockquote&gt;</code><br />
+<code class="tag">&lt;p&gt;</code>Loggix Projectからの引用文<code class="tag">&lt;/p&gt;</code><br />
+<code class="tag important">&lt;address&gt;</code><br />
+<code class="tag">&lt;a href="http://loggix.gotdns.org/"&gt;</code>Loggix Project<code class="tag">&lt;/a&gt;</code><br />
+<code class="tag important">&lt;/address&gt;</code><br />
+<code class="tag">&lt;/blockquote&gt;</code>
+</div>
+<p>すると、以下のようになります。↓</p>
+<blockquote cite="http://loggix.gotdns.org/">
+<p>Loggix Projectからの引用文</p>
+<address><a href="http://loggix.gotdns.org/">Loggix Project</a></address>
+</blockquote>
+
+<h5>参照URI</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#quotations" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Quotations</a></li>
+<li><a class="ex-ref" href="http://www.kanzaki.com/docs/html/htminfo14.html#S13.1" title="強調,引用,グループ化,画像などの要素 -- ごく簡単なHTMLの説明">ごく簡単なHTMLの説明　: 引用の方法</a></li>
+</ul>
+
+<h4 class="important">コンピューターの用例の書き方の例：</h4>
+<p>キーボードショートカットなど、コンピューターキー入力文字列を表現したい場合は、<code class="tag">&lt;kbd&gt;</code>タグを使います。特定のキーを強調したい場合は、<code class="tag">&lt;kbd&gt;</code>タグ内の<code class="tag">class</code>属性で「important」と指定します。</p>
+
+<div class="example">
+<code class="tag">&lt;kbd&gt;</code>shift<code class="tag">&lt;/kbd&gt;</code><br />
+<code class="tag">&lt;kbd&gt;</code>option<code class="tag">&lt;/kbd&gt;</code><br />
+<code class="tag">&lt;kbd&gt;</code>command<code class="tag">&lt;/kbd&gt;</code><br />
++<br />
+<code class="tag">&lt;kbd class="<span class="important">important</span>"&gt;</code>S<code class="tag">&lt;/kbd&gt;</code>
+</div>
+<p>すると、以下のようになります。↓</p>
+<p><kbd>shift</kbd><kbd>option</kbd><kbd>command</kbd>+<kbd class="important">S</kbd></p>
+<h5>参照URI</h5>
+<ul class="ref">
+<li><a class="ex-ref" href="http://www.mozilla.org/contribute/writing/markup#computers" title="mozilla.org Markup Reference">mozilla.org Markup Reference : Computers</a></li>
+</ul>
+
+</div>
+
+<div class="section" id="uploadFiles">
+<h3>画像を張る</h3>
+<p>エントリーに画像を貼りたい場合は、ファイル送信フォームでファイルを選択し、画像を張りたい場所にカーソルを置いてタグボタンをクリックすると、以下のように画像タグが挿入されます。</p>
+<p>(↓クリックで拡大）<br /><a href="./data/images/insert-tags.png" class="colorbox"><img src="./data/images/insert-tags-s.png" /></a></p>
+<p>画像は、エントリーを送信する時に同時にアップロードされます。</p>
+<p>上図で示されているように、画像の場合は<code>&lt;img /&gt;</code>タグ、ファイルの場合はファイルへの<code>&lt;a&gt;</code>タグ、ポッドキャスト出来る音声ファイルやムービーファイルはポッドキャスト用の独自コメントタグ<code>&lt;!-- PODCAST= --&gt;</code>が挿入されます。ポッドキャストタグはRSS配信時にポッドキャスト配信用のコードに自動変換されます。</p>
+</div>
+

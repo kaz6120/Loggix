@@ -1,0 +1,76 @@
+<div class="section" id="basics">
+<h2>概要</h2>
+<div class="section" id="about">
+<h3>Loggixとは?</h3>
+<p>Loggixは、PHP5.x以降の環境で動作するSQLiteによるログ管理システムです。現在実装されている機能は以下の通りです。</p>
+<ul>
+<li>ログ(エントリー)管理機能
+  <ul>
+  <li>投稿／編集／削除／検索／タグ付け機能</li>
+  <li>カレンダーによるアーカイブ表示</li>
+  <li>ファイルアップローダー機能
+  <div class="note">アップロード不可なファイルの制限はありません。.jpg、.png、.gifなどの画像フォーマットの他、.mp3、.m4a、.m4b、.wavなどのポッドキャスト対応フォーマットや.pdf、.txtなど、全てのファイルがアップロード可能です。</div></li>
+  <li>コメント機能</li>
+  <li>トラックバックの送受信機能</li>
+ </ul>
+</li>
+<li>ファイルダウンローダー機能
+ <ul>
+  <li>投稿／編集／削除／検索／カテゴライズ機能</li>
+  <li>全てのフォーマットのバイナリファイルがストック可能。
+  <div class="note">ファイルはSQLiteデータベースに分割して保存されます。SQLiteが対応可能な限りの全てのフォーマットがストック可能です。</div></li>
+  <li>カレンダーによるアーカイブ表示</li>
+  <li>ファイルのMD5ハッシュ値自動生成</li>
+  <li>ダウンロードカウンター機能 
+  <div class="note">どのファイルがどのくらダウンロードされたか、管理画面のアクセス解析機能でチェック出来る機能です。</div></li>
+ </ul>
+</li>
+<li>RSS機能
+ <ul>
+ <li>RSS2.0(Really Simple Sindycation)を出力</li>
+ <li>ポッドキャスト/ビデオキャスト配信に対応</li>
+ </ul>
+</li>
+<li>プラグイン機能</li>
+<li>アクセス解析機能(要GD)</li>
+<li>静的ページ拡張機能「Expander」</li>
+<li>CSS切り替えスイッチ機能</li>
+</ul>
+</div>
+
+<div class="section" id="requirement">
+<h3>動作環境</h3>
+<p>バージョン5.x以降のPHPがインストールされている環境で動作します。LoggixはPHP言語で開発されていますので、OSインディペンデント(特定OS非依存)なアプリケーションです。PHP5がインストールされているMac OS X, Linux及びその他のUNIX互換OS、Windows XPで動作します。</p>
+<p>Loggixは、データベースエンジンとしてSQLiteを採用しています。SQLiteはPHP5から標準バンドルされた別途プロセスを必要としないデータベースエンジンですので、PHP5がインストールされている環境であれば他に何もする事なく、Loggixをフォルダまるごとサーバーにアップロードすればすぐに使用出来ます。必要なテーブルはデータベース内にインストール済みのため、面倒なデータベースへのテーブルのインストール作業を一切必要としません。</p>
+</div>
+
+<div class="section" id="faq">
+<h3>FAQ</h3>
+<dl>
+<dt class="question">Q : PHP4.x系では動作するのですか？</dt>
+<dd class="answer">A : PHP4.x系では動作しません。</dd>
+<dd class="reason">理由 : LoggixはPHP5以降実装された機能を使用しています。PHP4でサポートされていない機能が動作しないため、PHP5以降の環境でないと動作しません。また、将来的にもPHP4をサポートする予定はありません。</dd>
+<dt class="question">Q : MySQLなど、他のデータベースをサポートする予定はありますか？</dt>
+<dd class="answer">A : ありません。</dd>
+<dd class="reason">理由： Loggixは、
+<ol>
+<li>データベースを使用する</li>
+<li>サーバーにアップロードしてすぐ使える</li>
+<li>容易にサイトをデータと一緒にまるごとバックアップ＆移動出来る</li>
+</ol>
+というコンセプトで開発しており、PHPでその条件を満たす唯一の選択肢である、という理由でSQLiteを使用しています。また、データベースドライバも低レベルレイヤーで使用していますのでオフィシャル版で他のデータベースをサポートする予定はありません。Loggixをベースに、他のデータベースへの移植版を改造・開発・再配布する等は自由に行ってください。</dd>
+<dt class="question">Q : 「Loggix」の読み方と、名前の由来は？</dt>
+<dd class="answer">A : 「ろじっくす」と読みます。いくつかの意味からの造語です。</dd>
+<dd class="reason">説明： Loggixは、
+<ol>
+<li>「LOG」+「Geeks」=「LOGGEEX」</li>
+<li>「LOG」+「Extreme」=「LOGEX」</li>
+</ol>
+を元にして組み合わせた造語です。「E」が「I」に変わったのは「ロジェックス」「ロゲックス」と読まれるのを避けるためと、単なる見た目です。</dd>
+<dt>Q : SQLiteデータベースファイルのバックアップ、復元、最適化の方法は？</dt>
+<dd>A : こちらのページを参照ください。→ <a href="#" onclick="HTML_AJAX.replace('result', './data/backup-sqlite.html')">SQLiteデータベースファイルのバックアップ方法</a></dd>
+</dl>
+</div>
+
+
+</div>

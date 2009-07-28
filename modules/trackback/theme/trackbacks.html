@@ -1,0 +1,8 @@
+<?php foreach ($items as $item): ?>
+<div class="section">
+<h5 id="tb<?php echo $item['trackback']['id']?>"><?php echo $item['trackback']['title']?></h5>
+<div class="excerpt">
+<?php echo $item['trackback']['excerpt']?><p class="author"><a href="<?php echo $item['trackback']['url']?>"><?php echo $item['trackback']['name']?></a> @ <?php echo $item['trackback']['date']?> <?php echo $item['admin']['delete']?></p>
+</div>
+</div>
+<?php endforeach; ?>

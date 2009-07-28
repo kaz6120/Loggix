@@ -1,0 +1,210 @@
+<div class="section" id="LoggixPluginApi">
+<h2>Loggix プラグイン<abbr title="Application Programming Interface">API</abbr></h2>
+<ul>
+<li><a href="#AboutLoggixPlugin">Loggixプラグインについて</a></li>
+<li><a href="#glossary">用語の説明</a></li>
+<li><a href="#HookList">フック一覧</a>
+ <ul>
+  <li><a href="#FilterHookList">フィルターフック一覧</a></li>
+  <li><a href="#ActionHookList">アクションフック一覧</a></li>
+ </ul>
+</li>
+<li><a href="#customize">カスタマイズ</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="AboutLoggixPlugin">
+<h3>Loggixプラグインについて</h3>
+<h4>Q1: Loggixプラグインって何？</h4>
+<h5>A1: <code>/plugins/</code>ディレクトリに配置される、PHPファイルです。</h5>
+<p>これらのPHPは、Loggixで作成されたサイトに改変を加える事無く機能を追加する拡張モジュールとして機能します。実体は、単体または複数の普通のPHPファイルです。</p>
+<h4>Q2: プラグインはどこに入れればいいですか？ また、どうやってシステムに適用させますか？</h4>
+<h5>A2:<code>/plugins/</code>ディレクトリに入れます。</h5>
+<p>プラグインは<code>/plugins/</code>ディレクトリに入れると何もしなくてもすぐに適用されます。オフにする場合は取り除くだけでOKです。</p>
+<p>【プラグインの配置例】<br />
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">plugins</code>
+  <ul>
+   <li><code class="filename">markdown.php</code></li>
+   <li><code class="filename">hilightKeyword.php</code></li>
+   <li><code class="filename">showTrackbackStatus.php</code></li>
+  </ul>
+ </li>
+</ul>
+</div>
+</p>
+
+<h4>Q3: 同じ場所に複数のプラグインを適用したいのですが、出来ますか？</h4>
+<h5>A3: 出来ます。</h5>
+<p>但し、オリジナルメソッドを作る際、同じ名前でのメソッドの二重定義は出来ませんので注意してください。優先順位を入れ替えたい場合は、プライオリティの設定をします。プライオリティは1から10の数値で表し、数字が若い順にプライオリティが高くなります。例(↓)</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;addFilter('フック名', 'メソッド名', 1);</pre>
+</p>
+
+
+<h4>Q4: Loggix Expanderで作成したモジュールにトップディレクトリの/plugins/に入れたプラグインは適用されますか？</h4>
+<h5>A4: 適用されます。</h5>
+<p>全てのLoggix Expanderモジュールは下位ディレクトリにカスケード(継承）されます。リセットしたい場合はプラグイン内部でフィルターを使ってリセットします。</p>
+
+<h4>Q5: Loggix Expanderで作成したモジュールに独自のプラグインを使いたいのですが</h4>
+<h5>A5: 以下の手順でやってみてください。</h5>
+<p><code>/modules/あなたの作ったExpanderモジュール/plugins/</code>ディレクトリを作成し、そこにに入れると、他のモジュールに干渉しないあなたの作ったExpanderモジュール専用のプラグインとなります。</p>
+<p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">YourExpanderModule</code>
+    <ul>
+     <li><code class="dirname">plugins</code>
+      <ul>
+       <li><code class="filename">yourPlugin.php</code></li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</p>
+
+<p>トップディレクトリの/plugins/に入れたプラグインと同じフックを使ったプラグインをExpanderモジュール/plugins/に入れると、上位のプラグインが継承されて二つとも適用されます。上位プラグインを無効にして上書き適用したい場合は、以下のメソッドを使います。</p>
+<p>【 フィルターを無効にする場合 】：<br />
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;removeFilter('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+<p>【 アクションを無効にする場合 】：<br />
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;removeAction('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="glossary">
+<h3>用語の解説</h3>
+<h4>Q1:「アクション」って何？</h4>
+<h5>A1: アプリケーションでなんらかのイベントが発生する際に実行される処理のことです。</h5>
+<p>アクションを追加する場合は、追加したい処理の部分に以下のようなメソッドを追加します。</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;doAction('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+
+<h4>Q2:「フィルター」って何？</h4>
+<h5>A2: アプリケーションでなんらかの処理を行う際にそれを通過して適用(フィルター)されるようにする処理のことです。</h5>
+<p>フィルターを追加する場合は、追加したい処理の部分に以下のようなメソッドを追加します。</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;addFilter('this-is-a-hook', 'my-method-name');
+</pre>
+</p>
+
+<h4>Q3: 「フック」って何？</h4>
+<h5>A3: プラグインを作る際に、アクションやフィルターを実行する部分を指定するキーワードです。</h5>
+<p>フックとは、メソッドを適用する部分を指定するキーワードの事です。</p>
+<pre class="php">&lt;?php
+$this-&gt;plugin-&gt;applyFilters('フック名', 'メソッド名');</pre>
+</p>
+<p>このようなメソッドを使ったコードを使ったプラグインを書く事で、フックで指定された部分に処理を施す事が出来ます。</p>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="HookList">
+<h3>フック一覧</h3>
+<h4 id="FilterHookList">フィルター用フック一覧</h4>
+<table summary="Hooks for filters">
+<tr><th>フック名</th><th>説明</th></tr>
+<tr>
+<th class="key">title</th>
+<td class="value"><code class="tag">&lt;title&gt;</code>タグ内の値に適用されます。</th>
+</tr>
+<tr>
+<th class="key">h1</th>
+<td class="value"><code class="tag">&lt;h1&gt;</code>タグ内の値に適用されます。</th>
+</tr>
+<tr>
+<th class="key">index-view</th>
+<td class="value">インデックス(トップ)ページのコンテンツ部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">downloads-index-view</th>
+<td class="value">Downloadsのインデックス(トップ)ページのコンテンツ部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">permalink-view</th>
+<td class="value">恒久URI(パーマリンク)ページのコンテンツ部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">entry-content</th>
+<td class="value">各エントリーごとのコンテンツ部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">edit-entry</th>
+<td class="value">エントリーの編集画面のコンテンツ部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">navigation</th>
+<td class="value">ナビゲーションブロック部分全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">comment-post-form</th>
+<td class="value">コメント機能のコメントフォーム部分のブロック全体に適用されます。</th>
+</tr>
+<tr>
+<th class="key">comment-text</th>
+<td class="value">コメント機能の訪問者の投稿したテキスト部分に適用されます。</th>
+</tr>
+<tr>
+<th class="key">ex-content</th>
+<td class="value">Loggix_Expanderモジュールで作成されたページのコンテンツブロック部分全体に適用されます。</th>
+</tr>
+</table>
+
+<h4 id="ActionHookList">アクション用フック一覧</h4>
+<p><code>before-</code>で始まるフックは、「〜の前」に呼び出されるフックを意味しています。<code>after-</code>で始まるフックは「〜の後」に呼び出されるフックです。
+</p>
+<table summary="Hooks for actions">
+<tr><th>フック名</th><th>説明</th></tr>
+<tr>
+<th class="key">after-new-entry-posted</th>
+<td class="value">エントリーが追加された直後に実行されます。</th>
+</tr>
+<tr>
+<th class="key">before-delete-entry</th>
+<td class="value">エントリーが削除される直前に実行されます。</th>
+</tr>
+<tr>
+<th class="key">after-entry-deleted</th>
+<td class="value">エントリーが削除された直後に実行されます。</th>
+</tr>
+<tr>
+<th class="key">before-recieve-comment</th>
+<td class="value">コメントを受信する前に実行されます。</th>
+</tr>
+<tr>
+<th class="key">before-recieve-trackback</th>
+<td class="value">トラックバックを受信する前に実行されます。</td>
+</tr>
+<tr>
+<th class="key">after-send-trackback</th>
+<td class="value">トラックバックを送信した後に実行されます。</td>
+</tr>
+</table>
+
+<h3 id="customize">カスタマイズ</h3>
+<h4>Q1: プラグインを適用させる領域を増やしたいのですが？</h4>
+<h5>A1: フックをLoggixのコアライブラリにコードを追加して下さい。</h5>
+<p>プラグインを適用させる領域を増やすには、Loggixのコアライブラリのメソッド内部で、適用させたい領域の変数部分を以下のコードを使って書き換えて追加します。</p>
+<pre class="php">&lt;?php
+$this-&gt;plugin-&gt;applyFilters('フック名', 'ターゲットとなる領域');</pre>
+</p>
+
+</div>
+

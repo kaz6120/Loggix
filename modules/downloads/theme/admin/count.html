@@ -1,0 +1,19 @@
+<h2><?php echo $lang['dl_count']?></h2>
+<table summary="Download Information" class="horizontal-graph">
+<tr>
+<th>Title</th><th>File Name</th><th>DL</th>
+</tr>
+<?php if (!empty($items)) : foreach($items as $item): ?>
+<tr>
+<td class="key">
+<a href="../../../modules/downloads/index.php?id=<?php echo $item[0]?>">
+<?php echo $item[1]?>
+</a>
+</td>
+<td class="key"><?php echo $item[2]?></td>
+<td class="value"><?php echo $item[3]?></td>
+</tr>
+<?php endforeach; else: ?>
+<p><?php echo $lang['no_drafts']?></p>
+<?php endif?>
+</table>

@@ -1,0 +1,210 @@
+<div class="section" id="LoggixPluginApi">
+<h2>Loggix Plugin<abbr title="Application Programming Interface">API</abbr></h2>
+<ul>
+<li><a href="#AboutLoggixPlugin">About Loggix Plugins</a></li>
+<li><a href="#glossary">Glossary</a></li>
+<li><a href="#HookList">Hook List</a>
+ <ul>
+  <li><a href="#FilterHookList">Filter hook list</a></li>
+  <li><a href="#ActionHookList">Action hook list</a></li>
+ </ul>
+</li>
+<li><a href="#customize">Customize</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="AboutLoggixPlugin">
+<h3>About Loggix Plugin</h3>
+
+<h4 class="question">Q1: What are Loggix Plugins?</h4>
+<h4 class="answer">A1: These are PHP files to add functions to Loggix, located in <code>/plugins/</code>.</h4>
+<p>With these php files, you can add extra functions to your Loggix system without changing Loggix's core libraries.</p>
+
+<h4 class="question">Q2: Where can I put plugins? How can I make it on?</h4>
+<h4 class="answer">A2: Just copy it to <code>/plugins/</code>. That's it.</h4>
+<p>All of the Loggix plugins are automatically loaded when user access your loggix application. You don't have to do anything to make it on. When you want to make it off, just delete or remove it from <code>/plugins/</code> directory.</p>
+<p>【 Example 】<br />
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">plugins</code>
+  <ul>
+   <li><code class="filename">markdown.php</code></li>
+   <li><code class="filename">hilightKeyword.php</code></li>
+   <li><code class="filename">showTrackbackStatus.php</code></li>
+  </ul>
+ </li>
+</ul>
+</div>
+</p>
+
+<h4 class="question">Q3: Can I add two or more functions to the same hook?</h4>
+<h5 class="answer">A3: Yes, you can.</h5>
+<p>When you add function to the hook, you have to specify its priority. The priority values are 1 to 10, and 10 is the highest. See example below:(↓)</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;addFilter('this-is-a-hook', 'my-method-name', 1);</pre>
+</p>
+
+<h4 class="question">Q4: Does the plugin installed in /plugins/ affects modules which is created with using Loggix Expander?</h4>
+<h5 class="answer">A4: Yes, it does.</h5>
+<p>All the Loggix Expander modules will be cascated. If you reset it in lower level directory, use /plugins/ in its lower level directory.</p>
+
+<h4 class="question">Q5: Can I add plugin to the module created with Loggix Expander?</h4>
+<h5 class="answer">A5: Yes, you can. See below:</h5>
+<p>Please put your plugins in :</p>
+<p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">YourExpanderModule</code>
+    <ul>
+     <li><code class="dirname">plugins</code>
+      <ul>
+       <li><code class="filename">yourPlugin.php</code></li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</p>
+<p>If you overwrite the higher level plugin, see below:</p>
+<p>【 How to disable filter 】：<br />
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;removeFilter('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+<p>【 How to disable action 】：<br />
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;removeAction('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="glossary">
+<h3>Glossary</h3>
+<h4 class="question">Q1: What does "Action" mean?</h4>
+<h5 class="answer">A1: It means "adding some kind of event to the applicaion".</h5>
+<p>If you want to add action, add the method like this:</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;doAction('this-is-a-hook', 'my-method-name');</pre>
+</p>
+
+<h4 class="question">Q2: What does "Filter" mean?</h4>
+<h5 class="answer">A2: It means "adding filter action" when the application executes some kind of event.</h5>
+<p>If you want to add filter, add the method like this:</p>
+<p>
+<pre class="php">&lt;?php
+$app-&gt;plugin-&gt;addFilter('this-is-a-hook', 'my-method-name');
+</pre>
+</p>
+
+<h4 class="question">Q3: What does "Hook" mean?</h4>
+<h5 class="answer">A3: That is the name of the place where you want to apply plugin methods.</h5>
+<p>Applying plugin methods to "Hook" :<br />
+<pre class="php">&lt;?php
+$this-&gt;plugin-&gt;applyFilters('this-is-a-hook', 'my-method-name');</pre>
+</p>
+<p>You can add actions and filters to the hook as you see above.</p>
+
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="HookList">
+<h3>Hook List</h3>
+<h4 id="FilterHookList">Filter Hook List</h4>
+<table summary="Hooks for filters">
+<tr><th>Hook Name</th><th>Explanation</th></tr>
+<tr>
+<th class="key">title</th>
+<td class="value">Apply plugin effects to <code class="tag">&lt;title&gt;</code> value.</th>
+</tr>
+<tr>
+<th class="key">h1</th>
+<td class="value">Apply plugin effects to <code class="tag">&lt;h1&gt;</code> tags.</th>
+</tr>
+<tr>
+<th class="key">index-view</th>
+<td class="value">Apply plugin effects to the whole of the index page.</th>
+</tr>
+<tr>
+<th class="key">downloads-index-view</th>
+<td class="value">Apply plugin effects to the whole of the index page of Downloads.</th>
+</tr>
+<tr>
+<th class="key">permalink-view</th>
+<td class="value">Apply plugin effects to the whole of the permalink page.</th>
+</tr>
+<tr>
+<th class="key">entry-content</th>
+<td class="value">Apply plugin effects to each entry contents.</th>
+</tr>
+<tr>
+<th class="key">edit-entry</th>
+<td class="value">Apply plugin effects to entry editing page.</th>
+</tr>
+<tr>
+<th class="key">navigation</th>
+<td class="value">Apply plugin effects to navigation block.</th>
+</tr>
+<tr>
+<th class="key">comment-post-form</th>
+<td class="value">Apply plugin effects to visitor's comment form block.</th>
+</tr>
+<tr>
+<th class="key">comment-text</th>
+<td class="value">Apply plugin effects to visitor's comment.</th>
+</tr>
+<tr>
+<th class="key">ex-content</th>
+<td class="value">Apply plugin effects to the contents block of the contents which is created by using Loggix_Expander module.</th>
+</tr>
+</table>
+
+<h4 id="ActionHookList">Action Hook List</h4>
+<p><code>before-</code> hooks will be called "before" event. <code>after-</code> hooks will be called "after" event.
+</p>
+<table summary="Hooks for actions">
+<tr><th>Hook Name</th><th>Explanation</th></tr>
+<tr>
+<th class="key">after-new-entry-posted</th>
+<td class="value">Appy plugin effects after entry is posted.</th>
+</tr>
+<tr>
+<th class="key">before-delete-entry</th>
+<td class="value">Appy plugin effects just before entry is deleted.</th>
+</tr>
+<tr>
+<th class="key">after-entry-deleted</th>
+<td class="value">Appy plugin effects after entry is deleted.</th>
+</tr>
+<tr>
+<th class="key">before-recieve-comment</th>
+<td class="value">Appy plugin effects before recieve visitor's comment.</th>
+</tr>
+<tr>
+<th class="key">before-recieve-trackback</th>
+<td class="value">Appy plugin effects before recieve trackback.</td>
+</tr>
+<tr>
+<th class="key">after-send-trackback</th>
+<td class="value">Appy plugin effects after trackback recieved.</td>
+</tr>
+</table>
+
+<h3 id="customize">Custmize your plugin hook</h3>
+<h4>Q1: These are not enough. Can I add more plugin hooks?</h4>
+<h5>A1: Add hook to /lib/Loggix/Core.php.</h5>
+<p>Search for "plugin" and read the code around it carefully and you will understand how to add plugin hook easily. </p>
+<p>
+<pre class="php">&lt;?php
+$this-&gt;plugin-&gt;applyFilters('HookName', 'TargetAreaName');</pre>
+</p>
+</div>
+

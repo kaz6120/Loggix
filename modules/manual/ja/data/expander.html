@@ -1,0 +1,248 @@
+<div class="section" id="LoggixExpander">
+<h2>Loggix Expander</h2>
+<ul>
+<li><a href="#about">Loggix Expanderとは?</a></li>
+<li><a href="#how-to-use">各フォーマットの使い方</a></li>
+<li><a href="#LoggixExpanderStructure">Loggix Expanderモジュールのディレクトリ構成</a></li>
+<li><a href="#LoggixExpanderTutorial">Expanderモジュール作成チュートリアル</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+</div>
+
+<div class="section" id="about">
+<h3>Loggix Expanderとは?</h3>
+<p>「Loggix Expander」とは、Loggix独自仕様の単独ページ作成機能です。データベースにストックしたコンテンツデータではなく、<code>.html</code>、<code>.php</code>、<code>.txt</code>、<code>.text</code>などの拡張子を持つ静的テキストファイルをコンテンツ部に読み込んで表示します。Weblogスタイルの時系列に流れるログ形式ではない単独ページの作成に利用します。コンテンツ部には、他のプラグインモジュールなどを使った処理結果や、PEARやZend Frameworkなどの他のサードパーティ製ライブラリを使った処理結果を組み込んで表示することも可能です。</p>
+<p>【Loggix Expanderのデータファイルの配置例】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">data</code> (コンテンツファイル用ディレクトリ)
+      <ul>
+       <li><code class="filename">default.html</code> (デフォルトで呼び出されるファイル)</li>
+       <li><code class="filename">page1.php</code> (?id=page1で呼び出されるファイル)</li>
+       <li><code class="filename">page2.txt</code> (?id=page2で呼び出されるファイル)</li>
+       <li><code class="filename">page3.text</code> (?id=page3で呼び出されるファイル)</li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (フロントコントローラー)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>Expanderモジュールの基盤となる(X)HTMLテーマ（タイトル・メニュー・フッター部分、CSSなど）は、メインのテーマ部分から継承されますが、Expanderモジュールで作ったコンテンツ部分独自のテーマファイルを適用することも可能です。（例：Aboutページを作成し、「そのコーナーだけ(X)HTMLの構成やCSSを変えたい」、という場合など）それをしたい場合は、ターゲットとなるExpanderモジュールの直下に「/theme/」というディレクトリを配置して使用します。</p>
+<p>【Loggix Expanderのテーマファイルの配置例】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">theme</code> (テーマファイル用ディレクトリ)
+      <ul>
+       <li><code class="filename">base.html</code></li>
+       <li><code class="filename">navigation.html</code></li>
+       <li><code class="filename">archives.html</code></li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (フロントコントローラー)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+
+</div>
+
+<div class="section" id="how-to-use">
+<h3>各フォーマットの使い方</h3>
+<p>Expanderモジュールはコンテンツに流し込むテキストファイルのフォーマットを拡張子によって判別し、各フォーマットごとに読み込まれる際の挙動が異なります。ここではそれぞれのフォーマットについての使い方と挙動を解説します。</p>
+<h4><code>.html</code>、<code>.inc.php</code>、 <code>.php</code></h4>
+<p>通常の(X)HTMLファイルとして読み込みこまれて表示されます。内部に<code>&lt;?php ?&gt;</code>で括られたPHPコードを埋め込むことが可能です。</p>
+<h4 class="important"><code>.txt</code></h4>
+<p>整形済みテキストファイルとして読み込まれて表示されます。</p>
+<h4 class="important"><code>.text</code></h4>
+<p>Markdownテキストファイルとして読み込こまれ、XHTMLに自動変換されて表示されます。(.htmlファイルと同様、内部にPHPコードを埋め込むことも可能です。) Markdownとは<a href="http://daringfireball.net/" title="Daring Fireball" class="ex-ref">Daring Fireball</a>のJohn Gruber氏が開発した、XHTMLに自動変換されることを想定したテキストフォーマット及びその変換機能です。(↓)</p>
+<p class="ref"><a href="http://daringfireball.net/projects/markdown/" title="Daring Fireball: Markdown" class="ex-ref">Markdown</a></p>
+<p>Loggixは、そのPHP移植版プラグインである<a href="http://www.michelf.com/projects/php-markdown/" title="PHP Markdown" class="ex-ref">PHP Markdown</a>を使用しています。</p>
+<h5>Markdown書類の書き方参考ページ</h5>
+<ul class="ref">
+<li><a href="http://daringfireball.net/projects/markdown/basics" title="Daring Fireball: Markdown Basics" class="ex-ref">Daring Fireball: Markdown Basics</a></li>
+<li><a href="http://www.michelf.com/projects/php-markdown/concepts/" title="PHP Markdown: Concepts" class="ex-ref">PHP Markdown: Concepts</a></li>
+</ul>
+<h5>サンプルMarkdownドキュメント</h5>
+<p>Expander内でMarkdownを使って記述／表示したサンプルドキュメントです。</p>
+<ul class="ref">
+<li><a href="./index.php?id=markdown-sample">Markdownサンプルドキュメント</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixExpanderStructure">
+<h3>Loggix Expanderモジュールのディレクトリ構成</h3>
+<p>ディレクトリ構成はLoggixのメインディレクトリの構成と同じです。唯一の違いは、「Expander」モジュールは読み込むデータがデータベースではなくプレーンテキストファイルですので、それらのファイルを「data」ディレクトリに入れるようにします。</p>
+<p>【Loggix Expanderモジュール構成の例】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(接頭辞なし小文字)
+    <ul>
+     <li><code class="dirname">admin</code> (管理ファイル用ディレクトリ)</li>
+     <li><code class="dirname">data</code> (コンテンツファイル用ディレクトリ)</li>
+     <li><code class="dirname">images</code> (画像ファイル用ディレクトリ)</li>
+     <li><code class="dirname">lang</code> (言語ファイル用ディレクトリ)</li>
+     <li><code class="dirname">lib</code> (クラス・ライブラリ用ディレクトリ)</li>
+     <li><code class="dirname">plugins</code> (プラグイン用ディレクトリ)</li>
+     <li><code class="dirname">theme</code> (テーマファイル用ディレクトリ)</li>
+     <li><code class="filename">index.php</code> (フロントコントローラー)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>各ディレクトリは必須ではなく、オプションです。最小限の構成はこのようになります。</p>
+<p>【Loggix Expanderモジュール最小構成】</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(接頭辞なし小文字)
+    <ul>
+     <li><code class="dirname">data</code> (コンテンツファイル用ディレクトリ)
+      <ul>
+       <li><code class="filename">default.html</code> (デフォルトで読み込まれるコンテンツファイル)</li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code> (フロントコントローラー)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixExpanderTutorial">
+<h3>Expanderモジュール作成チュートリアル</h3>
+
+<p>実際にExpanderクラスを使った「example」モジュールを作成してみましよう。</p>
+
+<h5>STEP 1</h5>
+<p>まず、前準備として以下の最小構成ファイルを作成します。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname">example</code>
+    <ul>
+     <li><code class="dirname">data</code>
+      <ul>
+       <li><code class="filename">default.html</code></li>
+       <li><code class="filename">test.php</code></li>
+      </ul>
+     </li>
+     <li><code class="filename">index.php</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h5>STEP 2</h5>
+<p>フロントコントローラーファイルとなる「<code class="filename">index.php</code>」を開き、以下のように編集します。</p>
+<pre class="php-source">
+<span class="php-source-keyword">&lt;?php</span>
+<span class="php-source-comment">// トップディレクトリへの相対パスを指定します。</span>
+<var class="php-source-var">$relativePath</var>     = '../..';
+
+<span class="php-source-comment">// インクルードパスの設定します。</span>
+set_include_path(<var class="php-source-var">$relativePath</var> . '/lib/Loggix/');
+
+<span class="php-source-comment">// クラスを読み込みます。</span>
+<span class="php-source-keyword">require_once</span> 'Application.php';
+<span class="php-source-keyword">require_once</span> 'Expander.php';
+<span class="php-source-keyword">require_once</span> 'Module/Helloworld.php';
+
+<span class="php-source-comment">// Loggix_Applicationクラスからインスタンスを生成します。</span>
+<span class="php-source-comment">// これは、ヘッダやメニュー部を継承するために必要です。</span>
+<var class="php-source-var">$app</var> = new Loggix_Application;
+
+<span class="php-source-comment">// Loggix_Expanderクラスから新規にインスタンスを生成します。</span>
+<span class="php-source-comment">// これは、「data」内に配置したファイルを処理するのに必要です。</span>
+<var class="php-source-var">$exp</var> = <span class="php-source-keyword">new</span> Loggix_Expander;
+
+<span class="php-source-comment">// $appオブジェクトからセッションステータス変数を取得します。</span>
+<span class="php-source-comment">// これは、管理者メニューなどを表示する場合に必要です。</span>
+<var class="php-source-var">$sessionState</var> = <var class="php-source-var">$app</var>->getSessionState();
+
+<span class="php-source-comment">// ハローワールドクラスからインスタンスを生成</span>
+<var class="php-source-var">$aLoggixHelloworld</var> = <span class="php-source-keyword">new</span> Loggix_Module_Helloworld;
+
+<span class="php-source-comment">// $module変数に代入します。</span>
+<var class="php-source-var">$module</var>['LM']['HelloworldString'] = <var class="php-source-var">$aLoggixHelloworld</var>->sayHello();
+
+<span class="php-source-comment">// $item変数に、タイトル、コンテンツ、を指定します。</span>
+<span class="php-source-comment">// ここではページャーや検索結果などは使用しないので「''」と空にしておきます。</span>
+<var class="php-source-var">$item</var> = <span class="php-source-keyword">array</span>(
+    'title'    => <var class="php-source-var">$app</var>->setTitle(<var class="php-source-var">$module</var>['LM']['HelloworldString']),
+    'contents' => <var class="php-source-var">$exp</var>->getContent(),
+    'pager'    => '',
+    'result'   => ''
+);
+
+<span class="php-source-comment">// 先ほど生成したLoggix_Applicationのインスタンス「$appオブジェクト」の</span>
+<span class="php-source-comment">//「display()」メソッドに値を入れます。</span>
+<var class="php-source-var">$app</var>->display(<var class="php-source-var">$item</var>, <var class="php-source-var">$sessionState</var>);
+
+</pre>
+
+<p>「default.html」を開き、以下のように編集します。</p>
+
+<pre class="code">
+&lt;h2&gt;<span class="php-source-keyword">&lt;?php</span> echo <span class="php-source-var">$module</span>['LM']['HelloworldString']<span class="php-source-keyword">?&gt;</span>&lt;/h2&gt;
+</pre>
+
+<h5>STEP 3</h5>
+
+<p>ブラウザから、</p>
+<p>「http://あなたのLoggixアプリケーションアドレス/modules/example/」</p>
+<p>とアクセスしてみてください。以下ののようにコンテンツ部に「Hello, World」と表示されれば成功です。</p>
+<p><img src="./data/images/helloworld.png" alt="Hello World" /></p>
+
+<h5>STEP 4</h5>
+
+<p>「test.php」を開き、以下のように編集します。</p>
+
+<pre class="code">
+<span class="php-source-keyword">&lt;?php</span> phpinfo();<span class="php-source-keyword">?&gt;</span>
+</pre>
+
+<p>ブラウザから、</p>
+<p>「http://あなたのLoggixアプリケーションアドレス/modules/example/index.php<span class="important">?id=test</span>」</p>
+<p>とアクセスしてみてください。phpinfo()関数が実行され、PHPの情報が表示されれば成功です。</p>
+
+</div>
+
+<div class="section" id="faq">
+<h3><abbr title="Frequently Asked Questions : よく聞かれる質問">FAQ</abbr></h3>
+<dl>
+<dt class="question">Q : Expanderコンテンツの下に、さらにExpanderコンテンツを作れますか？</dt>
+<dd class="answer">A : はい。</dd>
+<dd class="reason">Expanderコンテンツは入れ子にしたりサイト内のどこにでも配置可能です。</dd>
+<dt class="question">Q : なぜ「Expander」という名前なのですか？</dt>
+<dd class="answer">A : 「Expand(拡張)」からとった名称です。</dd>
+<dd class="reason">ディレクトリを増やしたり、他のサードパーティ製PHPクラスを簡単に組み込んでコンテンツを拡張したり出来る機能、というコンセプトからこの名前にしました。</dd>
+<dt class="question">Q : 「Expander」コンテンツはLoggixのデータベースやコアクラスに依存しますか？</dt>
+<dd class="answer">A : いいえ。</dd>
+<dd class="reason">「Expander」コンテンツはLoggixのデータベースやコアクラス、セッションクラス、モジュールクラス等に依存しません。つまり、データベースの事を気にかける事なく、Loggix_ViewクラスとLoggix_Expanderクラスのみでコンテンツを構築することも可能です。例えば、今ご覧になっているこのマニュアルは、Loggix_ViewとLoggix_ExpanderとPEARのHTML_AJAXクラスで作成されています。</dd>
+</dl>
+</div>
+

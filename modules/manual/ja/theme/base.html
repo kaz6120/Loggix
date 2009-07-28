@@ -1,0 +1,76 @@
+<?php echo $this->getXmlVersion()?>
+<?php echo $this->getDTD()?>
+<title><?php echo $item['title']?></title>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->getStyle()?>" media="screen" />
+<script type="text/javascript" src="./data/server.php?client=all"></script>
+<!-- Begin jQuery UI -->
+<script type="text/javascript" src="<?php echo $this->getDir()?>/theme/js/jquery.js"></script>
+<script type="text/javascript" src="<?php echo $this->getDir()?>/theme/jquery-ui/js/jquery-ui-1.7.custom.min.js"></script>
+<link type="text/css" href="<?php echo $this->getDir()?>/theme/jquery-ui/css/smoothness/jquery-ui-1.7.custom.css" rel="stylesheet" />
+<!-- End jQuery UI -->
+<!-- Begin ColorBox -->
+<link type="text/css" media="screen" rel="stylesheet" href="<?php echo $this->getDir()?>/theme/colorbox/colorbox/colorbox.css" />
+<link type="text/css" media="screen" rel="stylesheet" href="<?php echo $this->getDir()?>/theme/colorbox/example1/colorbox-custom.css" />
+<!--[if IE]>
+  <link type="text/css" media="screen" rel="stylesheet" href="<?php echo $this->getDir()?>/theme/colorbox/example1/colorbox-custom-ie.css" title="example" />
+<![endif]-->
+<script type="text/javascript" src="<?php echo $this->getDir()?>/theme/colorbox/colorbox/jquery.colorbox.js"></script>
+<!-- End ColorBox -->
+<!-- Begin Loggix JS -->
+<script type="text/javascript" src="<?php echo $this->getDir()?>/theme/js/scripts.js"></script>
+<!-- End Loggix JS -->
+<!-- Begin Loggix JS -->
+<script type="text/javascript" src="./theme/js/scripts.js"></script>
+<!-- End Loggix JS -->
+</head>
+<body>
+<!-- Begin #wrapper -->
+<div id="wrapper">
+<!-- Begin #header -->
+<div id="header">
+<h1><a href="<?php echo $this->getDir()?>/index.php"><?php echo $item['site_title']?></a></h1>
+<p>You are reading Loggix Manual</p>
+</div>
+<!-- Begin #contents -->
+<div id="content">
+<div class="section">
+<?php echo $item['contents']?>
+</div>
+</div>
+<!-- Begin #navigation -->
+<div id="navigation">
+<h2>Contents</h2>
+<ul class="menu">
+<li><a href="<?php echo $this->getDir()?>/index.php">サイトTOP</a></li>
+</ul>
+<h2>References</h2>
+<ul class="menu">
+<li>
+<a href="../../../lib/Loggix/doc" title="Show Loggix API Document" class="menu">
+Loggix API ドキュメント
+</a>
+</li>
+</ul>
+<h2><a href="./index.php">Loggix マニュアル</a></h2>
+<ul class="menu">
+<li><a href="./index.php">マニュアル TOP</a></li>
+<li><a href="./index.php?id=basics">概要</a></li>
+<li><a href="./index.php?id=startup">スタートアップガイド</a></li>
+<li><a href="./index.php?id=how-to-write">エントリーの書き方</a></li>
+<li><a href="./index.php?id=structures">ファイルの構成</a></li>
+<li><a href="./index.php?id=sqlite">SQLiteデータベース</a></li>
+<li><a href="./index.php?id=Loggix-API">Loggix API</a></li>
+<li><a href="./index.php?id=LoggixPlugin-API">LoggixプラグインAPI</a></li>
+<li><a href="./index.php?id=expander">Loggix Expander</a></li>
+<li><a href="./index.php?id=thirdparty-lib">サードパーティ製ライブラリ</a></li>
+<li><a href="./index.php?id=License">ライセンス</a></li>
+</ul>
+</div>
+<!-- Begin #footer -->
+<div id="footer">
+<address>Copyright (c) Loggix Project</address>
+<p id="page-generation">Page generation : <?php echo $item['gt']?> seconds.</p>
+</div>
+</div><!-- End #wrapper -->
+</body>
+</html>

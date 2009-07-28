@@ -1,0 +1,66 @@
+<div class="section" id="startup">
+<h2>スタートアップガイド</h2>
+<ul>
+<li><a href="#install">インストール</a></li>
+<li><a href="#preferences">環境設定</a></li>
+<li><a href="#customize">カスタマイズ</a></li>
+</ul>
+<h3 id="install">インストール</h3>
+<h4>STEP1</h4>
+<p>解凍して出来たフォルダを丸ごとサーバーにアップロードします。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">loggix</code></li>
+</ul>
+</div>
+<p>以下のディレクトリとファイルを読み書きできるパーミッションに変更しておきます。</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">loggix</code>
+  <ul>
+   <li><code class="dirname">data</code>
+    <ul>
+     <li><code class="dirname">resources</code>(画像などのアップロード先)</li>
+     <li><code class="filename">loggix.sqlite3.db</code>(SQLite3データベース)</li>
+     <li><code class="filename">loggix.sqlite.db</code>(SQLite2データベース)</li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h4>STEP2</h4>
+<p>ブラウザから、</p>
+<p>「http://あなたのLoggixアプリケーションアドレス/admin/login.php」</p>
+<p>で管理者画面にアクセスし、ログインします。</p>
+
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">loggix</code>
+  <ul>
+   <li><code class="dirname">admin</code>
+    <ul>
+     <li><code class="filename">login.php</code> <span class="important">←ここにアクセス</span></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h4>STEP3</h4>
+<p>以下のユーザー名とパスワードを使ってログインします。</p>
+<ul>
+<li>ユーザー名：<strong>root</strong></li>
+<li>パスワード：<strong>root</strong></li>
+</ul>
+<h4>STEP4</h4>
+<p>うまくログイン出来たら、新しいユーザーアカウントを作成し、その新しいユーザー名とパスワードを使って再度ログインしなおして下さい。</p>
+<p>STEP3で使ったデフォルトのユーザーアカウントを削除して設定完了です。</p>
+
+<h3 id="preferences">環境設定</h3>
+<p>サイトの名前を変更したりページ毎のログ表示数を設定したりといった基本設定を行うには、ログイン後、管理者メニューの「システム環境設定」を開いて設定を行います。</p>
+
+<h3 id="customize">カスタマイズ</h3>
+<p>見た目の部分(View)を構成するテンプレートファイルは「<code class="dirname">theme</code>」フォルダにあります。見た目をカスタマイズしたい場合はこれらの(X)HTMLとCSSから成るテンプレートファイル群をお好きなエディタなどを使用して編集して下さい。(Webブラウザからのテンプレートファイルの編集機能はありません。カスタマイズする人の自由度を最優先する意味もあり、将来的に実装する予定もありません。)</p>
+<p>このマニュアルの「<a href="./index.php?id=structures">ファイルの構成</a>」もご参照下さい。</p>
+</div>

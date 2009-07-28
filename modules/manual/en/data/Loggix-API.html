@@ -1,0 +1,152 @@
+<div class="section" id="LoggixApi">
+<h2>Loggix <abbr title="Application Programming Interface">API</abbr></h2>
+<ul>
+<li><a href="#LoggixCore">Loggix Core Classes</a></li>
+<li><a href="#LoggixModule">Loggix Module Classes</a></li>
+<li><a href="#CodingStandards">Coding Standards</a></li>
+</ul>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section">
+<p>This document provides the explanation of the concepts of <a href="../../lib/Loggix/doc/">Loggix API Documentation</a>.</p>
+<p><a href="./data/images/loggix_layers.png" class="colorbox" title="Loggix Class Layer"><img src="./data/images/loggix_layers.png"></a></p>
+<div class="section" id="LoggixCore">
+<h3>Loggix Core Classes</h3>
+<p class="description">
+Loggix Core classes controll the Loggix's database and file handlings and located in <code class="filename">/lib/Loggix/</code> directory. All packages are named like : "Loggix_*".
+</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code>
+    <ul>
+     <li><code class="filename">Application.php</code></li>
+     <li><code class="filename">Core.php</code></li>
+     <li><code class="filename">Expander.php</code></li>
+     <li><code class="filename">Plugin.php</code></li>
+     <li><code class="filename">Utility.php</code></li>
+     <li><code class="filename">View.php</code></li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+</div>
+
+<!-- BEGIN SECTION -->
+<div class="section" id="LoggixModule">
+<h3>Loggix Module Classes</h3>
+<p class="description">
+Loggix Module Classes are built for expand Loggix's functions which is located in <code class="filename">/lib/Loggix/Module/</code> directory. All these class modules will be auto-loaded when you launch Loggix application. You can add your original or customized module to the directory.</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code>
+    <ul>
+     <li><code class="filename">Module.php</code>
+     <li><code class="dirname">Module</code>
+      <ul>
+       <li><code class="filename">Calendar.php</code></li>
+       <li><code class="filename">Comment.php</code></li>
+       <li><code class="filename">Helloworld.php</code></li>
+       <li><code class="filename">Rss.php</code></li>
+       <li><code class="filename">Trackback.php</code></li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<h4>How to extend Loggix_Module</h4>
+<p>When you develpe Loggix module exntends Loggix_Module, you should follow rules below.</p>
+<ol>
+<li>First of all, you are recomended to use <code>Loggix_Module</code> class when you create your own module. You can access all of the core method through it.</li>
+<li>You have to use prefix to your class name. (see: <a href="#CodingExample">Example</a>)</li>
+<li>Loggix's default core modules are all named with prefix: <span class="important">Loggix_Module_</span>, this means "<span class="important">This Module extends Loggix_Module</span>".  <span class="note">(All the thirdparty modules included in package are not renamed.)</span></li>
+<li>You should use <code>class</code> to make your own module to make it package.</li>
+<li>You should include your creator code name in the first variable group like this:
+<div class="example">
+<var>$module[<span class="important">'LM'</span>]['foo']</var>
+</div>
+In this example you can see Loggix Project's creator code "LM" ( stands for <span class="important">L</span>oggix <span class="important">M</span>odule) is used in the first variable group. Only Loggix Project can use this creator code, so you have to name your own creator code. Please don't forget to make it short. When you want to separate by words, use underscore.</li>
+<li>Follow <a href="#CodingStandards">Coding Standards</a>.</li>
+</ol>
+<h4 id="CodingExample">Example</h4>
+<p>Here's an example class, "Example".</p>
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">lib</code>
+  <ul>
+   <li><code class="dirname">Loggix</code></li>
+    <ul>
+     <li><code class="dirname">Module</code>
+      <ul>
+       <li><code class="filename"><span class="important">Example</span>.php</code> (module class file)</li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>Name your class like this:</p>
+<p>
+<pre class="php">&lt;?php
+class Loggix_Module_Example extends Loggix_Module
+{
+    public function getFoo()
+    {
+        return $module['LM']['foo'] = 'Foo';
+    }
+}
+</pre>
+</p>
+
+<h4>Where can I put my module anyway?</h4>
+<p>You should add your own module to "/module" directory.</p> 
+<div class="loggix-structure">
+<ul>
+ <li><code class="dirname">modules</code>
+  <ul>
+   <li><code class="dirname"><span class="important">example</span></code>(lower-case without prefix)
+   </li>
+  </ul>
+ </li>
+</ul>
+</div>
+<p>All modules will be auto-loaded automatically.</p>
+</div>
+
+
+<!-- BEGIN SECTION -->
+<div class="section" id="CodingStandards">
+<h3>Coding Standards</h3>
+<p class="description">
+Here's Coding standards. Please read it carefully and follow these.
+</p>
+<ul class="ref">
+<li><a href="http://pear.php.net/manual/en/standards.php" title="PEAR :: Manual :: Coding Standards" class="ex-ref">PEAR :: Manual :: Coding Standards</a></li>
+<li><a href="http://framework.zend.com/manual/en/coding-standard.html" title="Zend Framework: Manual: Zend Framework PHP Coding Standard" class="ex-ref">Zend Framework PHP Coding Standard</a></li>
+</ul>
+<h4>Why two coding standards?</h4>
+<p>None of these coding standards are perfect. For example, PEAR Coding standards lacks of :(↓)</p>
+<blockquote>
+<p>If your package needs to define global variables, their name should start with a single underscore followed by the package name and another underscore.</p>
+<p><cite><a href="http://pear.php.net/manual/en/standards.naming.php">PEAR :: Manual :: Naming Conventions</a></cite></p>
+</blockquote>
+<p>and, Zend Framework coding standards lacks of naming global variables:</p>
+<blockquote>
+<p>For class member variables that are declared with the "private" or "protected" construct, the first character of the function name must be a single underscore. This is the only acceptable usage of an underscore in a function name. Member variables declared "public" may never start with an underscore.</p>
+<p>Like function names (see section 3.3, above) variable names must always start with a lowercase letter and follow the "camelCaps" capitalization convention.</p>
+<p><cite><a href="http://framework.zend.com/manual/en/coding-standard.naming-conventions.html#coding-standard.naming-conventions.variables">Zend Framework: Manual</a></cite></p></blockquote>
+<p>So...to make your code a clean and readable, to keep it in good-quality, Loggix Project recommends you to follow the good part of these two coding standards.</p>
+</div>
+
+</div>

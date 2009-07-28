@@ -1,0 +1,44 @@
+<table id="calendar" summary="Archive calendar of this weblog">
+<caption><?php echo $item['calendar']['caption']?></caption>
+<thead>
+<tr>
+<th colspan="7" abbr="Year and Month">
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['prev_month']?>&amp;ex=1" class="prev-month">&laquo; </a>  
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['this_month']?>&amp;ex=1"><?php echo $item['calendar']['year_and_month']?></a> 
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['next_month']?>&amp;ex=1" class="next-month"> &raquo;</a> 
+
+</tr>
+<tr>
+<th abbr="Sun" class="sunday"><?php echo $item['calendar']['day_of_the_week'][0]?></th>
+<th abbr="Mon"><?php echo $item['calendar']['day_of_the_week'][1]?></th>
+<th abbr="Tue"><?php echo $item['calendar']['day_of_the_week'][2]?></th>
+<th abbr="Wed"><?php echo $item['calendar']['day_of_the_week'][3]?></th>
+<th abbr="Thu"><?php echo $item['calendar']['day_of_the_week'][4]?></th>
+<th abbr="Fri"><?php echo $item['calendar']['day_of_the_week'][5]?></th>
+<th abbr="Sat"><?php echo $item['calendar']['day_of_the_week'][6]?></th>
+</tr>
+</thead>
+<tfoot>
+<tr>
+<td colspan="7">
+<!-- Begin Monthly Archives -->
+<?php if ($item['calendar']['month_array']): ?>
+<ul id="archives">
+ <li><a id="more-archives">Archives</a></li>
+  <ul id="arcvhies-by-year"> 
+ <?php foreach($item['calendar']['month_array'] as $key => $value ): ?>
+  <li><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $key?>"><?php echo date('Y / m', strtotime($key))?></a></li>
+ <?php endforeach?>
+ </ul>
+ </li>
+</ul>
+<?php endif?>
+<!-- End Monthy Archives -->
+</td>
+</tr>
+</tfoot>
+<tbody>
+<tr>
+<?php echo $item['calendar']['body']?></tbody>
+</table>
+
