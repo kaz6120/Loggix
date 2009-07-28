@@ -1,0 +1,155 @@
+@charset "UTF-8";
+@import url(../_import/text_decorations.css);
+
+/**
+ * LOGGiX CSS for Print
+ *
+ * @package Loggix
+ * @since   2004/11/14 02:33:57
+ */
+
+/*
+@page
+{    
+    size: 20.99cm 29.70cm;
+}
+*/
+
+body {
+    margin: 7%;
+    background-color: #ffffff;
+    color: #000000;
+    font-size: 12px;
+	font-family: "ヒラギノ明朝 Pro W3", HiraMinPro-W3, Times, serif;
+}
+
+/* Links */
+a, a:visited {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+/*
+a:link:after {
+    content: " (" attr(href) ") ";
+    font-family: Courier, Monaco, "HiraMaruPro-W4", monospace;
+    display: block;
+}
+*/
+
+/* Page Breaks */
+.page-break-before {
+    page-break-before: always;
+}
+
+.page-break-after {
+    page-break-after: always;
+}
+
+
+
+/* Headings */
+h1 {
+    padding: 5px;
+    border-top: 3px solid #666666;
+    border-bottom: 3px solid #666666;
+    font-family: HiraKakuStd-W8, "Lucida Grande", 
+                 "Trebuchet MS", Verdana, HiraMaruPro-W4, sans-serif;
+}
+h2 {
+    padding-bottom: 2pt;
+    border-bottom: 2px solid #666666;
+    font-family: HiraKakuStd-W8, "Lucida Grande", 
+                 "Trebuchet MS", Verdana, HiraMaruPro-W4, sans-serif;
+}
+h3 {
+    padding-left: 0.5em;
+    border-left: 1em solid #666666;
+}
+h4 {
+}
+#comment-list h5 {
+    padding-bottom: 2pt;
+    border-bottom: 1px dotted #666666;
+}
+
+/* Content Elements */
+div.section {
+    margin: 2em 0em 2em 0em;
+}
+
+blockquote {
+    padding: 0.5em 1em 0.5em 1em;
+    border: 1px solid #999999;
+    border-left: 3px solid #999999;
+}
+
+abbr:after {
+    content: " (" attr(title) ")";
+}
+
+acronym:after {
+    content: " (" attr(title) ")";
+}
+
+table, td, th {
+    width: 95%;
+    border-collapse: collapse;
+	border-spacing: 1px;
+    border: 1px solid #666666;
+}
+td, th {
+    padding: 0.2em 1em 0.2em 1em;
+}
+
+.example, .command {
+    padding: 1em;
+    border: 1px solid #cccccc;
+}
+
+#trackback-list, #comment-list {
+    margin: 2em 0em 0em 0em;
+    padding: 0.5em 0em 0em 1em;
+    border-top: 1px solid #666666;
+}
+
+#footer-box {
+    margin: 2em 0em 0em 0em;
+    padding: 1em 0em 0em 0em;
+    border-top: 1px solid #666666;
+}
+
+
+/*
+-----------------------------------------------------------------
+   AMAZON ASSOCIATES
+-----------------------------------------------------------------
+*/
+blockquote.amazon {
+    float: clear;
+    margin: 1em 0 1em 0;
+    border: 1px solid #cccccc;
+    border-left: 10px solid #cccccc;
+    background: #ffffff;
+}
+
+blockquote.amazon img {
+    margin: 0.5em;
+}
+
+blockquote.amazon dl {
+    margin-left: 8em;
+}
+
+blockquote.amazon dt {
+    width: auto;
+}
+
+
+
+/* Hidden Elements */
+form, div#menu-box, .anchor, div.a-footer, #trackbacks a, .author a,
+img.validator, #page-generation, #prev-logs, #comment-form-title,
+#validators {
+    display: none;
+}

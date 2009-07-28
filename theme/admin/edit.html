@@ -1,0 +1,66 @@
+<h2><?php echo $lang['edit']?></h2>
+<form id="addform" action="./modify.php" method="post" enctype="multipart/form-data">
+<fieldset>
+<legend><?php echo $lang['entry']?></legend>
+<p>
+<input type="text" id="y" name="y" size="4" value="<?php echo $item['time']['Y']?>" class="bordered" />/
+<input type="text" id="m" name="m" size="2" value="<?php echo $item['time']['m']?>" class="bordered" />/
+<input type="text" id="d" name="d" size="2" value="<?php echo $item['time']['d']?>" class="bordered" />@
+<input type="text" id="h" name="h" size="2" value="<?php echo $item['time']['H']?>" class="bordered" />:
+<input type="text" id="i" name="i" size="2" value="<?php echo $item['time']['i']?>" class="bordered" />:
+<input type="text" id="s" name="s" size="2" value="<?php echo $item['time']['s']?>" class="bordered" />
+</p>
+<p>
+<input type="text" id="title" name="title" value="<?php echo $item['title']?>" size="30" />
+<label id="title-label" for="title"><?php echo $lang['title']?></label>
+</p>
+<p>
+<textarea id="comment" name="comment" rows="20">
+<?php echo $item['comment']?>
+</textarea>
+<?php echo $item['smiley_button']?>
+</p>
+<?php echo $item['attachments']?>
+</fieldset>
+
+<!-- Option Tabs -->
+<div id="options">
+<ul>
+<li><a href="#tabs-1"><?php echo $lang['tag']?></a></li>
+<li><a href="#tabs-2"><?php echo $lang['communication']?></a></li>
+<li><a href="#tabs-3"><?php echo $lang['excerpt']?></a></li>
+<li><a href="#tabs-4"><?php echo $lang['trackbacks']?></a></li>
+</ul>
+<fieldset id="tabs-1">
+<?php foreach ($item['tag_cloud'] as $row):?>
+<input type="checkbox" id="tag<?php echo $row[0]?>" name="tag[]" value="<?php echo $row[0]?>" <?php echo $row[3]?>/><label for="tag<?php echo $row[0]?>"><?php echo $row[1]?> (<?php echo $row[2]?>)</label>
+<?php endforeach?>
+</fieldset>
+<fieldset id="tabs-2">
+<input type="checkbox" id="allow_comments" name="allow_comments" checked="checked" />
+<label for="allow_comments"><?php echo $lang['allow_comments']?></label>
+<input type="checkbox" id="allow_pings" name="allow_pings" checked="checked" />
+<label for="allow_pings"><?php echo $lang['allow_trackbacks']?></label>
+</fieldset>
+<fieldset id="tabs-3">
+<textarea cols="45" rows="5" id="excerpt" name="excerpt"></textarea>
+</fieldset>
+<fieldset id="tabs-4">
+<input type="text" id="send_ping_uri" name="send_ping_uri" size="40" value="http://" class="bordered" />
+<select name="encode">
+<option value="UTF-8" selected="selected">UTF-8</option>
+<option value="EUC-JP">EUC-JP</option>
+<option value="SJIS">Shift_JIS</option>
+</select>
+</fieldset>
+</div>
+
+<p class="submit-button">
+<input type="radio" id="draft" name="draft" value="1"<?php echo $item['draft_status_1']?> /><label for="draft"><?php echo $lang['draft']?></label>
+<input type="radio" id="publish" name="draft" value="0"<?php echo $item['draft_status_0']?> /><label for="publish"><?php echo $lang['publish']?></label>
+<input type="hidden" id="id" name="id" value="<?php echo $item['id']?>" />
+<input type="hidden" name="MAX_FILE_SIZE" value="102400000" />
+<input accesskey="s" type="submit" id="submit-button" value="<?php echo $lang['save']?>" />
+</p>
+</form>
+

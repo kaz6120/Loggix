@@ -1,0 +1,595 @@
+@charset "utf-8";
+
+/*
+  ---------------------------------------------
+   TEXT DECORATIONS
+  ---------------------------------------------
+Some Loggix Markup class namings are based on & compatible with 
+Mozilla.org Markup Refeneces.
+SEE: http://www.mozilla.org/contribute/writing/markup
+*/
+
+/*
+  ---------------------------------------------
+    ANCHORS
+  ---------------------------------------------
+*/
+a {
+    text-decoration: none;
+} a:link {
+    color: #669900;
+} a:visited {
+    color: #9966cc;
+} a:active {
+} a:hover {
+    color: #336600;
+    text-decoration: underline;
+}
+
+
+
+/* TEXT FLOATING */
+.float-left {
+    float: left;
+    margin-right: 0.8em;
+}
+.float-right {
+    float: right;
+    margin-left: 0.8em;
+}
+.float-clear {
+    clear: both;
+    padding-top: 1.2em;
+}
+
+
+/* EMPHASIS */
+em {
+    font-size: 100%;
+    font-style: italic;
+    font-weight: bold;
+}
+
+strong {
+    font-size: 115%;
+    font-style: italic;
+    font-weight: bold;
+} strong.stronger {
+    font-size: 125%;
+    font-weight: bold;
+} strong.very-strong {
+    font-size: 150%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Important */
+.important {
+    color: #CC0000 !important;
+    background-color: transparent;
+} div.important {
+    padding: 5px 7px;
+    margin: 10px !important;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border: 3px solid #CC0000 !important;
+    background-color: #fff9f9 !important;
+}
+
+/* Notification */
+.notice {
+    color: #CC0000;
+} input.notice, textarea.notice {
+    border: 2px solid #CC0000 !important;
+    color: #0033cc;
+    background-color: #fff9f9 !important;
+}
+
+/* Quotation */
+blockquote {
+    width: 93%;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.1em 1em 1em 1em;
+    border-left: 5px solid #99cc66;
+    border-bottom: 0;
+    background: #E9F4CF url(../_shared/blockquote-fold.png) no-repeat right top;
+    color: #000000;
+} blockquote address, blockquote cite {
+    padding-left: 2em;
+    display: block;
+    border-top: 1px solid #99cc66;
+    text-indent: -1em;
+    text-align: right;
+} blockquote address:before, blockquote cite:before {
+    content: "\2015 ";
+} .citesource {
+    margin-top: 5px;
+    border-top: 1px solid #99cc66;
+    text-align: right;
+}
+
+/* NOTES */
+.note, .memo {
+    margin: 0.3em 0.1em 0.3em 0.8em;
+    color: #666666;
+    font-size: 0.9em;
+}
+
+.note:before {
+    content: "Note : ";
+}
+
+.sidenote {
+    clear: both;
+    float: right;
+    display: block;
+    width: 20%;
+    min-width: 12em;
+    margin: 1em 0 1em 1em;
+    padding: 1em;
+    border: 1px dotted #cccccc;
+    color: #666666;
+}
+
+
+
+/* EXAMPLES */
+.example {
+    margin: 1em 0em !important;
+    padding: 1.5em 1em 1em 1em !important;
+    border: 1px solid #663333 !important;
+    background: #FEF1F3 url(../_shared/example.png) no-repeat top left !important;
+    line-height: 140% !important;
+}
+
+.bad {
+    border: 1px solid #CC0000 !important;
+    background: #ffeeee url(../_shared/bad-example.png) no-repeat top left !important;
+
+}
+
+
+/* DEL and INS */
+del {
+    color: #999999;
+}
+
+ins {
+    color: #663366;
+}
+
+/* Abbreviation */
+abbr, acronym {
+    border-bottom: 1px dotted; 
+    cursor: help;
+}
+
+/* PRE-FORMATTED TEXT */
+pre {
+    width: 100%;
+    overflow: auto;
+    font-family:  "Bitstream Vera Sans Mono", Courier, Monaco, "Andale Mono", monospace;
+    line-height: 170%;
+}
+
+
+/* COMPUTERS AND CODES */
+.command {
+    margin: 1em 0em 1em 0em;
+    padding: 0.5em;
+    font-family:  "Bitstream Vera Sans Mono", Courier, Monaco, "Andale Mono", monospace;
+    color: #000000;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+pre.screen {
+    overflow: auto;
+    margin: 1em 0.5em;
+    padding: 0.2em;
+    border: solid 1px;
+    font-family: monospace;
+    white-space: pre;
+}
+
+div.screen {
+    margin: 1em .5em;
+    padding: 0.2em;
+    border: solid 1px;
+}
+
+kbd {
+    margin: 0 0.3em 0 0.3em;
+    padding: 1px 7px 1px 5px;
+    border: solid #ABABAB;
+    border-width: 1px 2px 2px 1px;
+    /*border: 3px outset #dddddd;*/
+    background: #ffffff url(../_shared/kbd.png) no-repeat 100% 100%;
+    font-style: italic;
+}
+
+kbd.accesskey {
+    clear: both;
+    float: left;
+    margin: 0 0.5em 0 0;
+    padding: 1px 7px 1px 5px;
+    border: solid #ABABAB;
+	border-width: 1px 2px 2px 1px;
+	background: #ffffff url(../_shared/kbd.png) no-repeat 100% 100%;
+	font-style: italic;
+}
+
+code {
+    margin: 0 0.2em;
+    color: #3333CC;
+    font-family: "Andale Mono", Courier, Monaco, "Hiragino Kaku Gothic Pro W3", monospace;
+    white-space: pre;
+}
+
+pre.code {
+    overflow: auto;
+    margin: 1em 0.5em;
+    padding: 0.5em;
+    border: 1px solid #000000;
+    background-color: #333333;
+    color: #ffffff;
+}
+    
+var {
+    margin: 0 0.2em;
+    background-color: transparent;
+    color: #339900;
+    font-family: "Andale Mono", Courier, Monaco, "Hiragino Kaku Gothic Pro W3", monospace;
+    font-style: normal;
+}
+
+samp {
+    white-space: pre;
+    margin: 0.5em;
+    padding: 0.3em;
+}
+
+.filename, .tag {
+    background-color: transparent;
+    color: #3333CC;
+}
+
+.method {
+    background-color: transparent;
+    color: #663399;
+}
+
+.parameter, .return-value {
+    margin: 0.2em 0;
+    padding: 0.2em 0.5em;
+    font-size: 100%;
+    color: #000000;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+.description {
+    margin: 1em 0.5em;
+}
+
+
+/* HORIZONTAL RULE */
+hr {
+    clear: both;
+    height: 1px;
+    margin: 1em 0em 1em 0em;
+    border: 0px;
+    background-color: #cccccc;
+    color: #cccccc;
+}
+
+/*In case you wrote some mistakes...*/
+span.line-through {
+    text-decoration: line-through;
+}
+
+/* Reference */
+
+.ref {
+    margin-left: 1em;
+    padding-left: 2em;
+    background: url(../_shared/arrow-hand.png) no-repeat 0% 30%;
+    text-indent: 0.5em;
+}
+
+/* External Reference Link */
+.ex-ref, 
+a[href^="http:"],
+a[href^="https:"]{
+    margin: 0 3px;
+    padding-right: 14px;
+    background: url(../_shared/ex-ref.png) no-repeat 100% 50%;
+    text-indent: 0.5em;
+}
+
+a[href^="http://localhost"],
+a[href^="http://www.example.com"],
+a[href^="https://www.example.com"] {
+    margin: 0;
+    padding: 0;
+    background: none;
+    text-indent: 0;
+}
+
+/* Hand Arrow Anchor */
+a.more:after, a.go:before {
+    padding: 0em 0.2em 0em 0.5em;
+    content: url(../_shared/arrow-hand.png);
+}
+
+
+/* List Markers */
+/*
+.comment ul {
+    list-style: none !important;
+    margin-left: 2em !important;
+    padding-left: 1em;
+    text-indent: -1em;
+
+} .comment ul li:before {
+    content: "\00BB \0020" !important;
+}*/
+
+#content div div ul li {
+    list-style-image: url(./images/list-marker-level-1.png);
+} #content div div  ul>li ul>li,
+  #content div div  ol>li ul>li {
+    list-style-image: url(./images/list-marker-level-2.png);
+} #content div div  ol>li {
+    list-style-image: none;
+}
+
+/**
+ * Tabs
+ *
+ * Post entry options, System Info
+ */
+#options, 
+#system-info {
+    -webkit-border-radius: 8px !important;
+    -moz-border-radius: 8px !important;
+    border: 1px solid #9999cc;
+} #options ul,
+  #system-info ul {
+    border: 1px solid #9999cc;
+    margin: 10px !important;
+} #options ul>li,
+  #system-info ul>li {
+    border: 1px solid #9999cc;
+    list-style-image:none !important;
+    font-size: 0.9em !important;
+}
+
+#content div.loggix-structure {
+    padding: 10px !important;
+    border: 1px solid #a5a5ec !important;
+} #content div.loggix-structure h4 {
+    margin: 0 0 10px 0;
+    padding: 4px;
+    border-bottom: 1px solid;
+}
+
+#content li .dirname {
+    background: url(./images/folder-icon.png) no-repeat 0% 30% !important;
+    padding: 3px 0 3px 30px !important;
+}
+
+#content li .filename {
+    background: url(./images/file-icon.png) no-repeat 0% 30% !important;
+    padding: 3px 0 3px 30px !important;
+}
+
+
+/* References List */
+ul.ref {
+    list-style: none;
+    background: none;
+}
+
+ul.ref li {
+    background: url(../_shared/arrow-hand.png) no-repeat 0% 30%;
+    padding-left: 2em;
+}
+
+/* "Read More..." Link */
+p.read-more {
+    text-align: right;
+}
+p.read-more a {
+    margin-left: 0;
+    padding: 3px 5px 3px 30px;
+    border: 1px solid #ffffff;
+    background: #ffffff url(../_shared/arrow-hand.png) no-repeat 5% 40%;
+    text-indent: 0.5em;
+}
+p.read-more a:hover {
+    border: 1px solid #cccccc;
+    background-color: #eeeeee;
+}
+
+/* DOWNLOADS */
+.download {
+    margin: 2em 0 !important;
+    padding: 0.2em 2.5em !important;
+    border: 1px solid #9999cc;
+    background: #e4e2ff url(./images/tango-32x32/go-down.png) no-repeat 10px 1em !important;
+    font-size: 100%;
+    font-style: italic;
+} .download p {
+    margin: 0.5em;
+} .download strong {
+    font-size: 120%;
+}
+
+.md5 {
+    color: #666666;
+    font-size: 100%;
+    font-style: italic;
+}
+
+
+/* PODCAST */
+.podcast {
+    margin: 1em 0;
+    padding: 0.5em 2.5em;
+    border: 1px solid #9999cc;
+    background: #e4e2ff url(../_shared/podcast.png) no-repeat 10px 10px;
+    font-size: 100%;
+    font-style: italic;
+} .podcast p {
+    margin: 0.5em;
+} .podcast strong {
+    font-size: 120%;
+}
+
+.mp3 {
+    /*background: #e4e2ff url(../_shared/mp3.png) no-repeat 10px 10px;*/
+}
+.m4 {
+    /*background: #e4e2ff url(../_shared/m4.png) no-repeat 10px 10px;*/
+}
+.mov {
+    /*background: #e4e2ff url(../_shared/mov.png) no-repeat 10px 10px;*/
+}
+
+
+.thumb-nail {
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid #cccccc;
+}
+
+/* Search Result - Keyword Highlight */
+.highlight {
+    padding: 2px;
+    background-color: #CDDCF3;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Warning */
+.warning {
+    font-size: 100%;
+    padding: 5px 5px 5px 50px !important;
+    background: transparent url(./images/tango-32x32/dialog-warning.png) no-repeat 10px 20px !important;
+}
+#error-message h2 {
+    color: #c33f31;
+}
+
+
+
+/*
+  ---------------------------------------------
+    BB CODE
+  ---------------------------------------------
+*/
+/* Quote box */
+.quote1 {
+    color: #0000DD;
+    background-color: #ffffff;
+    background-image : none;
+    border-left: 2px solid #0000DD;
+    padding: 0.1em 1em 0.1em 0.8em;
+} .quote2 {
+    color: #009900;
+    background-color: #ffffff;
+    background-image : none;
+    border-left: 2px solid #009900;
+    padding: 0.1em 1em 0.1em 0.8em;
+} .quote3 {
+    color: #540000;
+    background-color: #ffffff;
+    background-image : none;    
+    border-left: 2px solid #540000;
+    padding: 0.1em 1em 0.1em 0.8em;
+}
+
+
+/*
+-----------------------------------------------------------------
+   TAGS
+-----------------------------------------------------------------
+*/
+
+#tag-list {
+/*    padding: 0.5em;*/
+    font-family: Georgia, serif;
+} .tag-level-6 {
+    font-size: 180%;
+} .tag-level-5 {
+    font-size: 160%;
+} .tag-level-4 {
+    font-size: 140%;
+} .tag-level-3 {
+    font-size: 120%;
+} .tag-level-2 {
+    font-size: 100%;
+} .tag-level-1 {
+    font-size: 80%;
+} .tag-level-0 {
+    font-size: 60%;
+}
+
+/* TAG CLOUD */
+#tags p {
+    -webkit-border-radius: 10px !important;
+    -moz-border-radius: 10px !important;
+    border: 3px solid #cccccc;
+    padding: 1em !important;
+    background: #ffffff;
+    line-height: 130%;
+}
+
+/*
+  ---------------------------------------------
+    SYNTAX HIGHLIGHTING
+  ---------------------------------------------
+*/
+.hl-table {
+    width: 100%;
+}
+.hl-table pre {
+    overflow: auto;
+}
+.hl-gutter { 
+    width: 25px;
+    background-color: #222222;
+    color: #ffffff;
+    background: #e6e6fa;
+    color: #000000;
+}
+.hl-main {
+    font-family: monospace;
+    overflow: auto;
+} 
+.hl-default    { color: #000000; } 
+.hl-code       { color: #7f7f33; } 
+.hl-brackets   { color: #009966; } 
+.hl-comment    { color: #7F7F7F; } 
+.hl-quotes     { color: #00007F; } 
+.hl-string     { color: #7F0000; } 
+.hl-identifier { color: #000000; } 
+.hl-reserved   { color: #7F007F; } 
+.hl-inlinedoc  { color: #0000FF; } 
+.hl-var        { color: #0066FF; } 
+.hl-url        { color: #FF0000; } 
+.hl-special    { color: #0000FF; } 
+.hl-number     { color: #007F00; } 
+.hl-inlinetags { color: #FF0000; } 
+
+
+/*
+  ---------------------------------------------
+    for MANUAL ONLY
+  ---------------------------------------------
+*/
+.hookName {
+    padding: 0.5em;
+    text-align: left;
+}

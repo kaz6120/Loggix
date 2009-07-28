@@ -1,0 +1,53 @@
+<h2 id="manage-users"><?php echo $lang['manage_users']?></h2>
+<table summary="<?php echo $lang['tag_list']?>">
+<tr>
+<th abbr="User Name"><?php echo $lang['user_info']?></th>
+<th abbr="Delete User"><?php echo $lang['delete']?></th>
+</tr>
+<?php foreach ($items as $item): ?>
+<tr>
+<td>
+<?php if (($item['user_name'] == 'root') && 
+          ($item['user_pass'] == 'dc76e9f0c0006e8f919e0c515c66dbba3982f785') && 
+          ($item['user_nickname'] == 'root')):?>
+<div class="important warning"><p><?php echo $lang['user_warning']?></p></div>
+<?php endif; ?>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<table>
+<tr>
+<td class="key"><?php echo $lang['user_name']?></td><td class="value"><input type="text" name="user_name" value="<?php echo $item['user_name']?>" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['password']?></td><td class="value"><input type="password" name="user_pass" value="<?php echo $item['user_pass']?>" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['nickname']?></td><td class="value"><input type="text" name="user_nickname" value="<?php echo $item['user_nickname']?>" /></td>
+</tr>
+</table>
+</form>
+</td>
+<td>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<input type="hidden" name="action" value="delete" />
+<input type="hidden" name="user_id" value="<?php echo $item['user_id']?>" />
+<input type="submit" value="<?php echo $lang['delete']?>" <?php echo $item['disabled_status']?>/>
+</form>
+</td>
+</tr>
+<?php endforeach; ?>
+</table>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<table>
+<tr>
+<td class="key"><?php echo $lang['user_name']?></td><td class="value"><input type="text" name="new_user_name" value="" /></td>
+<td rowspan="3"><input type="hidden" name="action" value="add" />
+<input type="submit" value="<?php echo $lang['add_user']?>" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['password']?></td><td class="value"><input type="text" name="new_user_pass" value="" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['nickname']?></td><td class="value"><input type="text" name="new_user_nickname" value="" /></td>
+</tr>
+</table>
+</form>

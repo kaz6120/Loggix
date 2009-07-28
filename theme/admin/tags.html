@@ -1,0 +1,44 @@
+<h2><?php echo $lang['log_tag']?></h2>
+<h3><?php echo $lang['tag_list']?></h3>
+<table summary="<?php echo $lang['tag_list']?>" class="horizontal-graph">
+<tr>
+<th abbr="Tag Name" colspan="2"><?php echo $lang['tag']?></th>
+<th abbr="Number of Posts"><?php echo $lang['posts']?></th>
+<th abbr="Delete the tag"><?php echo $lang['delete']?></th>
+</tr>
+<?php foreach ($items as $item): ?>
+<tr>
+<td class="key"><?php echo $item['id']?></td>
+<td class="key">
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<p>
+<input type="text" name="tag_name" value="<?php echo $item['tag_name']?>" />
+<input type="hidden" name="action" value="save" />
+<input type="hidden" name="id" value="<?php echo $item['id']?>" />
+<input type="submit" value="<?php echo $lang['save']?>" />
+</p>
+</form>
+</td>
+<td class="value"><?php echo $item['number_of_tag']?></td>
+<td>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<p>
+<input type="hidden" name="action" value="delete" />
+<input type="hidden" name="id" value="<?php echo $item['id']?>" />
+<input type="submit" value="<?php echo $lang['delete']?>" <?php echo $item['disabled_status']?>/>
+</p>
+</form>
+</td>
+</tr>
+<?php endforeach; ?>
+</table>
+<form action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<fieldset>
+<legend><?php echo $lang['new_tag_name']?></legend>
+<p>
+<input type="text" name="new_tag" value="" />
+<input type="hidden" name="action" value="add" />
+<input type="submit" value="<?php echo $lang['add_new_tag']?>" />
+</p>
+</fieldset>
+</form>

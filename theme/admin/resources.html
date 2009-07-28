@@ -1,0 +1,31 @@
+<h2><?php echo $lang['resources']?></h2>
+<table summary="resources">
+<tr>
+<th class="colored"><?php echo $lang['file_name']?></th><th class="colored">W &#215; H</th>
+<th class="colored"><?php echo $lang['size']?></th><th class="colored"><?php echo $lang['created']?></th>
+<th class="colored"><?php echo $lang['delete']?></th>
+</tr>
+<?php if (!empty($items)) : foreach($items as $item): ?>
+<tr>
+<td class="colored">
+<img src="./thumbnail.php?w=90&amp;h=90&amp;src=<?php echo $item['file']?>"/>
+<a href="<?php echo $item['file']?>" title="<?php echo $item['file']?>">
+<?php echo $item['file_name']?>
+</a>
+</td>
+<td class="colored"><?php echo $item['width_height']?></td>
+<td class="colored"><?php echo $item['file_size']?></td>
+<td class="colored"><?php echo $item['file_date']?></td>
+<td class="colored">
+<form method="post" action="./resources.php">
+<input type="submit" value="<?php echo $lang['delete']?>" />
+<input type="hidden" name="del" value="<?php echo $item['file']?>" />
+</form>
+</td>
+</tr>
+<?php endforeach; else: ?>
+<tr>
+<td colspan="5"><?php echo $lang['no_resources']?></td>
+</tr>
+<?php endif; ?>
+</table>

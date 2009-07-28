@@ -1,0 +1,31 @@
+<h2><?php echo $first_date?></h2>
+<?php foreach($items as $item): ?>
+<?php if ($item['insert_date_div'] == 'YES'):?>
+</div><!-- End .section -->
+<div class="section">
+<h2><?php echo $item['title_date']?></h2>
+<?php endif?>
+<div class="section">
+<h3>
+<a href="<?php echo $this->getDir()?>/index.php?id=<?php echo $item['id']?>" title="<?php echo $lang['permalink_title_1'],htmlspecialchars(strip_tags($item['title'])),$lang['permalink_title_2']?>" rel="Bookmark">
+<?php echo $item['title']?>
+</a>
+</h3>
+<div class="comment">
+<?php echo $item['comment']?>
+</div>
+<div class="footer">
+<ul>
+<li class="postdate"><?php echo date('H:i a', strtotime($item['date']))?></li>
+<li class="comments"><a href="<?php echo $this->getDir()?>/index.php?id=<?php echo $item['id']?>#comments" title="<?php echo $lang['view_com_title_1'], $item['title'], $lang['view_com_title_2'], $item['comments']['status']?>"><?php echo $lang['comments']?> (<?php echo $item['comments']['num']?>)</a></li>
+<li class="trackbacks"><a href="<?php echo $this->getDir()?>/index.php?id=<?php echo $item['id']?>#trackbacks" title="<?php echo $lang['view_tb_title_1'], $item['title'], $lang['view_tb_title_2'], $item['trackbacks']['status']?>"><?php echo $lang['trackbacks']?> (<?php echo $item['trackbacks']['num']?>)</a></li>
+</ul>
+</div>
+<?php if ($session_state == 'on') :?>
+<ul class="admin-menu">
+<li><a href="./admin/edit.php?id=<?php echo $item['id']?>"><?php echo $lang['edit']?></a></li>
+<li><a href="./admin/drafts.php?id=<?php echo $item['id']?>"><?php echo $lang['draft']?></a></li>
+</ul>
+<?php endif?>
+</div>
+<?php endforeach?>

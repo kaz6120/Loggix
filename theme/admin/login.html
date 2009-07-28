@@ -1,0 +1,17 @@
+<h2><?php echo $lang['login']?></h2>
+<form id="login-form" action="<?php echo $_SERVER['PHP_SELF']?>" method="post">
+<fieldset>
+<p>
+<input type="text" id="user-name" name="user_name" value="" size="20" />
+<label id="user-name-label" for="user-name"><?php echo $lang['user_name']?></label>
+</p>
+<p>
+<input type="password" id="user-pass" name="user_pass" value="" size="20" />
+<label id="user-pass-label" for="user-pass"><?php echo $lang['password']?></label>
+</p>
+<p>
+<input id="submit-button" type="submit" value="<?php echo $lang['login']?>" />
+</p>
+</fieldset>
+</form>
+

@@ -1,0 +1,65 @@
+<h2><?php echo $lang['system_info']?></h2>
+
+<!-- Tabs -->
+<div id="system-info">
+<ul>
+<li><a href="#environment">Environment</a></li>
+<li><a href="#database">Database</a></li>
+<li><a href="#session">Session</a></li>
+</ul>
+<table id="environment" summary="System Information">
+<tr>
+<th abbr="System Environment">Server Software</th><th abbr="Status">Version</th>
+</tr>
+<tr>
+<td class="key">PHP</td>
+<td class="value"><?php echo $item['php_version']?></td>
+</tr>
+<tr>
+<td class="key"><?php echo $item['database_type']?></td>
+<td class="value"><?php echo $item['database_version']?></td>
+</tr>
+</table>
+<table id="database" summary="Database Table Information">
+<tr>
+<th abbr="Database Table Name">Table</th><th abbr="Records in the table">Records</th>
+</tr>
+<?php foreach($rows as $row): ?>
+<tr><td class="key"><?php echo $row[0]?></td><td class="value"><?php echo $row['count']?></td></tr>
+<?php endforeach; ?>
+</table>
+<table id="session" summary="Session Data Table">
+<tr>
+<th abbr="Session Status Info">Session Data</th>
+<th abbr="Kill This Session">Delete</th>
+</tr>
+<?php foreach($sess_rows as $sess_row): ?>
+<tr>
+<td class="key">
+<dl>
+<dd>No : <?php echo $sess_row['no']?></dd>
+<dd>Date : <?php echo $sess_row[2]?></dd>
+<dd>ID : <?php echo $sess_row[0]?></dd>
+</dl>
+</td>
+<form action="./delete.php" method="post">
+<td class="value">
+<input type="hidden" name="delete_sess_id" value="<?php echo $sess_row[0]?>" />
+<input type="submit" value="<?php echo $lang['delete']?>" />
+</td>
+</form>
+</tr>
+<?php endforeach; ?>
+<tr>
+<td colspan="3">
+<form action="./delete.php" method="post">
+<p>
+<input type="hidden" name="force_sess_gc" value="1" />
+<input type="submit" value="<?php echo $lang['force_gc']?>" />
+</p>
+</form>
+</td>
+</tr>
+</table>
+</div>
+

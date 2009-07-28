@@ -1,0 +1,71 @@
+<div id="content-menu">
+<h2>Contents</h2>
+<ul class="menu">
+<?php echo $item['content_list']?></ul>
+</div>
+<div class="menu" id="search">
+<h2><label for="keyword">Search</label></h2>
+<form method="get" action="<?php echo $item['search_dir']?>/index.php">
+<p>
+<input type="text" id="keyword" name="k" accesskey="k" value="<?php echo $lang['search_key']?>" onfocus="if (value == '<?php echo $lang['search_key']?>') { value = ''; }" onblur="if (value == '') { value = '<?php echo $lang['search_key']?>'; }" />
+<input type="hidden" name="d" value="" />
+<input type="hidden" name="p" value="0" />
+<input type="hidden" name="pn" value="1" />
+<input type="hidden" name="ex" value="1" />
+<!-- 
+<input type="submit" value="<?php echo $lang['search']?>" />
+-->
+</p>
+</form>
+</div>
+<?php echo $item['admin']['menu']?>
+<h2>Calendar</h2>
+<?php echo $module['LM']['calendar']?>
+<h2>Recent Comments</h2>
+<ul id="recent-comments"><?php echo $module['LM']['comment']['recent']?></ul>
+<p id="show-all-comments">
+<a href="<?php echo $this->getDir()?>/modules/comment/" title="<?php echo $lang['show_all_comments']?>"><?php echo $lang['show_all']?> &#187;</a>
+</p>
+<h2>Recent Trackbacks</h2>
+<ul id="recent-trackbacks"><?php echo $module['LM']['trackback']['recent']?></ul>
+<p id="show-all-trackbacks">
+<a href="<?php echo $this->getDir()?>/modules/trackback/" title="<?php echo $lang['show_all_trackbacks']?>"><?php echo $lang['show_all']?> &#187;</a>
+</p>
+<h2>Syndication</h2>
+<?php echo $module['LM']['RSS']['link']?>
+<h2>Switch Style</h2>
+<form id="css-form" action="<?php echo $_SERVER['PHP_SELF']?>?<?php echo $_SERVER['QUERY_STRING']?>" method="post">
+<div>
+<select id="style-name" name="style_name" onchange="if (document.getElementById('style-name').value != '') { this.form.submit(); }">
+<option value=""><?php echo $lang['switch_css']?></option>
+<option value="" disabled="disabled">- - -</option>
+<?php foreach ($item['css_list'] as $key => $value):?>
+<option value="<?php echo $value?>"><?php echo $key?></option>
+<?php endforeach?>
+<option value="off"><?php echo $lang['css_off']?></option>
+</select>
+<noscript>
+<div class="noscript">
+<input type="submit" accesskey="s" tabindex="5" value="Go" />
+</div>
+</noscript>
+</div>
+</form>
+<div class="menu" id="tags">
+<h2>Tag Cloud</h2>
+<p>
+<?php if (empty($item['tag_cloud'])) :?>
+No tags yet
+<?php else:?>
+<?php foreach ($item['tag_cloud'] as $row):?>
+<?php if ($row[2] != '0'):?>
+<a href="<?php echo $row[4]?>/index.php?t=<?php echo $row[0]?>&amp;ex=1" title="<?php echo $row[1]?> (<?php echo $row[2]?> Topics)">
+<span class="tag-level-<?php echo $row[5]?>">
+<?php echo $row[1]?></span>
+</a>
+<?php endif?>
+<?php endforeach?>
+<?php endif?>
+</p>
+</div>
+

@@ -1,0 +1,425 @@
+@charset "utf-8";
+
+/*
+-----------------------------------------------------------------
+   TEXT DECORATIONS
+-----------------------------------------------------------------
+Some Loggix Markup class namings are based on & compatible with 
+Mozilla.org Markup Refeneces.
+
+SEE: http://www.mozilla.org/contribute/writing/markup
+
+@package  Loggix
+@since    5.2.15
+@version  5.11.7
+
+*/
+
+
+/* Floating */
+.float-left {
+    float: left;
+    margin-right: 0.8em;
+}
+.float-right {
+    float: right;
+    margin-left: 0.8em;
+}
+.float-clear {
+    clear: both;
+    padding-top: 1.2em;
+}
+
+
+/* Emphasis */
+em {
+    font-size: 100%;
+    font-style: italic;
+    font-weight: bold;
+}
+
+strong {
+    font-size: 115%;
+    font-style: italic;
+    font-weight: bold;
+} strong.stronger {
+    font-size: 125%;
+    font-weight: bold;
+} strong.very-strong {
+    font-size: 150%;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.important {
+    color: #CC0000 !important;
+    background-color: transparent;
+} div.important {
+    padding: 0.5em 1em 0.5em 1em;
+    border: 1px solid #CC0000;
+    background-color: #fff9f9;
+} tr.important td {    
+    color: #CC0000 !important;
+    background-color: #ffecf6 !important;
+}
+
+
+
+/* Quotation */
+blockquote {
+    width: 93%;
+    margin: 0.5em 0 0.5em 1em;
+    padding: 0.1em 1em 1em 1em;
+    border-left: 5px solid #99cc66;
+    border-bottom: 0;
+    background: #eeffdc url(../_shared/blockquote-fold.png) no-repeat right top;
+    color: #000000;
+} blockquote address, blockquote cite {
+    padding-left: 2em;
+    display: block;
+    border-top: 1px solid #99cc66;
+    text-indent: -1em;
+    text-align: right;
+} blockquote address:before, blockquote cite:before {
+    content: "\2015 ";
+} .citesource {
+    margin-top: 5px;
+    border-top: 1px solid #99cc66;
+    text-align: right;
+}
+
+/* Notes */
+.note {
+    margin: 0.3em 0.1em 0.3em 0.8em;
+    color: #666666;
+    font-size: 0.9em;
+}
+
+.note:before {
+    content: "Note : ";
+}
+
+.sidenote {
+    clear: both;
+    float: right;
+    display: block;
+    width: 20%;
+    min-width: 12em;
+    margin: 1em 0 1em 1em;
+    padding: 1em;
+    border: 1px dotted #cccccc;
+    color: #666666;
+}
+
+.example {
+    margin: 1em 0em;
+    padding: 1.5em 1em 1em 1em;
+    border: 1px solid #663333;
+    background: #FEF1F3 url(../_shared/example.png) no-repeat top left;
+}
+
+.bad {
+    border: 1px solid #CC0000;
+    background: #ffeeee url(../_shared/bad-example.png) no-repeat top left;
+
+}
+
+
+del {
+    color: #999999;
+}
+
+ins {
+    color: #663366;
+}
+
+/* Abbreviation */
+abbr, acronym {
+    border-bottom: 1px dotted; 
+    cursor: help;
+}
+
+/* Pre-Formatted */
+pre {
+    width: 100%;
+    overflow: auto;
+    font-family:  Courier, Monaco, "Andale Mono", "Hiragino Kaku Gothic Pro W3", monospace;
+    font-size: 100%;
+    line-height: 170%;
+}
+
+
+/* Computers And Codes */
+.command {
+    margin: 1em 0em 1em 0em;
+    padding: 0.5em;
+    font-family: Courier, Monaco, "Andale Mono", "Hiragino Kaku Gothic Pro W3", monospace;
+    font-size: 100%;
+    color: #000000;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+pre.screen {
+    overflow: auto;
+    margin: 1em 0.5em;
+    padding: 0.2em;
+    border: solid 1px;
+    font-family: monospace;
+    white-space: pre;
+}
+
+div.screen {
+    margin: 1em .5em;
+    padding: 0.2em;
+    border: solid 1px;
+}
+
+kbd {
+    margin: 0 0.3em 0 0.3em;
+    padding: 1px 7px 1px 5px;
+    border: solid #ABABAB;
+    border-width: 1px 2px 2px 1px;
+    /*border: 3px outset #dddddd;*/
+    background: #ffffff url(../_shared/kbd.png) no-repeat 100% 100%;
+    font-style: italic;
+}
+
+kbd.accesskey {
+    clear: both;
+    float: left;
+    margin: 0 0.5em 0 0;
+    padding: 1px 7px 1px 5px;
+    border: solid #ABABAB;
+	border-width: 1px 2px 2px 1px;
+	background: #ffffff url(../_shared/kbd.png) no-repeat 100% 100%;
+	font-style: italic;
+}
+
+code {
+    margin: 0 0.2em;
+    color: #3333CC;
+    font-family: "Andale Mono", Courier, Monaco, "Hiragino Kaku Gothic Pro W3", monospace;
+    font-size: 110%;
+    white-space: pre;
+}
+
+pre.code {
+    overflow: auto;
+    margin: 1em 0.5em;
+    padding: 0.5em;
+    border: 1px solid #000000;
+    background-color: #333333;
+    color: #ffffff;
+}
+    
+var {
+    margin: 0 0.2em;
+    background-color: transparent;
+    color: #339900;
+    font-family: "Andale Mono", Courier, Monaco, "Hiragino Kaku Gothic Pro W3", monospace;
+    font-style: normal;
+}
+
+samp {
+    white-space: pre;
+    margin: 0.5em;
+    padding: 0.3em;
+}
+
+.filename, .tag {
+    background-color: transparent;
+    color: #3333CC;
+}
+
+.method {
+    background-color: transparent;
+    color: #663399;
+}
+
+.parameter, .return-value {
+    margin: 0.2em 0;
+    padding: 0.2em 0.5em;
+    font-size: 100%;
+    color: #000000;
+    background-color: #eeeeee;
+    border: 1px solid #cccccc;
+}
+
+.description {
+    margin: 1em 0.5em;
+    /*
+    border: 1px solid #cc9999;
+    background-color: #FEF1F3;
+    */
+}
+
+/* Horizontal Rule */
+hr {
+    clear: both;
+    height: 1px;
+    margin: 1em 0em 1em 0em;
+    border: 0px;
+    background-color: #cccccc;
+    color: #cccccc;
+}
+
+/*In case you wrote some mistakes...*/
+span.line-through {
+    text-decoration: line-through;
+}
+
+/* Reference */
+
+.ref {
+    margin-left: 1em;
+    padding-left: 2em;
+    background: url(../_shared/arrow-hand.png) no-repeat 0% 30%;
+    text-indent: 0.5em;
+}
+
+/* External Reference */
+.ex-ref {
+    margin: 0 3px;
+    padding-right: 14px;
+    background: url(../_shared/ex-ref.png) no-repeat 100% 50%;
+    text-indent: 0.5em;
+}
+
+
+/* Hand Arrow Anchor */
+a.more:after, a.go:before {
+    padding: 0em 0.2em 0em 0.5em;
+    content: url(../_shared/arrow-hand.png);
+}
+
+/* References List */
+ul.ref {
+    list-style: none;
+    background: none;
+}
+
+ul.ref li {
+    background: url(../_shared/arrow-hand.png) no-repeat 0% 30%;
+    padding-left: 2em;
+}
+
+/* "Read More..." Link */
+p.read-more {
+    text-align: right;
+}
+p.read-more a {
+    margin-left: 0;
+    padding: 3px 5px 3px 30px;
+    border: 1px solid #ffffff;
+    background: #ffffff url(../_shared/arrow-hand.png) no-repeat 5% 40%;
+    text-indent: 0.5em;
+}
+p.read-more a:hover {
+    border: 1px solid #cccccc;
+    background-color: #eeeeee;
+}
+
+/* DOWNLOADS */
+.download {
+    margin: 1em 0;
+    padding: 0.2em 2.5em;
+    border: 1px solid #9999cc;
+    background: #e4e2ff url(../_shared/arrow-download.png) no-repeat 10px 1em;
+    font-size: 100%;
+    font-style: italic;
+} .download p {
+    margin: 0.5em;
+} .download strong {
+    font-size: 120%;
+}
+
+.md5 {
+    color: #666666;
+    font-size: 100%;
+    font-style: italic;
+}
+
+
+/* PODCAST */
+.podcast {
+    margin: 1em 0;
+    padding: 0.5em 2.5em;
+    border: 1px solid #9999cc;
+    background: #e4e2ff url(../_shared/podcast.png) no-repeat 10px 10px;
+    font-size: 100%;
+    font-style: italic;
+} .podcast p {
+    margin: 0.5em;
+} .podcast strong {
+    font-size: 120%;
+}
+
+.mp3 {
+    /*background: #e4e2ff url(../_shared/mp3.png) no-repeat 10px 10px;*/
+}
+.m4 {
+    /*background: #e4e2ff url(../_shared/m4.png) no-repeat 10px 10px;*/
+}
+.mov {
+    /*background: #e4e2ff url(../_shared/mov.png) no-repeat 10px 10px;*/
+}
+
+
+.thumb-nail {
+    margin: 1em;
+    padding: 0.5em;
+    border: 1px solid #cccccc;
+}
+
+/* Search Result - Keyword Highlight */
+.highlight {
+    padding: 2px;
+    background-color: #CDDCF3;
+    color: #000000;
+    font-weight: bold;
+}
+
+/* Warning */
+.warning {
+    font-size: 100%;
+    padding: 1.5em 1em 1em 4em;
+    background: transparent url(../_shared/warning.png) no-repeat 0 10%;
+}
+#error-message h2 {
+    color: #c33f31;
+}
+
+
+/**
+ * for PHP Syntax Coloring Plugin
+ */
+.phpSource {
+    display: block;
+    border: 1px solid #cccccc;
+    padding: 0 1em;
+    color: #000000;
+} .phpSourceDefaults {
+    color: #0000BB;
+} .phpSourceStrings {
+    color: #DD0000;
+} .phpSourceKeywords {
+    color: #007700;
+} .phpSourceComments {
+    color: #FF8000;
+}
+
+.php-source {
+    display: block;
+    border: 1px solid #cccccc;
+    padding: 0 1em;
+    color: #000000;
+} .php-source-defaults {
+    color: #0000BB;
+} .php-source-strings {
+    color: #DD0000;
+} .php-source-keywords {
+    color: #007700;
+} .php-source-comments {
+    color: #FF8000;
+}

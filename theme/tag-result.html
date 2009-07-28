@@ -1,0 +1,18 @@
+<h2 id="archive-title">
+<?php switch ($item['archive_title']):
+case '0': 
+    echo $lang['all_data'];
+    break;
+case '1': 
+    echo 'Tag : <span class="search-key">' . $item['keyword'] . '</span>';
+    break;
+case '2':
+    echo 'Tag : <span class="search-key">' . $item['keyword'] . '</span>'.
+         ' on <span class="search-res">' . $item['date'] . '</span>';
+    break;
+endswitch;?>
+</h2>
+<p class="search-res">
+<span class="search-res"><?php echo $item['disp_page']?> - <?php echo $item['disp_rows']?></span> of <span class="search-res"><?php echo $item['hits']?></span>
+</p>
+

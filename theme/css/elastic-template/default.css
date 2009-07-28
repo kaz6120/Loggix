@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/* CSS DEBUGGER (Comment "IN" to use) */
+
+* { outline: 2px dotted red }
+* * { outline: 2px dotted green }
+* * * { outline: 2px dotted orange }
+* * * * { outline: 2px dotted blue }
+* * * * * { outline: 1px solid red }
+* * * * * * { outline: 1px solid green }
+* * * * * * * { outline: 1px solid orange }
+* * * * * * * * { outline: 1px solid blue }
+
+
+/*
+  ---------------------------------------------
+    INITIALIZE MARGINS AND PADDINGS
+  ---------------------------------------------
+*/
+* {
+    margin: 0;
+    padding: 0;
+} img { 
+    border: none; 
+}
+
+
+/*
+  ---------------------------------------------
+    BASE LAYOUTS
+  ---------------------------------------------
+*/
+html {
+    background: #ffffff;
+}
+
+body {
+    background: transparent;
+    text-align: center;
+}
+
+#wrapper {
+    max-width: 60em;   /* 960px (For 1024x768) */
+    min-width: 37.5em; /* 600px (For 640×480)  */ 
+    margin: 0 auto;
+    text-align: left;
+}
+
+/*
+  ---------------------------------------------
+    HEADER
+  ---------------------------------------------
+*/
+#header {
+
+}
+
+/*
+  ---------------------------------------------
+    CONTENTS
+  ---------------------------------------------
+*/
+#content {
+    float: left;
+    /* width: 60%;*/
+    width: 37em; /*(593px)*/
+}
+
+
+/*
+  ---------------------------------------------
+    NAVIGATION
+  ---------------------------------------------
+*/
+#navigation {
+    float:right;
+    height: 100%;
+    /* width: 28%;*/
+    width: 23em; /*(367px);*/
+    
+}
+
+/*
+  ---------------------------------------------
+    FOOTER
+  ---------------------------------------------
+*/
+#footer {
+    clear: both;
+
+}

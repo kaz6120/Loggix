@@ -1,0 +1,405 @@
+@charset "utf-8";
+
+@import url(../_import/text.css);
+@import url(text.css);
+@import url(modules.css);
+
+/**
+ * Style Name : Elastic Tango (Loggix Default CSS)
+ * Author     : Loggix Project
+ * Version    : 9.3.16
+ */
+
+/* CSS DEBUGGER (Comment "IN" to use) */
+/*
+* { outline: 2px dotted red }
+* * { outline: 2px dotted green }
+* * * { outline: 2px dotted orange }
+* * * * { outline: 2px dotted blue }
+* * * * * { outline: 1px solid red }
+* * * * * * { outline: 1px solid green }
+* * * * * * * { outline: 1px solid orange }
+* * * * * * * * { outline: 1px solid blue }
+*/
+
+/* INITIALIZE */
+* {
+    margin: 0;
+    padding: 0;
+} img { 
+    border: none; 
+}
+
+/* FORM BUTTON */
+input[type="submit"],
+input[type="button"] {
+    padding: 2px 3px !important;
+    outline:1px solid #999999;
+    -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+    border-top: 1px solid #eeeeee !important;
+    border-right: 1px solid #cccccc !important;
+    border-bottom: 1px solid #cccccc !important;
+    border-left: 1px solid #eeeeee !important;
+    background: #eeeeee url(./images/button-background.png) bottom !important;
+} input[type="submit"]:active,
+  input[type="button"]:active {
+    background: #dddddd url(./images/button-background-hover.png) top !important;
+} 
+input[type="text"],
+input[type="password"],
+textarea {
+    padding: 2px;
+    border: 4px solid #dddddd;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+}
+
+/*
+-------------( BASE LAYOUTS )-----------------
+*/
+html {
+    background: #ffffff url(./images/footer.png) bottom repeat-x;
+    margin: 0px;
+}
+
+body {
+    border-top: 3px solid #3d6b1f;
+    background: transparent url(./images/header-1.png) top repeat-x;
+    text-align: center;
+    font: 0.875em/180% Georgia, Bitstream Vera, "Hiragino Mincho Pro", serif;
+    color: #000000;
+}
+
+#wrapper {
+/*    width: 1024px;*/
+    /* For Elastic Layout */
+    max-width: 70em;
+    min-width: 40em;
+    margin: 0 auto;
+}
+
+/*
+-------------( HEADER STYLES )-----------------
+*/
+#header {
+    color: #ffffff;
+    margin: 0 0 20px 0;
+} #header h1 {
+    margin: 10px;
+    padding: 0;
+    font-weight: bold;
+    text-shadow: #336600 1px 2px 2px;
+} #header h1 a {
+    color: #ffffff;
+    text-decoration: none;
+} #header h1 a:hover {
+    color: #ffff66;
+    text-decoration: none;
+} #header p {
+    margin: 0 1em;
+    color: #D4EAA2;
+    font: bold italic 100% Times, serif;
+    text-shadow: #336600 1px 2px 2px;
+}
+
+/*
+-------------( CONTENT STYLES )-----------------
+*/
+#content {
+    float: left;
+/*    width: 600px;*/
+    width: 60%; /* For Elastic Layout */
+    margin: 20px 0 20px 10px;
+    padding: 1em;
+    text-align: left;
+    font-family: "Bitstrema Vera Sans", Arial, "Lucida Grande", sans-serif;
+}
+#content div {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    margin: 1em 0 1em 1em;
+    background: #ffffff url(./images/long-shadow-background-512px.png) repeat-x;
+}
+#content div div {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    background: none;
+}
+#content h2 {
+    clear: right;
+    margin: 20px 0;
+    padding: 0.5em;
+    border-bottom: 1px solid;
+    color: #83ad23;
+    color: #b97c00;
+    color: #cccccc;
+    font: bold italic 1.4em/100% Georgia, serif;
+}
+#content p{
+    margin: 1em 0 1em 1em;
+}
+#content ul,
+#content ol {
+    margin: 1em 0 1em 2.5em;
+}
+ #content h3 {
+    margin-bottom: 0;
+    padding: 0 0.2em 0.5em 2em;
+    background: transparent url(./images/tango-22x22/text-x-generic.png) 0 0 no-repeat !important;
+    color: #d37b2d;
+} #content h3 a {
+    color: #d37b2d;
+} #content h4 {
+} #content .section {
+} #content p {
+    margin: 1em;
+} #content fieldset {
+    border: 1px solid #9999cc;
+    border-top:4px solid #9999cc;
+    background: #dce1ef;
+    /*background: #999999;*/
+} #content legend {
+    padding:2px 10px;
+    background: #9999cc;
+    color: #ffffff;
+} #content textarea,
+  #content input {
+    padding: 5px;
+    font: 100%/120% Bitstream Vera Sans Mono, Monaco;
+    -moz-border-radius: 1px;
+    border: 1px solid #9999cc;
+} #content a:link,  #content a:visited {
+} #content a:hover, #content a:active {
+}
+
+/* Section Footer */
+.footer {
+    margin-top: 1em;
+    padding: 0;
+    border-top: 1px dotted #cccccc;
+    color: #666666;
+    font-size: 90%;
+    font-family: sans-serif;
+    text-align: right;
+} .footer ul {
+    margin:  0.5em 0 0 0;
+    padding: 0;
+} .footer li {
+    display: inline;
+    margin:  0;
+    padding: 0;
+} .footer a {
+    margin: 0 0.5em 0 0.4em;
+    padding: 0 0 4px 12px;
+    background: #ffffff url(./images/anchor-background.png) 0 0 no-repeat;
+} .footer a:hover {
+    background-position: 0px -40px;
+} .footer a:active {
+    background-position: 0px -80px;
+} a.status-on {
+    background-position: 0px -120px !important;
+} a.status-on:hover {
+    background-position: 0px -40px !important;
+} a.status-on:active {
+    background-position: 0px -80px !important;
+}
+
+
+
+/*
+-------------( NAVIGATION STYLES )-----------------
+*/
+#navigation {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    float:right;
+/*    width: 280px;*/
+    width: 28%; /* For Elastic Layout */
+    height: 100%;
+    margin: 40px 10px 40px 0;
+    padding: 1em;
+    text-align: left;
+    background: #f3f3e4;
+} #navigation h2 {
+    padding: 10px 10px 4px 10px;
+    border-bottom: 1px solid;
+    color: #99CC00;
+    font: bold italic 100%/180% Georgia, serif;
+    text-align: right;
+} #navigation p, 
+  #navigation ul, 
+  #navigation table, 
+  #css-form {
+    padding: 0;
+    margin: 10px;
+} #navigation ul {
+    list-style: none;
+    border-top: 1px solid #99CC00;
+    font-size: 90%;
+} #navigation li {
+    margin-bottom: 0;
+    border-bottom: 1px solid #99CC00;
+    background: #83ad23;
+    color: #ffffff;
+    text-indent: 0;
+}
+
+/* ICONS */
+li#index a {
+    background: url(./images/tango-22x22/go-home.png) no-repeat 5px 45%;
+}
+
+li#modules-downloads-index a {
+    background: url(./images/tango-22x22/go-down.png) no-repeat 5px 45%;
+}
+
+li#admin-login a {
+    background: url(./images/tango-22x22/system-log-out.png) no-repeat 5px 45%;
+}
+
+li#admin-preferences a {
+    background: url(./images/tango-22x22/preferences-system.png) no-repeat 5px 45%;
+}
+
+li#admin-info a {
+    background: url(./images/tango-22x22/preferences-system-session.png) no-repeat 5px 45%;
+}
+
+li#admin-users a {
+    background: url(./images/tango-22x22/system-users.png) no-repeat 5px 45%;
+}
+
+li#admin-write a,
+li#modules-downloads-admin-write a {
+    background: url(./images/tango-22x22/document-new.png) no-repeat 5px 45%;
+}
+
+li#admin-drafts a,
+li#modules-downloads-admin-drafts a {
+    background: url(./images/tango-22x22/document-save.png) no-repeat 5px 45%;
+}
+
+li#admin-tags a,
+li#modules-downloads-admin-tags a {
+    background: url(./images/tango-22x22/bookmark-new.png) no-repeat 5px 45%;
+}
+
+li#modules-downloads-admin-count a {
+    background: url(./images/tango-22x22/emblem-favorite.png) no-repeat 5px 45%;
+}
+
+li#admin-resources a {
+    background: url(./images/tango-22x22/image-x-generic.png) no-repeat 5px 45%;
+}
+
+li#modules-access a {
+    background: url(./images/tango-22x22/utilities-system-monitor.png) no-repeat 5px 45%;
+}
+
+li#modules-manual-ja a,
+li#modules-manual-en a,
+li#modules-manual a {
+    background: url(./images/tango-22x22/help-browser.png) no-repeat 5px 40%;
+}
+
+li#manual a {
+    background: url(./images/tango-22x22/help-browser.png) no-repeat 5px 45%;
+}
+
+li#api-document a {
+    background: url(./images/tango-22x22/document-properties.png) no-repeat 5px 45%;
+}
+
+
+/*
+ * Define admin and guest icon background image before a:hover background.
+ */
+ul#recent-comments a.admin {
+    background: url(./images/icon-admin.png) no-repeat 5px 5px !important;
+} ul#recent-comments a.guest {
+    background: url(./images/icon-guest.png) no-repeat 5px 5px !important;
+}
+
+ul#recent-trackbacks a {
+/*    background: url(./images/tango-32x32/network-wireless.png) no-repeat 5px 5px !important;*/
+    background: url(./images/icon-trackback.png) no-repeat 5px 5px !important;
+}
+
+
+li.cur-menu {
+    display: block;
+    margin: 0;
+    padding: 10px;
+    min-height: 22px;
+    border-right: 1px solid #99CC00;
+    border-bottom: 1px solid #99CC00;
+    border-left: 1px solid #99CC00;
+    background-color: transparent;
+    color: #ffff66 !important;
+    font-weight: bold;
+    
+    text-indent:22px !important; /* MARGIN FOR ICON */
+    /*background: #ca8300 url(./images/tango-22x22/weather-clear.png) no-repeat 5px 40% !important;*/
+    background: #ca8300 url(./images/tango-22x22/start-here.png) no-repeat 5px 40% !important;
+    
+} ul.menu a,
+  ul#recent-comments a, 
+  ul#recent-trackbacks a {
+    display: block;
+    margin: 0;
+    padding: 10px;
+    min-height: 22px;
+    border-right: 1px solid #999999;
+    border-left: 1px solid #999999;
+    background: #83ad23;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 100%;
+    text-decoration: none;
+    text-indent: 22px; /* LEFT-SPACE FOR ICON */
+} ul.menu a:hover,
+  ul#recent-comments a:hover, 
+  ul#recent-trackbacks a:hover {
+    border-right: 1px solid #99CC00;
+    border-left: 1px solid #99CC00;
+    background-color: #99CC00 !important;
+    color: #ffff66 !important;
+    text-decoration: none;
+} ul#recent-comments a, 
+  ul#recent-trackbacks a {
+    padding: 2px 5px 0 50px;
+    min-height: 45px;
+    line-height: 140%;
+}
+
+#search p {
+    padding: 0 0 0 25px;
+    background: transparent url(./images/tango-22x22/system-search.png) 0 50% no-repeat;
+}
+
+#keyword {
+    width: 150px;
+}
+/*
+-------------( FOOTER STYLES )-----------------
+*/
+#footer {
+    clear: both;
+    padding: 5px 0;
+    color: #D4EAA2;
+    font-size: 0.9em;
+} #footer a {
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    margin: 0 5px 0 0;
+    padding: 1px 6px;
+    background: #a9ca5d;
+} #footer a:hover {
+    background-color: #99CC00;
+    color: #ffff66;
+    text-decoration: none;
+} #page-generation {
+    margin: 0 0 0 10px;
+    font-size: 80%;
+}

@@ -1,0 +1,174 @@
+<h2><?php echo $lang['preferences']?></h2>
+<!--
+<?php echo $perm_msg?>
+--><form method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+<table rules="groups" frame="hsides" summary="Preferences">
+<tr>
+<th abbr="Basic Settings" colspan="2"><?php echo $lang['base_settings']?></th>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['root_dir']?></td>
+<td class="value">
+http://<?php echo $_SERVER['HTTP_HOST']?><input type="text" size="20" name="root_dir" value="<?php echo $config['root_dir']?>" />
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['site_title']?></td>
+<td class="value"><input type="text" name="loggix_title" value="<?php echo $config['loggix_title']?>" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['page_max']?></td>
+<td class="value">
+<input type="text" size="4" name="page_max" value="<?php echo $config['page_max']?>" />
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['system_language']?></td>
+<td class="value">
+<select name="language">
+<option value="english"<?php echo $item['lang_en']?>>English</option>
+<option value="japanese"<?php echo $item['lang_ja']?>>日本語</option>
+</select>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['xhtml_version']?></td>
+<td class="value">
+<?php foreach($item['xhtml_versions'] as $key => $value):?>
+<input type="radio" name="xml_version" value="<?php echo $key?>" id="xhtml<?php echo $key?>"<?php echo ($key == $config['xml_version']) ? ' checked="checked"' : ''?> />
+<label for="xhtml<?php echo $key?>"><?php echo $value?></label><br />
+<?php endforeach?>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['timezone']?></td>
+<td class="value">UTC
+<select type="select" name="tz" />
+<?php foreach($item['time_zone'] as $key => $value): ?>
+<option value="<?php echo $key?>"<?php echo ($key == $config['tz']) ? ' selected="selected"' : ''?>><?php echo $value?></option>
+<?php endforeach?>
+</select>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['show_date']?></td>
+<td class="value">
+<input type="radio" name="show_date_title" id="show_date_title_yes" value="yes"<?php echo $item['show_date_title_yes']?> />
+<label for="show_date_title_yes">Yes</label>
+<input type="radio" name="show_date_title" id="show_date_title_no" value="no"<?php echo $item['show_date_title_no']?> />
+<label for="show_date_title_no">No</label>
+</td>
+</tr>
+
+<tr>
+<td class="key"><?php echo $lang['date_format']?></td>
+<td class="value">
+<input type="text" size="20" name="title_date_format" value="<?php echo $config['title_date_format']?>" />
+<div class="example"><?php echo date($config['title_date_format'])?></div>
+</td>
+</tr>
+
+<tr>
+<td class="key"><?php echo $lang['post_date_format']?></td>
+<td class="value">
+<input type="text" size="20" name="post_date_format" value="<?php echo $config['post_date_format']?>" /><br />
+<div class="example"><?php echo date($config['post_date_format'])?></div>
+</td>
+</tr>
+
+<tr>
+<td class="key"><?php echo $lang['upload_file_max']?></td>
+<td class="value">
+<input type="text" size="4" name="upload_file_max" value="<?php echo $config['upload_file_max']?>" />
+</td>
+</tr>
+
+<tr>
+<td class="key"><?php echo $lang['contents_menu']?></td>
+<td class="value">
+<textarea name="menu_list" rows="10" cols="40">
+<?php echo $config['menu_list']?>
+</textarea>
+</td>
+</tr>
+
+<tr>
+<th abbr="CSS" colspan="2">CSS</th>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['css_cookie_name']?></td>
+<td class="value">
+<input type="text" name="css_cookie_name" value="<?php echo $config['css_cookie_name']?>" />
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['css_cookie_time']?></td>
+<td class="value">
+<input type="text" size="6" name="css_cookie_time" value="<?php echo ($config['css_cookie_time'] / 86400)?>" /> <?php echo $lang['days']?>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['css_menu']?></td>
+<td class="value">
+<textarea name="css_list" rows="6" cols="40">
+<?php echo $config['css_list']?>
+</textarea>
+</td>
+</tr>
+
+<tr>
+<th abbr="Comment And Trackback" colspan="2"><?php echo $lang['comment_trackback']?></th>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['recent_comment']?></td>
+<td class="value">
+<input type="text" size="4" name="recent_comment_max" value="<?php echo $config['recent_comment_max']?>" /></td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['recent_trackback']?></td>
+<td class="value">
+<input type="text" size="4" name="recent_trackback_max" value="<?php echo $config['recent_trackback_max']?>" /></td>
+</tr>
+
+<tr>
+<th abbr="Anti Spam Settings" colspan="2"><?php echo $lang['anti_spam']?></th>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['block_tags']?></td>
+<td class="value">
+<textarea name="block_tags" rows="5" cols="40">
+<?php echo $config['block_tags']?>
+</textarea>
+<div class="note"><?php echo $lang['block_tags_exp']?></div>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['block_keywords']?></td>
+<td class="value">
+<textarea name="block_keywords" rows="5" cols="40">
+<?php echo $config['block_keywords']?>
+</textarea>
+<div class="note"><?php echo $lang['block_keywords_exp']?></div>
+</td>
+</tr>
+<tr>
+<td class="key"><?php echo $lang['block_ascii_only']?></td>
+<td class="value">
+<input type="radio" name="block_ascii_only_text" id="block_ascii_only_text_yes" value="yes"<?php echo $item['block_status_1']?> />
+<label for="block_ascii_only_text_yes">Yes</label>
+<input type="radio" name="block_ascii_only_text" id="block_ascii_only_text_no" value="no"<?php echo $item['block_status_2']?> />
+<label for="block_ascii_only_text_no">No</label>
+</td>
+</tr>
+
+</table>
+
+<p class="submit-button">
+<input type="radio" name="save_settings" id="save" value="save" checked="checked" />
+<label for="update"><?php echo $lang['save']?></label>
+<input type="radio" name="save_settings" id="default" value="default" />
+<label for="default"><?php echo $lang['default']?></label>
+<input type="submit" id="submit-button" value="<?php echo $lang['execute']?>" />
+</p>
+
+</form>

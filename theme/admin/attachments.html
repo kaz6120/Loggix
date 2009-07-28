@@ -1,0 +1,19 @@
+<table summary="Attachment Files">
+<thead>
+<tr>
+<th abbr="Attachments to upload" colspan="2"><?php echo $lang['attachments']?></th>
+</tr>
+</thead>
+<tbody>
+<?php foreach($items as $item): ?>
+<tr>
+<td>
+<label for="myfile<?php echo $item['i']?>"><?php echo $item['i']?></label> : 
+<input type="file" id="myfile<?php echo $item['i']?>" name="myfile[<?php echo $item['i']?>]" onchange="setFile(<?php echo $item['i']?>, '<?php echo $this->getXmlLanguage()?>');" size="35" class="bordered" />
+<input type="button" id="button<?php echo $item['i']?>" onclick="Attach(<?php echo $item['i']?>);" onkeypress="Attach(<?php echo $item['i']?>);" value="<?php echo $lang['tag_button']?>" /><br />
+<img id="img<?php echo $item['i']?>" src="<?php echo $this->getDir()?>/theme/css/_shared/file.png" alt="Preview Image" class="preview" />
+</td>
+</tr>
+<?php endforeach; ?>
+</tbody>
+</table>

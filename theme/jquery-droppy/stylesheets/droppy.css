@@ -1,0 +1,26 @@
+/* Basic code - don't modify */
+
+#archives { display: block; margin: 0; padding: 0; position: relative; }
+#archives li { display: block; list-style: none; margin: 0; padding: 0; }
+#archives a { display: block; }
+* html #archives ul { line-height: 0; } /* ie6 "fix" */
+#archives ul a { zoom: 1; } /* ie6/7 fix */
+#archives ul li { float: none; }
+#archives ul ul { top: 0; }
+    
+/* essentials - configure this */
+
+/* --- (1) For Standard Archive List --- */
+#archives ul { display: none; }
+#archives ul { width: auto; }
+#archives ul ul { }
+
+/* --- (2) For Yearly Nested List --- */
+/*#archives ul { display: none; position: relative; left: 0; margin: 0; padding: 0; float:left; }*/
+/*#archives ul { width: 110px; }*/
+/*#archives ul ul { left: 111px; top: -23px; }*/
+
+/* everything else is theming */
+#archives li:hover { background: #99cc00; }
+#archives a:hover { background: #99cc00; text-decoration: none; }
+

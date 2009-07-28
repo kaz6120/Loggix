@@ -1,0 +1,395 @@
+@charset "utf-8";
+
+form {
+    margin: 10px;
+}
+
+fieldset {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    padding: 1em;
+}
+
+textarea {
+    width: 100%;
+}
+
+/*
+  ---------------------------------------------
+    COMMENTS & TRACKBACKS
+  ---------------------------------------------
+*/
+
+/* COMMENTS */
+#comments>h4 {
+    padding-left: 35px;
+    border-bottom: 1px solid #cccccc;
+    background: transparent url(../_shared/comments.png) 0 50% no-repeat;
+} #comments div.section {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background: #f3f3e4 url(./images/chat-bubble-guest.png) 0 bottom no-repeat;
+} #comments div.admin {
+    background: #e6e6fa url(./images/chat-bubble-admin.png) 0 bottom no-repeat;
+} #comments h5 {
+    margin: 0;
+    padding: 3px 0 0 10px;
+    color: #999999;
+/*    background: #222222;*/
+} #comments .admin p {
+    color: #333399;
+} #comments .author {
+    margin: 30px 5px 0 35px;
+    padding: 0 0 5px 0;
+    color: #666666;
+    font: italic 90%/180% sans-serif;
+}
+
+/* CAPTCHA */
+#captcha {
+} #captcha img {
+    display: block;
+    border: 1px solid #444444;
+} #captcha input {
+    margin-top: 5px;
+}
+
+/* TRACKBACKS */
+#trackbacks>h4 {
+    padding-left: 35px;
+    border-bottom: 1px solid #cccccc;
+    background: transparent url(../_shared/trackback.png) 0 50% no-repeat;
+} #trackbacks div.section {
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    background: #f3f3e4 url(./images/chat-bubble-trackback.png) 0 bottom no-repeat;
+} #trackbacks h5 {
+    margin: 0;
+    padding: 3px 0 0 10px;
+    color: #999999;
+/*    background: #222222;*/
+} #trackbacks .admin p {
+    color: #333399;
+} #trackbacks .author {
+    margin: 30px 5px 0 35px;
+    padding: 0 0 5px 0;
+    color: #666666;
+    font: italic 90%/180% sans-serif;
+} #trackbacks input {
+    width: 100%;
+}
+
+
+/*
+  ---------------------------------------------
+    BUTTONS
+  ---------------------------------------------
+*/
+.submit-button {
+    margin: 1em 0;
+    padding: 0.5em;
+    border-bottom: 10px solid #e4e2ff;
+    background-color: #9999cc;
+    text-align: right;
+} .submit-button input#submit-button {
+    width: 7em;
+    margin: 0 1em 0 1em;
+} .submit-button label {
+    color: #ffffff;
+}
+
+
+/*
+  ---------------------------------------------
+    RSS FEEDS
+  ---------------------------------------------
+*/
+
+.rss:link, .rss:visited {
+    margin: 0.2em 1em;
+    padding: 2px 8px 2px 22px;
+    border: 1px solid #999999;
+    background:#83ad23 url(./images/feed-icon-16x16.png) no-repeat 2px 50%;
+    color: #ffffff;
+    font-size: 90%;
+    text-decoration: none;
+} .rss:hover {
+    border: 1px solid #99cc66;
+    background: #99CC00 url(./images/feed-icon-16x16.png) no-repeat 2px 50%;
+    color: #ffff66;
+    text-decoration: none;
+} .rss:active {
+    border: 1px solid #ff9933;
+    background: transparent url(./images/feed-icon-16x16.png) no-repeat 2px 50%;
+    color: #99cc00; 
+    text-decoration : none;
+}
+
+
+
+
+/*
+  ---------------------------------------------
+    TOGGLE SWITCH
+  ---------------------------------------------
+*/
+.toggle-switch {
+    margin-left: 0;
+    padding-right: 1.1em;
+    background: url(../_shared/toggle-switch.png) no-repeat 100% 50%;
+    text-indent: 0.5em;
+}
+.toggle {
+    display: none;
+}
+
+/*
+  ---------------------------------------------
+    ADMIN EDIT MENU
+  ---------------------------------------------
+*/
+
+
+.admin-menu {
+    margin: 1px !important;
+    padding: 0.2em 0.5em;
+    border: 1px solid #cccccc;
+    background: #dddddd url(../_shared/button-background.png) bottom;
+    text-align: right;
+} .admin-menu li {
+    display: inline;
+} .admin-menu a {
+    margin: 0 0.1em;
+    padding: 2px 10px;
+    border: 1px solid transparent !important;
+    font-size: 90%;
+    text-decoration: none;
+} .admin-menu a:hover {
+    border-top: 1px solid #eeeeee;
+    border-right: 1px solid #E5E5E5;
+    border-bottom: 1px solid #eeeeee;
+    border-left: 1px solid #E5E5E5;
+    background: #dddddd url(../_shared/button-background-hover.png) top;
+    text-decoration: none;
+}
+
+
+/*
+  ---------------------------------------------
+    PAGER
+  ---------------------------------------------
+*/
+.pager {
+    margin: 2em 0;
+    padding: 1em;
+    font-size: 85%;
+    text-align: right;
+} .pager a {
+    display: inline;
+    margin-right: 1px;
+    padding: 4px 8px;
+    border: 1px solid #85AA3D;
+    background: #eeeeee;
+    text-decoration: none;
+} .pager a:hover {
+    background-color: #f3f3e4;
+} .pager span#current-page {
+    border: 1px solid #cccccc;
+    margin-right: 1px;
+    padding: 8px 12px;
+    background-color: #ffffff;
+    color: #FF6F00;
+} .pager span.prev a {
+    padding-left: 25px;
+/*    background: transparent url(../_shared/arrow-left.png) no-repeat 0% 50%;*/
+    background: transparent url(./images/tango-22x22/go-previous.png) no-repeat 0% 50%;
+} .pager span.next a {
+    padding-right: 25px;
+/*    background: transparent url(../_shared/arrow-right.png) no-repeat 100% 50%;*/
+    background: transparent url(./images/tango-22x22/go-next.png) no-repeat 100% 50%;
+}
+
+/* Previous Logs Navi Link */
+#prev-logs {
+    margin: 2em 0 !important;
+    font-size: 85%;
+    text-align: right;
+} #prev-logs a {
+    display: inline;
+    margin-right: 2px;
+    padding: 4px 35px 4px 10px;
+    border: 1px solid #85AA3D;
+    background: transparent url(../_shared/arrow-hand.png) no-repeat 95% 50%;
+    text-decoration: none;
+} #prev-logs a:hover {
+    background-color: #f3f3e4;
+}
+
+
+/*
+  ---------------------------------------------
+    TABLES
+  ---------------------------------------------
+*/
+table, th, td, tfoot {
+    border: 1px solid #4a4a4a;
+    padding: 0.3em;
+}
+
+table {
+    margin: 0.5em;
+    border-collapse: collapse;
+    font: 100%/160% sans-serif;
+} caption {
+    caption-side: top;
+    font-size: 100%;
+    font-weight: bold;
+} th {
+} tbody th {
+} td {
+    font-size: 100%;
+} td dl {
+    margin:5px;
+} tfoot {
+    text-align: center;
+} tfoot input {
+    width: 8em;
+}
+
+
+
+/*
+-----------------------------------------------------------------
+   CALENDAR TABLE
+-----------------------------------------------------------------
+*/
+table#calendar {
+    margin: 1em 0.5em 1em 0.5em;
+    width: 90%;
+    border-collapse: collapse;
+    border: 1px solid #99CC00;
+    color: #000000;
+    font-size: 100%;
+    line-height: 160%;
+    text-align: center;
+} table#calendar caption {
+    display: none;
+    width: auto;
+    border: 1px solid #99CC00;
+    background: #83ad23 !important;
+    color: #FFFFFF !important;
+} table#calendar thead th {
+    padding: 0.2em 0 0.2em 0;
+    border: 1px solid #99CC00;
+    background: #83ad23 !important;
+    color: #FFFFFF !important;
+} table#calendar thead th a,
+  table#calendar tfoot td a {
+    color: #ffffff !important;
+    text-decoration: none;
+    cursor: pointer;
+} table#calendar thead th a:hover,
+  table#calendar tfoot td a:hover {
+    background: #99cc00;
+    color: #ffff66 !important;
+} table#calendar tfoot {
+    background-color: #83ad23 !important;
+    background-image: none !important;
+} table#calendar tfoot td {
+    padding: 0.7em;
+    background-color: #83ad23 !important;
+    background-image: none !important;
+    border: 1px solid #999999;
+} table#calendar tfoot th a {
+    color: #ffffff !important;
+} table#calendar tfoot td a:hover {
+} table#calendar td {
+    padding: 0.3em 0 0.3em 0;
+    border: 1px solid #99CC00;
+    background-color: #83ad23 !important;
+    color: #ffffff !important;
+    font-size: 100%;
+} table#calendar th.sunday {
+    border: none;
+    color: #FF9933 !important;
+} table#calendar td.log-exists:hover {
+    background: #ca8300 !important;
+} table#calendar td.log-exists {
+    background: #99CC00 !important;
+} table#calendar td.log-exists a {
+    background: transparent !important;
+    color: #ffffff;
+    font-weight: bold;
+} table#calendar td.log-exists a:hover {
+    color: #ffff66; 
+    text-decoration : none;
+}
+
+/* Prev-Month | Next-Month  */
+a.prev-month {
+    display: inline !important;
+    padding-left: 1.5em;
+    background: transparent !important;
+    color: #ffffff !important;
+}
+
+a.next-month {
+    display: inline !important;
+    padding-right: 1.5em;
+    background: transparent !important;
+    color: #ffffff !important;
+}
+
+a.prev-month:hover, a.next-month:hover {
+    color: #ffff66 !important;
+}
+
+table#calendar td.day-of-prev-month,
+table#calendar td.day-of-next-month {
+    color: #eeeeee;
+}
+
+
+/*Archives*/
+ul#monthly-archives {
+    width: 120px;
+} ul#monthly-archives a {
+    padding: 1px 5px;
+    color: #ffffff !important;
+}
+
+
+/* Table Coloring */
+th {
+    background: #222222;
+    color: white;
+}
+td.key,
+th.key {
+    background-color: #ffffee;
+    color: #000000;
+}
+td.value {
+    background-color: #FEF1F3;
+    color: #660000;
+    font-size: 90%;
+}
+
+
+
+/* Definition List */
+dl {
+    margin: 1em;
+}
+dt.question {
+    font-weight:bold;
+}
+dd.answer {
+    color:#a52a2a;
+    font-weight:bold;
+}
+dd.reason,
+dd.explanation {
+    margin-left: 3em;
+}
+
