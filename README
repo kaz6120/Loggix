@@ -1,0 +1,11 @@
+Loggix is PHP & SQLite driven blogging engine.
+
+====================
+HOW TO START LOGGIX
+====================
+
+1) Change permission of "data" folder executable and editable.
+2) Access "/admin/login.php".
+3) Login as user:root password:root.
+4) Create your new account and login again.
+5) That's it! Enjoy Loggix.
