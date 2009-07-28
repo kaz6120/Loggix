@@ -1,0 +1,14 @@
+# Enable mod_rerwite 
+RewriteEngine On
+
+# This should be changed to your sites URL, minus the domain.
+# ex.  http://www.example.com/       => /
+#      http://www.example.com/~foo/  => /~foo/
+# RewriteBase /
+
+# Rewriting URI rule
+# ex   http://www.example.com/index.php?id=100
+#      => http://www.example.com/entry-100
+RewriteRule ^entry-([0-9]+)+ index.php?id=$1
+
+php_flag magic_quotes_gpc Off
