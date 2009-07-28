@@ -1,0 +1,1254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<title>Docs For Class Loggix_Core</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css" />
+<link rel="start" href="./index.html" title="API Documentation" />
+<link rev="made" href="mailto:webmaster@anti-spam.example.com" />
+</head>
+<body>
+
+<!-- Begin #header -->
+<div id="header">
+<h1 id="top">Loggix</h1>
+<div id="header-menu">
+<a href="../classtrees_Loggix.html" class="menu">class tree: Loggix</a> 
+<a href="../elementindex_Loggix.html" class="menu">index: Loggix</a> 
+<a href="../elementindex.html" class="menu">all elements</a>
+</div>
+</div>
+
+<!-- Begin #menu -->
+<div id="menu">
+<h2>Packages:</h2>
+<ul>
+<li><a href="../li_Loggix.html">Loggix</a></li>
+<li><a href="../li_Loggix_Module.html">Loggix_Module</a></li>
+<li><a href="../li_Loggix_View.html">Loggix_View</a></li>
+</ul>
+<h2>Files:</h2>
+<div class="package">
+<ul>
+<li><a href="../Loggix/_Application.php.html">Application.php</a></li><li><a href="../Loggix/_Core.php.html">Core.php</a></li><li><a href="../Loggix/_Exception.php.html">Exception.php</a></li><li><a href="../Loggix/_Expander.php.html">Expander.php</a></li><li><a href="../Loggix/_Module.php.html">Module.php</a></li><li><a href="../Loggix/_Plugin.php.html">Plugin.php</a></li><li><a href="../Loggix/_Session.php.html">Session.php</a></li><li><a href="../Loggix/_Utility.php.html">Utility.php</a></li><li><a href="../Loggix/_View.php.html">View.php</a></li></ul>
+</div>
+<h2>Classes:</h2>
+<div class="package">
+<ul>
+<li><a href="../Loggix/Loggix_Application.html">Loggix_Application</a></li><li><a href="../Loggix/Loggix_Core.html">Loggix_Core</a></li><li><a href="../Loggix/Loggix_Exception.html">Loggix_Exception</a></li><li><a href="../Loggix/Loggix_Expander.html">Loggix_Expander</a></li><li><a href="../Loggix/Loggix_Module.html">Loggix_Module</a></li><li><a href="../Loggix/Loggix_Plugin.html">Loggix_Plugin</a></li><li><a href="../Loggix/Loggix_Session.html">Loggix_Session</a></li><li><a href="../Loggix/Loggix_Utility.html">Loggix_Utility</a></li><li><a href="../Loggix/Loggix_View.html">Loggix_View</a></li></ul>
+</div>
+</div>
+
+<!-- Begin #content -->
+<div id="content">
+<div id="content-title">
+<h2>Class: Loggix_Core</h2>
+<p>Source Location: /Core.php</p>
+</div>
+
+
+<div id="overview">
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre>
+<div class="description">Loggix Core Class</div>
+
+
+
+
+
+</div><!-- End #overview -->
+
+<div id="variables">
+<h3><a href="#class_vars">Variables</a></h3>
+<ul>
+    <li><a href="../Loggix/Loggix_Core.html#var$config">$config</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#var$db">$db</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#var$plugin">$plugin</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#var$startTime">$startTime</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#var$_delegate">$_delegate</a></li>
+  </ul>
+</div>
+
+<div id="constants">
+<h3><a href="#class_consts">Constants</a></h3>
+<ul>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_DATABASE_TYPE">LOGGIX_DATABASE_TYPE</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_MODULE_DIR">LOGGIX_MODULE_DIR</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_MYSQL_DBNAME">LOGGIX_MYSQL_DBNAME</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_MYSQL_HOST">LOGGIX_MYSQL_HOST</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_MYSQL_PASS">LOGGIX_MYSQL_PASS</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_MYSQL_USER">LOGGIX_MYSQL_USER</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_PLUGIN_DIR">LOGGIX_PLUGIN_DIR</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_PROJ_URI">LOGGIX_PROJ_URI</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_RESOURCE_DIR">LOGGIX_RESOURCE_DIR</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_SQLITE_2">LOGGIX_SQLITE_2</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_SQLITE_3">LOGGIX_SQLITE_3</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_THEME_DIR">LOGGIX_THEME_DIR</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_TITLE_SEPARATOR">LOGGIX_TITLE_SEPARATOR</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#constLOGGIX_VERSION">LOGGIX_VERSION</a></li>
+  </ul>
+</div>
+
+<div id="methods">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../Loggix/Loggix_Core.html#method__construct">__construct</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#method__destruct">__destruct</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodaddTag">addTag</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetAdminMenu">getAdminMenu</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetConfigArray">getConfigArray</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetLanguage">getLanguage</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetMenuList">getMenuList</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetOutOfSession">getOutOfSession</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetRequestUri">getRequestUri</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetRootUri">getRootUri</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetSearchHitsSql">getSearchHitsSql</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetSearchSql">getSearchSql</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetSearchSqlParams">getSearchSqlParams</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetSessionState">getSessionState</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagArray">getTagArray</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagCloudArray">getTagCloudArray</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagHitsSql">getTagHitsSql</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagIdArray">getTagIdArray</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagSql">getTagSql</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTagSqlParams">getTagSqlParams</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodgetTotalItemsCount">getTotalItemsCount</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodsetMenuItems">setMenuItems</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#methodsetSearchItems">setSearchItems</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#method_includeModules">_includeModules</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#method_includePlugins">_includePlugins</a></li>
+    <li><a href="../Loggix/Loggix_Core.html#method__call">__call</a></li>
+  </ul>
+</div>
+
+
+
+<div class="child-classes">
+<h3>Child classes:</h3>
+<div class="tags">
+<dl>
+<dt><a href="../Loggix/Loggix_Application.html">Loggix_Application</a></dt>
+<dd>Loggix Application Class</dd></dl>
+</div><!-- End .tags -->
+</div><!-- End .child-classes -->
+
+
+
+<div id="class_details">
+<h3>Class Details</h3>
+<div class="tags">
+[line 47]<br />
+<p>Loggix Core Class</p></div>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div>
+
+<div id="class_vars">
+<h3>Class Variables</h3>
+<div class="tags">
+<h4 id="var$config">$config = <span class="value"></span></h4>
+<p>[line 103]</p>
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>Type:</strong></td>
+<td>array</td>
+</tr>
+</table>
+</div>
+<div class="top">[ <a href="#top">Top</a> ]</div>
+<h4 id="var$db">$db = <span class="value"></span></h4>
+<p>[line 84]</p>
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>Type:</strong></td>
+<td>object</td>
+</tr>
+</table>
+</div>
+<div class="top">[ <a href="#top">Top</a> ]</div>
+<h4 id="var$plugin">$plugin = <span class="value"></span></h4>
+<p>[line 90]</p>
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>Type:</strong></td>
+<td>object</td>
+</tr>
+</table>
+</div>
+<div class="top">[ <a href="#top">Top</a> ]</div>
+<h4 id="var$startTime">$startTime = <span class="value"></span></h4>
+<p>[line 97]</p>
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Utility.html#methodgetGenerationTime">Loggix_Utility::getGenerationTime()</a></td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>Type:</strong></td>
+<td>float</td>
+</tr>
+</table>
+</div>
+<div class="top">[ <a href="#top">Top</a> ]</div>
+<h4 id="var$_delegate">$_delegate = <span class="value">null</span></h4>
+<p>[line 110]</p>
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Utility.html">Loggix_Utility</a></td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>private</td>
+</tr>
+</table>
+</div>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>Type:</strong></td>
+<td>object</td>
+</tr>
+</table>
+</div>
+<div class="top">[ <a href="#top">Top</a> ]</div>
+</div>
+</div>
+
+<div id="class_methods">
+<h3>Class Methods</h3>
+<div class="tags">
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="method__construct">constructor __construct <span class="smalllinenumber">[line 121]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>Loggix_Core __construct(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Constructor : Open datbase and load functions and modules.</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#method_includePlugins">Loggix_Core::_includePlugins()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#method_includeModules">Loggix_Core::_includeModules()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetLanguage">Loggix_Core::getLanguage()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="method__destruct">destructor __destruct <span class="smalllinenumber">[line 1050]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void __destruct(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Destructor</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodaddTag">method addTag <span class="smalllinenumber">[line 492]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void addTag(
+string
+$tagMapTable, integer
+$logId)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Add tag data into tag map table</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$tagMapTable</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">integer</td>
+<td><strong><var>$logId</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetAdminMenu">method getAdminMenu <span class="smalllinenumber">[line 365]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getAdminMenu(
+string
+$sessionState)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Admin Menu</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Application.html#methodsetMenuItems">Loggix_Application::setMenuItems()</a></td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodsetMenuItems">Loggix_Core::setMenuItems()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetMenuList">Loggix_Core::getMenuList()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td>setXmlLanuguage</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$sessionState</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetConfigArray">method getConfigArray <span class="smalllinenumber">[line 178]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getConfigArray(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Config settings</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetLanguage">method getLanguage <span class="smalllinenumber">[line 230]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getLanguage(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Language File in /lang/ directory.</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>protected</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetMenuList">method getMenuList <span class="smalllinenumber">[line 448]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getMenuList(
+array
+$menuArray)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Menu List</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Application.html#methodgetContentMenu">Loggix_Application::getContentMenu()</a></td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetAdminMenu">Loggix_Core::getAdminMenu()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetRequestUri">Loggix_Core::getRequestUri()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">array</td>
+<td><strong><var>$menuArray</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetOutOfSession">method getOutOfSession <span class="smalllinenumber">[line 345]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getOutOfSession(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get out of session</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetRequestUri">method getRequestUri <span class="smalllinenumber">[line 244]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getRequestUri(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Reqeust URI</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Application.html#methodsetMenuItems">Loggix_Application::setMenuItems()</a></td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetMenuList">Loggix_Core::getMenuList()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetRootUri">method getRootUri <span class="smalllinenumber">[line 258]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getRootUri(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Root URI</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetSearchHitsSql">method getSearchHitsSql <span class="smalllinenumber">[line 904]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getSearchHitsSql(
+array
+$params)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Search Hits SQL</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">array</td>
+<td><strong><var>$params</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetSearchSql">method getSearchSql <span class="smalllinenumber">[line 851]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getSearchSql(
+array
+$params)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Generate Search SQL</p>$params = array(fields, table, title, comment date, draft, group_by)<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">array</td>
+<td><strong><var>$params</var></strong></td>
+<td>= array(fields, table, title, comment date, draft, group_by)</td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetSearchSqlParams">method getSearchSqlParams <span class="smalllinenumber">[line 830]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getSearchSqlParams(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Search SQL Parameters</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetSessionState">method getSessionState <span class="smalllinenumber">[line 270]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getSessionState(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Session Control</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>return:</strong></td><td>:== 'on' | 'off'</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagArray">method getTagArray <span class="smalllinenumber">[line 581]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getTagArray(
+[string
+$withDraft = 'no'])</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Generate tag array</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetTagCloudArray">Loggix_Core::getTagCloudArray()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$withDraft</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagCloudArray">method getTagCloudArray <span class="smalllinenumber">[line 676]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getTagCloudArray(
+[
+$tagMode = null], [
+$withDraft = 'no'])</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Tag Cloud Array</p>0: Tag ID  1: Tag Name  2: Number of articles stocked in this tag  3: Checkbox status for this tag  4: Tag direcotry  5: Tag Level Value<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Application.html#methodsetMenuItems">Loggix_Application::setMenuItems()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetTagIdArray">Loggix_Core::getTagIdArray()</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetTagArray">Loggix_Core::getTagArray()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type"></td>
+<td><strong><var>$tagMode</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type"></td>
+<td><strong><var>$withDraft</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagHitsSql">method getTagHitsSql <span class="smalllinenumber">[line 798]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getTagHitsSql(
+array
+$params)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Tag Hits SQL</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">array</td>
+<td><strong><var>$params</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagIdArray">method getTagIdArray <span class="smalllinenumber">[line 635]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getTagIdArray(
+[string
+$tagMode = null])</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Generate tag ID array</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetTagCloudArray">Loggix_Core::getTagCloudArray()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$tagMode</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagSql">method getTagSql <span class="smalllinenumber">[line 761]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getTagSql(
+array
+$params)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Tag SQL</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">array</td>
+<td><strong><var>$params</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTagSqlParams">method getTagSqlParams <span class="smalllinenumber">[line 737]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getTagSqlParams(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Tag SQL Parameters</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTotalItemsCount">method getTotalItemsCount <span class="smalllinenumber">[line 1024]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>integer getTotalItemsCount(
+string
+$countItemsSql)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Total Items Count</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$countItemsSql</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetMenuItems">method setMenuItems <span class="smalllinenumber">[line 1040]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array setMenuItems(
+[string
+$sessionState = null])</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Set variables for menu items</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td>getCssSwitch</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td>getContentMenu</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td>getCategoryList</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Core.html#methodgetAdminMenu">Loggix_Core::getAdminMenu()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+<p>Overridden in child classes as:<br />
+</p>
+<dl>
+<dt><a href="../Loggix/Loggix_Application.html#methodsetMenuItems">Loggix_Application::setMenuItems()</a></dt>
+<dd>Set variables for menu items</dd>
+</dl>
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$sessionState</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetSearchItems">method setSearchItems <span class="smalllinenumber">[line 956]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array setSearchItems(
+boolean
+$res, integer
+$totalItemsCount, integer
+$previousItemNumber, integer
+$date)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Set Search Result Items</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">boolean</td>
+<td><strong><var>$res</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">integer</td>
+<td><strong><var>$totalItemsCount</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">integer</td>
+<td><strong><var>$previousItemNumber</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">integer</td>
+<td><strong><var>$date</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="method_includeModules">method _includeModules <span class="smalllinenumber">[line 193]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void _includeModules(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Load Modules in /lib/Loggix/Module/ directory.</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>private</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="method_includePlugins">method _includePlugins <span class="smalllinenumber">[line 212]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void _includePlugins(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Load Modules in /plugins/ directory.</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>private</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Core.html#method__construct">Loggix_Core::__construct()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="method__call">method __call <span class="smalllinenumber">[line 167]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void __call(
+
+$method, 
+$args)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Relay the method call to Loggix_Utility</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="http://www.php.net/call_user_func_array">call_user_func_array()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type"></td>
+<td><strong><var>$method</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type"></td>
+<td><strong><var>$args</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+</div>
+</div>
+
+<div id="class_constss">
+<h3>Class Constants</h3>
+<div class="tags">
+<h4 id="constLOGGIX_DATABASE_TYPE">LOGGIX_DATABASE_TYPE = <span class="value">&nbsp;'SQLite'</span></h4>
+<p>[line 62]</p>
+<p>Base Settings</p>Database support status  ------------------------  SQLite2 : stable  SQLite3 : stable  MySQL   : unstableSQLite3 is recommended. If you want to use SQLite2, just remove SQLite3  database and SQLite2 database will be loaded automatically.<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_MODULE_DIR">LOGGIX_MODULE_DIR = <span class="value">&nbsp;'/lib/Loggix/Module/'</span></h4>
+<p>[line 70]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_MYSQL_DBNAME">LOGGIX_MYSQL_DBNAME = <span class="value">&nbsp;'loggix'</span></h4>
+<p>[line 66]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_MYSQL_HOST">LOGGIX_MYSQL_HOST = <span class="value">&nbsp;'localhost'</span></h4>
+<p>[line 65]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_MYSQL_PASS">LOGGIX_MYSQL_PASS = <span class="value">&nbsp;''</span></h4>
+<p>[line 68]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_MYSQL_USER">LOGGIX_MYSQL_USER = <span class="value">&nbsp;''</span></h4>
+<p>[line 67]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_PLUGIN_DIR">LOGGIX_PLUGIN_DIR = <span class="value">&nbsp;'/plugins/'</span></h4>
+<p>[line 71]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_PROJ_URI">LOGGIX_PROJ_URI = <span class="value">&nbsp;'http://loggix.gotdns.org'</span></h4>
+<p>[line 74]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_RESOURCE_DIR">LOGGIX_RESOURCE_DIR = <span class="value">&nbsp;'/data/resources/'</span></h4>
+<p>[line 69]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_SQLITE_2">LOGGIX_SQLITE_2 = <span class="value">&nbsp;'/data/loggix.sqlite.db'</span></h4>
+<p>[line 63]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_SQLITE_3">LOGGIX_SQLITE_3 = <span class="value">&nbsp;'/data/loggix.sqlite3.db'</span></h4>
+<p>[line 64]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_THEME_DIR">LOGGIX_THEME_DIR = <span class="value">&nbsp;'/theme/'</span></h4>
+<p>[line 72]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_TITLE_SEPARATOR">LOGGIX_TITLE_SEPARATOR = <span class="value">&nbsp;'&nbsp;:&nbsp;'</span></h4>
+<p>[line 73]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+<h4 id="constLOGGIX_VERSION">LOGGIX_VERSION = <span class="value">&nbsp;'9.5.24'</span></h4>
+<p>[line 75]</p>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div>
+</div>
+
+</div><!-- End #content -->
+
+<div class="credit">
+<p>Documentation generated on Wed, 03 Jun 2009 00:12:20 +0900 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.2</a></p>
+<p><a href="http://validator.w3.org/check/referer">
+XHTML 1.0</a></p>
+</div>
+
+</body>
+</html>

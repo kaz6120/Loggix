@@ -1,0 +1,640 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta http-equiv="content-style-type" content="text/css" />
+<title>Docs For Class Loggix_Utility</title>
+<link rel="stylesheet" type="text/css" href="../media/style.css" />
+<link rel="start" href="./index.html" title="API Documentation" />
+<link rev="made" href="mailto:webmaster@anti-spam.example.com" />
+</head>
+<body>
+
+<!-- Begin #header -->
+<div id="header">
+<h1 id="top">Loggix</h1>
+<div id="header-menu">
+<a href="../classtrees_Loggix.html" class="menu">class tree: Loggix</a> 
+<a href="../elementindex_Loggix.html" class="menu">index: Loggix</a> 
+<a href="../elementindex.html" class="menu">all elements</a>
+</div>
+</div>
+
+<!-- Begin #menu -->
+<div id="menu">
+<h2>Packages:</h2>
+<ul>
+<li><a href="../li_Loggix.html">Loggix</a></li>
+<li><a href="../li_Loggix_Module.html">Loggix_Module</a></li>
+<li><a href="../li_Loggix_View.html">Loggix_View</a></li>
+</ul>
+<h2>Files:</h2>
+<div class="package">
+<ul>
+<li><a href="../Loggix/_Application.php.html">Application.php</a></li><li><a href="../Loggix/_Core.php.html">Core.php</a></li><li><a href="../Loggix/_Exception.php.html">Exception.php</a></li><li><a href="../Loggix/_Expander.php.html">Expander.php</a></li><li><a href="../Loggix/_Module.php.html">Module.php</a></li><li><a href="../Loggix/_Plugin.php.html">Plugin.php</a></li><li><a href="../Loggix/_Session.php.html">Session.php</a></li><li><a href="../Loggix/_Utility.php.html">Utility.php</a></li><li><a href="../Loggix/_View.php.html">View.php</a></li></ul>
+</div>
+<h2>Classes:</h2>
+<div class="package">
+<ul>
+<li><a href="../Loggix/Loggix_Application.html">Loggix_Application</a></li><li><a href="../Loggix/Loggix_Core.html">Loggix_Core</a></li><li><a href="../Loggix/Loggix_Exception.html">Loggix_Exception</a></li><li><a href="../Loggix/Loggix_Expander.html">Loggix_Expander</a></li><li><a href="../Loggix/Loggix_Module.html">Loggix_Module</a></li><li><a href="../Loggix/Loggix_Plugin.html">Loggix_Plugin</a></li><li><a href="../Loggix/Loggix_Session.html">Loggix_Session</a></li><li><a href="../Loggix/Loggix_Utility.html">Loggix_Utility</a></li><li><a href="../Loggix/Loggix_View.html">Loggix_View</a></li></ul>
+</div>
+</div>
+
+<!-- Begin #content -->
+<div id="content">
+<div id="content-title">
+<h2>Class: Loggix_Utility</h2>
+<p>Source Location: /Utility.php</p>
+</div>
+
+
+<div id="overview">
+<h3><a href="#class_details">Class Overview</a></h3>
+<pre></pre>
+<div class="description">Loggix Utility Class</div>
+
+
+
+
+
+</div><!-- End #overview -->
+
+
+
+<div id="methods">
+<h3><a href="#class_methods">Methods</a></h3>
+<ul>
+    <li><a href="../Loggix/Loggix_Utility.html#methodexplodeAssoc">explodeAssoc</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodgetDateArray">getDateArray</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodgetGenerationTime">getGenerationTime</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodgetTimeZone">getTimeZone</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodinsertSafe">insertSafe</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodinsertTagSafe">insertTagSafe</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodjoinPath">joinPath</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodsetBBCode">setBBCode</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodsetDateArray">setDateArray</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodsetDelimitedIdentifier">setDelimitedIdentifier</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodsetSmiley">setSmiley</a></li>
+    <li><a href="../Loggix/Loggix_Utility.html#methodtoMegaByte">toMegaByte</a></li>
+  </ul>
+</div>
+
+
+
+
+
+
+
+<div id="class_details">
+<h3>Class Details</h3>
+<div class="tags">
+[line 30]<br />
+<p>Loggix Utility Class</p>Example 1:  <ol><li><div class="src-line">&nbsp;<a href="../Loggix/Loggix_Utility.html">Loggix_Utility</a>::<a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a>();</div></li>
+</ol>Example 2:  <ol><li><div class="src-line">&nbsp;$app&nbsp;=&nbsp;new&nbsp;<a href="../Loggix/Loggix_Application.html">Loggix_Application</a>;</div></li>
+<li><div class="src-line">&nbsp;$app-&gt;<a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a>();</div></li>
+</ol></div>
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div>
+
+
+<div id="class_methods">
+<h3>Class Methods</h3>
+<div class="tags">
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodexplodeAssoc">method explodeAssoc <span class="smalllinenumber">[line 535]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void explodeAssoc(
+str
+$separator, str
+$newline, str
+$data)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>8.3.1</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>8.3.1</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">str</td>
+<td><strong><var>$separator</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">str</td>
+<td><strong><var>$newline</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type">str</td>
+<td><strong><var>$data</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetDataLastModified">method getDataLastModified <span class="smalllinenumber">[line 385]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getDataLastModified(
+[
+$timeFormat = 'Y-m-d H:i:s'], string
+$timeFormat;)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get the last modified time of the files in &quot;/data/&quot; directory.</p>Example:  <ol><li><div class="src-line">&nbsp;<a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a>('F&nbsp;d&nbsp;Y&nbsp;H:i:s')</div></li>
+<li><div class="src-line">&nbsp;<a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a>('RFC822')</div></li>
+<li><div class="src-line">&nbsp;<a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">getDataLastModified</a>('UTC')</div></li>
+</ol><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>6.2.18</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.10.18</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="../Loggix/Loggix_Utility.html#methodgetTimeZone">Loggix_Utility::getTimeZone()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$timeFormat;</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type"></td>
+<td><strong><var>$timeFormat</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetDateArray">method getDateArray <span class="smalllinenumber">[line 158]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array getDateArray(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get DateTime Array</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="http://www.php.net/time">time</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="http://www.php.net/gmdate">gmdate</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetGenerationTime">method getGenerationTime <span class="smalllinenumber">[line 495]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void getGenerationTime(
+
+$startTime)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Page Generation Time</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>6.2.21</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>6.2.21</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type"></td>
+<td><strong><var>$startTime</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodgetTimeZone">method getTimeZone <span class="smalllinenumber">[line 285]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string getTimeZone(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Get Time Zone</p>This function returns time zone based on user config setting.<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>6.2.22</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>usedby:</strong></td><td><a href="../Loggix/Loggix_Utility.html#methodgetDataLastModified">Loggix_Utility::getDataLastModified()</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodinsertSafe">method insertSafe <span class="smalllinenumber">[line 55]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void insertSafe(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Insert Strings into Database.</p>This function escapes strings and strip XHTML tags  before inserting strings into SQL query.<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>9.5.20</td>
+</tr>
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Utility.html#methodinsertTagSafe">Loggix_Utility::insertTagSafe()</a></td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodinsertTagSafe">method insertTagSafe <span class="smalllinenumber">[line 108]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void insertTagSafe(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Insert Strings into Database.</p>This function escapes strings without striping XHTML tags  when inserting strings into SQL query.<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>9.5.20</td>
+</tr>
+<tr>
+<td><strong>see:</strong></td><td><a href="../Loggix/Loggix_Utility.html#methodinsertSafe">Loggix_Utility::insertSafe()</a></td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodjoinPath">method joinPath <span class="smalllinenumber">[line 512]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>void joinPath(
+)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetBBCode">method setBBCode <span class="smalllinenumber">[line 205]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string setBBCode(
+
+$str, string
+$var)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Loggix_Utility BBCode</p>This function converts text strings with BBcode into XHML.  This function converts HTML entities automatically.<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>9.5.19</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$var</var></strong></td>
+<td></td>
+</tr>
+<tr>
+<td class="type"></td>
+<td><strong><var>$str</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetDateArray">method setDateArray <span class="smalllinenumber">[line 179]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>array setDateArray(
+string
+$str)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Set DateTime Array</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="http://www.php.net/time">time</a></td>
+</tr>
+<tr>
+<td><strong>uses:</strong></td><td><a href="http://www.php.net/gmdate">gmdate</a></td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$str</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetDelimitedIdentifier">method setDelimitedIdentifier <span class="smalllinenumber">[line 38]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string setDelimitedIdentifier(
+
+$sql)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Set delemited identifier in SQL</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type"></td>
+<td><strong><var>$sql</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodsetSmiley">method setSmiley <span class="smalllinenumber">[line 429]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string setSmiley(
+string
+$str)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Convert Smiley</p>This function converts text smilies into graphical ones.<h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>9.5.6</td>
+</tr>
+<tr>
+<td><strong>see:</strong></td><td>/theme/images/smiley/</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">string</td>
+<td><strong><var>$str</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+
+<!-- Begin .method -->
+<div class="method">
+<h3 id="methodtoMegaByte">method toMegaByte <span class="smalllinenumber">[line 481]</span></h3>
+<!-- Begin .code -->
+<div class="code">
+<code>string toMegaByte(
+int
+$str)</code>
+</div><!-- End .code -->
+
+<!-- Begin docblock.tpl -->
+<p>Convert byte value to KB or MB</p><h4>Tags:</h4>
+<div class="tags">
+<table summary="tags" class="tags">
+<tr>
+<td><strong>version:</strong></td><td>5.11.6</td>
+</tr>
+<tr>
+<td><strong>since:</strong></td><td>5.5.16</td>
+</tr>
+<tr>
+<td><strong>access:</strong></td><td>public</td>
+</tr>
+</table>
+</div>
+<!-- End docblock.tpl -->
+
+
+<h4>Parameters:</h4>
+<div class="tags">
+<table summary="Parameters" class="tags">
+<tr>
+<td class="type">int</td>
+<td><strong><var>$str</var></strong></td>
+<td></td>
+</tr>
+</table>
+</div><!-- End .tags -->
+<p class="top">[ <a href="#top">Top</a> ]</p>
+</div><!-- End .method -->
+
+</div>
+</div>
+
+
+</div><!-- End #content -->
+
+<div class="credit">
+<p>Documentation generated on Wed, 03 Jun 2009 00:12:21 +0900 by <a href="http://www.phpdoc.org">phpDocumentor 1.4.2</a></p>
+<p><a href="http://validator.w3.org/check/referer">
+XHTML 1.0</a></p>
+</div>
+
+</body>
+</html>
