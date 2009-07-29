@@ -141,7 +141,6 @@ class Loggix_Expander {
                 'mdown'    => self::EXPANDER_DATA_DIR . $id . '.mdown',
                 'mkd'      => self::EXPANDER_DATA_DIR . $id . '.mkd',
                 'mkdn'     => self::EXPANDER_DATA_DIR . $id . '.mkdn',
-                'textile'  => self::EXPANDER_DATA_DIR . $id . '.textile',
             );
             
             $aView = new Loggix_View();
@@ -162,29 +161,17 @@ class Loggix_Expander {
                           . $aView->render($contentType['txt']) 
                           . "</pre>\n";
             } else if (file_exists($contentType['text'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['text']))
-                            );
+                $contents = $aView->render($contentType['text']);
             } else if (file_exists($contentType['markdown'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['markdown']))
-                            );
+                $contents = $aView->render($contentType['markdown']);
             } else if (file_exists($contentType['md'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['md']))
-                            );
+                $contents = $aView->render($contentType['md']);
             } else if (file_exists($contentType['mdown'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['mdown']))
-                            );
+                $contents = $aView->render($contentType['mdown']);
             } else if (file_exists($contentType['mkd'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['mkd']))
-                            );
+                $contents = $aView->render($contentType['mkd']);            
             } else if (file_exists($contentType['mkdn'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['mkdn']))
-                            );
+                $contents = $aView->render($contentType['mkdn']);
             } else {
                 $e = new Loggix_Exception();
                 $item = $e->getFileNotFoundMessage();

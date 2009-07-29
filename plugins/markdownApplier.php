@@ -8,10 +8,11 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     9.5.16
- * @version   9.5.17
+ * @version   9.7.29
  */
 
 $this->plugin->addFilter('entry-content', 'markdownApplier', 1);
+$this->plugin->addFilter('ex-content', 'markdownApplier', 1);
 
 function markdownApplier($text)
 {
