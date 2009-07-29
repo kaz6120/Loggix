@@ -109,7 +109,6 @@ class Loggix_Expander {
      * Supported extensions are:
      * .inc.php | .php | .inc | .html | .txt | 
      * .text, .markdown, .md, .mdown, .mkd, .mkdn (Markdown format)
-     * .textile (Textile format)
      *
      * @return string $contents
      */
@@ -124,7 +123,6 @@ class Loggix_Expander {
         // Load data file by ID
         // foo.inc.php | foo.php | foo.inc | foo.html | foo.txt | 
         // foo.text, foo.markdown, foo.md, foo.mdown, foo.mkd, foo.mkdn, |
-        // foo.textile
         try {
             $id = (isset($_GET['id'])) 
                   ? str_replace(DIRECTORY_SEPARATOR, '', 
@@ -186,10 +184,6 @@ class Loggix_Expander {
             } else if (file_exists($contentType['mkdn'])) {
                 $contents = $this->fixMarkdown(
                                 Markdown($aView->render($contentType['mkdn']))
-                            );
-            } else if (file_exists($contentType['textile'])) {
-                $contents = $this->fixMarkdown(
-                                Markdown($aView->render($contentType['textile']))
                             );
             } else {
                 $e = new Loggix_Exception();
