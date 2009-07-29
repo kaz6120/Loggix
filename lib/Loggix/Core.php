@@ -72,7 +72,7 @@ class Loggix_Core
     const LOGGIX_THEME_DIR        = '/theme/';
     const LOGGIX_TITLE_SEPARATOR  = ' : ';
     const LOGGIX_PROJ_URI         = 'http://loggix.gotdns.org';
-    const LOGGIX_VERSION          = '9.7.28';
+    const LOGGIX_VERSION          = '9.7.29';
     
 
     // {{{ Properties
