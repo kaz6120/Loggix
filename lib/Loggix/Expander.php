@@ -10,7 +10,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   8.3.23
+ * @version   8.7.29
  */
 
 
@@ -107,7 +107,9 @@ class Loggix_Expander {
      * Get and Display Expander Content
      * 
      * Supported extensions are:
-     * .inc.php | .php | .inc | .html | .txt | .text (Markdown format)
+     * .inc.php | .php | .inc | .html | .txt | 
+     * .text, .markdown, .md, .mdown, .mkd, .mkdn (Markdown format)
+     * .textile (Textile format)
      *
      * @return string $contents
      */
@@ -120,7 +122,9 @@ class Loggix_Expander {
         $contents = '';
         
         // Load data file by ID
-        // foo.inc.php | foo.php | foo.inc | foo.html | foo.txt | foo.text
+        // foo.inc.php | foo.php | foo.inc | foo.html | foo.txt | 
+        // foo.text, foo.markdown, foo.md, foo.mdown, foo.mkd, foo.mkdn, |
+        // foo.textile
         try {
             $id = (isset($_GET['id'])) 
                   ? str_replace(DIRECTORY_SEPARATOR, '', 
@@ -128,12 +132,18 @@ class Loggix_Expander {
                   : 'default';
 
             $contentType = array(
-                'inc.php' => self::EXPANDER_DATA_DIR . $id . '.inc.php',
-                'php'     => self::EXPANDER_DATA_DIR . $id . '.php',
-                'inc'     => self::EXPANDER_DATA_DIR . $id . '.inc',
-                'html'    => self::EXPANDER_DATA_DIR . $id . '.html',
-                'txt'     => self::EXPANDER_DATA_DIR . $id . '.txt',
-                'text'    => self::EXPANDER_DATA_DIR . $id . '.text',
+                'inc.php'  => self::EXPANDER_DATA_DIR . $id . '.inc.php',
+                'php'      => self::EXPANDER_DATA_DIR . $id . '.php',
+                'inc'      => self::EXPANDER_DATA_DIR . $id . '.inc',
+                'html'     => self::EXPANDER_DATA_DIR . $id . '.html',
+                'txt'      => self::EXPANDER_DATA_DIR . $id . '.txt',
+                'text'     => self::EXPANDER_DATA_DIR . $id . '.text',
+                'markdown' => self::EXPANDER_DATA_DIR . $id . '.markdown',
+                'md'       => self::EXPANDER_DATA_DIR . $id . '.md',
+                'mdown'    => self::EXPANDER_DATA_DIR . $id . '.mdown',
+                'mkd'      => self::EXPANDER_DATA_DIR . $id . '.mkd',
+                'mkdn'     => self::EXPANDER_DATA_DIR . $id . '.mkdn',
+                'textile'  => self::EXPANDER_DATA_DIR . $id . '.textile',
             );
             
             $aView = new Loggix_View();
@@ -156,6 +166,30 @@ class Loggix_Expander {
             } else if (file_exists($contentType['text'])) {
                 $contents = $this->fixMarkdown(
                                 Markdown($aView->render($contentType['text']))
+                            );
+            } else if (file_exists($contentType['markdown'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['markdown']))
+                            );
+            } else if (file_exists($contentType['md'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['md']))
+                            );
+            } else if (file_exists($contentType['mdown'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['mdown']))
+                            );
+            } else if (file_exists($contentType['mkd'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['mkd']))
+                            );
+            } else if (file_exists($contentType['mkdn'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['mkdn']))
+                            );
+            } else if (file_exists($contentType['textile'])) {
+                $contents = $this->fixMarkdown(
+                                Markdown($aView->render($contentType['textile']))
                             );
             } else {
                 $e = new Loggix_Exception();
