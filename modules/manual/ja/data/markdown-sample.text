@@ -85,12 +85,12 @@ URIの後に""でテキストを囲ればタイトルとして表現出来ます
 ### 画像 ###
 
 「インライン」スタイル：
-![LOGGiX](../../../xhtml/images/loggix_logo.png "LOGGiX")
+![Loggix](../../../theme/images/loggix-logo.png "Loggix")
 
 「リファレンス」スタイル：
-![LOGGiX][loggix_icon]
+![Loggix][loggix_icon]
 
-[loggix_icon]: ../../../xhtml/images/loggix_logo2.png "LOGGiX"
+[loggix_icon]: ../../../theme/images/loggix-logo.png "Loggix"
 
 ### コード ###
 
