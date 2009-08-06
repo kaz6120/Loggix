@@ -1,3 +1,4 @@
+<IfModule mod_rewrite.c>
 # Enable mod_rerwite 
 RewriteEngine On
 
@@ -9,6 +10,14 @@ RewriteEngine On
 # Rewriting URI rule
 # ex   http://www.example.com/index.php?id=100
 #      => http://www.example.com/entry-100
-RewriteRule ^entry-([0-9]+)+ index.php?id=$1
+#RewriteRule ^entry-([0-9]+)+ index.php?id=$1
+
+# ex   http://www.example.com/index.php?id=100
+#      => http://www.example.com/100
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^([0-9]+)+ index.php?id=$1
+</IfModule>
 
 php_flag magic_quotes_gpc Off
