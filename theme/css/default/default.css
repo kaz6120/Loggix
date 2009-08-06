@@ -7,7 +7,7 @@
 /**
  * Style Name : Elastic Tango (Loggix Default CSS)
  * Author     : Loggix Project
- * Version    : 9.3.16
+ * Version    : 9.8.6
  */
 
 /* CSS DEBUGGER (Comment "IN" to use) */
@@ -67,7 +67,7 @@ body {
     border-top: 3px solid #3d6b1f;
     background: transparent url(./images/header-1.png) top repeat-x;
     text-align: center;
-    font: 0.875em/180% Georgia, Bitstream Vera, "Hiragino Mincho Pro", serif;
+    font: 0.875em/180% Georgia, Times, Bitstream Vera, "Hiragino Mincho Pro", serif;
     color: #000000;
 }
 
@@ -134,7 +134,7 @@ body {
     color: #83ad23;
     color: #b97c00;
     color: #cccccc;
-    font: bold italic 1.4em/100% Georgia, serif;
+    font: bold italic 1.4em/100% Georgia, Times, serif;
 }
 #content p{
     margin: 1em 0 1em 1em;
@@ -143,7 +143,7 @@ body {
 #content ol {
     margin: 1em 0 1em 2.5em;
 }
- #content h3 {
+#content h3 {
     margin-bottom: 0;
     padding: 0 0.2em 0.5em 2em;
     background: transparent url(./images/tango-22x22/text-x-generic.png) 0 0 no-repeat !important;
