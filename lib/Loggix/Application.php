@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.5.17
+ * @version   9.8.16 
  */
 
 /**
@@ -128,12 +128,11 @@ class Loggix_Application extends Loggix_Core
                 
         if (isset($_GET['id'])) {
             foreach ($this->getTagArray() as $row) {
-                $item['tag'] .= 
-                    (in_array($row[0], $this->getTagIdArray())) 
-                    ? '<a href="' . $pathToIndex 
-                      . '/index.php?t=' . $row[0] . '&amp;ex=1">'
-                      . htmlspecialchars($row[1]) . '</a> ' 
-                    : '';
+                $item['tag'] .= (in_array($row[0], $this->getTagIdArray())) 
+                              ? '<a href="' . $pathToIndex 
+                                . '/index.php?t=' . $row[0] . '&amp;ex=1">'
+                                . htmlspecialchars($row[1]) . '</a> ' 
+                              : '';
             }
         }
          
@@ -438,7 +437,7 @@ class Loggix_Application extends Loggix_Core
         
         if (stristr($this->getRequestURI(), 'modules/downloads')) {
            $item['search_dir'] = $pathToIndex . '/modules/downloads';
-           $item['tag_cloud']  = $this->getTagCloudArray('downloads');
+           $item['tag_cloud']  = $this->getTagCloudArray('Downloads');
         } else if (stristr($this->getRequestURI(), 'modules/comment')) {
            $item['search_dir'] = $pathToIndex . '/modules/comment';
            $item['tag_cloud']  = $this->getTagCloudArray();
