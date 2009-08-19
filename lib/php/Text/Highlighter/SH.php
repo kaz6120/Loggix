@@ -5,7 +5,7 @@
  * This highlighter is EXPERIMENTAL. It may work incorrectly.
  *       It is a crude hack of the perl syntax, which itself wasn't so good.
  *       But this seems to work OK.
- *    
+ *
  *
  * PHP version 4 and 5
  *
@@ -52,10 +52,10 @@ class  Text_Highlighter_SH extends Text_Highlighter
      * @param array  $options
      * @access public
      */
-    function Text_Highlighter_SH($options=array())
-    {
-        $this->__construct($options);
-    }
+    //function Text_Highlighter_SH($options=array())
+    //{
+        //$this->__construct($options);
+    //}
 
 
     /**
@@ -66,7 +66,6 @@ class  Text_Highlighter_SH extends Text_Highlighter
      */
     function __construct($options=array())
     {
-
         $this->_options = $options;
         $this->_regs = array (
             -1 => '/((?m)^(#!)(.*))|(\\{)|(\\()|(\\[)|((use)\\s+([\\w:]*))|((?Us)\\b(q[wq]\\s*((\\{)|(\\()|(\\[)|(\\<)|([\\W\\S])))(?=(.*)((?(3)\\})(?(4)\\))(?(5)\\])(?(6)\\>)(?(7)\\7))))|((?Us)\\b(q\\s*((\\{)|(\\()|(\\[)|(\\<)|([\\W\\S])))(?=(.*)((?(3)\\})(?(4)\\))(?(5)\\])(?(6)\\>)(?(7)\\7))))|(#.*)|((?x)(s|tr) ([|#~`!@$%^&*-+=\\\\;:\'",.\\/?])  ((\\\\.|[^\\\\])*?) (\\2)((\\\\.|[^\\\\])*?)(\\2[ecgimosx]*))|((?x)(m) ([|#~`!@$%^&*-+=\\\\;:\'",.\\/?])  ((\\\\.|[^\\\\])*?) (\\2[ecgimosx]*))|( \\/)|(\\$#?[1-9\'`@!])|((?i)(\\$#?|[@%*])([a-z1-9_]+::)*([a-z1-9_]+|\\^(?-i)[A-Z]?(?i)))|((?i)\\$([a-z1-9_]+|\\^(?-i)[A-Z]?(?i)))|((?i)(\\{)([a-z1-9]+)(\\}))|((?i)[\\$@%]#?\\{[a-z1-9]+\\})|(`)|(\')|(")|((?i)[a-z_]\\w*)|(\\d*\\.?\\d+)/',
@@ -1221,5 +1220,4 @@ class  Text_Highlighter_SH extends Text_Highlighter
         $this->_defClass = 'code';
         $this->_checkDefines();
     }
-    
 }

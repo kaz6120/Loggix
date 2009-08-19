@@ -41,7 +41,7 @@ class Text_Highlighter_Renderer
      * @var array
      * @access protected
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * Current language
@@ -49,7 +49,7 @@ class Text_Highlighter_Renderer
      * @var string
      * @access protected
      */
-    var $_language = '';
+    protected $_language = '';
 
     /**
      * Constructor
@@ -58,7 +58,7 @@ class Text_Highlighter_Renderer
      *
      * @param  array $options  Rendering options. Renderer-specific.
      */
-    function __construct($options = array())
+    public function __construct($options = array())
     {
         $this->_options = $options;
     }
@@ -70,10 +70,10 @@ class Text_Highlighter_Renderer
      *
      * @param  array $options  Rendering options. Renderer-specific.
      */
-    function Text_Highlighter_Renderer($options = array())
-    {
-        $this->__construct($options);
-    }
+    //function Text_Highlighter_Renderer($options = array())
+    //{
+        //$this->__construct($options);
+    //}
 
     /**
      * Resets renderer state
@@ -161,4 +161,3 @@ class Text_Highlighter_Renderer
  * End:
  */
 
-?>

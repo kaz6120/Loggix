@@ -104,7 +104,7 @@ class Text_Highlighter
      * @see _init
      * @var array
      */
-    var $_syntax;
+    protected $_syntax;
 
     /**
      * Renderer object.
@@ -112,7 +112,7 @@ class Text_Highlighter
      * @access private
      * @var array
      */
-    var $_renderer;
+    private $_renderer;
 
     /**
      * Options. Keeped for BC
@@ -120,7 +120,7 @@ class Text_Highlighter
      * @access protected
      * @var array
      */
-    var $_options = array();
+    protected $_options = array();
 
     /**
      * Conditionds
@@ -128,7 +128,7 @@ class Text_Highlighter
      * @access protected
      * @var array
      */
-    var $_conditions = array();
+    protected $_conditions = array();
 
     /**
      * Disabled keywords
@@ -136,7 +136,7 @@ class Text_Highlighter
      * @access protected
      * @var array
      */
-    var $_disabled = array();
+    protected $_disabled = array();
 
     /**
      * Language
@@ -144,7 +144,7 @@ class Text_Highlighter
      * @access protected
      * @var string
      */
-    var $_language = '';
+    protected $_language = '';
 
     // }}}
     // {{{ _checkDefines
@@ -157,7 +157,7 @@ class Text_Highlighter
      *
      * @access protected
      */
-    function _checkDefines()
+    protected function _checkDefines()
     {
         if (isset($this->_options['defines'])) {
             $defines = $this->_options['defines'];
@@ -196,7 +196,7 @@ class Text_Highlighter
      * @static
      * @access public
      */
-    function &factory($lang, $options = array())
+    public static function factory($lang, $options = array())
     {
         $lang = strtoupper($lang);
         @include_once 'Text/Highlighter/' . $lang . '.php';
@@ -207,7 +207,9 @@ class Text_Highlighter
             return PEAR::raiseError('Highlighter for ' . $lang . ' not found');
         }
 
-        $obj =& new $classname($options);
+        //$obj =& new $classname($options);
+        $obj = new $classname($options);
+
 
         return $obj;
     }
@@ -222,9 +224,9 @@ class Text_Highlighter
      *
      * @access public
      */
-    function setRenderer(&$renderer)
+    public function setRenderer($renderer)
     {
-        $this->_renderer =& $renderer;
+        $this->_renderer = $renderer;
     }
 
     // }}}
@@ -234,7 +236,7 @@ class Text_Highlighter
      *
      * @access private
      */
-    function _matchingBrackets($str)
+    private function _matchingBrackets($str)
     {
         return strtr($str, '()<>[]{}', ')(><][}{');
     }
@@ -242,7 +244,7 @@ class Text_Highlighter
 
     
     
-    function _getToken()
+    private function _getToken()
     {
         if (!empty($this->_tokenStack)) {
             return array_pop($this->_tokenStack);
@@ -357,11 +359,12 @@ class Text_Highlighter
      *
      */
 
-    function highlight($str)
+    public function highlight($str)
     {
         if (!($this->_renderer)) {
             include_once('Text/Highlighter/Renderer/Html.php');
-            $this->_renderer =& new Text_Highlighter_Renderer_Html($this->_options);
+            //$this->_renderer =& new Text_Highlighter_Renderer_Html($this->_options);
+            $this->_renderer = new Text_Highlighter_Renderer_Html($this->_options);
         }
         $this->_state = -1;
         $this->_pos = 0;
@@ -395,4 +398,3 @@ class Text_Highlighter
  * End:
  */
 
-?>

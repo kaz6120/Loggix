@@ -47,10 +47,10 @@ class  Text_Highlighter_PHP extends Text_Highlighter
      * @param array  $options
      * @access public
      */
-    function Text_Highlighter_PHP($options=array())
-    {
-        $this->__construct($options);
-    }
+    //function Text_Highlighter_PHP($options=array())
+    //{
+        //$this->__construct($options);
+    //}
 
 
     /**
@@ -1103,5 +1103,4 @@ class  Text_Highlighter_PHP extends Text_Highlighter
         $this->_defClass = 'code';
         $this->_checkDefines();
     }
-    
 }
