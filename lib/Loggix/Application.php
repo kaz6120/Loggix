@@ -431,7 +431,7 @@ class Loggix_Application extends Loggix_Core
      * @return array $item
      */
 
-    public function setMenuItems($sessionState)
+    public function setMenuItems($sessionState = null)
     {
         global $pathToIndex, $item, $module;
         
