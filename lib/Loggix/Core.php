@@ -81,13 +81,15 @@ class Loggix_Core
      * @var object
      * @see __construct()
      */
-    public static $db;
+    //public static $db;
+    public $db;
 
     /**
      * @var object
      * @see __construct()
      */
-    public static $plugin;
+    //public static $plugin;
+    public $plugin;
 
     /**
      * @var float
@@ -953,7 +955,7 @@ class Loggix_Core
      * @param  integer $date
      * @return array   $item
      */
-    public function setSearchItems($res, $totalItemsCount, $previousItemNumber, $date)
+    public function setSearchItems($totalItemsCount, $previousItemNumber, $date)
     {
         global $lang, $key, $params, $config;
         
