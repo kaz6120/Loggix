@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.5.20
+ * @version   9.8.19
  */
 
 /**
@@ -66,32 +66,6 @@ class Loggix_Utility
         $_POST[] = array_map('strip_tags', 
                    array_map('trim', $_POST));
 
-        //switch ($_SERVER['REQUEST_METHOD']) {
-            //case 'POST':
-                //foreach ($_POST as $key => $value) {
-                    //if (is_array($value))  {
-                        //foreach ($value as $key => $value) {
-                            //$value = strip_tags(trim($value));
-                        //}
-                        //$_POST[$key] = $value;
-                    //} else {
-                        //$_POST[$key] = strip_tags(trim($value));
-                    //}
-                //}
-                //break;
-            //case 'GET':
-                //foreach ($_GET as $key => $value) {
-                    //if (is_array($value))  {
-                        //foreach ($value as $key => $value) {
-                            //$value = strip_tags(trim($value));
-                        //}
-                        //$_GET[$key] = $value;
-                    //} else {
-                        //$_GET[$key] = strip_tags(trim($value));
-                    //}
-                //}
-                //break;
-        //}
     }
 
 
@@ -118,32 +92,6 @@ class Loggix_Utility
         $_GET[]  = array_map('trim', $_GET);
         $_POST[] = array_map('trim', $_POST);
 
-        //switch ($_SERVER['REQUEST_METHOD']) {
-            //case 'POST':
-                //foreach ($_POST as $key => $value) {
-                    //if (is_array($value))  {
-                        //foreach ($value as $key => $value) {
-                            //$value = trim($value);
-                        //}
-                        //$_POST[$key] = $value;
-                    //} else {
-                        //$_POST[$key] = trim($value);
-                    //}
-                //}
-                //break;
-            //case 'GET':
-                //foreach ($_GET as $key => $value) {
-                    //if (is_array($value))  {
-                        //foreach ($value as $key => $value) {
-                            //$value = trim($value);
-                        //}
-                        //$_GET[$key] = $value;
-                    //} else {
-                        //$_GET[$key] = trim($value);
-                    //}
-                //}
-                //break;
-        //}
     }
 
 
@@ -200,11 +148,11 @@ class Loggix_Utility
      * @param   string $var
      * @return  string $var
      * @since   5.5.16
-     * @version 9.5.19 
+     * @version 9.8.19
      */
     public function setBBCode($str)
     {
-        $lines = split("\n", htmlspecialchars($str));
+        $lines = explode("\n", htmlspecialchars($str));
 
         $uriPatternWithTitle = '/([^=^\"]|^)(http\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)(\()(.+?)(\))/';
         $uriPattern = '/([^=^\"]|^)(http\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)/';
