@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   8.1.5
+ * @version   9.8.19 
  */
 
 
@@ -46,7 +46,8 @@ class Loggix_View {
     /**
      * @var object
      */
-    private static $_delegate = null;
+    //private static $_delegate = null;
+    private $_delegate = null;
     
     /**
      * Constructor
@@ -63,7 +64,7 @@ class Loggix_View {
      * Relay the method call to Loggix_View_Helper
      *
      */
-    private function __call($method, $args)
+    public function __call($method, $args)
     {
         $this->_delegate = new Loggix_View_Helper;
         return call_user_func_array(array($this->_delegate, $method), $args);
