@@ -6,10 +6,10 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     8.3.15
- * @version   8.3.16
+ * @version   9.8.20
  */
 
-$this->plugin->addFilter('entry-content', 'highlightText', 1);
+$this->plugin->addFilter('entry-content', 'highlightText', 2);
 $this->plugin->addFilter('ex-content', 'highlightText');
 
 function highlightText($text) 
@@ -17,7 +17,7 @@ function highlightText($text)
     global $pathToIndex;
     
     set_include_path($pathToIndex . '/lib/php');
-    require_once 'Text/Highlighter.php'; 
+    require_once 'Text/Highlighter.php';
     require_once 'Text/Highlighter/Renderer/Html.php'; 
 
     $pattern = '/'
@@ -44,14 +44,15 @@ function highlightText($text)
         $sourceCode = htmlspecialchars_decode($matches[4][$i], ENT_QUOTES);
         // Remove "\n" in the first line.
         $sourceCode = preg_replace('(^\\n)', '', $sourceCode);
-
+        $sourceCode = str_replace('&#92;', '\\', $sourceCode); // To keep compatible with Markdown
+        
         // Create renderer
         $renderer = new Text_Highlighter_Renderer_Html(
                             array("numbers" => HL_NUMBERS_TABLE, 
                                   "tabsize" => 4
                                  )
                             ); 
-        $hlHtml =& Text_Highlighter::factory($syntaxStyle); 
+        $hlHtml = Text_Highlighter::factory($syntaxStyle); 
         $hlHtml->setRenderer($renderer);
         // Convert text to highligten code
         $replacement = $hlHtml->highlight($sourceCode);
