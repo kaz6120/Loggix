@@ -8,7 +8,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     9.5.16
- * @version   9.7.29
+ * @version   9.8.17  
  */
 
 $this->plugin->addFilter('entry-content', 'markdownApplier', 1);
@@ -20,6 +20,15 @@ function markdownApplier($text)
 
     require_once $pathToIndex . '/plugins/markdown/markdown.php';
     
-    return Markdown(str_replace('\\', '&#92;', $text));
+    return str_replace("><", ">\n<", 
+               str_replace("\n\n", "\n", 
+                   str_replace('<p><hr /></p>', '<hr />', 
+                       Markdown(
+                           str_replace('\\', '&#92;', $text)
+                       )
+                   )
+               )
+           );  
+    //return str_replace('\n', '', Markdown(str_replace('\\', '&#92;', $text)));
 }
 
