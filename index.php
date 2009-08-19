@@ -8,7 +8,7 @@
  * @copyright Copyright (C) Loggix Project
  * @link      http://loggix.gotdns.org/
  * @since     5.5.16
- * @version   9.6.1
+ * @version   9.8.19
  */
 $pathToIndex = '.';
 require_once $pathToIndex . '/lib/Loggix/Application.php';
@@ -58,8 +58,7 @@ try {
                 (preg_match('/^[0-9]{4}-[0-9]{2}/', $date))) {
                 $result = '';
             } else {
-                $item = $app->setSearchItems($res, 
-                                             $totalItemsCount, 
+                $item = $app->setSearchItems($totalItemsCount, 
                                              $previousItemNumber, 
                                              $date);
                 $resultView = new Loggix_View();
