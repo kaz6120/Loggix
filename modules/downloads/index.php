@@ -4,7 +4,7 @@
  * Loggix Downloads Controller
  *
  * @since     5.7.19
- * @version   9.5.20
+ * @version   9.8.29 
  */
 
 /**
@@ -77,7 +77,7 @@ try {
             if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
                 $result   = '';
             } else {
-                $item = $app->setSearchItems($res, $totalItemsCount, $previousItemNumber, $date);
+                $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
                 $resultView = new Loggix_View();
                 $templateVars = array(
                                     'item' => $item,
