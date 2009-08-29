@@ -7,7 +7,7 @@
 /**
  * Style Name : Elastic Tango (Loggix Default CSS)
  * Author     : Loggix Project
- * Version    : 9.8.6
+ * Version    : 9.8.29
  */
 
 /* CSS DEBUGGER (Comment "IN" to use) */
@@ -225,7 +225,7 @@ body {
     padding: 10px 10px 4px 10px;
     border-bottom: 1px solid;
     color: #99CC00;
-    font: bold italic 100%/180% Georgia, serif;
+    font: bold italic 100%/180% Georgia, Times, serif;
     text-align: right;
 } #navigation p, 
   #navigation ul, 
