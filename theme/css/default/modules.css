@@ -225,6 +225,14 @@ textarea {
     background-color: #f3f3e4;
 }
 
+/* Rounded corners in navigation anchors */
+.pager a, 
+.pager span#current-page,
+#prev-logs a {
+    -webkit-border-radius: 2px !important;
+    -moz-border-radius: 2px !important;
+}
+
 
 /*
   ---------------------------------------------
