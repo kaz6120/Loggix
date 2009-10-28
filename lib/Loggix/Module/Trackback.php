@@ -8,7 +8,7 @@
  * @copyright Copyright (C) Loggix Project
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.6.8
- * @version   9.3.2
+ * @version   9.10.5
 */
 
 
@@ -286,7 +286,7 @@ class Loggix_Module_Trackback extends Loggix_Module
             } elseif (!empty($row['excerpt'])) {
                 $articleExcerpt = strip_tags($row['excerpt']);
             } else {
-                $row['comment'] = $this->fixMarkdown(Markdown(stripslashes($row['comment'])));
+                //$row['comment'] = $this->fixMarkdown(Markdown(stripslashes($row['comment'])));
                 
                 $articleExcerpt = mb_substr(strip_tags($row['comment']), 0, 100, $encode) . '...';
             }
