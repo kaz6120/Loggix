@@ -6,7 +6,7 @@
 <a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['prev_month']?>&amp;ex=1" class="prev-month">&laquo; </a>  
 <a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['this_month']?>&amp;ex=1"><?php echo $item['calendar']['year_and_month']?></a> 
 <a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['next_month']?>&amp;ex=1" class="next-month"> &raquo;</a> 
-
+</th>
 </tr>
 <tr>
 <th abbr="Sun" class="sunday"><?php echo $item['calendar']['day_of_the_week'][0]?></th>
@@ -24,7 +24,7 @@
 <!-- Begin Monthly Archives -->
 <?php if ($item['calendar']['month_array']): ?>
 <ul id="archives">
- <li><a id="more-archives">Archives</a></li>
+ <li><a id="more-archives">Archives</a>
   <ul id="arcvhies-by-year"> 
  <?php foreach($item['calendar']['month_array'] as $key => $value ): ?>
   <li><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $key?>"><?php echo date('Y / m', strtotime($key))?></a></li>
