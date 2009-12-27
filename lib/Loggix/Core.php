@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.10.29
+ * @version   9.12.28
 */
 
 /**
@@ -61,9 +61,9 @@ class Loggix_Core
     const LOGGIX_DATABASE_TYPE    = 'SQLite'; // SQLite | MySQL
     const LOGGIX_SQLITE_2         = '/data/loggix.sqlite.db';  // SQLite type 2
     const LOGGIX_SQLITE_3         = '/data/loggix.sqlite3.db'; // SQLite type 3
-    const LOGGIX_MYSQL_HOST       = 'localhost'; // MySQL hostname
+    const LOGGIX_MYSQL_HOST       = '127.0.0.1'; // MySQL hostname : "localhost" and "127.0.0.1" are common.
     const LOGGIX_MYSQL_DBNAME     = 'loggix';    // MySQL database name
-    const LOGGIX_MYSQL_USER       = '';          // MySQL user name
+    const LOGGIX_MYSQL_USER       = 'root';      // MySQL user name
     const LOGGIX_MYSQL_PASS       = '';          // MySQL user password
     const LOGGIX_RESOURCE_DIR     = '/data/resources/';
     const LOGGIX_MODULE_DIR       = '/lib/Loggix/Module/';
@@ -71,7 +71,7 @@ class Loggix_Core
     const LOGGIX_THEME_DIR        = '/theme/';
     const LOGGIX_TITLE_SEPARATOR  = ' : ';
     const LOGGIX_PROJ_URI         = 'http://loggix.gotdns.org';
-    const LOGGIX_VERSION          = '9.10.29';
+    const LOGGIX_VERSION          = '9.12.28';
     
 
     // {{{ Properties
