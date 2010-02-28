@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.8.16 
+ * @version   10.2.28
  */
 
 /**
@@ -119,12 +119,13 @@ class Loggix_Application extends Loggix_Core
     {
         global $pathToIndex, $lang, $module;       
         
+//        echo var_dump($item);
+
         $item['id']      = intval($item['id']);
-        $item['date']    = $item['date'];
         $item['title']   = htmlspecialchars($item['title']);
         $item['comment'] = $item['comment']; 
+        $item['date']    = $item['date'];
         $item['tag']     = '';
-
                 
         if (isset($_GET['id'])) {
             foreach ($this->getTagArray() as $row) {
@@ -173,7 +174,9 @@ class Loggix_Application extends Loggix_Core
             $aRss = new Loggix_Module_Rss;
             $item['comment'] = $aRss->toEnclosure($item['comment']);
         }
-        
+ 
+        //echo var_dump($item);
+
         return $item;
     }
 
@@ -196,7 +199,7 @@ class Loggix_Application extends Loggix_Core
         $stmt = $this->db->prepare($getItemsSql);
         if ($stmt->execute() == true) {
             // Index by date
-             $item = $stmt->fetch();
+            $item = $stmt->fetch();
             if (((self::$config['show_date_title'] == 'yes') || 
                  (isset($_GET['d']))
                 )
@@ -215,8 +218,7 @@ class Loggix_Application extends Loggix_Core
                     } else {
                         $item['insert_date_div'] = 'NO';
                     }
-                    $item = $this->setEntryItems($item);
-                    $items[] = $item;
+                    $items[] = $this->setEntryItems($item);
                 } while ($item = $stmt->fetch());
                 $templateFile = $pathToIndex . parent::LOGGIX_THEME_DIR . 'archives-by-date.html';
                 $contentsView = new Loggix_View($templateFile);
@@ -230,9 +232,9 @@ class Loggix_Application extends Loggix_Core
             // Normal Index
             } else {
                 do {
-                    $setItem = $this->setEntryItems($item);
-                    $items[] = $setItem;
-                } while($item = $stmt->fetch());                
+                    $items[] = $this->setEntryItems($item);
+                    //echo var_dump($items);
+                } while($item = $stmt->fetch());
                 $aFile = (isset($_GET['t'])) 
                        ? 'archives-by-tags.html' 
                        : 'archives.html';
