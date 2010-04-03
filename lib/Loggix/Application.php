@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   10.2.28
+ * @version   10.4.3
  */
 
 /**
@@ -293,7 +293,7 @@ class Loggix_Application extends Loggix_Core
         $limit      = 0;
         $result     = 0;
         
-        $archiveMode = (!empty($_GET['t'])) ? 't' : 'k';
+        $archiveMode = (!empty($_GET['t'])) ? 'k=&amp;t' : 'k';
 
         if (!empty($totalItemsCount)) {
             // Start Pager
@@ -325,7 +325,8 @@ class Loggix_Application extends Loggix_Core
                                                 . '&amp;ex=' . $expandKey . '">';
                             $tagArray['anchor'] = $pageNumber . '</a>';
                         }
-                        $pageArray[] = str_replace('_', '', $tagArray);
+                        //$pageArray[] = str_replace('_', '', $tagArray);
+                        $pageArray[] = $tagArray;
                         
                     }
                 }
