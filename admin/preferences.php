@@ -1,7 +1,7 @@
 <?php
 /**
  * @since   8.3.2
- * @version 9.3.5
+ * @version 10.4.9
  */
 
 $pathToIndex = '..';
@@ -182,7 +182,7 @@ if ($sessionState == 'on') {
         $item['show_date_title_no']  = ' checked="checked"';
     }
     
-    if ($config['block_ascii_only_text'] == 'YES') {
+    if ($config['block_ascii_only_text'] == 'yes') {
         $item['block_status_1'] = ' checked="checked"';
         $item['block_status_2'] = '';
     } else {
