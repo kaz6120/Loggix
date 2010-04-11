@@ -4,7 +4,7 @@
  *
  * @package  Downloads
  * @since    5.5.26
- * @version  9.5.17
+ * @version  10.4.11
  */
 
 /**
@@ -52,7 +52,7 @@ if ($sessionState == 'on') {
     } elseif ((isset($_POST['action']) == 'save') && 
               (isset($_POST['id'], $_POST['tag_name']))) {
         $id = intval($_POST['id']);
-        $tagName = ($_POST['tag_name'] == '') 
+        $aTagName = ($_POST['tag_name'] == '') 
                          ? 'Untagged' 
                          : $_POST['tag_name'];
         $checkSql = 'SELECT '
