@@ -4,7 +4,7 @@
  * Loggix Downloads Controller
  *
  * @since     5.7.19
- * @version   9.8.29 
+ * @version   10.4.17
  */
 
 /**
@@ -71,7 +71,7 @@ try {
         // Count  the number of hit results
         $totalItemsCount = $app->getTotalItemsCount($countSql);
         
-        if ($totalItemsCount !== 0) {
+        if ($totalItemsCount !== '0') {
             
             // Archive By Date
             if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
