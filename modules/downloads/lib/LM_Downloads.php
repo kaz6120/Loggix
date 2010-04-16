@@ -3,7 +3,7 @@
  * @package   Downloads
  * @author    Loggix Project
  * @since     5.6.16
- * @version   9.8.16 
+ * @version   10.4.17 
  */
 
 
@@ -362,14 +362,9 @@ class LM_Downloads extends Loggix_Module
             foreach ($this->getTagArray('Downloads') as $row) {
                 $item['tag'] .= (in_array($row[0], $this->getTagIdArray('Downloads'))) 
                                ? '<a href="' . $pathToIndex 
-                                . '/index.php?t=' . $row[0] . '&amp;ex=1">'
+                                . '/modules/downloads/index.php?t=' . $row[0] . '&amp;ex=1">'
                                 . htmlspecialchars($row[1]) . '</a> ' 
                               : '';                                    
-                                     //?
-                                     //? '<a href="./index.php?t=' . $row[0] . '&amp;ex=1">'
-                                       //. htmlspecialchars($row[1])
-                                       //. '</a> ' 
-                                     //: '';
             }
         }
 
