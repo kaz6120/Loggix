@@ -2,7 +2,7 @@
 /**
  * @package   Trackback
  * @since     6.1.29
- * @version   9.2.5
+ * @version   10.4.25
  */
 
 /**
@@ -43,10 +43,11 @@ try {
             $sql  = $app->getSearchSQL($q);
             $sql2 = $app->getSearchHitsSQL($q);
         }
+        
         if ($res = $app->db->query($sql)) {
             // Get the number of hit results
             $res2 = $app->db->query($sql2);
-            $totalItemsCount = count($res2->fetchAll());//$res2->numRows();
+            $totalItemsCount = count($res2->fetchAll());
             //echo $totalItemsCount;
             // Archive By Date
             if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
@@ -63,7 +64,7 @@ try {
                                            $date, 
                                            $expand);
                 $result = new Loggix_View($pathToIndex . '/theme/' . $resultViewFile);
-                $item = $app->setSearchItems($res, $totalItemsCount, $previousItemNumber, $date);
+                $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
                 $result->assign('item', $item);
                 $result->assign('lang', $lang);
                 $result = $result->render();
@@ -75,8 +76,13 @@ try {
             $item['title'] = (!empty($_GET['c'])) 
                 ? ($app->setTitle(array($item['keyword'], $lang['archive']))) 
                 : ($app->setTitle($lang['archive']));
+
+            //if (!$totalItemsCount) {
+                //$e = new Loggix_Exception();
+                //$item = $e->getArticleNotFoundMessage();
+            //}
         }
-        
+                
     // (2) Index View (Show Recent Entries)
     } else {
         $sql = 'SELECT '
