@@ -2,7 +2,7 @@
 /**
  * @package   Comments
  * @since     5.7.19
- * @version   9.5.18
+ * @version   10.4.25
  */
 
 /**
@@ -60,7 +60,7 @@ try {
                 $pager    = $app->getPager($totalItemsCount, $pageNumberToShow, $date, $expand);
                 $templateFile = $pathToIndex . '/theme/' . $resultTemplateFile;
                 $resultView = new Loggix_View($templateFile);
-                $item = $app->setSearchItems($res, $totalItemsCount, $previousItemNumber, $date);
+                $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
                 $resultView->assign('item', $item);
                 $resultView->assign('lang', $lang);
                 $result = $resultView->render();
@@ -72,7 +72,11 @@ try {
             $item['title'] = (!empty($_GET['c'])) 
                 ? ($app->setTitle(array($item['keyword'], $lang['archive']))) 
                 : ($app->setTitle($lang['archive']));
+        } else {
+            $e = new Loggix_Exception();
+            $item = $e->getArticleNotFoundMessage();
         }
+        
         
     // (2) Index View (Show Recent Entries)
     } else {
