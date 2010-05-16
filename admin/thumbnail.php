@@ -123,7 +123,7 @@ class GdThumbNail {
                     imagepng($thumb_img);
                     break;
             }
-            imagedestroy($img_default);
+            if (!empty($img_default)) { imagedestroy($img_default); }
             imagedestroy($thumb_img);
         }
     }

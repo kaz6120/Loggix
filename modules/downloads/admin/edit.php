@@ -32,9 +32,7 @@ if ($sessionState == 'on') {
             $item['comment']   = stripslashes(htmlspecialchars($item['file_comment']));
             $item['file_type'] = stripslashes($item['file_type']);
             $item['file_name'] = stripslashes($item['file_name']);
-            $item['file_size'] = ($item['file_size'] < 1024)
-                               ? ceil(stripslashes($item['file_size']) / 1024) . ' KB'
-                               : round(stripslashes($item['file_size']) / 1024000, 1) . ' MB';
+            $item['file_size'] = $app->toMegabyte($item['file_size']);
                                
             switch ($item['draft']) {
                 case '1':

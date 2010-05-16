@@ -247,7 +247,7 @@ class Loggix_Core
         return 'http' . ((!empty($_SERVER['HTTPS'])) ? 's' : '') . '://'
              . $_SERVER['HTTP_HOST'] 
              . $_SERVER['SCRIPT_NAME'] 
-             . $_SERVER['QUERY_STRING'];
+             . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '');
     }
 
 

@@ -259,7 +259,7 @@ class Loggix_Module_Calendar extends Loggix_Module
             $targetFile = 'index';
             $caption  = $lang['calendar']['trackbacks_calendar'];
         } elseif ($mode == 'downloads') {
-            $calDir = '../../modules/downloads';
+            $calDir = (ereg('/downloads/admin/', $this->getRequestUri())) ? '../../../modules/downloads' : '../../modules/downloads';
             $targetFile = 'index';
             $caption  = $lang['calendar']['downloads_calendar'];
         } else {

@@ -34,7 +34,7 @@ if ($sessionState == 'on') {
                 $item['file_name'] = (substr($file, 0, 30)).((strlen($file) >= 30) ? '...' : '');
                 $item['file_date'] = date('Y-m-d G:i:s', filectime($filePath));
                 $item['file_type'] = filetype($filePath);
-                $item['file_size'] = $app->toMegabyte(filesize($filePath));
+                $item['file_size'] = $app->toMegaByte(filesize($filePath));
                 $size = getimagesize($filePath);
                 $item['width_height'] = ($size != null) 
                                         ? $size[0] . '&#215;' . $size[1] 
