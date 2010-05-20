@@ -32,7 +32,7 @@ if ($sessionState == 'on') {
             $item['comment']   = stripslashes(htmlspecialchars($item['file_comment']));
             $item['file_type'] = stripslashes($item['file_type']);
             $item['file_name'] = stripslashes($item['file_name']);
-            $item['file_size'] = $app->toMegabyte($item['file_size']);
+            $item['file_size'] = $app->toMegaByte($item['file_size']);
                                
             switch ($item['draft']) {
                 case '1':
