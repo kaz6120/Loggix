@@ -41,8 +41,8 @@ try {
                           'group_by' => 'l.refer_id'
                       );
             $resultTemplateFile = 'search-result.html';
-            $sql      = $app->getSearchSQL($params);
-            $countSql = $app->getSearchHitsSQL($params);
+            $sql      = $app->getSearchSql($params);
+            $countSql = $app->getSearchHitsSql($params);
         }
 
         // Count the number of hit results
