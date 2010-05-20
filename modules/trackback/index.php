@@ -40,8 +40,8 @@ try {
                        'group_by' => 't.blog_id'
                  );
             $resultViewFile = 'search-result.html';
-            $sql  = $app->getSearchSQL($q);
-            $sql2 = $app->getSearchHitsSQL($q);
+            $sql  = $app->getSearchSql($q);
+            $sql2 = $app->getSearchHitsSql($q);
         }
         
         if ($res = $app->db->query($sql)) {
