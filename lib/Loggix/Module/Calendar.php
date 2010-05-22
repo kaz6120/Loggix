@@ -37,23 +37,28 @@ class Loggix_Module_Calendar extends Loggix_Module
         if ($mode == 'access') {
             $targetTable   = ACCESSLOG_TABLE;
             $targetField1  = 'date';
-            $additionalSql = '';
+            $operator      = '';
+            $additionalSql = "";
         } elseif ($mode == 'comments') {
             $targetTable   = COMMENT_TABLE;
             $targetField1  = 'date';
-            $additionalSql = ' AND (trash = 0)';
+            $operator      = ' AND ';
+            $additionalSql = "trash = '0'";
         } elseif ($mode == 'trackbacks') {
             $targetTable   = TRACKBACK_TABLE;
             $targetField1  = 'date';
-            $additionalSql = ' AND (trash = 0)';
+            $operator      = ' AND ';
+            $additionalSql = "trash = '0'";
         } elseif ($mode == 'downloads') {
             $targetTable   = DOWNLOADS_META_TABLE;
             $targetField1  = 'file_date';
-            $additionalSql = ' AND (draft = 0)';
+            $operator      = ' AND ';
+            $additionalSql = "draft = '0'";
         } else {
             $targetTable   = LOG_TABLE;
             $targetField1  = 'date';
-            $additionalSql = ' AND (draft = 0)';
+            $operator      = ' AND ';
+            $additionalSql = "draft = '0'";
         }
 
         /* --- DD Array --- */
@@ -63,7 +68,7 @@ class Loggix_Module_Calendar extends Loggix_Module
              .     $targetTable . ' '
              . 'WHERE '
              .     '(' . $targetField1 . " LIKE '" . $date . "%')"
-             .     $additionalSql . ' '
+             .     $operator . $additionalSql . ' '
              . 'GROUP BY '
              .     'day';
 
@@ -82,7 +87,7 @@ class Loggix_Module_Calendar extends Loggix_Module
              . 'FROM '
              .     $targetTable . ' '
              . 'WHERE '
-             .     'draft = 0 '
+             .     $additionalSql . ' '
              . 'GROUP BY '
              .     'month '
              . 'ORDER BY '
@@ -103,7 +108,7 @@ class Loggix_Module_Calendar extends Loggix_Module
              . 'FROM '
              .     $targetTable . ' '
              . 'WHERE '
-             .     'draft = 0 '
+             .     $additionalSql . ' '
              . 'GROUP BY '
              .     'year '
              . 'ORDER BY '
