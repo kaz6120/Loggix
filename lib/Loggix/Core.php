@@ -674,7 +674,7 @@ class Loggix_Core
      * @return string
      * @see:   http://prism-perfect.net/archive/php-tag-cloud-tutorial/
      */
-    public function getTagCloudArray($tagMode = null, $withDraft = 'no')
+    public function getTagCloudArray($tagMode = null, $withDraft = 'yes')
     {
         global $item, $pathToIndex;
         
