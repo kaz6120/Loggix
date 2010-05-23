@@ -8,7 +8,7 @@
  * @copyright Copyright (C) Loggix Project
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.31
- * @version   9.5.24
+ * @version   10.5.22
  */
 
 

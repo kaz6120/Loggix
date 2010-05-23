@@ -2,7 +2,7 @@
 /**
  * @package   Comments
  * @since     5.7.19
- * @version   10.4.25
+ * @version   10.5.20
  */
 
 /**
