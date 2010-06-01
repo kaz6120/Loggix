@@ -2,7 +2,7 @@
 /**
  * @package   Trackback
  * @since     6.1.29
- * @version   10.5.20 
+ * @version   10.6.1 
  */
 
 /**
@@ -49,40 +49,43 @@ try {
             $res2 = $app->db->query($sql2);
             $totalItemsCount = count($res2->fetchAll());
             //echo $totalItemsCount;
-            // Archive By Date
-            if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
-                $contents = $app->getArchives($res);
-                $pager    = $app->getPager($totalItemsCount, 
-                                           $pageNumberToShow, 
-                                           $date, 
-                                           $expand);
-                $result   = '';
-            } else {
-                $contents = $app->getArchives($res);
-                $pager    = $app->getPager($totalItemsCount, 
-                                           $pageNumberToShow, 
-                                           $date, 
-                                           $expand);
-                $result = new Loggix_View($pathToIndex . '/theme/' . $resultViewFile);
-                $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
-                $result->assign('item', $item);
-                $result->assign('lang', $lang);
-                $result = $result->render();
-            } 
-            // Contents, Pager, and Results
-            $item['contents'] = $contents;
-            $item['pager']    = $pager;
-            $item['result']   = $result;
-            $item['title'] = (!empty($_GET['c'])) 
-                ? ($app->setTitle(array($item['keyword'], $lang['archive']))) 
-                : ($app->setTitle($lang['archive']));
 
-            //if (!$totalItemsCount) {
-                //$e = new Loggix_Exception();
-                //$item = $e->getArticleNotFoundMessage();
-            //}
+            if ($totalItemsCount !== 0) {
+
+                // Archive By Date
+                if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
+                    $contents = $app->getArchives($res);
+                    $pager    = $app->getPager($totalItemsCount, 
+                                               $pageNumberToShow, 
+                                               $date, 
+                                               $expand);
+                    $result   = '';
+                } else {
+                    $contents = $app->getArchives($res);
+                    $pager    = $app->getPager($totalItemsCount, 
+                                               $pageNumberToShow, 
+                                               $date, 
+                                               $expand);
+                    $result = new Loggix_View($pathToIndex . '/theme/' . $resultViewFile);
+                    $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
+                    $result->assign('item', $item);
+                    $result->assign('lang', $lang);
+                    $result = $result->render();
+                } 
+                // Contents, Pager, and Results
+                $item['contents'] = $contents;
+                $item['pager']    = $pager;
+                $item['result']   = $result;
+                $item['title'] = (!empty($_GET['c'])) 
+                    ? ($app->setTitle(array($item['keyword'], $lang['archive']))) 
+                    : ($app->setTitle($lang['archive']));
+
+            } else {
+                $e = new Loggix_Exception();
+                $item = $e->getArticleNotFoundMessage();
+            }
         }
-                
+        
     // (2) Index View (Show Recent Entries)
     } else {
         $sql = 'SELECT '

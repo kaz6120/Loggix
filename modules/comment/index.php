@@ -2,7 +2,7 @@
 /**
  * @package   Comments
  * @since     5.7.19
- * @version   10.5.20
+ * @version   10.6.1
  */
 
 /**
@@ -46,7 +46,8 @@ try {
         }
 
         // Count the number of hit results
-        $totalItemsCount = $app->getTotalItemsCount($countSql);
+        $res = $app->db->query($countSql);
+        $totalItemsCount = count($res->fetchAll());
 
         if ($totalItemsCount !== 0) {
 

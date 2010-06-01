@@ -13,7 +13,7 @@
     <ul>
 <?php foreach($item['calendar']['month_array'] as $month => $value2 ): ?>
 <?php if ($value1 == $value2) :?>
-     <li class="archive-by-month"><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $month?>&amp;ex=1"><?php echo date('n月', strtotime($month))?></a></li>
+     <li class="archive-by-month"><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $month?>&amp;ex=1"><?php echo array_pop(explode('-', $month)) . '月'?></a></li>
 <?php endif?>
 <?php endforeach?>
     </ul>

@@ -27,7 +27,7 @@
  <li><a id="more-archives">Archives</a>
   <ul id="arcvhies-by-year"> 
  <?php foreach($item['calendar']['month_array'] as $key => $value ): ?>
-  <li><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $key?>"><?php echo date('Y / m', strtotime($key))?></a></li>
+  <li><a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $key?>"><?php echo vsprintf("%04d / %02d", explode('-', $key))?></a></li>
  <?php endforeach?>
  </ul>
  </li>
