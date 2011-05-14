@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   10.5.23
+ * @version   11.5.14
 */
 
 /**
@@ -70,8 +70,8 @@ class Loggix_Core
     const LOGGIX_PLUGIN_DIR       = '/plugins/';
     const LOGGIX_THEME_DIR        = '/theme/';
     const LOGGIX_TITLE_SEPARATOR  = ' : ';
-    const LOGGIX_PROJ_URI         = 'http://loggix.gotdns.org';
-    const LOGGIX_VERSION          = '10.6.1';
+    const LOGGIX_PROJ_URI         = 'https://github.com/kaz6120/Loggix';
+    const LOGGIX_VERSION          = '11.5.14';
     
 
     // {{{ Properties
@@ -492,7 +492,10 @@ class Loggix_Core
       */
     public function addTag($tagMapTable, $logId)
     {
-        // Add posted values to the tag map table.
+        // Initialize posted variable as an array
+        $_POST = array();
+
+         // Add posted values to the tag map table.
         if (isset($_POST['tag'])) {
             $tag = $_POST['tag'];
             //echo var_dump($tag);
@@ -538,6 +541,7 @@ class Loggix_Core
         }
 
         // Add tags
+        //if (is_array($tag)) {
         foreach ($tag as $tagId) {
             $checkSql = 'SELECT '
                       .     'COUNT(id) '
@@ -570,6 +574,8 @@ class Loggix_Core
                         );
             }
         }
+
+        //}
     }
 
     
