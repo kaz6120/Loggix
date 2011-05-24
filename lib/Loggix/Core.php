@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   11.5.14
+ * @version   11.5.24
 */
 
 /**
@@ -71,7 +71,7 @@ class Loggix_Core
     const LOGGIX_THEME_DIR        = '/theme/';
     const LOGGIX_TITLE_SEPARATOR  = ' : ';
     const LOGGIX_PROJ_URI         = 'https://github.com/kaz6120/Loggix';
-    const LOGGIX_VERSION          = '11.5.14';
+    const LOGGIX_VERSION          = '11.5.24';
     
 
     // {{{ Properties
