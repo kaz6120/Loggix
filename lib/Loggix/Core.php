@@ -492,11 +492,10 @@ class Loggix_Core
       */
     public function addTag($tagMapTable, $logId)
     {
-        // Initialize posted variable as an array
-        $_POST = array();
 
-         // Add posted values to the tag map table.
+        // Add posted values to the tag map table.
         if (isset($_POST['tag'])) {
+            $tag = array();
             $tag = $_POST['tag'];
             //echo var_dump($tag);
         } else {
