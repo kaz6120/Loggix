@@ -1,4 +1,4 @@
-Loggix : A Really simple PHP & SQLite driven blogging engine.
+Loggix : A Really simple PHP + SQLite/MySQL driven blogging engine.
 =============================================================
 
 ## HOW TO START LOGGIX ##
