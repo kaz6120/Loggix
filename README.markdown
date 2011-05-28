@@ -14,7 +14,7 @@ Loggix : A Really simple PHP + SQLite/MySQL driven blogging engine.
 
 - OS independent. (Tested on OS X and Ubuntu Linux)
 - PHP5.3 or later with SQLite enabled.
-- SQLite3 is the recommended database engine. You can also use SQLite2 or MySQL(You need to edit Core.php).
+- SQLite3 is the default database engine. You can also use SQLite2 or MySQL(You need to edit Core.php).
 
 ## License ##
 
