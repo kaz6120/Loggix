@@ -8,7 +8,7 @@
  * @copyright Copyright (C) Loggix Project
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.31
- * @version   10.5.22
+ * @version   11.5.28
  */
 
 
@@ -264,7 +264,7 @@ class Loggix_Module_Calendar extends Loggix_Module
             $targetFile = 'index';
             $caption  = $lang['calendar']['trackbacks_calendar'];
         } elseif ($mode == 'downloads') {
-            $calDir = (ereg('/downloads/admin/', $this->getRequestUri())) ? '../../../modules/downloads' : '../../modules/downloads';
+            $calDir = (preg_match('/\/downloads\/admin\//', $this->getRequestUri())) ? '../../../modules/downloads' : '../../modules/downloads';
             $targetFile = 'index';
             $caption  = $lang['calendar']['downloads_calendar'];
         } else {

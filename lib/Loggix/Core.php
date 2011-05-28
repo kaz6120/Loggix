@@ -58,7 +58,7 @@ class Loggix_Core
      * database and SQLite2 database will be loaded automatically.
      */
    
-    const LOGGIX_DATABASE_TYPE    = 'SQLite'; // SQLite | MySQL
+    const LOGGIX_DATABASE_TYPE    = 'MySQL'; // SQLite | MySQL
     const LOGGIX_SQLITE_2         = '/data/loggix.sqlite.db';  // SQLite type 2
     const LOGGIX_SQLITE_3         = '/data/loggix.sqlite3.db'; // SQLite type 3
     const LOGGIX_MYSQL_HOST       = '127.0.0.1'; // MySQL hostname : "localhost" and "127.0.0.1" are common.

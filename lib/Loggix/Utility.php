@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.8.19
+ * @version   11.5.28
  */
 
 /**
@@ -89,8 +89,8 @@ class Loggix_Utility
             $_COOKIE  = array_map('stripslashes', $_COOKIE);
         }
 
-        $_GET[]  = array_map('trim', $_GET);
-        $_POST[] = array_map('trim', $_POST);
+        $_GET[]  = array_walk_recursive($_GET, 'trim');
+        $_POST[] = array_walk_recursive($_POST, 'trim');
 
     }
 
@@ -492,3 +492,4 @@ class Loggix_Utility
     }
 
 }
+
