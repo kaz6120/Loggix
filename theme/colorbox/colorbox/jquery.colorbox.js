@@ -12,7 +12,7 @@ $(function(){
 	//Initialize the modal, preload the interface graphics, and wait until called.
 	$("body").append(
 		$([
-			modalOverlay = $('<div id="modalBackgroundOverlay" />')[0], 
+			modalOverlay = $('<div id="modalBackgroundOverlay" />')[0],
 			modal = $('<div id="colorbox" />')[0]
 		]).hide()
 	);
@@ -30,10 +30,10 @@ $(function(){
 			modalContent = $('<div id="modalContent" />')[0]
 		])
 	);
-	
+
 	$(modalContent).append(
 		$([
-			modalLoadedContent = $('<div id="modalLoadedContent"><a id="contentPrevious" href="#"></a><a id="contentNext" href="#"></a><span id="contentCurrent"></span><br id="modalInfoBr"/><span id="contentTitle"></span><div id="preloadPrevious"></div><div id="preloadNext"></div><div id="preloadClose"></div></div>')[0], 
+			modalLoadedContent = $('<div id="modalLoadedContent"><a id="contentPrevious" href="#"></a><a id="contentNext" href="#"></a><span id="contentCurrent"></span><br id="modalInfoBr"/><span id="contentTitle"></span><div id="preloadPrevious"></div><div id="preloadNext"></div><div id="preloadClose"></div></div>')[0],
 			modalLoadingOverlay = $('<div id="modalLoadingOverlay" />')[0],
 			modalClose = $('<a id="modalClose" href="#"></a>')[0]
 		])
@@ -110,9 +110,9 @@ $.fn.colorbox = function(settings) {
 			if($.browser.msie && $.browser.version < 7){
 				setModalOverlay();
 			}
-		});	
+		});
 	}
-	
+
 	var preloads = [];
 
 	function preload(){
@@ -123,7 +123,7 @@ $.fn.colorbox = function(settings) {
 			return [$(new Image()).attr("src", next), $(new Image()).attr("src", previous)];
 		}
 	}
-	
+
 	function centerModal(contentHtml, contentInfo){
 		$(modalLoadedContent).hide().html(contentHtml).append(contentInfo);
 		if(settings.contentWidth){$(modalLoadedContent).css({"width":settings.contentWidth})}
@@ -133,7 +133,7 @@ $.fn.colorbox = function(settings) {
 				$(modalLoadedContent).show();
 				$(modalLoadingOverlay).hide();
 			});
-			
+
 		}
 		else {
 			$(modal).animate({"opacity":0}, settings.transitionSpeed, function(){
@@ -146,7 +146,7 @@ $.fn.colorbox = function(settings) {
 		}
 		var preloads = preload();
 	}
-	
+
 	function contentNav(){
 		$(modalLoadingOverlay).show();
 		if($(this).attr("id") == "contentPrevious"){
@@ -155,13 +155,13 @@ $.fn.colorbox = function(settings) {
 			index < related.length-1 ? index++ : index = 0;
 		}
 		buildGallery(related[index]);
-		return false;	
+		return false;
 	}
-	
+
 	function buildGallery(that){
 
 		var contentInfo = "<br id='modalInfoBr'/><span id='contentTitle'>"+that.title+"</span>";
-		
+
 		if(related.length>1){
 			contentInfo += "<span id='contentCurrent'> " + settings.contentCurrent + "</span>"
 			contentInfo = contentInfo.replace(/{current}/, index+1).replace(/{total}/, related.length)
@@ -186,7 +186,7 @@ $.fn.colorbox = function(settings) {
 			});
 		}
 	};
-	
+
 	$(this).bind("click.colorbox", function () {
 		if ($(modal).data("open") != true) {
 			$(modal).data("open", true);
@@ -226,15 +226,15 @@ $.fn.colorbox = function(settings) {
 		$(this).triggerHandler('click.colorbox');
 	}
 
-	return this.each(function() { 
+	return this.each(function() {
 	});
 };
 
 /*
 	ColorBox Default Settings.
-	
+
 	The colorbox() function takes one argument, an object of key/value pairs, that are used to initialize the modal.
-	
+
 	Please do not change these settings here, instead overwrite these settings when attaching the colorbox() event to your anchors.
 	Example (Global)	: $.fn.colorbox.settings.transition = "fade"; //changes the transition to fade for all colorBox() events proceeding it's declaration.
 	Example (Specific)	: $("a[href='http://www.google.com']").colorbox({contentWidth:"700px", contentHeight:"450px", contentIframe:true});

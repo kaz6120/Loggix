@@ -10,7 +10,7 @@
  * onload event
  */
 $(document).ready(function(){
- 
+
     /**
      * Monthly Archives
      */
@@ -29,19 +29,19 @@ $(document).ready(function(){
      * qTip Settings
      */
     $('a[title]').qtip(
-        { 
-            style: { 
+        {
+            style: {
                 name: 'blue', tip: true
-            }, 
-            
-            show: { 
-                effect: { type: 'slide', length: 200 } 
             },
 
-            hide: { 
-                effect: { type: 'slide', length: 200 } 
+            show: {
+                effect: { type: 'slide', length: 200 }
             },
-            
+
+            hide: {
+                effect: { type: 'slide', length: 200 }
+            },
+
             position: {
                 target: 'mouse',
                 adjust: { x: 8, y: 5 },
@@ -52,22 +52,22 @@ $(document).ready(function(){
                 }
             }
 
-            
+
         }
     );
 
     $('abbr[title]').qtip(
-        { 
-            style: { 
-                name: 'blue', tip: true 
-            }, 
-            
-            show: { 
-                effect: { type: 'slide', length: 200 } 
+        {
+            style: {
+                name: 'blue', tip: true
             },
 
-            hide: { 
-                effect: { type: 'slide', length: 200 } 
+            show: {
+                effect: { type: 'slide', length: 200 }
+            },
+
+            hide: {
+                effect: { type: 'slide', length: 200 }
             }
         }
     );
@@ -82,7 +82,7 @@ $(document).ready(function(){
             $("#options").slideUp("slow");
         }
     });
-    
+
     $("#toggle-communication").click(function () {
         if ($("#communication").is(":hidden")) {
             $("#communication").slideDown("slow");
@@ -90,7 +90,7 @@ $(document).ready(function(){
             $("#communication").hide("slow");
         }
     });
-    
+
     $("#toggle-excerpt").click(function () {
         if ($("#excerpt").is(":hidden")) {
             $("#excerpt").slideDown("slow");
@@ -106,7 +106,7 @@ $(document).ready(function(){
             $("#trackback").hide("slow");
         }
     });
-    
+
     $("#toggle-monthly-archives").click(function () {
         if ($("#monthly-archives").is(":hidden")) {
             $("#monthly-archives").slideDown("slow");
@@ -114,7 +114,7 @@ $(document).ready(function(){
             $("#monthly-archives").slideUp("slow");
         }
     });
-    
+
     /**
      * Validate visitor's comment
      */
@@ -145,7 +145,7 @@ $(document).ready(function(){
         }
         return true;
     });
-    
+
     /**
      * Login form
      */
@@ -161,17 +161,17 @@ $(document).ready(function(){
         }
         return true;
     });
-	
+
     /**
      * Entry Option Tabs
      */
     $('#options').tabs();
-    
+
     /**
      * System Information
      */
     $('#system-info').tabs();
-    
+
     /**
      * Colorbox settings
      */
@@ -207,8 +207,8 @@ function insertAtCursor(comment, myValue) {
     } else if(comment.selectionStart || comment.selectionStart == '0') { //MOZILLA/NETSCAPE support
         var startPos = comment.selectionStart;
         var endPos   = comment.selectionEnd;
-        comment.value = comment.value.substring(0, startPos) 
-                      + myValue 
+        comment.value = comment.value.substring(0, startPos)
+                      + myValue
                       + comment.value.substring(endPos, comment.value.length);
     } else {
         comment.value += myValue;
@@ -219,11 +219,11 @@ function insertAtCursor(comment, myValue) {
 function setFile(num, xmlLanguage) {
     var targetFile   = document.getElementById('img' + num);
     var targetButton = document.getElementById('button' + num);
-    var fileValue    = document.getElementById('myfile' + num).value;    
+    var fileValue    = document.getElementById('myfile' + num).value;
     var filePointer  = fileValue.replace(/\\/g, '/').split('/');
     var fileNumber   = filePointer.length - 1;
     var file         = filePointer[fileNumber];
-    
+
     if (file.match(/.jpg/i) || file.match(/.png/i) || file.match(/.gif/i)) {
         targetFile.src     = 'file:///' + fileValue;
         targetButton.value = (xmlLanguage == 'ja') ? '画像タグを挿入↑' : 'Insert Image Tag↑';
@@ -259,13 +259,13 @@ function Attach(num) {
     if (fileHeight == 0) { fileHeight = ''; }
 
     var comment     = document.getElementById('comment');
-    var fileValue   = document.getElementById('myfile' + num).value;    
+    var fileValue   = document.getElementById('myfile' + num).value;
     var filePointer = fileValue.replace(/\\/g, '/').split('/');
     var fileNumber  = filePointer.length - 1;
     var file        = filePointer[fileNumber];
     var attachCode  = '<img src="./data/resources/'
                     + file + '" alt="' + file + '" />';
-  
+
     if (file.match(/.jpg/i) || file.match(/.png/i) || file.match(/.gif/i)) {
         //attachCode  = '<img src="./data/resources/'
                     //+ file + '" alt="' + file + '" />';
@@ -274,17 +274,17 @@ function Attach(num) {
                     + '<img src="./data/resources/'
                     + file + '" alt="' + file + '" />'
                     + '</a>';
-    } else if (file.match(/.mp3/i) || 
-               file.match(/.m4/i)  || 
-               file.match(/.m4v/i) || 
-               file.match(/.mp4/i) || 
-               file.match(/.mov/i) || 
+    } else if (file.match(/.mp3/i) ||
+               file.match(/.m4/i)  ||
+               file.match(/.m4v/i) ||
+               file.match(/.mp4/i) ||
+               file.match(/.mov/i) ||
                file.match(/.wav/i)) {
         attachCode = '<!-- PODCAST=' + file + ' -->';
     } else {
         attachCode = '<a href="./data/resources/' + file + '">' + file + '</a>';
     }
-    
+
     if (fileValue != '') { // If file value is not empty...
         // for Mozilla and Safari 1.3 or greater
         if ((comment.selectionStart) && (!window.opera)) {
@@ -318,12 +318,12 @@ function Attach(num) {
 
 
 
-/** 
+/**
  * Insert Smiley Icon Code
  *
  * @author kaz
  * @author Hiro
- */ 
+ */
 function smiley(icon) {
     comment = document.getElementById("comment");
     icon = ' ' + icon + ' ';
@@ -451,7 +451,7 @@ function minmax_layout() {
 
 // Scanning. Check document every so often until it has finished loading. Do
 // nothing until <body> arrives, then call main init. Pass any new elements
-// found on each scan to be bound   
+// found on each scan to be bound
 
 var minmax_SCANDELAY= 500;
 

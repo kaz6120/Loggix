@@ -1,7 +1,7 @@
 -- phpMyAdmin SQL Dump
 -- version 2.10.2
 -- http://www.phpmyadmin.net
--- 
+--
 -- Host: localhost
 -- Generation Time: Feb 21, 2009 at 07:34 PM
 -- Server version: 5.0.41
@@ -9,16 +9,16 @@
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
--- 
+--
 -- Database: `loggix`
--- 
+--
 
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_downloads_meta`
--- 
+--
 
 CREATE TABLE `loggix_downloads_meta` (
   `id` int(11) unsigned NOT NULL auto_increment,
@@ -45,9 +45,9 @@ CREATE TABLE `loggix_downloads_data` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
 
--- 
+--
 -- Table structure for table `loggix_downloads_tag`
--- 
+--
 
 CREATE TABLE `loggix_downloads_tag` (
   `id` int(11) NOT NULL auto_increment,
@@ -67,9 +67,9 @@ CREATE TABLE `loggix_downloads_tag_map` (
 INSERT INTO `loggix_downloads_tag_map` VALUES(1,1,1);
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_log`
--- 
+--
 
 CREATE TABLE `loggix_log` (
   `id` int(11) NOT NULL auto_increment,
@@ -90,9 +90,9 @@ CREATE TABLE `loggix_log` (
 
 INSERT INTO `loggix_log` VALUES (1, 'Welcome!', '', '<img src="./theme/images/loggix-logo.png" alt="Loggix" />\r\nThis is the first entry.', '', '0', '2009-07-28 00:00:00', '2009-07-28 00:00:00', 0, '', 1, 1, '');
 
--- 
+--
 -- Table structure for table `loggix_log_tag`
--- 
+--
 
 CREATE TABLE `loggix_log_tag` (
   `id` int(11) NOT NULL auto_increment,
@@ -113,9 +113,9 @@ INSERT INTO `loggix_log_tag_map` VALUES(1,1,1);
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_user`
--- 
+--
 
 CREATE TABLE `loggix_user` (
   `user_id` smallint(3) NOT NULL auto_increment,
@@ -129,17 +129,17 @@ CREATE TABLE `loggix_user` (
   UNIQUE KEY `user_name` (`user_name`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
--- 
+--
 -- Dumping data for table `loggix_user`
--- 
+--
 
 INSERT INTO `loggix_user` VALUES(1,'root','dc76e9f0c0006e8f919e0c515c66dbba3982f785','root','admin@example.com','2009-07-28 00:00:00',0);
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_config`
--- 
+--
 
 CREATE TABLE `loggix_config` (
   `config_key` varchar(64) NOT NULL default '',
@@ -147,9 +147,9 @@ CREATE TABLE `loggix_config` (
   PRIMARY KEY  (`config_key`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- 
+--
 -- Dumping data for table `loggix_config`
--- 
+--
 
 INSERT INTO `loggix_config` VALUES('loggix_title','My Great Log');
 INSERT INTO `loggix_config` VALUES('root_dir','/');
@@ -178,9 +178,9 @@ INSERT INTO `loggix_config` VALUES('block_ascii_only_text','no');
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_comment`
--- 
+--
 
 CREATE TABLE `loggix_comment` (
   `id` int(8) unsigned NOT NULL auto_increment,
@@ -205,9 +205,9 @@ CREATE TABLE `loggix_comment` (
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `loggix_session`
--- 
+--
 
 CREATE TABLE `loggix_session` (
   `id` varchar(32) NOT NULL,
@@ -219,9 +219,9 @@ CREATE TABLE `loggix_session` (
 
 -- --------------------------------------------------------
 
--- 
+--
 -- Table structure for table `p_trackback`
--- 
+--
 
 CREATE TABLE `loggix_trackback` (
   `id` int(11) NOT NULL auto_increment,

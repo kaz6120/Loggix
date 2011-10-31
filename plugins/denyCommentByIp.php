@@ -14,10 +14,10 @@
 
 $this->plugin->addAction('before-receive-comment', 'denyCommentByIp');
 
-function denyCommentByIp($referId) 
+function denyCommentByIp($referId)
 {
     global $userName, $sessionState, $app;
-    
+
     if (!isset($_SERVER['REMOTE_HOST'])) {
         $_SERVER['REMOTE_HOST'] = @gethostbyaddr($_SERVER['REMOTE_ADDR']);
         $remoteHost = $_SERVER['REMOTE_HOST'];
@@ -26,10 +26,10 @@ function denyCommentByIp($referId)
     }
 
     if (preg_match('/(203.113.13.4)/', $remoteHost)) {
-    
+
         // Additional Title
         $additionalTitle = 'Not Allowed';
-    
+
         // Contents
         $content = "<h2>Request Not Allowed</h2>\n"
                  . "<p>Ooops! You are not allowed here.</p>\n"

@@ -20,16 +20,16 @@ function markdownApplier($text)
     global $pathToIndex;
 
     require_once $pathToIndex . '/plugins/markdown/markdown.php';
-    
-    return str_replace("><", ">\n<", 
-               str_replace("\n\n", "\n", 
-                   str_replace('<p><hr /></p>', '<hr />', 
+
+    return str_replace("><", ">\n<",
+               str_replace("\n\n", "\n",
+                   str_replace('<p><hr /></p>', '<hr />',
                        Markdown(
                            str_replace('\\', '&#92;', $text)
                        )
                    )
                )
-           );  
+           );
     //return str_replace('\n', '', Markdown(str_replace('\\', '&#92;', $text)));
 }
 

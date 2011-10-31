@@ -27,7 +27,7 @@ if ($sessionState == 'on') {
         $pingId    = intval($_REQUEST['ping_id']);
         $articleId = intval($_REQUEST['article_id']);
         // Submit delete query
-        $sql = 'DELETE FROM ' 
+        $sql = 'DELETE FROM '
              .     TRACKBACK_TABLE . ' '
              . 'WHERE '
              .     "id = '" . $pingId . "'";

@@ -20,8 +20,8 @@
 * {
     margin: 0;
     padding: 0;
-} img { 
-    border: none; 
+} img {
+    border: none;
 }
 
 
@@ -41,7 +41,7 @@ body {
 
 #wrapper {
     max-width: 60em;   /* 960px (For 1024x768) */
-    min-width: 37.5em; /* 600px (For 640×480)  */ 
+    min-width: 37.5em; /* 600px (For 640×480)  */
     margin: 0 auto;
     text-align: left;
 }
@@ -77,7 +77,7 @@ body {
     height: 100%;
     /* width: 28%;*/
     width: 23em; /*(367px);*/
-    
+
 }
 
 /*

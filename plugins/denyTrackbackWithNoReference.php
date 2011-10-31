@@ -2,7 +2,7 @@
 /**
  * Block Trackback Plugin
  *
- * This plugin blocks trackback from the article witout any references nor 
+ * This plugin blocks trackback from the article witout any references nor
  * link to this entry in its content.
  *
  * @copyright Loggix Project
@@ -17,11 +17,11 @@
 
 $this->plugin->addAction('before-receive-trackback', "denyTrackbackWithNoReference");
 
-function denyTrackbackWithNoReference($articleId) 
+function denyTrackbackWithNoReference($articleId)
 {
     global $config, $url;
 
-    $siteUri  = 'http://' . $_SERVER['HTTP_HOST'] 
+    $siteUri  = 'http://' . $_SERVER['HTTP_HOST']
               . $config['root_dir'] . 'index.php?id=' . urlencode($articleId);
 
     $siteUri2 = preg_replace('/\/\/www\./', "//", $siteUri);
@@ -42,7 +42,7 @@ function denyTrackbackWithNoReference($articleId)
     if (($pos === false) && (!empty($siteUri4))) {
         $pos = stristr($htmlContent, $siteUri4);
     }
-    
+
     if ($pos === false) {
         echo '<?xml version="1.0" encoding="UTF-8"?>
 <response>

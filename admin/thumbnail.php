@@ -34,7 +34,7 @@ class GdThumbNail {
             $img_path = $img_dir . $src;
 
             $img_info = @getimagesize($img_path);
-    
+
             if ($img_info[0] > $cfg['thumb_nail_w']) {
                 $div_ratio = $img_info[0] / $cfg['thumb_nail_w'];
             } elseif ($img_info[1] > $cfg['thumb_nail_h']) {
@@ -42,7 +42,7 @@ class GdThumbNail {
             } else {
                 $div_ratio = 1;
             }
- 
+
             $thumb_img_w = round($img_info[0] / $div_ratio);
             $thumb_img_h = round($img_info[1] / $div_ratio);
 
@@ -80,7 +80,7 @@ class GdThumbNail {
                     imagestring($thumb_img, 2, 15, 20, 'GIF IMG', $text_color);
                     imagestring($thumb_img, 2, 15, 40, "{$img_info[0]}x{$img_info[1]}px", $text_color);
                     header('Content-Type: image/png');
-                    imagepng($thumb_img);       
+                    imagepng($thumb_img);
                     break;
                 case '2': // JPEG
                     $thumb_img = imagecreatetruecolor($thumb_img_w, $thumb_img_h);

@@ -18,12 +18,12 @@ if ($sessionState == 'on') {
         $id = intval($_GET['id']);
         $sql = 'SELECT '
              .     '* '
-             . 'FROM ' 
+             . 'FROM '
              .     LOG_TABLE . ' '
              . 'WHERE '
              .     'id = :id';
         $stmt = $app->db->prepare($sql);
-        $stmt->execute(array(':id' => $id));       
+        $stmt->execute(array(':id' => $id));
         if ($item = $stmt->fetch()) {
             $item['id']             = $item['id'];
             $item['time']           = $app->setDateArray($item['date']);
@@ -32,7 +32,7 @@ if ($sessionState == 'on') {
             $item['excerpt']        = htmlspecialchars($item['excerpt']);
             $item['allow_comments'] = $item['allow_comments'];
             $item['allow_pings']    = $item['allow_pings'];
-                        
+
             switch ($item['draft']) {
                 case '1':
                     $item['draft_status_1'] = ' checked="checked"';
@@ -43,7 +43,7 @@ if ($sessionState == 'on') {
                     $item['draft_status_0'] = ' checked="checked"';
                     break;
             }
-            
+
             switch ($item['allow_comments']) {
                 case '0':
                     $item['allow_comments_status'] = '';
@@ -75,13 +75,13 @@ if ($sessionState == 'on') {
             $contents->assign('lang', $lang);
             $contents->assign('config',  $config);
             $item['contents'] = $app->plugin->applyFilters('edit-entry', $contents->render());
-            
+
             // Pager
             $item['pager']  = '';
             $item['result'] = '';
-            
+
             $item['title'] = $app->setTitle(array($lang['edit'], $item['title']));
-            
+
             $app->display($item, $sessionState);
         }
     } else {

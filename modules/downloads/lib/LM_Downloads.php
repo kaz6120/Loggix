@@ -3,7 +3,7 @@
  * @package   Downloads
  * @author    Loggix Project
  * @since     5.6.16
- * @version   10.4.17 
+ * @version   10.4.17
  */
 
 
@@ -19,7 +19,7 @@ require_once $pathToIndex . '/lib/Loggix/Module.php';
 class LM_Downloads extends Loggix_Module
 {
     const THEME_PATH = '/modules/downloads/theme/';
-    
+
     /**
      * Sending Downloadable file into SQLite database.
      *
@@ -28,11 +28,11 @@ class LM_Downloads extends Loggix_Module
     public function sendDownloadableFile()
     {
         $this->insertTagSafe();
-        
+
         $fileTitle   = $_POST['title'];
         $fileComment = $_POST['comment'];
         $draft       = $_POST['draft'];
-        
+
         if (isset($_FILES['binfile'])) {
             clearstatcache(); //initialize
             $fileSrc  = $_FILES['binfile']["tmp_name"];
@@ -42,13 +42,13 @@ class LM_Downloads extends Loggix_Module
                 $fileSize = filesize($fileSrc); // get the size of the file
                 $fileHash = md5_file($fileSrc); // get the MD5 hash of the file
             }
-            if ((isset($_POST['file_date'])) && 
-                (preg_match("/^([0-9]+)-([0-9]+)-([0-9]+).([0-9]+):([0-9]+):([0-9]+)$/", 
+            if ((isset($_POST['file_date'])) &&
+                (preg_match("/^([0-9]+)-([0-9]+)-([0-9]+).([0-9]+):([0-9]+):([0-9]+)$/",
                     $_POST['file_date']))
                ) {
                 $fileDate = $_POST['file_date'];
                 $cmod = preg_replace(
-                    "/^([0-9]+)-([0-9]+)-([0-9]+).([0-9]+):([0-9]+):([0-9]+)$/", 
+                    "/^([0-9]+)-([0-9]+)-([0-9]+).([0-9]+):([0-9]+):([0-9]+)$/",
                     "$1$2$3$4$5$6", $fileDate);
             } else {
                 //get the last access date of it
@@ -56,16 +56,16 @@ class LM_Downloads extends Loggix_Module
                 //format the UNIX timestamp
                 $fileDate = gmdate('Y-m-d H:i:s',  $time  + (self::$config['tz'] * 3600));
                 $cmod     = gmdate('Y-m-d H:i:s',  time() + (self::$config['tz'] * 3600));
-            }            
+            }
             if (file_exists($fileSrc)) { // if file exists...
-            
+
                 // When relacing the old file...
                 if (isset($_POST['id'], $_POST['replace_file'])) {
                     $id = intval($_POST['id']);
                     // Delete the old data...
-                    $deleteSql = 'DELETE FROM ' 
+                    $deleteSql = 'DELETE FROM '
                                .     DOWNLOADS_DATA_TABLE . ' '
-                               . 'WHERE ' 
+                               . 'WHERE '
                                .     'masterid = :master_id';
                     $stmt = $this->db->prepare($deleteSql);
                     $deleteRes = $stmt->execute(
@@ -77,7 +77,7 @@ class LM_Downloads extends Loggix_Module
 //                        echo var_dump($stmt->errorInfo());
                         die ('Error ID:0');
                     } else {
-                        $updateSql = 'UPDATE ' 
+                        $updateSql = 'UPDATE '
                                    .     DOWNLOADS_META_TABLE . ' '
                                    . 'SET '
                                    .     '`file_name` = :file_name, '
@@ -85,7 +85,7 @@ class LM_Downloads extends Loggix_Module
                                    .     '`file_size` = :file_size, '
                                    .     '`file_hash` = :file_hash '
                                    . 'WHERE '
-                                   .     'id = :id';                          
+                                   .     'id = :id';
                         $updateSql = $this->setDelimitedIdentifier($updateSql);
                         $stmt2 = $this->db->prepare($updateSql);
                         $updateRes = $stmt2->execute(
@@ -102,13 +102,13 @@ class LM_Downloads extends Loggix_Module
                             die('Error ID:1');
                         }
                     }
-                    
+
                     $binaryId = $id;
-                    
+
                 // When uploading a new file
                 } else {
                     // put these info into the data-info table
-                    $insertSql  = 'INSERT INTO ' 
+                    $insertSql  = 'INSERT INTO '
                                 .     DOWNLOADS_META_TABLE . ' '
                                 .         '('
                                 .             '`file_title`, '
@@ -122,8 +122,8 @@ class LM_Downloads extends Loggix_Module
                                 .             '`draft`'
                                 .         ') '
                                 .     'VALUES '
-                                .         '(' 
-                                .             ':file_title, '                          
+                                .         '('
+                                .             ':file_title, '
                                 .             ':file_type, '
                                 .             ':file_name, '
                                 .             ':file_size, '
@@ -148,7 +148,7 @@ class LM_Downloads extends Loggix_Module
                                          ':draft'        => $draft
                                      )
                                  );
-                    
+
                     if ($updateRes == false) {
                         //echo var_dump($stmt->errorInfo());
                         die('Error ID:2');
@@ -176,15 +176,15 @@ class LM_Downloads extends Loggix_Module
                                     .         '(`masterid`, `file_data`) '
                                     .     'VALUES '
                                     .         '(:binary_id, :binary_data)';
-                    $insertDataSql = $this->setDelimitedIdentifier($insertDataSql);         
+                    $insertDataSql = $this->setDelimitedIdentifier($insertDataSql);
                     $stmt = $this->db->prepare($insertDataSql);
                     $stmt->bindParam(':binary_id', $binaryId);
-                    $stmt->bindParam(':binary_data', $binaryData);             
+                    $stmt->bindParam(':binary_data', $binaryData);
                     if (!$insertDataRes = $stmt->execute()) {
                        // echo var_dump($stmt->errorInfo());
                         die('Error ID:3');
                     }
-                    
+
                 }
                 fclose($fp); //close the file...
                 $id = $binaryId;
@@ -227,21 +227,21 @@ class LM_Downloads extends Loggix_Module
     public function getTagArray($withDraft = 'no')
     {
         $tagArray = array();
-        
+
         $sql = 'SELECT '
              .     't.id, t.tag_name '
-             . 'FROM ' 
+             . 'FROM '
              .     DOWNLOADS_TAG_TABLE . ' AS t';
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        
+
         while ($row = $stmt->fetch()) {
             $sql2 = 'SELECT '
                   .     'COUNT(tm.id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     DOWNLOADS_TAG_MAP_TABLE . ' AS tm '
                   . 'WHERE '
-                  .     'tm.tag_id = :tag_id ';               
+                  .     'tm.tag_id = :tag_id ';
             if ($withDraft == 'yes') {
                  $sql2 .= 'AND '
                         .     'tm.log_id '
@@ -249,13 +249,13 @@ class LM_Downloads extends Loggix_Module
                         .     '('
                         .         'SELECT '
                         .             'l.id '
-                        .         'FROM ' 
+                        .         'FROM '
                         .             LOG_TABLE . ' AS l '
                         .         'WHERE '
                         .             'l.draft = 1'
                         .     ')';
             }
-            
+
             $stmt2 = $this->db->prepare($sql2);
             $stmt2->execute(
                         array(
@@ -263,11 +263,11 @@ class LM_Downloads extends Loggix_Module
                         )
                     );
             $row['number_of_tag'] = $stmt2->fetchColumn();
-            $tagArray[] = array($row[0], 
-                                $row[1], 
+            $tagArray[] = array($row[0],
+                                $row[1],
                                 $row['number_of_tag']);
         }
-        
+
         return $tagArray;
     }
 
@@ -292,7 +292,7 @@ class LM_Downloads extends Loggix_Module
                      'tag_table'  => DOWNLOADS_TAG_TABLE
         );
     }
-    
+
     /**
      * Get Search SQL Parameters
      *
@@ -309,7 +309,7 @@ class LM_Downloads extends Loggix_Module
                      'group_by' => ''
         );
     }
-    
+
 
     /**
      * Download Counter
@@ -319,10 +319,10 @@ class LM_Downloads extends Loggix_Module
     public function getNumberOfDownloads()
     {
         global  $pathToIndex;
-        
+
         $sql = 'SELECT '
              .     'id, file_title, file_name, file_date, file_count '
-             . 'FROM ' 
+             . 'FROM '
              .     DOWNLOADS_META_TABLE . ' '
              . 'GROUP BY '
              .     'file_name '
@@ -335,8 +335,8 @@ class LM_Downloads extends Loggix_Module
             $fileTitle         = $row['file_title'];
             $fileName          = $row['file_name'];
             $fileDownloadCount = $row['file_count'];
-            $rowArray[] = array($fileId, 
-                                $fileTitle, 
+            $rowArray[] = array($fileId,
+                                $fileTitle,
                                 $fileName,
                                 $fileDownloadCount);
         }
@@ -353,33 +353,33 @@ class LM_Downloads extends Loggix_Module
     public function setEntryItems($item)
     {
         global $lang, $module, $pathToIndex;
-        
+
         $item['id']        = intval($item['id']);
         $item['date']      = date(self::$config['post_date_format'], strtotime($item['file_date']));
         $item['title']     = htmlspecialchars($item['file_title']);
         $item['tag']  = '';
         if (isset($_GET['id'])) {
             foreach ($this->getTagArray('Downloads') as $row) {
-                $item['tag'] .= (in_array($row[0], $this->getTagIdArray('Downloads'))) 
-                               ? '<a href="' . $pathToIndex 
+                $item['tag'] .= (in_array($row[0], $this->getTagIdArray('Downloads')))
+                               ? '<a href="' . $pathToIndex
                                 . '/modules/downloads/index.php?t=' . $row[0] . '&amp;ex=1">'
-                                . htmlspecialchars($row[1]) . '</a> ' 
-                              : '';                                    
+                                . htmlspecialchars($row[1]) . '</a> '
+                              : '';
             }
         }
 
-        // Apply Smiley 
+        // Apply Smiley
         $item['comment'] = $this->setSmiley($item['file_comment']);
-        
-        $item['comment']   = str_replace('href="./data', 
-                                         'href="' . $pathToIndex . '/data', 
+
+        $item['comment']   = str_replace('href="./data',
+                                         'href="' . $pathToIndex . '/data',
                                          $item['comment']);
-        
-        $item['comment']   = str_replace('src="./data', 
-                                         'src="' . $pathToIndex . '/data', 
+
+        $item['comment']   = str_replace('src="./data',
+                                         'src="' . $pathToIndex . '/data',
                                          $item['comment']);
-        $item['comment']   = str_replace('src="./theme/images', 
-                                         'src="' . $pathToIndex . '/theme/images', 
+        $item['comment']   = str_replace('src="./theme/images',
+                                         'src="' . $pathToIndex . '/theme/images',
                                          $item['comment']);
         // Apply plugin filter
         $item['comment'] = $this->plugin->applyFilters('entry-content', $item['comment']);
@@ -408,13 +408,13 @@ class LM_Downloads extends Loggix_Module
     public function getArchives($getItemsSql)
     {
          global $sessionState, $item, $module, $pathToIndex, $lang;
-        
+
         $this->getModuleLanguage('downloads');
 
-        $getItemsSql = $this->setDelimitedIdentifier($getItemsSql); 
+        $getItemsSql = $this->setDelimitedIdentifier($getItemsSql);
         $stmt = $this->db->prepare($getItemsSql);
         $items = array();
-        
+
         if ($stmt->execute() == true) {
             while ($item = $stmt->fetch()) {
                 $item = $this->setEntryItems($item);
@@ -440,7 +440,7 @@ class LM_Downloads extends Loggix_Module
                 throw new Loggix_Exception();
             }
         }
-        
+
         return $this->plugin->applyFilters('downloads-index-view', $contentsView->render());
     }
 }

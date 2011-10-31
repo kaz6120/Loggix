@@ -4,7 +4,7 @@
 -----------------------------------------------------------------
    TEXT DECORATIONS
 -----------------------------------------------------------------
-Some Loggix Markup class namings are based on & compatible with 
+Some Loggix Markup class namings are based on & compatible with
 Mozilla.org Markup Refeneces.
 
 SEE: http://www.mozilla.org/contribute/writing/markup
@@ -58,7 +58,7 @@ strong {
     padding: 0.5em 1em 0.5em 1em;
     border: 1px solid #CC0000;
     background-color: #fff9f9;
-} tr.important td {    
+} tr.important td {
     color: #CC0000 !important;
     background-color: #ffecf6 !important;
 }
@@ -135,7 +135,7 @@ ins {
 
 /* Abbreviation */
 abbr, acronym {
-    border-bottom: 1px dotted; 
+    border-bottom: 1px dotted;
     cursor: help;
 }
 
@@ -212,7 +212,7 @@ pre.code {
     background-color: #333333;
     color: #ffffff;
 }
-    
+
 var {
     margin: 0 0.2em;
     background-color: transparent;

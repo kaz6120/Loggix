@@ -34,13 +34,13 @@ class Loggix_Module_Comment extends Loggix_Module
         $sql = 'SELECT '
              .     'id, title, comment, user_name, user_pass, '
              .     'user_uri, date, user_ip, refer_id, trash '
-             . 'FROM ' 
+             . 'FROM '
              .     COMMENT_TABLE . ' '
              . 'WHERE '
              .     '(refer_id = :refer_id) AND (trash = :trash) '
              . 'ORDER BY '
              .     'date ASC';
-             
+
         $stmt = $this->db->prepare($sql);
         return $stmt->execute(
                    array(
@@ -58,16 +58,16 @@ class Loggix_Module_Comment extends Loggix_Module
      */
     public function getNumberOfComments($item)
     {
-    
+
         $sql = 'SELECT '
              .     'COUNT(c.id) '
-             . 'FROM ' 
+             . 'FROM '
              .     COMMENT_TABLE . ' AS c '
              . 'WHERE '
              .     '(c.refer_id = :refer_id) AND (c.trash = :trash) '
              . 'ORDER BY '
              .     'c.date ASC';
-        
+
         $stmt = $this->db->prepare($sql);
         $stmt->execute(
                    array(
@@ -85,24 +85,24 @@ class Loggix_Module_Comment extends Loggix_Module
      * @param $item
      * @param $authorized
      */
-    public function updateComment($item, $authorized) 
+    public function updateComment($item, $authorized)
     {
         global $pathToIndex;
-        
+
         $currentTime = gmdate('YmdHis', time() + (self::$config['tz'] * 3600));
-                   
+
         if ($authorized == 'yes') {
             if ($item['trash'] == '1') {
                 $this->db->beginTransaction();
-                $sql = 'DELETE FROM ' 
+                $sql = 'DELETE FROM '
                      .     COMMENT_TABLE . ' '
                      . 'WHERE '
                      .     'id = :id;';
                 $stmt = $this->db->prepare($sql);
                 $stmt->execute(array(':id' => $item['id']));
                 $this->db->commit();
-            } else {                            
-                $updateSql = 'UPDATE ' 
+            } else {
+                $updateSql = 'UPDATE '
                            .     COMMENT_TABLE . ' '
                            . 'SET '
                            .     '`title` = :title, '
@@ -130,8 +130,8 @@ class Loggix_Module_Comment extends Loggix_Module
                 $affectedRows = $this->db->lastInsertId();
                 $this->db->commit();
             }
-            
-            header('Location: ' . $pathToIndex . '/index.php?id=' 
+
+            header('Location: ' . $pathToIndex . '/index.php?id='
                    . urlencode($item['refer_id']) . '#c' . urlencode($item['id']));
             exit;
         } else {
@@ -167,7 +167,7 @@ class Loggix_Module_Comment extends Loggix_Module
      *
      * @return array $adminNicknameListArray
      */
-    public function getAdminNicknameListArray() 
+    public function getAdminNicknameListArray()
     {
         $adminNicknameCheckSql  = 'SELECT user_nickname FROM ' . USER_TABLE;
         foreach ($this->db->query($adminNicknameCheckSql) as $row) {
@@ -184,7 +184,7 @@ class Loggix_Module_Comment extends Loggix_Module
         global $pathToIndex, $lang;
 
         $this->getModuleLanguage('comment');
-        
+
         if (!empty($_GET['id'])) {
             $rows = $this->getNumberOfComments($item);
             $items = array();
@@ -193,7 +193,7 @@ class Loggix_Module_Comment extends Loggix_Module
                 $sql = 'SELECT '
                      .     'id, title, comment, user_name, user_pass, '
                      .     'user_uri, date, user_ip, refer_id, trash '
-                     . 'FROM ' 
+                     . 'FROM '
                      .     COMMENT_TABLE . ' '
                      . 'WHERE '
                      .     '(refer_id = :refer_id) AND (trash = :trash) '
@@ -210,7 +210,7 @@ class Loggix_Module_Comment extends Loggix_Module
                 while ($row = $stmt->fetch()) {
                     $item['comments']['id'] = intval($row['id']);
                     $item['comments']['title'] = htmlspecialchars($row['title']);
-                    $item['comments']['comment'] = $this->plugin->applyFilters('comment-text', 
+                    $item['comments']['comment'] = $this->plugin->applyFilters('comment-text',
                                                    $this->setSmiley(
                                                    $this->setBBCode($row['comment']
                                                    )));
@@ -242,24 +242,24 @@ class Loggix_Module_Comment extends Loggix_Module
             $smileyButton = new Loggix_View($pathToIndex . '/theme/smiley-button.html');
             $item['smiley_button'] = $smileyButton->render();
             $item['title'] = $item['title'];
-            
+
             // Set Cookies
             $item['user_cookie']['user_name'] = (isset($_COOKIE['loggix_comment_user']))
-                                              ? $_COOKIE['loggix_comment_user'] 
+                                              ? $_COOKIE['loggix_comment_user']
                                               : '';
-            $item['user_cookie']['user_email'] = (isset($_COOKIE['loggix_comment_email'])) 
-                                              ? $_COOKIE['loggix_comment_email'] 
+            $item['user_cookie']['user_email'] = (isset($_COOKIE['loggix_comment_email']))
+                                              ? $_COOKIE['loggix_comment_email']
                                               : '';
-            $item['user_cookie']['user_uri'] = (isset($_COOKIE['loggix_comment_uri'])) 
-                                              ? $_COOKIE['loggix_comment_uri'] 
+            $item['user_cookie']['user_uri'] = (isset($_COOKIE['loggix_comment_uri']))
+                                              ? $_COOKIE['loggix_comment_uri']
                                               : '';
-            $item['user_cookie']['status'] = (isset($_COOKIE['loggix_comment_user'])) 
-                                              ? ' checked="checked"' 
+            $item['user_cookie']['status'] = (isset($_COOKIE['loggix_comment_user']))
+                                              ? ' checked="checked"'
                                               : '';
             // Get View
             $sql = 'SELECT '
                  .     'allow_comments '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     LOG_TABLE . ' '
                  . 'WHERE '
                  .     'id = :id';
@@ -295,14 +295,14 @@ class Loggix_Module_Comment extends Loggix_Module
      * @param  array $item
      * @uses   smiley
      * @return array $item
-     */    
+     */
     public function setEntryItem($item)
     {
         global $pathToIndex, $lang, $module;
-        
+
         $repSql = 'SELECT '
                 .     'COUNT(id) '
-                . 'FROM ' 
+                . 'FROM '
                 .     COMMENT_TABLE . ' '
                 . 'WHERE '
                 .      'refer_id = :refer_id'
@@ -313,14 +313,14 @@ class Loggix_Module_Comment extends Loggix_Module
                    array(
                        ':refer_id' => $item['refer_id'],
                        ':trash'    => 0
-                   )                   
+                   )
                );
         $item['replies'] = $stmt->fetchColumn();
-        
+
         // Refered Entry Log Data
         $refSql = 'SELECT '
                 .     'l.title, l.date '
-                . 'FROM ' 
+                . 'FROM '
                 .     LOG_TABLE . ' AS l '
                 . 'WHERE '
                 .     'l.id = :id';
@@ -333,11 +333,11 @@ class Loggix_Module_Comment extends Loggix_Module
         $refRow = $stmt2->fetch();
         $item['refer_title'] = $refRow[0];
         $item['refer_date']  = $refRow[1];
-        
+
         // Get Replies
         $repsSql = 'SELECT '
                  .     '* '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     COMMENT_TABLE . ' '
                  . 'WHERE '
                  .     'refer_id = :refer_id'
@@ -368,15 +368,15 @@ class Loggix_Module_Comment extends Loggix_Module
     public function getArchives($getItemsSql)
     {
          global $sessionState, $module, $pathToIndex, $lang;
-        
+
         $this->getModuleLanguage('comment');
-        $getItemsSql = $this->setDelimitedIdentifier($getItemsSql); 
+        $getItemsSql = $this->setDelimitedIdentifier($getItemsSql);
         $stmt = $this->db->prepare($getItemsSql);
         $stmt->execute();
         $items = array();
         try {
             while ($item = $stmt->fetch()) {
-                $setItem = $this->setEntryItem($item);                
+                $setItem = $this->setEntryItem($item);
                 if (!in_array($item['refer_id'], $this->getDraftLogIdArray())) {
                     $items[] = $setItem;
                 }
@@ -389,15 +389,15 @@ class Loggix_Module_Comment extends Loggix_Module
                 $xhtml = self::COMMENT_THEME_PATH . 'default.html';
             }
         } catch (Exception $e) {
-            $xhtml = '/theme/errors/file-not-found.html';  
+            $xhtml = '/theme/errors/file-not-found.html';
         }
 
         $contents = new Loggix_View($pathToIndex . $xhtml);
         $contents->assign('session_state', $sessionState);
         $contents->assign('items', $items);
         $contents->assign('lang', $lang);
-        $contents->assign('module', $module);  
-       
+        $contents->assign('module', $module);
+
         return $contents->render();
     }
 
@@ -416,7 +416,7 @@ class Loggix_Module_Comment extends Loggix_Module
         }
         return $draftLogIdArray;
     }
- 
+
     /**
      * Generate Recent Comments List
      *
@@ -425,20 +425,20 @@ class Loggix_Module_Comment extends Loggix_Module
     public function getRecentComments()
     {
         global $pathToIndex, $lang;
-        
+
         $this->getModuleLanguage('comment');
-        
+
         $commentList = '';
         $sql = 'SELECT '
              .     'id, tid, title, comment, '
-             .     'user_name, user_pass, user_uri, date, refer_id, trash '           
-             . 'FROM ' 
+             .     'user_name, user_pass, user_uri, date, refer_id, trash '
+             . 'FROM '
              .     COMMENT_TABLE . ' '
              . 'WHERE '
              .     'trash = :trash '
              . 'ORDER BY '
              .     'date DESC '
-             . 'LIMIT ' 
+             . 'LIMIT '
              .     self::$config['recent_comment_max'];
         $stmt = $this->db->prepare($sql);
         $res  = $stmt->execute(
@@ -450,25 +450,25 @@ class Loggix_Module_Comment extends Loggix_Module
             while ($row = $stmt->fetch()) {
                 if (!in_array($row['refer_id'], $this->getDraftLogIdArray())) {
                     $userClass = (in_array($row['user_name'], $this->getAdminNicknameListArray()))
-                               ? 'admin' 
+                               ? 'admin'
                                : 'guest';
                     $targetId = $pathToIndex . '/index.php?id=' . $row['refer_id'] . '#c'.$row['id'];
                     $commentTitle = htmlspecialchars($row['title']);
                     $commentList .= '<li>'
-                                   . '<a href="' . $targetId 
+                                   . '<a href="' . $targetId
                                    . '" class="' . $userClass
                                    . '" title="&quot;' . $commentTitle . '&quot;">'
                                    . 'From '. htmlspecialchars($row['user_name'])
                                    . '<br />' . date('y/m/d H:i', strtotime($row['date'])) . '</a>'
                                    . "</li>\n";
-                } 
+                }
             }
         }
-        
-        if ($commentList == '') { 
-            $commentList = '<li>' . $lang['comment']['default_message'] . '</li>'; 
+
+        if ($commentList == '') {
+            $commentList = '<li>' . $lang['comment']['default_message'] . '</li>';
         }
-        
+
         return $commentList;
     }
 

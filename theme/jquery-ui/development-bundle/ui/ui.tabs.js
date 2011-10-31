@@ -185,7 +185,7 @@ $.widget("ui.tabs", {
 				self.element.queue("tabs", function() {
 					self._trigger('show', null, self._ui(self.anchors[o.selected], self.panels[o.selected]));
 				});
-				
+
 				this.load(o.selected);
 			}
 
@@ -332,7 +332,7 @@ $.widget("ui.tabs", {
 					self.element.queue("tabs", function() {
 						hideTab(el, $hide);
 					}).dequeue("tabs");
-					
+
 					this.blur();
 					return false;
 				}
@@ -340,13 +340,13 @@ $.widget("ui.tabs", {
 					if (o.cookie) {
 						self._cookie(o.selected, o.cookie);
 					}
-					
+
 					self.element.queue("tabs", function() {
 						showTab(el, $show);
 					});
 
 					self.load(self.anchors.index(this)); // TODO make passing in node possible, see also http://dev.jqueryui.com/ticket/3171
-					
+
 					this.blur();
 					return false;
 				}
@@ -366,7 +366,7 @@ $.widget("ui.tabs", {
 				self.element.queue("tabs", function() {
 					showTab(el, $show);
 				});
-				
+
 				self.load(self.anchors.index(this));
 			}
 			else {
@@ -392,7 +392,7 @@ $.widget("ui.tabs", {
 		var o = this.options;
 
 		this.abort();
-		
+
 		this.element.unbind('.tabs')
 			.removeClass('ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-collapsible')
 			.removeData('tabs');
@@ -474,7 +474,7 @@ $.widget("ui.tabs", {
 			this.element.queue("tabs", function() {
 				self._trigger('show', null, self._ui(self.anchors[0], self.panels[0]));
 			});
-				
+
 			this.load(0);
 		}
 
@@ -641,19 +641,19 @@ $.extend($.ui.tabs.prototype, {
 	rotate: function(ms, continuing) {
 
 		var self = this, o = this.options;
-		
+
 		var rotate = self._rotate || (self._rotate = function(e) {
 			clearTimeout(self.rotation);
 			self.rotation = setTimeout(function() {
 				var t = o.selected;
 				self.select( ++t < self.anchors.length ? t : 0 );
 			}, ms);
-			
+
 			if (e) {
 				e.stopPropagation();
 			}
 		});
-		
+
 		var stop = self._unrotate || (self._unrotate = !continuing ?
 			function(e) {
 				if (e.clientX) { // in case of a true click

@@ -23,7 +23,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Core.php';
  *
  * @package   Loggix
  */
-class Loggix_Application extends Loggix_Core 
+class Loggix_Application extends Loggix_Core
 {
 
     /**
@@ -32,20 +32,20 @@ class Loggix_Application extends Loggix_Core
      * @param  array $sections
      * @return string
      * @uses   is_array
-     */    
+     */
     public function setTitle($sections)
     {
 
         $mutableSections = '';
-        
+
         if (is_array($sections)) {
             foreach ($sections as $value) {
-                 $mutableSections .= parent::LOGGIX_TITLE_SEPARATOR . $value; 
+                 $mutableSections .= parent::LOGGIX_TITLE_SEPARATOR . $value;
             }
         } else {
             $mutableSections = parent::LOGGIX_TITLE_SEPARATOR . $sections;
         }
-        
+
         return $this->plugin->applyFilters('title', self::$config['loggix_title'] . $mutableSections);
     }
 
@@ -79,8 +79,8 @@ class Loggix_Application extends Loggix_Core
     public function getContentMenu()
     {
         global $item;
-              
-        $menuArray = $this->explodeAssoc(',', PHP_EOL, 
+
+        $menuArray = $this->explodeAssoc(',', PHP_EOL,
                                 str_replace(
                                     '\r\n', PHP_EOL, self::$config['menu_list']
                                 )
@@ -93,19 +93,19 @@ class Loggix_Application extends Loggix_Core
      * Get CSS list
      *
      * @return string
-     */    
+     */
     public function getCssSwitchArray()
     {
-        return $this->explodeAssoc(',', PHP_EOL, 
+        return $this->explodeAssoc(',', PHP_EOL,
                           str_replace(
                               '\r\n', PHP_EOL, self::$config['css_list']
                           )
                       );
-        
+
     }
 
 
-    
+
     /**
      * Set Entry Items
      *
@@ -117,39 +117,39 @@ class Loggix_Application extends Loggix_Core
      */
     public function setEntryItems($item)
     {
-        global $pathToIndex, $lang, $module;       
-        
+        global $pathToIndex, $lang, $module;
+
 //        echo var_dump($item);
 
         $item['id']      = intval($item['id']);
         $item['title']   = htmlspecialchars($item['title']);
-        $item['comment'] = $item['comment']; 
+        $item['comment'] = $item['comment'];
         $item['date']    = $item['date'];
         $item['tag']     = '';
-                
+
         if (isset($_GET['id'])) {
             foreach ($this->getTagArray() as $row) {
-                $item['tag'] .= (in_array($row[0], $this->getTagIdArray())) 
-                              ? '<a href="' . $pathToIndex 
+                $item['tag'] .= (in_array($row[0], $this->getTagIdArray()))
+                              ? '<a href="' . $pathToIndex
                                 . '/index.php?t=' . $row[0] . '&amp;ex=1">'
-                                . htmlspecialchars($row[1]) . '</a> ' 
+                                . htmlspecialchars($row[1]) . '</a> '
                               : '';
             }
         }
-         
-        // Apply Smiley 
+
+        // Apply Smiley
         $item['comment'] = $this->setSmiley($item['comment']);
 
-        $item['comment'] = str_replace('href="./data', 
-                                             'href="' . $pathToIndex . '/data', 
+        $item['comment'] = str_replace('href="./data',
+                                             'href="' . $pathToIndex . '/data',
                                               $item['comment']);
-        
-        $item['comment'] = str_replace('src="./data', 
-                                             'src="' . $pathToIndex . '/data', 
+
+        $item['comment'] = str_replace('src="./data',
+                                             'src="' . $pathToIndex . '/data',
                                               $item['comment']);
-        
-        $item['comment'] = str_replace('src="./theme/images', 
-                                       'src="' . $pathToIndex . '/theme/images', 
+
+        $item['comment'] = str_replace('src="./theme/images',
+                                       'src="' . $pathToIndex . '/theme/images',
                                        $item['comment']);
 
         // Apply plugin filter
@@ -161,7 +161,7 @@ class Loggix_Application extends Loggix_Core
             $item['comments'] = $aComment->getCommentStatus($item);
             $module['LM']['comment']['list'] = $aComment->getCommentList($item);
         }
-       
+
         // Trackback
         if (class_exists('Loggix_Module_Trackback')) {
             $aTrackback = new Loggix_Module_Trackback;
@@ -174,7 +174,7 @@ class Loggix_Application extends Loggix_Core
             $aRss = new Loggix_Module_Rss;
             $item['comment'] = $aRss->toEnclosure($item['comment']);
         }
- 
+
         //echo var_dump($item);
 
         return $item;
@@ -193,25 +193,25 @@ class Loggix_Application extends Loggix_Core
     public function getArchives($getItemsSql)
     {
         global $sessionState, $module, $pathToIndex, $lang;
-        
+
         $getItemsSql = $this->setDelimitedIdentifier($getItemsSql);
         //echo $getItemsSql;
         $stmt = $this->db->prepare($getItemsSql);
         if ($stmt->execute() == true) {
             // Index by date
             $item = $stmt->fetch();
-            if (((self::$config['show_date_title'] == 'yes') || 
+            if (((self::$config['show_date_title'] == 'yes') ||
                  (isset($_GET['d']))
                 )
-                && 
+                &&
                 (empty($_GET['t']))
                ) {
-                //$item = $res->fetch();             
+                //$item = $res->fetch();
                 $titleDate = date(self::$config['title_date_format'], strtotime($item['date']));
                 $firstDate = $titleDate;
                 do {
                     $tempDate = date(self::$config['title_date_format'], strtotime($item['date']));
-                    if ($titleDate != $tempDate) { 
+                    if ($titleDate != $tempDate) {
                         $titleDate = $tempDate;
                         $item['title_date'] = $tempDate;
                         $item['insert_date_div'] = 'YES';
@@ -235,8 +235,8 @@ class Loggix_Application extends Loggix_Core
                     $items[] = $this->setEntryItems($item);
                     //echo var_dump($items);
                 } while($item = $stmt->fetch());
-                $aFile = (isset($_GET['t'])) 
-                       ? 'archives-by-tags.html' 
+                $aFile = (isset($_GET['t']))
+                       ? 'archives-by-tags.html'
                        : 'archives.html';
                 $templateFile = $pathToIndex . parent::LOGGIX_THEME_DIR . $aFile;
                 $contentsView = new Loggix_View($templateFile);
@@ -262,7 +262,7 @@ class Loggix_Application extends Loggix_Core
         return $this->plugin->applyFilters('index-view', $contentsView->render());
     }
 
-    
+
     /**
      * Generate Pager
      *
@@ -276,7 +276,7 @@ class Loggix_Application extends Loggix_Core
     {
 
         global $pathToIndex, $lang, $key;
-        
+
         // Keyword or Tag
         if (!empty($_GET['k'])) {
             $key = htmlspecialchars($_GET['k']);
@@ -285,14 +285,14 @@ class Loggix_Application extends Loggix_Core
         } else {
             $key = '';
         }
-        
+
         // Initialize
         $pageArray  = array();
         $arrayKey   = 0;
         $pageNumber = 0;
         $limit      = 0;
         $result     = 0;
-        
+
         $archiveMode = (!empty($_GET['t'])) ? 'k=&amp;t' : 'k';
 
         if (!empty($totalItemsCount)) {
@@ -327,12 +327,12 @@ class Loggix_Application extends Loggix_Core
                         }
                         //$pageArray[] = str_replace('_', '', $tagArray);
                         $pageArray[] = $tagArray;
-                        
+
                     }
                 }
             }
-            
-            
+
+
             // "Prev" anchor
             if ($arrayKey > 0) {
                 $arrayKeyMinusOne = $arrayKey - 1;
@@ -345,13 +345,13 @@ class Loggix_Application extends Loggix_Core
                     $pager .= $value['tag'] . $value['anchor'] . "\n";
                 }
             }
-            // "Next" anchor            
+            // "Next" anchor
             if (isset($pageNumberToShow) && $pageNumberToShow != $pageNumber) {
                 $arrayKeyPlusOne = $arrayKey + 1;
                 $pager .= '<span class="next">' . $pageArray[$arrayKeyPlusOne]['tag']
                         . $lang['next'] . "</a></span>\n";
             }
-            
+
             // End Pager
             $pager .= "</p>\n";
         }
@@ -365,8 +365,8 @@ class Loggix_Application extends Loggix_Core
                         . "\n</p>";
         // Show or Not
         if ($totalItemsCount > self::$config['page_max']) {
-            return ((!$_SERVER['QUERY_STRING']) || (stristr($_SERVER['QUERY_STRING'], '=') === false)) 
-                   ? $linkToArchives 
+            return ((!$_SERVER['QUERY_STRING']) || (stristr($_SERVER['QUERY_STRING'], '=') === false))
+                   ? $linkToArchives
                    : $pager;
         } else {
             return '';
@@ -374,7 +374,7 @@ class Loggix_Application extends Loggix_Core
 
     }
 
-    
+
     /**
      * Get Attachment File Table View
      *
@@ -384,19 +384,19 @@ class Loggix_Application extends Loggix_Core
     public function setAttachments()
     {
         global $pathToIndex, $lang;
-        
+
         $uploadFileList = '';
-        
+
         for ($i = 1; $i < self::$config['upload_file_max']+1; $i++) {
             $item['i'] = $i;
             $items[] = $item;
         }
-        
+
         $templateFile = $pathToIndex . parent::LOGGIX_THEME_DIR . 'admin/attachments.html';
         $attachmentsView = new Loggix_View($templateFile);
         $attachmentsView->assign('items', $items);
         $attachmentsView->assign('lang', $lang);
-        
+
         return $attachmentsView->render();
     }
 
@@ -407,15 +407,15 @@ class Loggix_Application extends Loggix_Core
      * @return void
      * @uses   move_uploaded_file
      */
-    public function sendAttachments() 
+    public function sendAttachments()
     {
         global $lang, $pathToIndex;
-        
+
         self::$config['uploaddir'] = $pathToIndex . self::LOGGIX_RESOURCE_DIR;
-        
+
         for ($i = 1; $i < self::$config['upload_file_max']+1; $i++) {
             if (isset($_FILES['myfile'])) {
-                move_uploaded_file($_FILES['myfile']['tmp_name'][$i], 
+                move_uploaded_file($_FILES['myfile']['tmp_name'][$i],
                                    self::$config['uploaddir'] . $_FILES['myfile']['name'][$i]);
             }
         }
@@ -437,7 +437,7 @@ class Loggix_Application extends Loggix_Core
     public function setMenuItems($sessionState = null)
     {
         global $pathToIndex, $item, $module;
-        
+
         if (stristr($this->getRequestURI(), 'modules/downloads')) {
            $item['search_dir'] = $pathToIndex . '/modules/downloads';
            $item['tag_cloud']  = $this->getTagCloudArray('Downloads');
@@ -451,27 +451,27 @@ class Loggix_Application extends Loggix_Core
            $item['search_dir'] = $pathToIndex;
            $item['tag_cloud']  = $this->getTagCloudArray();
         }
-        
+
         $item['admin']['menu'] = $this->getAdminMenu($sessionState);
         $item['content_menu']  = $this->getContentMenu();
         $item['css_list']      = $this->getCssSwitchArray();
-        
+
         return $item;
     }
 
 
     /**
      * Send HTTP Headers to User Agent
-     * 
+     *
      * @param  string $getLastModifiedSql
      * @return void
      */
     public function sendHttpHeaders($getLastModifiedSql)
     {
         global $pathToIndex;
-        
+
         // Get Last-Modified
-        if (!empty($getLastModifiedSql)) { 
+        if (!empty($getLastModifiedSql)) {
             $res = $this->db->query($getLastModifiedSql);
             $row = $res->fetch();
             if (isset($row['date'])) {
@@ -484,9 +484,9 @@ class Loggix_Application extends Loggix_Core
         } else {
             $date = $this->getDataLastModified('Y-m-d H:i:s');
         }
-        
-        $lastModifiedGmt = (!empty($date)) 
-                         ? gmdate('D, d M Y H:i:s', strtotime($date)) . ' GMT' 
+
+        $lastModifiedGmt = (!empty($date))
+                         ? gmdate('D, d M Y H:i:s', strtotime($date)) . ' GMT'
                          : 'Tue, 24 Jan 1984 00:00:00 GMT';
 
         // Select XML Version
@@ -495,7 +495,7 @@ class Loggix_Application extends Loggix_Core
                 $mediaType = 'application/xhtml+xml';
                 break;
             case '1.1-content-negotiation': // Content Negotiation
-                if ((stristr($_SERVER['HTTP_ACCEPT'], 'application/xhtml+xml')) || 
+                if ((stristr($_SERVER['HTTP_ACCEPT'], 'application/xhtml+xml')) ||
                     (stristr($_SERVER['HTTP_USER_AGENT'], 'W3C_Validator')) ||
                     (stristr($_SERVER['HTTP_USER_AGENT'], 'Another_HTML-lint'))) {
                     $mediaType = 'application/xhtml+xml';
@@ -519,7 +519,7 @@ class Loggix_Application extends Loggix_Core
 
     /**
      * Display XHTML
-     * 
+     *
      * @param  array $item
      * @param  string $sessionState
      * @uses   setMenuItems
@@ -530,12 +530,12 @@ class Loggix_Application extends Loggix_Core
     {
         global $pathToIndex, $module, $lang, $getLastModifiedSql;
 
-        
+
         // ob_start('ob_gzhandler');
         ob_start();
-        
+
         $item['site_title'] = $this->plugin->applyFilters('h1', self::$config['loggix_title']);
-        
+
         if (strpos($this->getRequestURI(), 'downloads')) {
             $this->getModuleLanguage('downloads');
             $lang['search_key'] = $lang['downloads']['search_key'];
@@ -546,7 +546,7 @@ class Loggix_Application extends Loggix_Core
             $this->getModuleLanguage('trackback');
             $lang['search_key'] = $lang['trackback']['search_key'];
         }
-        
+
         // Navigation View
         $templateFile = $pathToIndex . parent::LOGGIX_THEME_DIR . 'navigation.html';
         $navView = new Loggix_View($templateFile);
@@ -564,7 +564,7 @@ class Loggix_Application extends Loggix_Core
         $xhtml = new Loggix_View();
         $xhtml->assign('module', $module);
         $xhtml->assign('item', $item);
-        
+
         echo $xhtml->render($pathToIndex . parent::LOGGIX_THEME_DIR . 'base.html');
 
         ob_end_flush();

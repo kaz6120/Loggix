@@ -14,10 +14,10 @@
 
 $this->plugin->addAction('after-entry-deleted', 'displayEntryDeletedMessage');
 
-function displayEntryDeletedMessage($id) 
+function displayEntryDeletedMessage($id)
 {
     global $config, $id, $pathToIndex, $sessionState, $app;
-    
+
     switch ($config['language']) {
         case 'japanese':
             $textParts = array(
@@ -36,10 +36,10 @@ function displayEntryDeletedMessage($id)
             );
             break;
     }
-    
+
     // Additional Title
     $additionalTitle = $textParts[0];
-    
+
     // Contents
     $content = '<h2>' . $textParts[0] . '</h2>
 <p>' . $textParts[1] . $id . $textParts[2] . '</p>

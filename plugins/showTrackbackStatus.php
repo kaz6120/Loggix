@@ -6,7 +6,7 @@
  * after sending trackback. This plugin works only when trackback is sent.
  *
  * @copyright Loggix Project
- * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License 
+ * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     6.8.13
  * @version   8.3.3
  */
@@ -14,13 +14,13 @@
 
 $this->plugin->addAction('after-trackback-sent', 'showTrackbackStatus');
 
-function showTrackbackStatus($pingStatus) 
+function showTrackbackStatus($pingStatus)
 {
     global $config, $id, $pathToIndex, $sessionState, $app;
 
     $pingUri               = $pingStatus[0];
     $trackbackPingResponse = $pingStatus[1];
-    
+
     switch ($config['language']) {
         case 'japanese':
             $textParts = array(
@@ -41,10 +41,10 @@ function showTrackbackStatus($pingStatus)
             );
             break;
     }
-    
+
      // Title
     $additionalTitle = 'Article ' . $id . ' : ' . $textParts[0] . $textParts[1];
-    
+
     // Contents
     $message    = ($trackbackPingResponse == 0) ? $textParts[3] : $textParts[4];
     $valueClass = ($trackbackPingResponse == 0) ? '' : ' important';

@@ -1,14 +1,14 @@
 <?php
 /**
  * Loggix_Module_Trackback - Trackback Module for Loggix
- * 
+ *
  * PHP version 5
  *
  * @package   Loggix_Module
  * @copyright Copyright (C) Loggix Project
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.6.8
- * @version   10.2.20 
+ * @version   10.2.20
 */
 
 
@@ -25,7 +25,7 @@ class Loggix_Module_Trackback extends Loggix_Module
 {
     const MODULE_DIR           = 'modules/trackback';
     const TRACKBACK_THEME_PATH = '/modules/trackback/theme/';
-    
+
     /**
      * Retrieve Trackbacks from database
      *
@@ -36,14 +36,14 @@ class Loggix_Module_Trackback extends Loggix_Module
     {
         $sql = 'SELECT '
              .     'id, blog_id, title, excerpt, url, name, date '
-             . 'FROM ' 
+             . 'FROM '
              .     TRACKBACK_TABLE . ' '
              . 'WHERE '
              .     '(blog_id = :refer_id) '
              . 'ORDER BY '
              .     'date ASC';
-        
-        $stmt = $this->db->prepare($sql);        
+
+        $stmt = $this->db->prepare($sql);
         return $stmt->execute(
                    array(
                        ':refer_id' => $item['id']
@@ -59,16 +59,16 @@ class Loggix_Module_Trackback extends Loggix_Module
      */
     public function getNumberOfTrackbacks($item)
     {
-    
+
         $sql = 'SELECT '
              .     'COUNT(t.id) '
-             . 'FROM ' 
+             . 'FROM '
              .     TRACKBACK_TABLE . ' AS t '
              . 'WHERE '
              .     '(t.blog_id = :refer_id) AND (t.trash = :trash) '
              . 'ORDER BY '
              .     't.date ASC';
-        
+
         $stmt = $this->db->prepare($sql);
         $stmt->execute(
                    array(
@@ -112,7 +112,7 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function getTrackbackUri($item)
     {
         return $item['trackback']['uri'] = $this->getRootUri()
-                                         . self::MODULE_DIR 
+                                         . self::MODULE_DIR
                                          . '/tb.php?id=' . $item['id'];
     }
 
@@ -130,7 +130,7 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function getTrackbackList($item)
     {
         global $pathToIndex, $lang, $sessionState;
-        
+
         if (!empty($_GET['id'])) {
             $rows = $this->getNumberOfTrackbacks($item);
             $items = array();
@@ -138,19 +138,19 @@ class Loggix_Module_Trackback extends Loggix_Module
                 $item['trackback']['list'] = '';
                 $sql = 'SELECT '
                      .     'id, blog_id, title, excerpt, url, name, date '
-                     . 'FROM ' 
+                     . 'FROM '
                      .     TRACKBACK_TABLE . ' '
                      . 'WHERE '
                      .     '(blog_id = :refer_id) '
                      . 'ORDER BY '
                      .     'date ASC';
-                $stmt = $this->db->prepare($sql);        
+                $stmt = $this->db->prepare($sql);
                 $stmt->execute(
                            array(
                                ':refer_id' => $item['id']
                            )
                        );
-                       
+
                 while ($row = $stmt->fetch()) {
                     $item['trackback']['id']      = intval($row['id']);
                     $item['trackback']['title']   = htmlspecialchars(stripslashes($row['title']));
@@ -161,13 +161,13 @@ class Loggix_Module_Trackback extends Loggix_Module
                     if (!empty($item['trackback']['url'])) {
                         $item['trackback']['name'] = '<a href="'.$item['trackback']['url'].'">'
                                                    . $item['trackback']['name']
-                                                   . '</a>'; 
+                                                   . '</a>';
                     }
                     if ($sessionState == 'on') {
                         $item['admin']['delete'] = '<span class="edit">'
                                                  . '<a href="'
-                                                 . $pathToIndex . '/' 
-                                                 . self::MODULE_DIR 
+                                                 . $pathToIndex . '/'
+                                                 . self::MODULE_DIR
                                                  . '/delete.php?ping_id=' . $row['id']
                                                  . '&amp;article_id=' . $item['id']
                                                  . '">'
@@ -178,16 +178,16 @@ class Loggix_Module_Trackback extends Loggix_Module
                     }
                     $items[] = $item;
                 }
-                $trackbackListTheme = $pathToIndex 
-                                    . self::TRACKBACK_THEME_PATH 
+                $trackbackListTheme = $pathToIndex
+                                    . self::TRACKBACK_THEME_PATH
                                     .'trackbacks.html';
                 $trackbackList = new Loggix_View($trackbackListTheme);
                 $trackbackList->assign('items', $items);
                 $trackbackList->assign('lang', $lang);
                 $item['trackback']['list'] = $trackbackList->render();
             } else {
-                $noTrackbackTheme = $pathToIndex 
-                                  . self::TRACKBACK_THEME_PATH 
+                $noTrackbackTheme = $pathToIndex
+                                  . self::TRACKBACK_THEME_PATH
                                   . 'no-trackbacks.html';
                 $noTrackbacks = new Loggix_View($noTrackbackTheme);
                 $noTrackbacks->assign('lang', $lang);
@@ -196,7 +196,7 @@ class Loggix_Module_Trackback extends Loggix_Module
             // Get Loggix_View
             $sql = 'SELECT '
                  .     'allow_pings '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     LOG_TABLE . ' '
                  . 'WHERE '
                  .     'id = :id';
@@ -207,18 +207,18 @@ class Loggix_Module_Trackback extends Loggix_Module
                        )
                    );
             $res = $stmt->fetchColumn();
-            
+
             if ($res == '1') {
                 $item['trackback']['uri'] = $this->getTrackbackURI($item);
-                $trackbackListTheme = $pathToIndex 
-                                    . self::TRACKBACK_THEME_PATH 
+                $trackbackListTheme = $pathToIndex
+                                    . self::TRACKBACK_THEME_PATH
                                     . 'trackback-list.html';
                 $trackbacks = new Loggix_View($trackbackListTheme);
                 $trackbacks->assign('item', $item);
                 $trackbacks->assign('lang', $lang);
             } else {
-                $trackbackClosedTheme = $pathToIndex 
-                                      . self::TRACKBACK_THEME_PATH 
+                $trackbackClosedTheme = $pathToIndex
+                                      . self::TRACKBACK_THEME_PATH
                                       . 'closed.html';
                 $trackbacks = new Loggix_View($trackbackClosedTheme);
                 $trackbacks->assign('item', $item);
@@ -230,8 +230,8 @@ class Loggix_Module_Trackback extends Loggix_Module
             return '';
         }
     }
-    
-    
+
+
     /**
      * Sending Trackback Ping
      *
@@ -241,16 +241,16 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function sendTrackback($id)
     {
         global $lang, $item, $pingStatus;
-    
-        if ((!empty($_POST['send_ping_uri'])) && 
+
+        if ((!empty($_POST['send_ping_uri'])) &&
             (!empty($_POST['encode'])) &&
             ($_POST['send_ping_uri'] != 'http://')) {
             $pingUri = $_POST['send_ping_uri'];
             $encode  = $_POST['encode'];
-        
+
             $sql  = 'SELECT '
                   .     'title, comment, excerpt, text_mode '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     LOG_TABLE . ' '
                   . 'WHERE '
                   .     'id = :id';
@@ -261,7 +261,7 @@ class Loggix_Module_Trackback extends Loggix_Module
                        )
                    );
             $row = $stmt->fetch();
-        
+
             switch($encode) {
             case 'EUC-JP':
                 $row['title']   = mb_convert_encoding($row['title'],   'EUC-JP', 'auto');
@@ -276,36 +276,36 @@ class Loggix_Module_Trackback extends Loggix_Module
                 $row['comment'] = mb_convert_encoding($row['comment'], 'UTF-8',  'auto');
                 break;
             }
-    
+
             $articleUri   = 'http://' . $_SERVER['HTTP_HOST'] . self::$config['root_dir'] . 'index.php?id=' . $id;
             $articleTitle =  stripslashes($row['title']);
-        
+
             // Trim the strings to send
             if (!empty($_POST['excerpt'])) {
                 $articleExcerpt = strip_tags($_POST['excerpt']);
             } elseif (!empty($row['excerpt'])) {
                 $articleExcerpt = strip_tags($row['excerpt']);
             } else {
-                $row['comment'] = $this->plugin->applyFilters('trackback-content', $row['comment']); 
+                $row['comment'] = $this->plugin->applyFilters('trackback-content', $row['comment']);
                 $articleExcerpt = mb_substr(strip_tags($row['comment']), 0, 100, $encode) . '...';
             }
-            
+
             // send Ping to the target URI
             $targetUri = parse_url($pingUri);
-            
+
             // set default port if port value is empty
             if (!isset($targetUri['port'])) {
                 $targetUri['port'] = 80;
             }
 
 
-            $targetUri['query'] = (isset($targetUri['query'])) 
+            $targetUri['query'] = (isset($targetUri['query']))
                                   ? '?' . $targetUri['query']
                                   : '';
 
             $auth = (isset($targetUri['user'], $targetUri['pass']))
-                    ? 'Authorization: Basic ' 
-                      . base64_encode($targetUri['user'] 
+                    ? 'Authorization: Basic '
+                      . base64_encode($targetUri['user']
                       . ':' . $targetUri['pass']) . "\r\n"
                     : '';
 
@@ -313,12 +313,12 @@ class Loggix_Module_Trackback extends Loggix_Module
                            'title'     => $articleTitle,
                            'excerpt'   => $articleExcerpt,
                            'blog_name' => self::$config['loggix_title']);
-                           
+
             while (list($key, $val) = each($param)) {
                 $params[] = $key . '=' . urlencode($val);
             }
             $data = join("&", $params);
-        
+
             // prepare the post value
             $post  = 'POST ' . $targetUri['path'] . $targetUri['query']. " HTTP/1.1\r\n"
                    . 'Host: ' . $targetUri['host'] . "\r\n"
@@ -330,18 +330,18 @@ class Loggix_Module_Trackback extends Loggix_Module
 
 
             $fs = fsockopen($targetUri['host'], $targetUri['port']);
-            
+
 //            echo var_dump($fs);
-            
+
             if (!$fs) {
                 return 'Socket error!';
                 $trackbackPingStatus = null;
             } else {
                 fputs($fs, $post);       // send data...
                 $res = fread($fs, 1024); // ...and get response
-                
+
 //                echo var_dump($res);
-                
+
                 // Read XML responses to check error
                 if (preg_match('/<error>1<\/error>/', $res)) {
                     $trackbackPingResponse = 1;
@@ -350,10 +350,10 @@ class Loggix_Module_Trackback extends Loggix_Module
                 } else {
                     $trackbackPingResponse = null; // null?
                 }
-            
+
                 // if sending Ping is success, return the results in an array.
                 $pingStatus[] = array($pingUri, $trackbackPingResponse);
-                
+
 //                echo var_dump($pingStatus);
                 // Plugin Action
                 $this->plugin->doAction('after-trackback-sent', $pingStatus);
@@ -361,7 +361,7 @@ class Loggix_Module_Trackback extends Loggix_Module
         } else {
             $pingStatus = array();
         }
-        
+
         return $pingStatus;
     }
 
@@ -375,11 +375,11 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function sendUpdatePing($id)
     {
         global $lang, $item;
-        
+
         if (!empty($_POST['send_update_ping']) && ($_POST['send_update_ping'] == 'yes')) {
-        
+
             $updatePingStatus = array();
-            
+
             $pingServerList = explode(",\r\n", stripslashes(trim(self::$config['ping_server_list'])));
             foreach($pingServerList as $pingTarget) {
                 $targetUri = parse_url($pingTarget);
@@ -396,7 +396,7 @@ class Loggix_Module_Trackback extends Loggix_Module
                             . '<value>' . htmlspecialchars(self::$config['loggix_title']) . '</value>'
                             . '</param>'
                             . '<param>'
-                            . '<value>' 
+                            . '<value>'
                             . 'http://' . $_SERVER['HTTP_HOST'] . self::$config['root_path'] . 'index.php'
                             . '</value>'
                             . '</param>'
@@ -408,10 +408,10 @@ class Loggix_Module_Trackback extends Loggix_Module
                               . 'User-Agent: Loggix XML-RPC' . "\r\n"
                               . 'Content-Type: text/xml' . "\r\n"
                               . 'Content-Length: ' . strlen($reqXml) . "\r\n\r\n"
-                              . $reqXml . "\r\n";     
+                              . $reqXml . "\r\n";
                     fputs($fp, $postPing);       // send data...
                     $pingRes = fread($fp, 4096); // ...and get response
-            
+
                     // Read XML responses to check error
                     if (preg_match('/<boolean>1<\/boolean>/', $pingRes)) {
                         $pingMessage = '<span class="important">' . $lang['tb_ping_error'] . '</span>';
@@ -442,7 +442,7 @@ class Loggix_Module_Trackback extends Loggix_Module
      *
      * @param  array $item
      * @return array $item
-     */    
+     */
     public function setEntryItem($item)
     {
         global $pathToIndex, $lang, $module;
@@ -450,10 +450,10 @@ class Loggix_Module_Trackback extends Loggix_Module
         $item['refer_id'] = stripslashes($item['blog_id']);
         $item['date']     = stripslashes($item['date']);
         $item['trash']    = stripslashes($item['trash']);
-        
+
         $repSql = 'SELECT '
                 .     'COUNT(id) '
-                . 'FROM ' 
+                . 'FROM '
                 .     TRACKBACK_TABLE . ' '
                 . 'WHERE '
                 .      'blog_id = :refer_id'
@@ -464,14 +464,14 @@ class Loggix_Module_Trackback extends Loggix_Module
                    array(
                        ':refer_id' => $item['blog_id'],
                        ':trash'    => 0
-                   )                   
+                   )
                );
         $item['replies'] = $stmt->fetchColumn();
 
         // Refered Entry Log Data
         $refSql = 'SELECT '
                 .     'l.title, l.date '
-                . 'FROM ' 
+                . 'FROM '
                 .     LOG_TABLE . ' AS l '
                 . 'WHERE '
                 .     'l.id = :id';
@@ -484,16 +484,16 @@ class Loggix_Module_Trackback extends Loggix_Module
         $refRow = $stmt2->fetch();
         $item['refer_title'] = stripslashes($refRow[0]);
         $item['refer_date']  = stripslashes($refRow[1]);
-        
+
         // Get Replies
         $repsSql = 'SELECT '
                  .     '* '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     TRACKBACK_TABLE . ' '
-                 . 'WHERE '                 
+                 . 'WHERE '
                  .     'blog_id = :refer_id'
                  .     ' AND '
-                 .     'trash = :trash';                 
+                 .     'trash = :trash';
         $stmt3 = $this->db->prepare($repsSql);
         $stmt3->execute(
                     array(
@@ -505,7 +505,7 @@ class Loggix_Module_Trackback extends Loggix_Module
         do {
             $item['reps'][] = $rep;
         } while ($rep = $stmt3->fetch());
-  
+
         return $item;
     }
 
@@ -520,13 +520,13 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function getArchives($res)
     {
          global $sessionState, $module, $pathToIndex, $lang;
-        
+
         $this->getModuleLanguage('trackback');
 
         $items = array();
         try {
             while ($item = $res->fetch()) {
-                $setItem = $this->setEntryItem($item);                
+                $setItem = $this->setEntryItem($item);
                 if (!in_array($item['blog_id'], $this->getDraftLogIdArray())) {
                     $items[] = $setItem;
                 }
@@ -539,18 +539,18 @@ class Loggix_Module_Trackback extends Loggix_Module
                 $xhtml = self::TRACKBACK_THEME_PATH . 'default.html';
             }
         } catch (Exception $e) {
-            $xhtml = '/theme/errors/file-not-found.html';  
+            $xhtml = '/theme/errors/file-not-found.html';
         }
 
         $contents = new Loggix_View($pathToIndex . $xhtml);
         $contents->assign('session_state', $sessionState);
         $contents->assign('items', $items);
         $contents->assign('lang', $lang);
-        $contents->assign('module', $module);                           
-        
+        $contents->assign('module', $module);
+
         return $contents->render();
     }
-    
+
     /**
      * Get draft log id array
      *
@@ -575,13 +575,13 @@ class Loggix_Module_Trackback extends Loggix_Module
     public function getRecentTrackbacks()
     {
         global $pathToIndex, $lang;
-        
+
         $this->getModuleLanguage('trackback');
-        
+
         $trackbackList = '';
         $sql = 'SELECT '
              .    'id, blog_id, title, name, date '
-             . 'FROM ' 
+             . 'FROM '
              .     TRACKBACK_TABLE . ' '
              . 'ORDER BY '
              .     'date DESC '
@@ -594,20 +594,20 @@ class Loggix_Module_Trackback extends Loggix_Module
                 if (!in_array($row['blog_id'], $this->getDraftLogIdArray())) {
                     $trackbackTitle = htmlspecialchars(stripslashes($row['title']));
                     $trackbackList .= '<li>'
-                                    . '<a href="' 
+                                    . '<a href="'
                                     . $pathToIndex . '/index.php?id=' . $row['blog_id'] . '#tb' . $row['id']
                                     . '" title="&quot;' . $trackbackTitle . '&quot;">'
-                                    . 'From ' . htmlspecialchars(stripslashes($row['name'])) 
+                                    . 'From ' . htmlspecialchars(stripslashes($row['name']))
                                     . '<br />' . date('y/m/d H:i', strtotime($row['date'])) . '</a>'
                                     . "</li>\n";
                 }
             }
         }
-        
-        if ($trackbackList == '') { 
-            $trackbackList = '<li>' . $lang['trackback']['default_message'] . '</li>'; 
+
+        if ($trackbackList == '') {
+            $trackbackList = '<li>' . $lang['trackback']['default_message'] . '</li>';
         }
-        
+
         return $trackbackList;
     }
 }

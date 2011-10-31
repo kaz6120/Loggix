@@ -24,13 +24,13 @@ if ($sessionState == 'on') {
 
         $app->sendAttachments();
         $app->sendDownloadableFile();
-        
+
         // Get this entry's id
         $sql = 'SELECT MAX(id) FROM ' . DOWNLOADS_META_TABLE;
         $res = $app->db->query($sql);
         $id  = $res->fetchColumn();
         $app->addTag(DOWNLOADS_TAG_MAP_TABLE, $id);
-        
+
         if (isset($id)) {
             if ($draft == '1') {
                 header('Location: ./drafts.php');

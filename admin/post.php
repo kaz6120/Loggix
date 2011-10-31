@@ -12,18 +12,18 @@ $sessionState = $app->getSessionState();
 $config       = $app->getConfigArray();
 
 if ($sessionState == 'on') {
-   
+
     if (isset($_POST['title'], $_POST['comment'], $_POST['draft'])) {
 
         $app->insertTagSafe();
-        
+
         $title       = $_POST['title'];
         $comment     = $_POST['comment'];
         $draftStatus = $_POST['draft'];
         $excerpt     = (isset($_POST['excerpt']))    ? $_POST['excerpt']    : '';
         $parent_key  = (isset($_POST['parent_key'])) ? $_POST['parent_key'] : '';
-                
-        if (isset($_POST['y'], $_POST['m'], $_POST['d'], 
+
+        if (isset($_POST['y'], $_POST['m'], $_POST['d'],
                   $_POST['h'], $_POST['i'], $_POST['s'])) {
             $Y = $_POST['y'];
             $m = $_POST['m'];
@@ -37,13 +37,13 @@ if ($sessionState == 'on') {
             $postDate = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
             $modDate  = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
         }
-        
+
         // Upload Attachiments
         $app->sendAttachments();
-        
+
         // Insert an new entry
         $app->db->beginTransaction();
-        $sql = 'INSERT INTO ' 
+        $sql = 'INSERT INTO '
              .     LOG_TABLE . ' '
              .         '('
              .             '`title`, '
@@ -64,7 +64,7 @@ if ($sessionState == 'on') {
              .         ')';
         $sql = $app->setDelimitedIdentifier($sql);
         $stmt = $app->db->prepare($sql);
-        
+
         $res = $stmt->execute(
                    array(
                        ':title'   => $title,
@@ -80,15 +80,15 @@ if ($sessionState == 'on') {
 //        $id = $app->db->lastInsertId();
         $selectMaxSql = 'SELECT MAX(id) FROM ' . LOG_TABLE;
         $id = $app->db->query($selectMaxSql)->fetchColumn();
-        
+
         // Plugin action
         $app->plugin->doAction('after-new-entry-posted', $id);
-        
+
         // Add tags
         $app->addTag(LOG_TAG_MAP_TABLE, $id);
-        
+
        // echo var_dump($res);
-        
+
         if (!empty($res)) {
             $app->db->commit();
             if ($draftStatus == '1') {
@@ -101,7 +101,7 @@ if ($sessionState == 'on') {
                     $tb  = new Loggix_Module_Trackback;
                     $tb->sendTrackback($id);
                 }
-                
+
                 header('Location: ../index.php?id=' . urlencode($id));
                 exit;
             }

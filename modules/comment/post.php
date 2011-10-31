@@ -18,24 +18,24 @@ $app    = new Loggix_Module_Comment;
 $config = $app->getConfigArray();
 $app->insertTagSafe();
 
-if ((isset($_POST['title'], 
-          $_POST['comment'], 
-          $_POST['user_name'], 
-          $_POST['user_pass'], 
-          $_POST['refer_id'], 
+if ((isset($_POST['title'],
+          $_POST['comment'],
+          $_POST['user_name'],
+          $_POST['user_pass'],
+          $_POST['refer_id'],
           $_POST['parent_key'])) &&
-    ($_POST['title'] != '') && 
-    ($_POST['comment'] != '') && 
-    ($_POST['user_name'] != '') && 
-    ($_POST['user_pass'] != '') && 
-    ($_POST['refer_id'] != '') && 
+    ($_POST['title'] != '') &&
+    ($_POST['comment'] != '') &&
+    ($_POST['user_name'] != '') &&
+    ($_POST['user_pass'] != '') &&
+    ($_POST['refer_id'] != '') &&
     ($_POST['parent_key'] != '')
    ) {
-   
+
    // Check if posting comment to the entry is allowed.
     $checkSql = 'SELECT '
               .     'allow_comments '
-              . 'FROM ' 
+              . 'FROM '
               .     LOG_TABLE . ' '
               . 'WHERE '
               .     "id = '" . $_POST['refer_id'] . "'";
@@ -71,22 +71,22 @@ if ((isset($_POST['title'],
     // Deny comment with the same content
     $checkSql = 'SELECT '
               .     'COUNT(id) '
-              . 'FROM ' 
+              . 'FROM '
               .     COMMENT_TABLE . ' '
               . 'WHERE '
               .     'comment = :comment';
-    
+
     $stmt = $app->db->prepare($checkSql);
     $stmt->execute(array(':comment' => $comment));
     $checkRow = $stmt->fetchColumn();
-    
+
     if ($checkRow > 1) {
         header('Location: ' . $pathToIndex . '/index.php?id=' . $referId . '#comments');
         exit;
     }
     // Kill check sql connection
     unset($checkRes);
-    
+
     // Deny by Referer
     if ((!isset($_SERVER['HTTP_REFERER'])) &&
         (!stristr($_SERVER['HTTP_REFERER'], 'comment/post.php'))
@@ -97,7 +97,7 @@ if ((isset($_POST['title'],
 
     // Plugin Filter before receiving comment
     $app->plugin->doAction('before-receive-comment', $referId);
-    
+
     // Spam Blocking
     if ((preg_match('/.*<\/?(?: ' . $config['block_tags'] . ')/i',  $_POST['comment'])) ||
         (preg_match('/.*(' . $config['block_keywords'] . ')/i',  $_POST['comment'])) ||
@@ -108,11 +108,11 @@ if ((isset($_POST['title'],
        ) {
         header('Location: ' . $pathToIndex . '/index.php?id=' . $referId . '#comments');
     } else {
-    
+
         if ($title == '') { $title = 'Re:'; }
-    
+
         // Get user's remote host info
-        $remoteHost = (!isset($_SERVER['REMOTE_HOST'])) 
+        $remoteHost = (!isset($_SERVER['REMOTE_HOST']))
                     ? @gethostbyaddr($_SERVER['REMOTE_ADDR'])
                     : $_SERVER['REMOTE_HOST'];
 
@@ -121,7 +121,7 @@ if ((isset($_POST['title'],
         $app->db->beginTransaction();
         $fdate = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
         $cmod  = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
-        
+
         $sql = 'INSERT INTO '
              .     COMMENT_TABLE . ' '
              .         '('
@@ -147,9 +147,9 @@ if ((isset($_POST['title'],
              .             ':date, '
              .             ':mod, '
              .             ':user_ip, '
-             .             ':refer_id' 
+             .             ':refer_id'
              .         ')';
-        $sql = $app->setDelimitedIdentifier($sql);      
+        $sql = $app->setDelimitedIdentifier($sql);
         $stmt = $app->db->prepare($sql);
         $res = $stmt->execute(
                    array(
@@ -165,7 +165,7 @@ if ((isset($_POST['title'],
                        ':refer_id'   => $referId
                    )
                );
-                
+
         $app->db->commit();
 
         header('Location: ' . $pathToIndex . '/index.php?id=' . $referId . '#comments');

@@ -1,6 +1,6 @@
 <?php
 /**
- * Loggix_Plugin - backslashToYen 
+ * Loggix_Plugin - backslashToYen
  *
  * This plugin converts UTF-8 or ascii "\(backslash)" and "&#92;"
  * to Japanese half-width "Yen" mark and "&#165;".
@@ -20,12 +20,12 @@ $this->plugin->addFilter('navigation', 'backslashToYen');
 $this->plugin->addFilter('comment-text', 'backslashToYen');
 $this->plugin->addFilter('edit-entry', 'backslashToYen');
 
-function backslashToYen($text) 
+function backslashToYen($text)
 {
     // Convert all backslashes to Yen mark
     return str_replace('&#92;', '&#165;', str_replace('\\', '&#92;', $text));
     //return str_replace('&#92;', '&#165;', str_replace('\', '&#92;', $text));
-     
+
     // Convert all backslashee to Yen mark except "&#92;"
     //return str_replace('\\', '&#165;', $text);
 }

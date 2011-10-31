@@ -32,7 +32,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Exception.php';
  *
  */
 class Loggix_Expander {
-    
+
     const EXPANDER_DATA_DIR       = './data/';
     const EXPANDER_PLUGIN_DIR     = './plugins/';
 
@@ -42,7 +42,7 @@ class Loggix_Expander {
      */
 
     public $plugin;
-    
+
     /**
      * @var float
      * @see __construct()
@@ -53,7 +53,7 @@ class Loggix_Expander {
     /**
      * @var object
      * @see Loggix_Utility
-     */    
+     */
     private $_delegate = null;
 
     /**
@@ -64,7 +64,7 @@ class Loggix_Expander {
     public function __construct()
     {
         global $pathToIndex;
-        
+
         self::$startTime = microtime();
         $this->plugin = new Loggix_Plugin;
         $this->_includePlugins();
@@ -94,7 +94,7 @@ class Loggix_Expander {
         global $pathToIndex, $config, $module;
         if ($dh = @opendir(self::EXPANDER_PLUGIN_DIR)) {
             while (($file = readdir($dh)) !== false) {
-                if (($file != '.') && ($file != '..') && 
+                if (($file != '.') && ($file != '..') &&
                     (strpos($file, '.php'))) {
                     include_once self::EXPANDER_PLUGIN_DIR . $file;
                 }
@@ -105,27 +105,27 @@ class Loggix_Expander {
 
     /**
      * Get and Display Expander Content
-     * 
+     *
      * Supported extensions are:
-     * .inc.php | .php | .inc | .html | .txt | 
+     * .inc.php | .php | .inc | .html | .txt |
      * .text, .markdown, .md, .mdown, .mkd, .mkdn (Markdown format)
      *
      * @return string $contents
      */
-    public function getContent() 
-    {    
+    public function getContent()
+    {
         global $pathToIndex, $config, $lang, $item, $module;
-        
+
         $this->getModuleLanguage();
-        
+
         $contents = '';
-        
+
         // Load data file by ID
-        // foo.inc.php | foo.php | foo.inc | foo.html | foo.txt | 
+        // foo.inc.php | foo.php | foo.inc | foo.html | foo.txt |
         // foo.text, foo.markdown, foo.md, foo.mdown, foo.mkd, foo.mkdn, |
         try {
-            $id = (isset($_GET['id'])) 
-                  ? str_replace(DIRECTORY_SEPARATOR, '', 
+            $id = (isset($_GET['id']))
+                  ? str_replace(DIRECTORY_SEPARATOR, '',
                                 htmlspecialchars(basename($_GET['id'])))
                   : 'default';
 
@@ -142,12 +142,12 @@ class Loggix_Expander {
                 'mkd'      => self::EXPANDER_DATA_DIR . $id . '.mkd',
                 'mkdn'     => self::EXPANDER_DATA_DIR . $id . '.mkdn',
             );
-            
+
             $aView = new Loggix_View();
             $aView->assign('config', $config);
             $aView->assign('lang', $lang);
             $aView->assign('module', $module);
-            
+
             if (file_exists($contentType['inc.php'])) {
                 $contents = $aView->render($contentType['inc.php']);
             } else if (file_exists($contentType['php'])) {
@@ -157,8 +157,8 @@ class Loggix_Expander {
             } else if (file_exists($contentType['html'])) {
                 $contents = $aView->render($contentType['html']);
             } else if (file_exists($contentType['txt'])) {
-                $contents = "<pre>\n" 
-                          . $aView->render($contentType['txt']) 
+                $contents = "<pre>\n"
+                          . $aView->render($contentType['txt'])
                           . "</pre>\n";
             } else if (file_exists($contentType['text'])) {
                 $contents = $aView->render($contentType['text']);
@@ -169,7 +169,7 @@ class Loggix_Expander {
             } else if (file_exists($contentType['mdown'])) {
                 $contents = $aView->render($contentType['mdown']);
             } else if (file_exists($contentType['mkd'])) {
-                $contents = $aView->render($contentType['mkd']);            
+                $contents = $aView->render($contentType['mkd']);
             } else if (file_exists($contentType['mkdn'])) {
                 $contents = $aView->render($contentType['mkdn']);
             } else {
@@ -204,17 +204,17 @@ class Loggix_Expander {
 
     /**
      * Send HTTP Headers to User Agent
-     * 
+     *
      * @return void
      */
     public function sendHttpHeaders()
     {
         global $pathToIndex, $config;
-        
+
         // Get Last-Modified
         $date = $this->getDataLastModified('Y-m-d H:i:s');
-        $lastModifiedGmt = (!empty($date)) 
-                           ? gmdate('D, d M Y H:i:s', strtotime($date)) . ' GMT' 
+        $lastModifiedGmt = (!empty($date))
+                           ? gmdate('D, d M Y H:i:s', strtotime($date)) . ' GMT'
                            : 'Tue, 24 Jan 1984 06:00:00 GMT';
 
         // Select XML Version
@@ -225,7 +225,7 @@ class Loggix_Expander {
                 break;
             case '1.1cn':
                 // Content Negotiation
-                if ((stristr($_SERVER['HTTP_ACCEPT'], 'application/xhtml+xml')) || 
+                if ((stristr($_SERVER['HTTP_ACCEPT'], 'application/xhtml+xml')) ||
                     (stristr($_SERVER['HTTP_USER_AGENT'], 'W3C_Validator')) ||
                     (stristr($_SERVER['HTTP_USER_AGENT'], 'Another_HTML-lint'))) {
                     $mediaType = 'application/xhtml+xml';
@@ -246,7 +246,7 @@ class Loggix_Expander {
 
     /**
      * Display XHTML
-     * 
+     *
      * @param  array $item
      * @param  string $sessionState
      * @uses   setMenuItems
@@ -257,11 +257,11 @@ class Loggix_Expander {
     public function display($item, $sessionState)
     {
         global $config, $pathToIndex, $module, $lang;
-        
+
         ob_start();
-        
+
         $this->getModuleLanguage();
-        
+
         $item['site_title'] = $this->plugin->applyFilters('h1', $config['loggix_title']);
 
         // Navigation View
@@ -284,8 +284,8 @@ class Loggix_Expander {
         $xhtml->assign('module', $module);
 
         echo $this->plugin->applyFilters('xhtml', $xhtml->render('./theme/base.html'));
-        
+
         ob_end_flush();
-        
+
     }
 }

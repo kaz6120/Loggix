@@ -9,7 +9,7 @@
  * @link      http://loggix.gotdns.org/
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
- * @version   9.8.19 
+ * @version   9.8.19
  */
 
 
@@ -31,13 +31,13 @@ class Loggix_View {
      * @see __construct()
      */
     private $_templateVars;
-    
+
     /**
      * @var string
      * @see __construct()
      */
     private $_templateFile;
-    
+
     /**
      * @var string
      */
@@ -48,7 +48,7 @@ class Loggix_View {
      */
     //private static $_delegate = null;
     private $_delegate = null;
-    
+
     /**
      * Constructor
      *
@@ -69,7 +69,7 @@ class Loggix_View {
         $this->_delegate = new Loggix_View_Helper;
         return call_user_func_array(array($this->_delegate, $method), $args);
     }
-    
+
     /**
      * Assign a template variable.
      *
@@ -98,7 +98,7 @@ class Loggix_View {
      * @param  $templateFile
      * @return string $contents
      */
-    public function render($templateFile = null) 
+    public function render($templateFile = null)
     {
         if (!$templateFile) { $templateFile = $this->_templateFile; }
         extract($this->_templateVars);
@@ -112,7 +112,7 @@ class Loggix_View {
 
     /**
      * Output the result to an User Agent.
-     * 
+     *
      * @param  $templateFile
      * @return void
      */

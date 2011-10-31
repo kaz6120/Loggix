@@ -24,14 +24,14 @@ require_once $pathToIndex . '/lib/Loggix/Module.php';
 class Loggix_Module_Rss extends Loggix_Module
 {
     const RSS_THEME_PATH     = '/modules/rss/theme/';
-    
+
     /**
      * Generate RSS URI
      */
     public function getRssUri($rssVersion)
     {
         global $module;
-        
+
         if (stristr($this->getRequestUri(), 'modules/downloads')) {
             if (isset($_GET['id'])) {
                 $id = 'id=dl_' . $_GET['id'];
@@ -80,7 +80,7 @@ class Loggix_Module_Rss extends Loggix_Module
         } else {
             $queryString = '?' . $_SERVER['QUERY_STRING'];
         }
-        $rssUri = $this->getRootUri() 
+        $rssUri = $this->getRootUri()
                 . 'modules/rss/' . $rssVersion . '.php' . $queryString;
         return htmlspecialchars($rssUri);
     }
@@ -105,7 +105,7 @@ class Loggix_Module_Rss extends Loggix_Module
             return 'Y-m-d\TH:i:s';
             break;
         }
-    
+
     }
 
 
@@ -117,7 +117,7 @@ class Loggix_Module_Rss extends Loggix_Module
     public function getRssLinkRel()
     {
         global $module;
-        
+
         $rssVersion2 = $this->getRssUri('2.0');
         return '<link rel="alternate" type="application/rss+xml" '
              . 'title="RSS 2.0" href="' . $rssVersion2 . '" />' . "\n";
@@ -132,10 +132,10 @@ class Loggix_Module_Rss extends Loggix_Module
     public function getRss()
     {
         global $module, $lang;
-        
+
         $this->getModuleLanguage('rss');
         $rssVersion2 = $this->getRssUri('2.0');
-        return '<p><a href="' . $rssVersion2 . '" class="rss" title="' 
+        return '<p><a href="' . $rssVersion2 . '" class="rss" title="'
              . $lang['rss_2_of_this_page'] . '">RSS</a></p>' . "\n";
     }
 
@@ -149,10 +149,10 @@ class Loggix_Module_Rss extends Loggix_Module
     public function getEnclosureInfo($enclosureName)
     {
         global $pathToIndex;
-        
+
         $filename = 'data/resources/' . $enclosureName;
         $enclosurePath = $pathToIndex . '/' . $filename;
-        
+
         if (file_exists($enclosurePath)) {
             $enclosureName = $enclosureName;
             $enclosureSize = filesize($enclosurePath);
@@ -211,7 +211,7 @@ class Loggix_Module_Rss extends Loggix_Module
         }
         return $enclosure;
     }
-    
+
     /**
      * Convert Text to Enclosure
      *

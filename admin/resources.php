@@ -1,7 +1,7 @@
 <?php
 /**
  * Resources directory index
- * 
+ *
  * @since   5.6.29
  * @version 8.2.25
  */
@@ -20,14 +20,14 @@ if ($sessionState == 'on') {
         $del = $_POST['del'];
         unlink($del);
     }
-    
+
     $dir = '../data/resources/';
-    
+
     if ($handle = opendir($dir)) {
         while (false !== ($file = readdir($handle))) {
-            if (($file != '.') && 
-                ($file != '..') && 
-                ($file != 'index.php') && 
+            if (($file != '.') &&
+                ($file != '..') &&
+                ($file != 'index.php') &&
                 ($file != '.DS_Store')) {
                 $filePath  = $dir . $file;
                 $item['file']      = $filePath;
@@ -36,8 +36,8 @@ if ($sessionState == 'on') {
                 $item['file_type'] = filetype($filePath);
                 $item['file_size'] = $app->toMegaByte(filesize($filePath));
                 $size = getimagesize($filePath);
-                $item['width_height'] = ($size != null) 
-                                        ? $size[0] . '&#215;' . $size[1] 
+                $item['width_height'] = ($size != null)
+                                        ? $size[0] . '&#215;' . $size[1]
                                         : '-';
                 $items[] = $item;
             }

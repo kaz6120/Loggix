@@ -20,13 +20,13 @@ $sessionState = $app->getSessionState();
 $app->getModuleLanguage('comment');
 $app->insertTagSafe();
 
-// Display Editor 
+// Display Editor
 if (isset($_GET['id'])) {
     $id  = intval($_GET['id']);
     // Main Contents
     $sql = 'SELECT '
          .     '* '
-         . 'FROM ' 
+         . 'FROM '
          .     COMMENT_TABLE . ' '
          . 'WHERE '
          .     'id = :id';
@@ -36,7 +36,7 @@ if (isset($_GET['id'])) {
                    ':id' => $id
                )
            );
-    
+
     if ($stmt) {
         while ($row = $stmt->fetch()) {
             $item['comments']['id']        = intval($row['id']);
@@ -47,12 +47,12 @@ if (isset($_GET['id'])) {
             $item['comments']['title']     = htmlspecialchars($row['title']);
             $item['comments']['comment']   = htmlspecialchars($row['comment']);
             $item['comments']['refer_id']  = intval($row['refer_id']);
-            
+
             // Items only admin can see...
             $item['admin']['user_ip']      = $row['user_ip'];
             $item['admin']['user_mail']    = $row['user_mail'];
             $item['admin']['user_pass']    = $row['user_pass'];
-            
+
             // Load presentation template
             $sessionState = $app->getSessionState();
             if ($sessionState == 'on') {
@@ -70,8 +70,8 @@ if (isset($_GET['id'])) {
             $item = $app->setMenuItems($sessionState);
             $smileyButton = new Loggix_View($pathToIndex . '/theme/smiley-button.html');
             $item['smiley_button'] = $smileyButton->render();
-            
-            $editFormViewFile = $pathToIndex 
+
+            $editFormViewFile = $pathToIndex
                               . Loggix_Module_Comment::COMMENT_THEME_PATH
                               . 'edit-form.html';
             $contentsView = new Loggix_View($editFormViewFile);
@@ -89,20 +89,20 @@ if (isset($_GET['id'])) {
     } else {
         $item['contents'] = 'Error!';
     }
-    $item['title'] = $app->setTitle(array($lang['edit'], 
+    $item['title'] = $app->setTitle(array($lang['edit'],
                                           $lang['comments'] . ' No.' . $item['comments']['id']));
     // Pager
     $item['pager'] = '';
     $item['result'] = '';
     $app->display($item, $sessionState);
-    
+
 // Edit Action
-} elseif (isset($_POST['user_name'], 
+} elseif (isset($_POST['user_name'],
                 $_POST['user_pass'],
-                $_POST['title'], 
-                $_POST['comment'], 
-                $_POST['id'], 
-                $_POST['refer_id'], 
+                $_POST['title'],
+                $_POST['comment'],
+                $_POST['id'],
+                $_POST['refer_id'],
                 $_POST['mod_del'])
           ) {
     $userName       = $_POST['user_name'];
@@ -113,7 +113,7 @@ if (isset($_GET['id'])) {
     $referId        = intval($_POST['refer_id']);
     $modifyOrDelete = intval($_POST['mod_del']);
     $userUri        = (isset($_POST['user_uri'])) ? $_POST['user_uri'] : '';
-    
+
     $item = array('user_name' => $userName,
                   'user_pass' => $userPass,
                   'title'     => $title,
@@ -121,28 +121,28 @@ if (isset($_GET['id'])) {
                   'id'        => $id,
                   'refer_id'  => $referId,
                   'trash'     => $modifyOrDelete,
-                  'user_uri'  => $userUri                
+                  'user_uri'  => $userUri
             );
-    
+
 
     $userCheckSql = 'SELECT '
                   .     'user_pass '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     COMMENT_TABLE . ' '
                   . 'WHERE '
                   .     "id = '" . $item['id'] . "'";
-    
+
     $checkRes = $app->db->query($userCheckSql);
     $checkRow = $checkRes->fetch();
     $checkRes = null; // to unlock database
-    
-    // Authorize 
+
+    // Authorize
     $authorized = (($sessionState == 'on') && (isset($_POST['admin']) == 'yes') ||
                    ($checkRow['user_pass'] == $userPass))
                 ? 'yes'
                 : 'no';
     $app->updateComment($item, $authorized);
-    
+
 
 } else {
     header('Location: ' . $pathToIndex . '/index.php');

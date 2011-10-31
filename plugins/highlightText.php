@@ -12,13 +12,13 @@
 $this->plugin->addFilter('entry-content', 'highlightText', 2);
 $this->plugin->addFilter('ex-content', 'highlightText');
 
-function highlightText($text) 
+function highlightText($text)
 {
     global $pathToIndex;
-    
+
     set_include_path($pathToIndex . '/lib/php');
     require_once 'Text/Highlighter.php';
-    require_once 'Text/Highlighter/Renderer/Html.php'; 
+    require_once 'Text/Highlighter/Renderer/Html.php';
 
     $pattern = '/'
              . '(<pre class=")' // matches[1]
@@ -45,23 +45,23 @@ function highlightText($text)
         // Remove "\n" in the first line.
         $sourceCode = preg_replace('(^\\n)', '', $sourceCode);
         $sourceCode = str_replace('&#92;', '\\', $sourceCode); // To keep compatible with Markdown
-        
+
         // Create renderer
         $renderer = new Text_Highlighter_Renderer_Html(
-                            array("numbers" => HL_NUMBERS_TABLE, 
+                            array("numbers" => HL_NUMBERS_TABLE,
                                   "tabsize" => 4
                                  )
-                            ); 
-        $hlHtml = Text_Highlighter::factory($syntaxStyle); 
+                            );
+        $hlHtml = Text_Highlighter::factory($syntaxStyle);
         $hlHtml->setRenderer($renderer);
         // Convert text to highligten code
         $replacement = $hlHtml->highlight($sourceCode);
-            
+
         // Matched pattern
         $matchedText = $matches[1][$i]
-                     . $matches[2][$i] 
-                     . $matches[3][$i] 
-                     . $matches[4][$i] 
+                     . $matches[2][$i]
+                     . $matches[3][$i]
+                     . $matches[4][$i]
                      . $matches[5][$i];
 
         $text = str_replace($matchedText, $replacement, $text);

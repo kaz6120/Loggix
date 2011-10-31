@@ -1,7 +1,7 @@
 <?php
 /**
  * @since   5.5.26
- * @version 8.2.25 
+ * @version 8.2.25
  */
 
 $pathToIndex = '..';

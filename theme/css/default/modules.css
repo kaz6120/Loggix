@@ -121,7 +121,7 @@ textarea {
 } .rss:active {
     border: 1px solid #ff9933;
     background: transparent url(./images/feed-icon-16x16.png) no-repeat 2px 50%;
-    color: #99cc00; 
+    color: #99cc00;
     text-decoration : none;
 }
 
@@ -226,7 +226,7 @@ textarea {
 }
 
 /* Rounded corners in navigation anchors */
-.pager a, 
+.pager a,
 .pager span#current-page,
 #prev-logs a {
     -webkit-border-radius: 2px !important;
@@ -329,7 +329,7 @@ table#calendar {
     color: #ffffff;
     font-weight: bold;
 } table#calendar td.log-exists a:hover {
-    color: #ffff66; 
+    color: #ffff66;
     text-decoration : none;
 }
 
