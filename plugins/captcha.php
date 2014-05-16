@@ -7,7 +7,7 @@
  * @license   http://www.opensource.org/licenses/bsd-license.php  New BSD License
  * @since     5.5.16
  * @version   9.2.21
- */ 
+ */
 
 $this->plugin->addFilter('comment-post-form', 'displayCaptcha');
 $this->plugin->addAction('before-receive-comment', 'checkCommentWithCaptcha');
@@ -20,7 +20,7 @@ function displayCaptcha($text)
 {
 
     global $config, $pathToIndex;
-    
+
     switch ($config['language']) {
         case 'japanese':
             $textParts = array(
@@ -33,11 +33,11 @@ function displayCaptcha($text)
             );
             break;
     }
-    
+
     $stringsToConvert = array(
-        '<p id="comment-submit">', 
+        '<p id="comment-submit">',
     );
-    
+
     $replacements = array(
 '<p id="captcha">
 <img src="' . $pathToIndex . '/plugins/captcha/captcha-image.php" width="200" height="50" alt="CAPTCHA™ Code" />
@@ -45,7 +45,7 @@ function displayCaptcha($text)
 </p>
 <p id="comment-submit">',
     );
-    
+
 
     $captcha = (function_exists('imagecreate'))
              ? str_replace($stringsToConvert, $replacements, $text)
@@ -62,7 +62,7 @@ function checkCommentWithCaptcha()
     global $config, $pathToIndex, $userName, $sessionState, $app;
 
     require $pathToIndex . '/plugins/captcha/php-captcha.inc.php';
-    
+
     switch ($config['language']) {
         case 'japanese':
             $textParts = array(
@@ -77,7 +77,7 @@ function checkCommentWithCaptcha()
             );
             break;
     }
-    
+
     if (PhpCaptcha::Validate($_POST['captcha_phrase'])) {
         return true;
     } else {
@@ -86,14 +86,14 @@ function checkCommentWithCaptcha()
                  . '<div class="important warning">' . "\n"
                  . '<p>' . $textParts[1] . '</p>'. "\n"
                  . '</div>' . "\n";
-                 
+
         $item = array(
             'title'    => $app->setTitle($additionalTitle),
             'contents' => $content,
             'result'   => '',
             'pager'    => ''
         );
-        
+
         $app->display($item, $sessionState);
         exit;
     }

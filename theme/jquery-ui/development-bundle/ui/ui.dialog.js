@@ -26,7 +26,7 @@ var setDataSwitch = {
 		resize: "drag.resizable",
 		resizeStop: "stop.resizable"
 	},
-	
+
 	uiDialogClasses =
 		'ui-dialog ' +
 		'ui-widget ' +
@@ -137,7 +137,7 @@ $.widget("ui.dialog", {
 
 		(options.bgiframe && $.fn.bgiframe && uiDialog.bgiframe());
 		(options.autoOpen && this.open());
-		
+
 	},
 
 	destroy: function() {
@@ -155,7 +155,7 @@ $.widget("ui.dialog", {
 
 	close: function(event) {
 		var self = this;
-		
+
 		if (false === self._trigger('beforeclose', event)) {
 			return;
 		}
@@ -186,7 +186,7 @@ $.widget("ui.dialog", {
 			|| (!this.options.stack && !this.options.modal)) {
 			return this._trigger('focus', event);
 		}
-		
+
 		if (this.options.zIndex > $.ui.dialog.maxZ) {
 			$.ui.dialog.maxZ = this.options.zIndex;
 		}

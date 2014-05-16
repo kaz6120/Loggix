@@ -5,7 +5,7 @@
 <th colspan="7" abbr="Year and Month">
 <!-- Begin Monthly Archives -->
 <ul id="archives">
- <li> 
+ <li>
   <a id="current-month" href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['this_month']?>&amp;ex=1"><?php echo $item['calendar']['year_and_month']?></a>
   <ul id="arcvhies-by-year">
 <?php foreach($item['calendar']['year_array'] as $year => $value1 ): ?>
@@ -38,7 +38,7 @@
 <tfoot>
 <tr>
 <td colspan="7">
-<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['prev_month']?>&amp;ex=1" class="prev-month"><?php echo $item['calendar']['prev_month_link']?></a> | 
+<a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['prev_month']?>&amp;ex=1" class="prev-month"><?php echo $item['calendar']['prev_month_link']?></a> |
 <a href="<?php echo $item['calendar']['dir']?>/<?php echo $item['calendar']['target']?>.php?d=<?php echo $item['calendar']['next_month']?>&amp;ex=1" class="next-month"><?php echo $item['calendar']['next_month_link']?></a>
 </td>
 </tr>

@@ -12,9 +12,9 @@ $sessionState = $app->getSessionState();
 $config       = $app->getConfigArray();
 
 if ($sessionState == 'on') {
-    
+
     $app->insertTagSafe();
-    
+
     if (isset($_POST['title'], $_POST['comment'], $_POST['id'])) {
         $id            = $_POST['id'];
         $title         = $_POST['title'];
@@ -24,12 +24,12 @@ if ($sessionState == 'on') {
         $allowComments = (!isset($_POST['allow_comments'])) ? '0' : '1';
         $allowPings    = (!isset($_POST['allow_pings']))    ? '0' : '1';
         $draft         = $_POST['draft'];
-        
+
         // Upload Attachments
         $app->sendAttachments();
-        
-        
-        if (isset($_POST['y'], $_POST['m'], $_POST['d'], 
+
+
+        if (isset($_POST['y'], $_POST['m'], $_POST['d'],
                   $_POST['h'], $_POST['i'], $_POST['s'])) {
             $Y = $_POST['y'];
             $m = $_POST['m'];
@@ -43,10 +43,10 @@ if ($sessionState == 'on') {
             $postDate = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
             $modDate  = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
         }
-        
+
         $app->db->beginTransaction();
-        
-        $sql = 'UPDATE ' 
+
+        $sql = 'UPDATE '
              .     LOG_TABLE . ' '
              . 'SET '
              .     '`title` = :title, '
@@ -76,7 +76,7 @@ if ($sessionState == 'on') {
                        ':id'             => $id
                    )
                );
-        
+
         // Add Tag
         $app->addTag(LOG_TAG_MAP_TABLE, $id);
 
@@ -84,7 +84,7 @@ if ($sessionState == 'on') {
             $app->db->commit();
             $sql  = 'SELECT '
                   .     'draft '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     LOG_TABLE . ' '
                   . 'WHERE '
                   .     'id = :id';
@@ -92,7 +92,7 @@ if ($sessionState == 'on') {
             $stmt->execute(
                        array(
                            'id' => $id
-                       )  
+                       )
                    );
             $item = $stmt->fetch();
             if ($item['draft'] == '1') {

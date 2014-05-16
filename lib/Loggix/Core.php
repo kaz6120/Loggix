@@ -57,7 +57,7 @@ class Loggix_Core
      * SQLite3 is recommended. If you want to use SQLite2, just remove SQLite3
      * database and SQLite2 database will be loaded automatically.
      */
-   
+
     const LOGGIX_DATABASE_TYPE    = 'MySQL'; // SQLite | MySQL
     const LOGGIX_SQLITE_2         = '/data/loggix.sqlite.db';  // SQLite type 2
     const LOGGIX_SQLITE_3         = '/data/loggix.sqlite3.db'; // SQLite type 3
@@ -72,7 +72,7 @@ class Loggix_Core
     const LOGGIX_TITLE_SEPARATOR  = ' : ';
     const LOGGIX_PROJ_URI         = 'https://github.com/kaz6120/Loggix';
     const LOGGIX_VERSION          = '11.5.24';
-    
+
 
     // {{{ Properties
 
@@ -102,16 +102,16 @@ class Loggix_Core
      * @see __construct()
      */
     public static $config;
-    
-    
+
+
     /**
      * @var object
      * @see Loggix_Utility
-     */    
+     */
     private static $_delegate = null;
-    
+
     // }}}
-   
+
     /**
      * Constructor : Open datbase and load functions and modules.
      *
@@ -122,7 +122,7 @@ class Loggix_Core
     public function __construct()
     {
         global $pathToIndex, $lang, $module, $item;
-        
+
         try {
             // Switch database
             switch (self::LOGGIX_DATABASE_TYPE) {
@@ -130,14 +130,14 @@ class Loggix_Core
                     $this->db = new PDO(
                                     'mysql:'
                                     . 'host='   . self::LOGGIX_MYSQL_HOST . ';'
-                                    . 'dbname=' . self::LOGGIX_MYSQL_DBNAME, 
-                                    self::LOGGIX_MYSQL_USER, 
+                                    . 'dbname=' . self::LOGGIX_MYSQL_DBNAME,
+                                    self::LOGGIX_MYSQL_USER,
                                     self::LOGGIX_MYSQL_PASS
                                 );
                     break;
                 default :
                     $sqlite2 = $pathToIndex . self::LOGGIX_SQLITE_2;
-                    $sqlite3 = $pathToIndex . self::LOGGIX_SQLITE_3;        
+                    $sqlite3 = $pathToIndex . self::LOGGIX_SQLITE_3;
                     $dbPath  = (file_exists($sqlite3))
                              ? 'sqlite:'  . $sqlite3
                              : 'sqlite2:' . $sqlite2;
@@ -147,19 +147,19 @@ class Loggix_Core
         } catch (PDOException $exception){
             die($exception->getMessage());
         }
-        
+
         self::$startTime = microtime();
         self::$config = $this->getConfigArray();
-        
+
         $this->_includeModules();
         $lang = $this->getLanguage();
-        
+
         $this->plugin = new Loggix_Plugin;
         $this->_includePlugins();
 
     }
 
-    
+
     /**
      * Relay the method call to Loggix_Utility
      *
@@ -185,7 +185,7 @@ class Loggix_Core
         }
         return $config;
     }
-    
+
     /**
      * Load Modules in /lib/Loggix/Module/ directory.
      *
@@ -194,10 +194,10 @@ class Loggix_Core
     private function _includeModules()
     {
         global $pathToIndex, $module;
-        
+
         foreach (scandir($pathToIndex . self::LOGGIX_MODULE_DIR) as $moduleFile) {
-            if (($moduleFile != '.')  && 
-                ($moduleFile != '..') && 
+            if (($moduleFile != '.')  &&
+                ($moduleFile != '..') &&
                 (strpos($moduleFile, '.php'))) {
                 include_once $pathToIndex . self::LOGGIX_MODULE_DIR . $moduleFile;
             }
@@ -213,10 +213,10 @@ class Loggix_Core
     private function _includePlugins()
     {
         global $pathToIndex, $module;
-        
+
         foreach (scandir($pathToIndex . self::LOGGIX_PLUGIN_DIR) as $pluginFile) {
-            if (($pluginFile != '.')  && 
-                ($pluginFile != '..') && 
+            if (($pluginFile != '.')  &&
+                ($pluginFile != '..') &&
                 (strpos($pluginFile, '.php'))) {
                 include_once $pathToIndex . self::LOGGIX_PLUGIN_DIR . $pluginFile;
             }
@@ -245,8 +245,8 @@ class Loggix_Core
     public static function getRequestUri()
     {
         return 'http' . ((!empty($_SERVER['HTTPS'])) ? 's' : '') . '://'
-             . $_SERVER['HTTP_HOST'] 
-             . $_SERVER['SCRIPT_NAME'] 
+             . $_SERVER['HTTP_HOST']
+             . $_SERVER['SCRIPT_NAME']
              . (!empty($_SERVER['QUERY_STRING']) ? '?' . $_SERVER['QUERY_STRING'] : '');
     }
 
@@ -261,14 +261,14 @@ class Loggix_Core
         return 'http' . ((!empty($_SERVER['HTTPS'])) ? 's' : '') .
                '://' . $_SERVER['HTTP_HOST'] . self::$config['root_dir'];
     }
-    
+
     /**
      * Session Control
      *
      * @return string $sessionState :== 'on' | 'off'
      */
 
-    public function getSessionState() 
+    public function getSessionState()
     {
         global $pathToIndex, $dsn, $sessionState;
 
@@ -285,7 +285,7 @@ class Loggix_Core
             $userPass = $_POST['user_pass'];
             $sql = 'SELECT '
                  .     'COUNT(user_id) '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     USER_TABLE . ' '
                  . 'WHERE '
                  .     '(user_pass = :user_pass)'
@@ -302,8 +302,8 @@ class Loggix_Core
                 $_SESSION['user_name'] = $userName;
                 $_SESSION['user_pass'] = $userPass;
             }
-        }        
-        
+        }
+
         /**
          * If there is a session variables,
          * (1) Check if it is the user registered in user database.
@@ -315,7 +315,7 @@ class Loggix_Core
             $userPass = $_SESSION['user_pass'];
             $sql = 'SELECT '
                  .     'COUNT(user_id) '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     USER_TABLE . ' '
                  . 'WHERE '
                  .     '(user_pass = :user_pass)'
@@ -328,8 +328,8 @@ class Loggix_Core
                            ':user_name' => $userName
                        )
                    );
-            $sessionState = ($stmt->fetchColumn() == 1) 
-                          ? 'on' 
+            $sessionState = ($stmt->fetchColumn() == 1)
+                          ? 'on'
                           : $this->getOutOfSession();
         } else {
             $sessionState = $this->getOutOfSession();
@@ -353,8 +353,8 @@ class Loggix_Core
 
         return $sessionState = 'off';
     }
-    
-    
+
+
     /**
      * Get Admin Menu
      *
@@ -365,38 +365,38 @@ class Loggix_Core
      */
     public function getAdminMenu($sessionState)
     {
-    
+
         global $pathToIndex, $lang, $item, $id;
 
         $manLang = $this->setXmlLanguage();
-        
+
         // Check drafts
         $sql  = 'SELECT '
               .     'COUNT(l.id) '
-              . 'FROM ' 
+              . 'FROM '
               .     LOG_TABLE . ' AS l '
               . 'WHERE '
               .     "l.draft = '1'";
         $res  = $this->db->query($sql);
         $rows = $res->fetchColumn();
         $numberOfDrafts = $lang['draft'] . ' (' . $rows . ')';
-        
+
         // Check Downloads drafts
         $sql2  = 'SELECT '
                .     'COUNT(dlm.id) '
-               . 'FROM ' 
+               . 'FROM '
                .     DOWNLOADS_META_TABLE . ' AS dlm '
                . 'WHERE '
                .     "dlm.draft = '1'";
         $res2  = $this->db->query($sql2);
         $rows2 = $res2->fetchColumn();
         $numberOfDownloadDrafts = $lang['dl_draft'] . ' (' . $rows2 . ')';
-        
+
         // Admin menu list
         $menuList1 = array(
             $lang['logout']         => 'admin/login.php?status=logout',
             $lang['manage_users']   => 'admin/users.php'
-            
+
         );
 
         $menuList2 = array(
@@ -426,8 +426,8 @@ class Loggix_Core
 
         // Presentation
         if ($sessionState === 'on') {
-            $templateFile = $pathToIndex 
-                          . self::LOGGIX_THEME_DIR 
+            $templateFile = $pathToIndex
+                          . self::LOGGIX_THEME_DIR
                           . 'admin/menu.html';;
             $adminMenu = new Loggix_View($templateFile);
             $adminMenu->assign('item', $item);
@@ -451,20 +451,20 @@ class Loggix_Core
         global $pathToIndex, $item, $id;
         $list = '';
         $reqUri = $this->getRequestUri();
-        
+
         foreach ($menuArray as $key => $value) {
-        
+
                 $idValue = str_replace('.php', '', $value);
                 $idValue = str_replace('?status=logout', '', $idValue);
                 $idValue = str_replace('/', ' ', $idValue);
                 $idValue = trim($idValue);
                 $idValue = str_replace(' ', '-', $idValue);
-                
-            if ((((isset($id)) && ($id != '') && 
+
+            if ((((isset($id)) && ($id != '') &&
                  (($reqUri . '?id=' . $id) == $this->getRootUri() . preg_replace('/^.\//', '', $value)))) ||
-                (((!isset($id)) && 
+                (((!isset($id)) &&
                   ($reqUri == $this->getRootUri() . preg_replace('/^.\//', '', $value)))) ||
-                (((!isset($id)) && preg_match('/.*\/$/', $value) && 
+                (((!isset($id)) && preg_match('/.*\/$/', $value) &&
                   ($reqUri == $this->getRootUri() . preg_replace('/^.\//', '', $value) . 'index.php')))
                ) {
                 $list .= '<li id="' . $idValue . '" class="cur-menu">' . $key . "</li>\n";
@@ -472,7 +472,7 @@ class Loggix_Core
                 $list .= '<li id="' . $idValue . '" class="menu">'
                        . '<a href="' . $value . '" class="menu">' . $key . '</a>'
                        . "</li>\n";
-            } else { 
+            } else {
                 $list .= '<li id="' . $idValue . '" class="menu">'
                        . '<a href="' . $pathToIndex . '/' . $value . '" class="menu">'
                        . $key . '</a>'
@@ -544,7 +544,7 @@ class Loggix_Core
         foreach ($tag as $tagId) {
             $checkSql = 'SELECT '
                       .     'COUNT(id) '
-                      . 'FROM ' 
+                      . 'FROM '
                       .     $tagMapTable . ' '
                       . 'WHERE '
                       .     '(log_id = :log_id)'
@@ -560,7 +560,7 @@ class Loggix_Core
             $countId  = $stmt3->fetchColumn();
             if ($countId == '0') {
                 $addTagSql = 'INSERT INTO '
-                           .     $tagMapTable 
+                           .     $tagMapTable
                            .         '(log_id, tag_id) '
                            .     'VALUES'
                            .         '(:log_id, :tag_id)';
@@ -577,7 +577,7 @@ class Loggix_Core
         //}
     }
 
-    
+
     /**
      * Generate tag array
      *
@@ -587,21 +587,21 @@ class Loggix_Core
     public function getTagArray($withDraft = 'no')
     {
         $tagArray = array();
-        
+
         $sql = 'SELECT '
              .     't.id, t.tag_name '
-             . 'FROM ' 
+             . 'FROM '
              .     LOG_TAG_TABLE . ' AS t';
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
-        
+
         while ($row = $stmt->fetch()) {
             $sql2 = 'SELECT '
                   .     'COUNT(tm.id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     LOG_TAG_MAP_TABLE . ' AS tm '
                   . 'WHERE '
-                  .     'tm.tag_id = :tag_id ';               
+                  .     'tm.tag_id = :tag_id ';
             if ($withDraft == 'yes') {
                  $sql2 .= 'AND '
                         .     'tm.log_id '
@@ -609,13 +609,13 @@ class Loggix_Core
                         .     '('
                         .         'SELECT '
                         .             'l.id '
-                        .         'FROM ' 
+                        .         'FROM '
                         .             LOG_TABLE . ' AS l '
                         .         'WHERE '
                         .             'l.draft = 1'
                         .     ')';
             }
-            
+
             $stmt2 = $this->db->prepare($sql2);
             $stmt2->execute(
                         array(
@@ -623,11 +623,11 @@ class Loggix_Core
                         )
                     );
             $row['number_of_tag'] = $stmt2->fetchColumn();
-            $tagArray[] = array($row[0], 
-                                $row[1], 
+            $tagArray[] = array($row[0],
+                                $row[1],
                                 $row['number_of_tag']);
         }
-        
+
         return $tagArray;
     }
 
@@ -640,12 +640,12 @@ class Loggix_Core
      */
     public function getTagIdArray($tagMode = null)
     {
-        $tagTable = ($tagMode == 'Downloads') 
+        $tagTable = ($tagMode == 'Downloads')
                          ? DOWNLOADS_TAG_MAP_TABLE
                          : LOG_TAG_MAP_TABLE;
         $checkSql = 'SELECT '
                   .     'tag_id '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     $tagTable . ' '
                   . 'WHERE '
                   .     'log_id = :log_id';
@@ -682,30 +682,30 @@ class Loggix_Core
     public function getTagCloudArray($tagMode = null, $withDraft = 'yes')
     {
         global $item, $pathToIndex;
-        
-        $tagDir = ($tagMode == 'Downloads') 
+
+        $tagDir = ($tagMode == 'Downloads')
                 ? $pathToIndex . '/modules/downloads'
                 : $pathToIndex;
-        
+
         foreach ($this->getTagArray($withDraft) as $row) {
             $numberOfTagsArray[] = $row[2];
         }
 
         $maxQuantity = max($numberOfTagsArray);
         $minQuantity = min($numberOfTagsArray);
-        
+
         // Set font size level from $minFontValue to $maxFontValue
         // Here, we set from level 1 to level 6, for example.
         $maxFontValue = '6';  // max font size at level 6 in css.
         $minFontValue = '1';  // min font size at level 1 in css.
 
        // $step   = ($maxFontValue - $minFontValue) / ($maxQuantity - $minQuantity);
-        $quantityLevel = (($maxQuantity - $minQuantity) == 0) 
-                       ? 5 
+        $quantityLevel = (($maxQuantity - $minQuantity) == 0)
+                       ? 5
                        : $maxQuantity - $minQuantity;
-        
+
         $step   = ($maxFontValue - $minFontValue) / $quantityLevel;
-        
+
         $tagCloudArray = array();
         foreach ($this->getTagArray($withDraft) as $row) {
 
@@ -714,23 +714,23 @@ class Loggix_Core
             $row[0] = intval($row[0]);           // Tag ID Number
             $row[1] = htmlspecialchars($row[1]); // Tag Name
             $row[2] = intval($row[2]);           // Number in this tag
-            $state = ((isset($_GET['id'])) && 
-                      (in_array($row[0], $this->getTagIdArray($tagMode)))) 
-                     ? 'checked="checked" ' 
+            $state = ((isset($_GET['id'])) &&
+                      (in_array($row[0], $this->getTagIdArray($tagMode))))
+                     ? 'checked="checked" '
                      : '';
 
             $tagLevel = ceil($minFontValue + (($row[2] - $minQuantity) * $step));
             $tagCloudArray[] = array(
-                                   $row[0], 
-                                   $row[1], 
-                                   $row[2], 
-                                   $state, 
+                                   $row[0],
+                                   $row[1],
+                                   $row[2],
+                                   $state,
                                    $tagDir,
                                    $tagLevel
                                );
-            
+
         }
-               
+
         return $tagCloudArray;
     }
 
@@ -767,30 +767,30 @@ class Loggix_Core
     public function getTagSql($params)
     {
         global $date, $previousItemNumber, $key;
-        
-        $sql  = 'SELECT ' 
+
+        $sql  = 'SELECT '
               .     $params['fields'] . ' '
-              . 'FROM ' 
+              . 'FROM '
               .     $params['main_table'] . ' '
               . 'WHERE '
               .     '(' . $params['draft'] ." = '0') AND ";
-        $sql .= (isset($date) && ($date != 'all')) 
-                ? '(' . $params['date'] . " LIKE '" . $date . "%') AND " 
+        $sql .= (isset($date) && ($date != 'all'))
+                ? '(' . $params['date'] . " LIKE '" . $date . "%') AND "
                 : '';
         $sql .= 'id IN '
               .     '('
-              .         'SELECT ' 
+              .         'SELECT '
               .              $params['log_id'] . ' '
-              .          'FROM ' 
+              .          'FROM '
               .              $params['map_table'] . ' '
-              .          'WHERE ' 
+              .          'WHERE '
               .              $params['tag_id'] . " = '" . $key . "'"
               .     ') '
               . 'ORDER BY '
               .     $params['date'] . ' '
-              . 'DESC LIMIT ' 
+              . 'DESC LIMIT '
               .     $previousItemNumber . ', ' . self::$config['page_max'];
-              
+
         return $sql;
     }
 
@@ -804,24 +804,24 @@ class Loggix_Core
     public function getTagHitsSql($params)
     {
         global $key, $date;
-        
+
         // Count All Hit Data
         $sql  = 'SELECT '
               .     'COUNT(id) '
-              .  'FROM ' 
+              .  'FROM '
               .     $params['main_table'] . ' '
               . 'WHERE '
               .     '(' . $params['draft'] . " = '0') AND ";
-        $sql .= (isset($date) && ($date != 'all')) 
-                ? '(' . $params['date'] . " LIKE '" . $date . "%') AND " 
+        $sql .= (isset($date) && ($date != 'all'))
+                ? '(' . $params['date'] . " LIKE '" . $date . "%') AND "
                 : '';
         $sql .= 'id IN '
               .     '('
-              .         'SELECT ' 
+              .         'SELECT '
               .             $params['log_id'] . ' '
-              .         'FROM ' 
+              .         'FROM '
               .             $params['map_table'] . ' '
-              .         'WHERE ' 
+              .         'WHERE '
               .             $params['tag_id'] . " = '" . $key . "'"
               .     ')';
 
@@ -858,12 +858,12 @@ class Loggix_Core
     {
         global $key, $previousItemNumber, $date, $expand;
 
-        $sql  = 'SELECT ' 
+        $sql  = 'SELECT '
               .     $params['fields'] . ' '
-              . 'FROM ' 
+              . 'FROM '
               .     $params['table'] . ' '
               . 'WHERE '
-              .     '(' . $params['draft'] . " = '0') " 
+              .     '(' . $params['draft'] . " = '0') "
               . (($date != 'all') ? 'AND (' : '');
         if ($key != '') {
             if (!strrchr($key, ' ')) {
@@ -877,26 +877,26 @@ class Loggix_Core
                   . $params['comment'] . " LIKE '%" . $keys[0] . "%')";
             for ($i = 1; $max = sizeof($keys), $i < $max; $i++) {
                 $sql .= $and_or . ' '
-                      . '('  
+                      . '('
                       .     $params['title']   . " LIKE '%" . $keys[$i] . "%'"
-                      .     ' OR ' 
+                      .     ' OR '
                       .     $params['comment'] . " LIKE '%" . $keys[$i] . "%'"
                       . ')';
             }
-            $sql .= ($date != 'all') 
-                    ? ' AND (' . $params['date'] . " LIKE '" . $date . "%')" 
+            $sql .= ($date != 'all')
+                    ? ' AND (' . $params['date'] . " LIKE '" . $date . "%')"
                     : '';
         } else if ($key == '') { // Monthly search
-            $sql .= ($date != 'all') 
-                    ? $params['date'] . " LIKE '" . $date . "%')" 
+            $sql .= ($date != 'all')
+                    ? $params['date'] . " LIKE '" . $date . "%')"
                     : '';
         }
-        $sql .= (!empty($params['group_by'])) 
-                ? ' GROUP BY ' . $params['group_by'] 
+        $sql .= (!empty($params['group_by']))
+                ? ' GROUP BY ' . $params['group_by']
                 : '';
-        $sql .= ' ORDER BY ' . $params['date'] 
+        $sql .= ' ORDER BY ' . $params['date']
               . ' DESC LIMIT ' . $previousItemNumber . ', ' . self::$config['page_max'];
-        
+
         return $sql;
     }
 
@@ -910,7 +910,7 @@ class Loggix_Core
     public function getSearchHitsSql($params)
     {
         global $key, $date;
-        
+
         // Count All Hit Data
         if (!strrchr($key, ' ')) {
             $keys = explode(',', $key);
@@ -921,29 +921,29 @@ class Loggix_Core
         }
         $sql = 'SELECT '
              .     'COUNT(id) '
-             . 'FROM ' 
+             . 'FROM '
              .     $params['table'] . ' '
              . 'WHERE '
              .     '(' . $params['draft'] . " = '0') "
              .     'AND '
-             .     '('   
+             .     '('
              .         $params['title']   . " LIKE '%" . $keys[0] . "%'"
-             .        ' OR ' 
+             .        ' OR '
              .         $params['comment'] . " LIKE '%" . $keys[0] . "%'"
              .     ') ';
         for ($i = 1; $max = sizeof($keys), $i < $max; $i++) {
             $sql .= $and_or . ' '
-                  . '('  
+                  . '('
                   .     $params['title']   . " LIKE '%" . $keys[$i] . "%'"
-                  .     ' OR ' 
+                  .     ' OR '
                   .     $params['comment'] . " LIKE '%" . $keys[$i] . "%'"
                   . ')';
         }
-        $sql .= ($date != 'all') 
-                ? ' AND (' . $params['date'] . " LIKE '" . $date . "%')" 
+        $sql .= ($date != 'all')
+                ? ' AND (' . $params['date'] . " LIKE '" . $date . "%')"
                 : '';
-        $sql .= (!empty($params['group_by'])) 
-                ? ' GROUP BY ' . $params['group_by'] 
+        $sql .= (!empty($params['group_by']))
+                ? ' GROUP BY ' . $params['group_by']
                 : '';
 
         return $sql;
@@ -962,9 +962,9 @@ class Loggix_Core
     public function setSearchItems($totalItemsCount, $previousItemNumber, $date)
     {
         global $lang, $key, $params, $config;
-        
+
         $item = array();
-        
+
         if ((($key == '') && (preg_match('/^[0-9]{4}-[0-9]{2}/', $date))) ||
             (($key == '') && ($date == 'all'))) {
             if (preg_match('/^[0-9]{4}-[0-9]{2}/', $date)) {
@@ -986,12 +986,12 @@ class Loggix_Core
             $archiveTitle  = '0'; // All data
             $resultMessage = $lang['show_log'];
         }
-        
+
         // Get Tag name as key
         if (!empty($_GET['t'])) {
-            $sql = 'SELECT ' 
+            $sql = 'SELECT '
                  .     $params['tag_name'] . ' '
-                 . 'FROM ' 
+                 . 'FROM '
                  .     $params['tag_table'] . ' '
                  . 'WHERE '
                  .     'id = :id';
@@ -1003,7 +1003,7 @@ class Loggix_Core
                    );
             $key  = $stmt->fetchColumn();
         }
-        
+
         // Create the last row number to display
         $rowsToDisplay = (($previousItemNumber + self::$config['page_max']) > $totalItemsCount)
                        ? $totalItemsCount
@@ -1017,7 +1017,7 @@ class Loggix_Core
         $item['disp_page']      = $previousItemNumber + 1;
         $item['disp_rows']      = $rowsToDisplay;
         $item['result_message'] = $resultMessage;
-        
+
         return $item;
     }
 

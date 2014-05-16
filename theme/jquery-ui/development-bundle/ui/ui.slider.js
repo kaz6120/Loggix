@@ -218,7 +218,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		closestHandle
 			.addClass("ui-state-active")
 			.focus();
-		
+
 		var offset = closestHandle.offset();
 		var mouseOverHandle = !$(event.target).parents().andSelf().is('.ui-slider-handle');
 		this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
@@ -244,7 +244,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 
 		var position = { x: event.pageX, y: event.pageY };
 		var normValue = this._normValueFromMouse(position);
-		
+
 		this._slide(event, this._handleIndex, normValue);
 
 		return false;
@@ -262,7 +262,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		return false;
 
 	},
-	
+
 	_detectOrientation: function() {
 		this.orientation = this.options.orientation == 'vertical' ? 'vertical' : 'horizontal';
 	},
@@ -332,7 +332,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 				if (allowed !== false) {
 					this._setData('value', newVal, ( event.type == 'mousedown' && this.options.animate ));
 				}
-					
+
 			}
 
 		}
@@ -386,7 +386,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 			case 'orientation':
 
 				this._detectOrientation();
-				
+
 				this.element
 					.removeClass("ui-slider-horizontal ui-slider-vertical")
 					.addClass("ui-slider-" + this.orientation);
@@ -476,9 +476,9 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		}
 
 	},
-	
+
 	_uiHash: function(index, value, values) {
-		
+
 		var multiple = this.options.values && this.options.values.length;
 		return {
 			handle: this.handles[index],

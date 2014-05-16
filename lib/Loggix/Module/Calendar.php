@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Loggix_Module_Calendar - Calendar Module for Loggix
  *
@@ -28,7 +28,7 @@ class Loggix_Module_Calendar extends Loggix_Module
     private $_allDateArray  = null;
     private $_allMonthArray = null;
     private $_allYearArray  = null;
-    
+
     /**
      * Initialize Month Array
      */
@@ -125,7 +125,7 @@ class Loggix_Module_Calendar extends Loggix_Module
 
 
     }
-    
+
     /**
      * Check if the date has log
      *
@@ -166,22 +166,22 @@ class Loggix_Module_Calendar extends Loggix_Module
      * Create calendar
      *
      * @param  $mode  mode:== 'search' | 'admin' | 'access' | 'downloads'
-     * @return string 
+     * @return string
      */
     public function createCalendar()
     {
         global $pathToIndex, $item, $lang;
-        
+
         // Set calendar mode
         $mode = $this->setMode();
-        
+
         // Get calendar module language
         $this->getModuleLanguage('calendar');
-        
+
         // Enable simple queries
-        if ((empty($_GET['k']))  && 
-            (empty($_GET['p']))  && 
-            (empty($_GET['pn'])) && 
+        if ((empty($_GET['k']))  &&
+            (empty($_GET['p']))  &&
+            (empty($_GET['pn'])) &&
             (empty($_GET['c']))) {
             $_GET['k']  = '';
             $_GET['p']  = '0';
@@ -191,7 +191,7 @@ class Loggix_Module_Calendar extends Loggix_Module
 
         // If the date query is sent, regard it as a key value.
         // if not, use the current date as a key.
-        if (!empty($_GET['d'])) {   
+        if (!empty($_GET['d'])) {
             $dateStr = $_GET['d'];
             if (preg_match('/^[0-9]{4}-[0-9]{2}/', $dateStr)) {
                 $yyyy  = substr($dateStr, 0, 4);
@@ -213,7 +213,7 @@ class Loggix_Module_Calendar extends Loggix_Module
         // init log list
         $targetMonth = sprintf("%4d-%02d", $year, $mon);
         $this->initMonthArray($targetMonth, $mode);
-        
+
         // For Navigation
         $monthFormat = (self::$config['language'] == 'japanese') ? 'n月' : 'M';
         $thisMonth     = date('Y-m',        mktime(0, 0, 0, $mon,     1, $year));
@@ -224,7 +224,7 @@ class Loggix_Module_Calendar extends Loggix_Module
 
         // Title date format
         $formatYearAndMonth = (self::$config['language'] == 'japanese') ? 'Y年 n月' : 'F Y';
-        $yearAndMonth = date($formatYearAndMonth, 
+        $yearAndMonth = date($formatYearAndMonth,
                                strtotime($mday . ' ' . $dayKey['month'] . ' ' . $year));
 
         // Days of the week
@@ -239,7 +239,7 @@ class Loggix_Module_Calendar extends Loggix_Module
         $first_day = getdate(mktime(0, 0, 0, $mon, 1, $year));
         $weekDay = $first_day['wday'];
         for ($i = 0; $i < $weekDay; $i++) {
-            $calendarBody .= '<td class="day-of-prev-month">*</td>'."\n"; 
+            $calendarBody .= '<td class="day-of-prev-month">*</td>'."\n";
         }
 
         // Change directory
@@ -315,7 +315,7 @@ class Loggix_Module_Calendar extends Loggix_Module
         } else {
             $calendarBody .= '';
         }
-        
+
         $item['calendar']['month_array']     = $this->_allMonthArray;
         $item['calendar']['year_array']      = $this->_allYearArray;
         $item['calendar']['caption']         = $caption;
@@ -329,7 +329,7 @@ class Loggix_Module_Calendar extends Loggix_Module
         $item['calendar']['next_month']      = $nextMonth;
         $item['calendar']['next_month_link'] = $nextMonthLink;
         $item['calendar']['body']            = $calendarBody;
-        
+
         $calendarView = new Loggix_View($pathToIndex . self::CALENDAR_THEME_PATH . 'calendar.html');
         $calendarView->assign('item', $item);
         return $calendarView->render();

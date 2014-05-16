@@ -21,13 +21,13 @@ $config       = $app->getConfigArray();
 if ($sessionState == 'on') {
 
     $app->insertSafe();
-    
+
     // Add New Tag
     if ((isset($_POST['action']) == 'add') && (isset($_POST['new_tag']))) {
         $aNewTag = $_POST['new_tag'];
         $checkSql = 'SELECT '
                   .     'COUNT(id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     DOWNLOADS_TAG_TABLE . ' '
                   . 'WHERE '
                   .     'tag_name = :tag_name';
@@ -35,7 +35,7 @@ if ($sessionState == 'on') {
         $stmt->execute(array(':tag_name' => $aNewTag));
         $countId = $stmt->fetchColumn();
         if ($countId == '0') {
-            $sql = 'INSERT INTO ' 
+            $sql = 'INSERT INTO '
                  .     DOWNLOADS_TAG_TABLE
                  .         '(tag_name) '
                  .     'VALUES'
@@ -49,15 +49,15 @@ if ($sessionState == 'on') {
             header('Location : '.$_SERVER['PHP_SELF']);
         }
     // Save Changes
-    } elseif ((isset($_POST['action']) == 'save') && 
+    } elseif ((isset($_POST['action']) == 'save') &&
               (isset($_POST['id'], $_POST['tag_name']))) {
         $id = intval($_POST['id']);
-        $aTagName = ($_POST['tag_name'] == '') 
-                         ? 'Untagged' 
+        $aTagName = ($_POST['tag_name'] == '')
+                         ? 'Untagged'
                          : $_POST['tag_name'];
         $checkSql = 'SELECT '
                   .     'COUNT(id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     DOWNLOADS_TAG_TABLE . ' '
                   . 'WHERE '
                   .     'tag_name = :tag_name';
@@ -68,9 +68,9 @@ if ($sessionState == 'on') {
                    )
                );
         $countId = $stmt->fetchColumn();
-        
+
         if ($countId == '0') {
-            $sql = 'UPDATE ' 
+            $sql = 'UPDATE '
                  .     DOWNLOADS_TAG_TABLE . ' '
                  . 'SET '
                  .     'tag_name = :tag_name '
@@ -88,7 +88,7 @@ if ($sessionState == 'on') {
     // Delete Tag
     } elseif ((isset($_POST['action']) == 'delete') && (isset($_POST['id']))) {
        $idToDelete = intval($_POST['id']);
-       $sql = 'DELETE FROM ' 
+       $sql = 'DELETE FROM '
             .     DOWNLOADS_TAG_TABLE . ' '
             . 'WHERE '
             .     'id = :id';
@@ -104,7 +104,7 @@ if ($sessionState == 'on') {
     // Show Tag List
     $sql = 'SELECT '
           .    '* '
-          . 'FROM ' 
+          . 'FROM '
           .     DOWNLOADS_TAG_TABLE;
     $res = $app->db->query($sql);
     $tagList = '';
@@ -113,19 +113,19 @@ if ($sessionState == 'on') {
         while ($item = $res->fetch()) {
             $sql2 = 'SELECT '
                   .     'COUNT(id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     DOWNLOADS_TAG_MAP_TABLE . ' '
                   . 'WHERE '
                   .     "tag_id = '" . $item['id'] . "'";
             $res2 = $app->db->query($sql2);
             $item['number_of_tag'] = $res2->fetchColumn();
-            $item['disabled_status'] = ($item['id'] == '1') 
-                                       ? 'disabled="disabled" ' 
+            $item['disabled_status'] = ($item['id'] == '1')
+                                       ? 'disabled="disabled" '
                                        : '';
             $item['tag_name'] = htmlspecialchars($item['tag_name']);
             $items[] = $item;
         }
-        $templateFile = $pathToIndex . LM_Downloads::THEME_PATH 
+        $templateFile = $pathToIndex . LM_Downloads::THEME_PATH
                       . 'admin/tags.html';
         $contentsView = new Loggix_View($templateFile);
         $templateVars = array(
@@ -138,7 +138,7 @@ if ($sessionState == 'on') {
     // Pager
     $item['pager'] = '';
     $item['result'] = '';
-    
+
     // Title
     $item['title'] = $app->setTitle($lang['dl_tag']);
 

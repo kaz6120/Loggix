@@ -18,15 +18,15 @@ $app = new LM_Downloads;
 if (isset($_GET['id'])) {
 
     $id = intval($_GET['id']);
-    
+
     // Pull out the meta data from binary meta info table
     $getMetaDataSql = 'SELECT '
                     .     '* '
-                    . 'FROM ' 
+                    . 'FROM '
                     .     DOWNLOADS_META_TABLE . ' '
                     . 'WHERE '
                     .     "id = '" . $id . "'";
-    
+
     $metaRes = $app->db->query($getMetaDataSql);
     $metaRow = $metaRes->fetch();
 
@@ -37,11 +37,11 @@ if (isset($_GET['id'])) {
     }
 
 //    $fileObject = $res->fetchObject();
-    
+
     // Pull out the data from binary table
     $sql2 = 'SELECT '
           .     'id '
-          . 'FROM ' 
+          . 'FROM '
           .     DOWNLOADS_DATA_TABLE . ' '
           . 'WHERE '
           .     "masterid = '" . $id . "' "
@@ -52,24 +52,24 @@ if (isset($_GET['id'])) {
     }
 
     $list = array();
-    
+
     while ($listObject = $res2->fetch()) {
         $list[] = $listObject['id'];
     }
-    
 
-    $deposition = (preg_match('/(image|text)/', $metaRow['file_type'])) 
-                  ? 'inline' 
+
+    $deposition = (preg_match('/(image|text)/', $metaRow['file_type']))
+                  ? 'inline'
                   : 'attachment';
-                  
+
     header('Content-Type: ' . $metaRow['file_type']);
     header('Content-Length: ' . $metaRow['file_size']);
     header('Content-Disposition: ' . $deposition . '; filename=' . $metaRow['file_name']);
-    
-    for ($i = 0; $i < count($list); $i++) {	
+
+    for ($i = 0; $i < count($list); $i++) {
         $sql3 = 'SELECT '
               .     'file_data '
-              . 'FROM ' 
+              . 'FROM '
               .     DOWNLOADS_DATA_TABLE . ' '
               . 'WHERE '
               .     'id=' . $list[$i];

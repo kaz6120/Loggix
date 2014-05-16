@@ -1019,12 +1019,12 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 		};
 
 		$.each(inst.sortables, function(i) {
-			
+
 			//Copy over some variables to allow calling the sortable's native _intersectsWith
 			this.instance.positionAbs = inst.positionAbs;
 			this.instance.helperProportions = inst.helperProportions;
 			this.instance.offset.click = inst.offset.click;
-			
+
 			if(this.instance._intersectsWith(this.instance.containerCache)) {
 
 				//If it intersects, we use a little isOver variable and set it once, so our move-in stuff gets fired only once
@@ -1067,13 +1067,13 @@ $.ui.plugin.add("draggable", "connectToSortable", {
 
 					this.instance.isOver = 0;
 					this.instance.cancelHelperRemoval = true;
-					
+
 					//Prevent reverting on this forced stop
 					this.instance.options.revert = false;
-					
+
 					// The out event needs to be triggered independently
 					this.instance._trigger('out', event, this.instance._uiHash(this.instance));
-					
+
 					this.instance._mouseStop(event, true);
 					this.instance.options.helper = this.instance.options._helper;
 
@@ -3092,7 +3092,7 @@ $.widget("ui.sortable", $.extend({}, $.ui.mouse, {
 			? [options.connectWith]
 			: options.connectWith;
 	},
-	
+
 	_getItemsAsjQuery: function(connected) {
 
 		var self = this;
@@ -3683,7 +3683,7 @@ $.widget("ui.accordion", {
 		}
 
 		this.element.addClass("ui-accordion ui-widget ui-helper-reset");
-		
+
 		// in lack of child-selectors in CSS we need to mark top-LIs in a UL-accordion for some IE-fix
 		if (this.element[0].nodeName == "UL") {
 			this.element.children("li").addClass("ui-accordion-li-fix");
@@ -3769,10 +3769,10 @@ $.widget("ui.accordion", {
 			contents.css("height", "");
 		}
 	},
-	
+
 	_setData: function(key, value) {
 		if(key == 'alwaysOpen') { key = 'collapsible'; value = !value; }
-		$.widget.prototype._setData.apply(this, arguments);	
+		$.widget.prototype._setData.apply(this, arguments);
 	},
 
 	_keydown: function(event) {
@@ -3816,11 +3816,11 @@ $.widget("ui.accordion", {
 		var o = this.options, maxHeight;
 
 		if (o.fillSpace) {
-			
+
 			if($.browser.msie) { var defOverflow = this.element.parent().css('overflow'); this.element.parent().css('overflow', 'hidden'); }
 			maxHeight = this.element.parent().height();
 			if($.browser.msie) { this.element.parent().css('overflow', defOverflow); }
-	
+
 			this.headers.each(function() {
 				maxHeight -= $(this).outerHeight();
 			});
@@ -4067,10 +4067,10 @@ $.extend($.ui.accordion, {
 			var s = options.toShow;
 			originalWidth = s[0].style.width;
 			s.width( parseInt(s.parent().width(),10) - parseInt(s.css("paddingLeft"),10) - parseInt(s.css("paddingRight"),10) - parseInt(s.css("borderLeftWidth"),10) - parseInt(s.css("borderRightWidth"),10) );
-			
+
 			$.each(fxAttrs, function(i, prop) {
 				hideProps[prop] = 'hide';
-				
+
 				var parts = ('' + $.css(options.toShow[0], prop)).match(/^([\d+-.]+)(.*)$/);
 				showProps[prop] = {
 					value: parts[1],
@@ -4086,7 +4086,7 @@ $.extend($.ui.accordion, {
 					if (settings.prop == 'height') {
 						percentDone = (settings.now - settings.start) / (settings.end - settings.start);
 					}
-					
+
 					options.toShow[0].style[settings.prop] =
 						(percentDone * showProps[settings.prop].value) + showProps[settings.prop].unit;
 				},
@@ -4146,7 +4146,7 @@ var setDataSwitch = {
 		resize: "drag.resizable",
 		resizeStop: "stop.resizable"
 	},
-	
+
 	uiDialogClasses =
 		'ui-dialog ' +
 		'ui-widget ' +
@@ -4257,7 +4257,7 @@ $.widget("ui.dialog", {
 
 		(options.bgiframe && $.fn.bgiframe && uiDialog.bgiframe());
 		(options.autoOpen && this.open());
-		
+
 	},
 
 	destroy: function() {
@@ -4275,7 +4275,7 @@ $.widget("ui.dialog", {
 
 	close: function(event) {
 		var self = this;
-		
+
 		if (false === self._trigger('beforeclose', event)) {
 			return;
 		}
@@ -4306,7 +4306,7 @@ $.widget("ui.dialog", {
 			|| (!this.options.stack && !this.options.modal)) {
 			return this._trigger('focus', event);
 		}
-		
+
 		if (this.options.zIndex > $.ui.dialog.maxZ) {
 			$.ui.dialog.maxZ = this.options.zIndex;
 		}
@@ -4988,7 +4988,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		closestHandle
 			.addClass("ui-state-active")
 			.focus();
-		
+
 		var offset = closestHandle.offset();
 		var mouseOverHandle = !$(event.target).parents().andSelf().is('.ui-slider-handle');
 		this._clickOffset = mouseOverHandle ? { left: 0, top: 0 } : {
@@ -5014,7 +5014,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 
 		var position = { x: event.pageX, y: event.pageY };
 		var normValue = this._normValueFromMouse(position);
-		
+
 		this._slide(event, this._handleIndex, normValue);
 
 		return false;
@@ -5032,7 +5032,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		return false;
 
 	},
-	
+
 	_detectOrientation: function() {
 		this.orientation = this.options.orientation == 'vertical' ? 'vertical' : 'horizontal';
 	},
@@ -5102,7 +5102,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 				if (allowed !== false) {
 					this._setData('value', newVal, ( event.type == 'mousedown' && this.options.animate ));
 				}
-					
+
 			}
 
 		}
@@ -5156,7 +5156,7 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 			case 'orientation':
 
 				this._detectOrientation();
-				
+
 				this.element
 					.removeClass("ui-slider-horizontal ui-slider-vertical")
 					.addClass("ui-slider-" + this.orientation);
@@ -5246,9 +5246,9 @@ $.widget("ui.slider", $.extend({}, $.ui.mouse, {
 		}
 
 	},
-	
+
 	_uiHash: function(index, value, values) {
-		
+
 		var multiple = this.options.values && this.options.values.length;
 		return {
 			handle: this.handles[index],
@@ -5466,7 +5466,7 @@ $.widget("ui.tabs", {
 				self.element.queue("tabs", function() {
 					self._trigger('show', null, self._ui(self.anchors[o.selected], self.panels[o.selected]));
 				});
-				
+
 				this.load(o.selected);
 			}
 
@@ -5613,7 +5613,7 @@ $.widget("ui.tabs", {
 					self.element.queue("tabs", function() {
 						hideTab(el, $hide);
 					}).dequeue("tabs");
-					
+
 					this.blur();
 					return false;
 				}
@@ -5621,13 +5621,13 @@ $.widget("ui.tabs", {
 					if (o.cookie) {
 						self._cookie(o.selected, o.cookie);
 					}
-					
+
 					self.element.queue("tabs", function() {
 						showTab(el, $show);
 					});
 
 					self.load(self.anchors.index(this)); // TODO make passing in node possible, see also http://dev.jqueryui.com/ticket/3171
-					
+
 					this.blur();
 					return false;
 				}
@@ -5647,7 +5647,7 @@ $.widget("ui.tabs", {
 				self.element.queue("tabs", function() {
 					showTab(el, $show);
 				});
-				
+
 				self.load(self.anchors.index(this));
 			}
 			else {
@@ -5673,7 +5673,7 @@ $.widget("ui.tabs", {
 		var o = this.options;
 
 		this.abort();
-		
+
 		this.element.unbind('.tabs')
 			.removeClass('ui-tabs ui-widget ui-widget-content ui-corner-all ui-tabs-collapsible')
 			.removeData('tabs');
@@ -5755,7 +5755,7 @@ $.widget("ui.tabs", {
 			this.element.queue("tabs", function() {
 				self._trigger('show', null, self._ui(self.anchors[0], self.panels[0]));
 			});
-				
+
 			this.load(0);
 		}
 
@@ -5922,19 +5922,19 @@ $.extend($.ui.tabs.prototype, {
 	rotate: function(ms, continuing) {
 
 		var self = this, o = this.options;
-		
+
 		var rotate = self._rotate || (self._rotate = function(e) {
 			clearTimeout(self.rotation);
 			self.rotation = setTimeout(function() {
 				var t = o.selected;
 				self.select( ++t < self.anchors.length ? t : 0 );
 			}, ms);
-			
+
 			if (e) {
 				e.stopPropagation();
 			}
 		});
-		
+
 		var stop = self._unrotate || (self._unrotate = !continuing ?
 			function(e) {
 				if (e.clientX) { // in case of a true click
@@ -7366,7 +7366,7 @@ $.extend(Datepicker.prototype, {
 					drawMonth = 0;
 					drawYear++;
 				}
-				calender += '</tbody></table>' + (isMultiMonth ? '</div>' + 
+				calender += '</tbody></table>' + (isMultiMonth ? '</div>' +
 							((numMonths[0] > 0 && col == numMonths[1]-1) ? '<div class="ui-datepicker-row-break"></div>' : '') : '');
 				group += calender;
 			}
@@ -7843,7 +7843,7 @@ function _normalizeArguments(a, m) {
 	var callback = o.callback || ( $.isFunction(a[1]) && a[1] ) || ( $.isFunction(a[2]) && a[2] ) || ( $.isFunction(a[3]) && a[3] );
 
 	return [a[0], o, speed, callback];
-	
+
 }
 
 //Extend the methods of jQuery

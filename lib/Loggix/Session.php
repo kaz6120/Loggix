@@ -1,9 +1,9 @@
 <?php
 /**
  * Class to handle browser sessions. Stores session data in a database using PDO.
- * 
+ *
  * Requires PHP 5.2 or later
- * 
+ *
  * @package   Loggix
  * @author    Walter Ebert (http://www.walterebert.com)
  * @author    Loggix Project
@@ -18,7 +18,7 @@ class Loggix_Session
 {
     /**
      * Database connection
-     * 
+     *
      * @access protected
      * @var    object
      */
@@ -26,7 +26,7 @@ class Loggix_Session
 
     /**
      * Use database transaction
-     * 
+     *
      * @access protected
      * @var    boolean
      */
@@ -34,7 +34,7 @@ class Loggix_Session
 
     /**
      * Regenerate session ID
-     * 
+     *
      * @access protected
      * @var    boolean
      */
@@ -47,7 +47,7 @@ class Loggix_Session
      * @var    integer
      */
     protected $maxlifetime = 21600; // 3600 * 6 = 6 hours
-    
+
     /**
      * Constructor
      *
@@ -90,7 +90,7 @@ class Loggix_Session
 
     /**
      * Destroy session, session data and session cookie.
-     * 
+     *
      * @access public
      * @return void
      */
@@ -115,11 +115,11 @@ class Loggix_Session
      */
     protected function _fetchSession($id)
     {
-        
+
         // Set session time
         // $sessionTime = 3600 * 3; // 3 hours
         $sessionTime = $this->maxlifetime;
-        
+
         $sql  = 'SELECT '
               .     'id, sess_var '
               . 'FROM '
@@ -131,7 +131,7 @@ class Loggix_Session
         $stmt = $this->db->prepare($sql);
         $stmt->execute(
                    array(
-                       ':id' => $id, 
+                       ':id' => $id,
                        ':sess_date' => (time() - (int)$sessionTime)
                    )
                );
@@ -208,8 +208,8 @@ class Loggix_Session
         }
         $stmt->execute(
                    array(
-                       ':id'   => $id, 
-                       ':data' => $sessionData, 
+                       ':id'   => $id,
+                       ':data' => $sessionData,
                        ':time' => time()
                    )
                );
@@ -254,7 +254,7 @@ class Loggix_Session
     /**
      * Destructor
      *
-     * @access public 
+     * @access public
      * @return void
      */
     public function __destruct()

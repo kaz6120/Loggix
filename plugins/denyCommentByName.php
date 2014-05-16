@@ -14,15 +14,15 @@
 
 $this->plugin->addAction('before-receive-comment', 'denyComment');
 
-function denyComment($referId) 
+function denyComment($referId)
 {
     global $userName, $sessionState, $app;
-    
+
     if ($userName == 'sexy_boy') {
-    
+
         // Additional Title
         $additionalTitle = 'Not Allowed';
-    
+
         // Contents
         $content = "<h2>Request Not Allowed</h2>\n"
                  . "<p>Ooops! You are not allowed here.</p>\n"

@@ -24,21 +24,21 @@ if ($sessionState == 'on') {
     $item['time']          = $app->getDateArray();
     $item['attachments']   = $app->setAttachments();
     $item['tag_cloud']     = $app->getTagCloudArray('Downloads');
-    
+
     $smileyButton = new Loggix_View($pathToIndex . '/theme/smiley-button.html');
     $item['smiley_button'] = $smileyButton->render();
-    
+
     $templateFile = $pathToIndex . LM_Downloads::THEME_PATH . 'admin/write.html';
     $contentsView = new Loggix_View($templateFile);
     $templateVars = array('item' => $item,
                           'lang' => $lang
                     );
     $contentsView->assign($templateVars);
-    
+
     $item['contents'] = $app->plugin->applyFilters('permalink-view', $contentsView->render());
     $item['pager']    = '';
     $item['result']   = '';
-    
+
     $app->display($item, $sessionState);
 
 } else {

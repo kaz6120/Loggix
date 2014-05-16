@@ -30,14 +30,14 @@ if ($sessionState == 'on') {
               $_POST['post_date_format'],
               $_POST['upload_file_max'],
               $_POST['menu_list'],
-              $_POST['css_cookie_name'], 
-              $_POST['css_cookie_time'], 
-              $_POST['css_list'], 
-              $_POST['recent_comment_max'], 
+              $_POST['css_cookie_name'],
+              $_POST['css_cookie_time'],
+              $_POST['css_list'],
+              $_POST['recent_comment_max'],
               $_POST['recent_trackback_max'],
               $_POST['block_tags'],
               $_POST['block_keywords'],
-              $_POST['block_ascii_only_text'], 
+              $_POST['block_ascii_only_text'],
               $_POST['save_settings'])) {
         if ($_POST['save_settings'] == 'save') {
             // Set new value
@@ -53,14 +53,14 @@ if ($sessionState == 'on') {
             $post_date_format      = $_POST['post_date_format'];
             $upload_file_max       = $_POST['upload_file_max'];
             $menu_list             = str_replace('\r', PHP_EOL, str_replace("\n", PHP_EOL, $_POST['menu_list']));//str_replace('\r', '\r\n', str_replace("\n", '\r', $_POST['menu_list']));
-            $css_cookie_name       = $_POST['css_cookie_name']; 
-            $css_cookie_time       = $_POST['css_cookie_time'] * 86400; 
-            $css_list              = $_POST['css_list'];//str_replace('\r', '\r\n', str_replace("\n", '\r', $_POST['css_list'])); 
-            $recent_comment_max    = $_POST['recent_comment_max']; 
+            $css_cookie_name       = $_POST['css_cookie_name'];
+            $css_cookie_time       = $_POST['css_cookie_time'] * 86400;
+            $css_list              = $_POST['css_list'];//str_replace('\r', '\r\n', str_replace("\n", '\r', $_POST['css_list']));
+            $recent_comment_max    = $_POST['recent_comment_max'];
             $recent_trackback_max  = $_POST['recent_trackback_max'];
             $block_tags            = $_POST['block_tags'];
             $block_keywords        = $_POST['block_keywords'];
-            $block_ascii_only_text = $_POST['block_ascii_only_text']; 
+            $block_ascii_only_text = $_POST['block_ascii_only_text'];
         } else {
             // Set default value
             $root_dir              = '/';
@@ -75,14 +75,14 @@ if ($sessionState == 'on') {
             $post_date_format      = 'M d, Y G:i a';
             $upload_file_max       = '3';
             $menu_list             = 'Latest Entries,index.php' . PHP_EOL . 'Downloads,modules/downloads/index.php';
-            $css_cookie_name       = 'loggix_style'; 
-            $css_cookie_time       = '15724800'; 
-            $css_list              = 'Default,default' . PHP_EOL . 'Elastic Template,elastic-template'; 
-            $recent_comment_max    = '7'; 
+            $css_cookie_name       = 'loggix_style';
+            $css_cookie_time       = '15724800';
+            $css_list              = 'Default,default' . PHP_EOL . 'Elastic Template,elastic-template';
+            $recent_comment_max    = '7';
             $recent_trackback_max  = '7';
             $block_tags            = 'h1|h2|h3|h4|h5|h6|a|p|pre|blockquote|div|hr';
             $block_keywords        = 'buy|viagra|online|cheap|discount|penis|hydrocodone|sex|casino';
-            $block_ascii_only_text = 'no'; 
+            $block_ascii_only_text = 'no';
         }
         $sqlValue = array(
             'root_dir'              => $root_dir,
@@ -97,10 +97,10 @@ if ($sessionState == 'on') {
             'post_date_format'      => $post_date_format,
             'upload_file_max'       => $upload_file_max,
             'menu_list'             => $menu_list,
-            'css_cookie_name'       => $css_cookie_name, 
-            'css_cookie_time'       => $css_cookie_time, 
-            'css_list'              => $css_list, 
-            'recent_comment_max'    => $recent_comment_max, 
+            'css_cookie_name'       => $css_cookie_name,
+            'css_cookie_time'       => $css_cookie_time,
+            'css_list'              => $css_list,
+            'recent_comment_max'    => $recent_comment_max,
             'recent_trackback_max'  => $recent_trackback_max,
             'block_tags'            => $block_tags,
             'block_keywords'        => $block_keywords,
@@ -119,7 +119,7 @@ if ($sessionState == 'on') {
             header('Location : ' . $_SERVER['PHP_SELF']);
         }
      }
-              
+
     // Load config
     $config = $app->getConfigArray();
 
@@ -127,8 +127,8 @@ if ($sessionState == 'on') {
     $config['css_list']   = str_replace('\r',   "\n", // OS X & Linux
                             str_replace('\r\n', '\r', // Windows
                             $config['css_list']));
-    $config['menu_list']  = str_replace('\r',   "\n", 
-                            str_replace('\r\n', '\r', 
+    $config['menu_list']  = str_replace('\r',   "\n",
+                            str_replace('\r\n', '\r',
                             $config['menu_list']));
 
 
@@ -181,7 +181,7 @@ if ($sessionState == 'on') {
         $item['show_date_title_yes'] = '';
         $item['show_date_title_no']  = ' checked="checked"';
     }
-    
+
     if ($config['block_ascii_only_text'] == 'yes') {
         $item['block_status_1'] = ' checked="checked"';
         $item['block_status_2'] = '';
@@ -189,7 +189,7 @@ if ($sessionState == 'on') {
         $item['block_status_1'] = '';
         $item['block_status_2'] = ' checked="checked"';
     }
-    
+
     // Load system info view file
     $contents = new Loggix_View($pathToIndex . '/theme/admin/preferences.html');
     $contents->assign('config', $config);

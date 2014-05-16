@@ -1,5 +1,5 @@
 <IfModule mod_rewrite.c>
-# Enable mod_rerwite 
+# Enable mod_rerwite
 RewriteEngine On
 
 # This should be changed to your sites URL, minus the domain.

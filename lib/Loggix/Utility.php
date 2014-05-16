@@ -20,7 +20,7 @@
  * Loggix_Utility::getDataLastModified();
  * </code>
  *
- * Example 2: 
+ * Example 2:
  * <code>
  * $app = new Loggix_Application;
  * $app->getDataLastModified();
@@ -41,7 +41,7 @@ class Loggix_Utility
                     ? str_replace('`', '', $sql)
                     : $sql;
     }
-    
+
     /**
      * Insert Strings into Database.
      *
@@ -54,16 +54,16 @@ class Loggix_Utility
      */
     public function insertSafe()
     {
-        if (get_magic_quotes_gpc()) { 
+        if (get_magic_quotes_gpc()) {
             $_REQUEST = array_map('stripslashes', $_REQUEST);
-            $_GET     = array_map('stripslashes', $_GET); 
-            $_POST    = array_map('stripslashes', $_POST); 
+            $_GET     = array_map('stripslashes', $_GET);
+            $_POST    = array_map('stripslashes', $_POST);
             $_COOKIE  = array_map('stripslashes', $_COOKIE);
         }
 
-        $_GET[]  = array_map('strip_tags', 
+        $_GET[]  = array_map('strip_tags',
                    array_map('trim', $_GET));
-        $_POST[] = array_map('strip_tags', 
+        $_POST[] = array_map('strip_tags',
                    array_map('trim', $_POST));
 
     }
@@ -82,10 +82,10 @@ class Loggix_Utility
     public function insertTagSafe()
     {
 
-        if (get_magic_quotes_gpc()) { 
+        if (get_magic_quotes_gpc()) {
             $_REQUEST = array_map('stripslashes', $_REQUEST);
-            $_GET     = array_map('stripslashes', $_GET); 
-            $_POST    = array_map('stripslashes', $_POST); 
+            $_GET     = array_map('stripslashes', $_GET);
+            $_POST    = array_map('stripslashes', $_POST);
             $_COOKIE  = array_map('stripslashes', $_COOKIE);
         }
 
@@ -102,7 +102,7 @@ class Loggix_Utility
      * @uses   time
      * @return array
      * @usee
-     */    
+     */
     public function getDateArray()
     {
         global $config;
@@ -123,7 +123,7 @@ class Loggix_Utility
      * @uses   gmdate
      * @uses   time
      * @return array
-     */    
+     */
     public function setDateArray($str)
     {
         global $config;
@@ -156,7 +156,7 @@ class Loggix_Utility
 
         $uriPatternWithTitle = '/([^=^\"]|^)(http\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)(\()(.+?)(\))/';
         $uriPattern = '/([^=^\"]|^)(http\:[\w\.\~\-\/\?\&\+\=\:\@\%\;\#\%]+)/';
-        
+
         for ($i = 0, $j = count($lines); $i < $j; $i++) {
             $lines[$i] = $lines[$i];
             // Convert URI
@@ -168,50 +168,50 @@ class Loggix_Utility
                 $lines[$i] = preg_replace($uriPattern, '$1<a href="$2">$2</a>', $lines[$i]);
             }
         }
-        
+
         $str = join("\n", $lines);
 
         // Format line breaks and paragraphs
         $str = str_replace("\n",   "<br />",
-               str_replace("\n\n", "</p><p>",  
+               str_replace("\n\n", "</p><p>",
                str_replace("\r\n", "\n",
                $str)));
-        
+
         // Convert <pre> tags
-        $str = str_replace('[/pre]', '</pre><p>', 
-               str_replace('[pre]',  '</p><pre>', 
+        $str = str_replace('[/pre]', '</pre><p>',
+               str_replace('[pre]',  '</p><pre>',
                $str));
 
         // Quote box coloring
-        $str = str_replace('[/q3]', '</p></blockquote><p>', 
-               str_replace('[q3]',  '</p><blockquote class="quote3"><p>', 
-               str_replace('[/q2]', '</p></blockquote><p>', 
-               str_replace('[q2]',  '</p><blockquote class="quote2"><p>', 
-               str_replace('[/q1]', '</p></blockquote><p>', 
-               str_replace('[q1]',  '</p><blockquote class="quote1"><p>', 
-               str_replace('[/q]', '</p></blockquote><p>', 
-               str_replace('[q]',  '</p><blockquote class="quote1"><p>', 
+        $str = str_replace('[/q3]', '</p></blockquote><p>',
+               str_replace('[q3]',  '</p><blockquote class="quote3"><p>',
+               str_replace('[/q2]', '</p></blockquote><p>',
+               str_replace('[q2]',  '</p><blockquote class="quote2"><p>',
+               str_replace('[/q1]', '</p></blockquote><p>',
+               str_replace('[q1]',  '</p><blockquote class="quote1"><p>',
+               str_replace('[/q]', '</p></blockquote><p>',
+               str_replace('[q]',  '</p><blockquote class="quote1"><p>',
                $str))))))));
 
         // Remove bad patterns
-        $str = str_replace('</p></p>',     '</p>', 
-               str_replace('<p><p>',       '<p>', 
-               str_replace('</pre></p>',   '</pre>', 
-               str_replace('<p><pre>',     '<pre>', 
-               str_replace('<br /></pre>', '</pre>', 
-               str_replace('<pre><br />',  '<pre>', 
-               str_replace('<br /></p>',   '</p>', 
-               str_replace('</p><br />',   '</p>', 
-               str_replace('<p><br />',    '<p>', 
+        $str = str_replace('</p></p>',     '</p>',
+               str_replace('<p><p>',       '<p>',
+               str_replace('</pre></p>',   '</pre>',
+               str_replace('<p><pre>',     '<pre>',
+               str_replace('<br /></pre>', '</pre>',
+               str_replace('<pre><br />',  '<pre>',
+               str_replace('<br /></p>',   '</p>',
+               str_replace('</p><br />',   '</p>',
+               str_replace('<p><br />',    '<p>',
                $str)))))))));
-        
+
         // Put all together into the paragraph
         $str = '<p>' . $str . "</p>\n";
-        
+
         // Remove bad patterns
-        $str = str_replace('<br /><br />', '', 
-               str_replace('<pre></pre>',  '', 
-               str_replace('<p></p>',      '', 
+        $str = str_replace('<br /><br />', '',
+               str_replace('<pre></pre>',  '',
+               str_replace('<p></p>',      '',
                $str)));
 
         // Clean up the XHTML code
@@ -227,10 +227,10 @@ class Loggix_Utility
      * This function returns time zone based on user config setting.
      *
      * @return  string
-     * @since   5.5.16 
+     * @since   5.5.16
      * @version 6.2.22
      */
-    public function getTimeZone() 
+    public function getTimeZone()
     {
         global $config;
 
@@ -270,7 +270,7 @@ class Loggix_Utility
                 break;
             case '-1':
                 return '+0100';
-                break;    
+                break;
             case '12':
                 return '+1200';
                 break;
@@ -326,7 +326,7 @@ class Loggix_Utility
      *
      * @param   string $timeFormat;
      * @uses    getTimeZone
-     * @return  string 
+     * @return  string
      * @since   5.10.18
      * @version 6.2.18
      */
@@ -338,7 +338,7 @@ class Loggix_Utility
             if ($dh = @opendir($expanderDataDir)) {
                 $modifiedTimes = array();
                 while ($file = readdir($dh)) {
-                    if ($file != '.' && $file != '..' && 
+                    if ($file != '.' && $file != '..' &&
                         preg_match('/^.+\.(inc|php|html|txt|text)$/', $file)) {
                         $modifiedTimes[] .= filemtime($expanderDataDir . $file);
                     }
@@ -356,8 +356,8 @@ class Loggix_Utility
                 $local  = $config['tz'] * 3600;
             }
         }
-        return ((!empty($timeFormat)) && (isset($modifiedTimes[0]))) 
-               ? gmdate($timeFormat, $modifiedTimes[0] + $local) 
+        return ((!empty($timeFormat)) && (isset($modifiedTimes[0])))
+               ? gmdate($timeFormat, $modifiedTimes[0] + $local)
                : '';
     }
 
@@ -371,7 +371,7 @@ class Loggix_Utility
      * @param   string $str
      * @return  string $str
      * @see     /theme/images/smiley/
-     * @since   5.5.16 
+     * @since   5.5.16
      * @version 9.5.6
      */
     public function setSmiley($str)
@@ -404,8 +404,8 @@ class Loggix_Utility
         $iconHeight = 18;
         foreach ($smilies as $smileyText => $smileyImage) {
                 $str = str_replace(
-                        $smileyText, 
-                        '<img' . 
+                        $smileyText,
+                        '<img' .
                         ' src="'    . $smileyDir  . $smileyImage . '"' .
                         ' width="'  . $iconWidth  . '"' .
                         ' height="' . $iconHeight . '"' .
@@ -428,31 +428,31 @@ class Loggix_Utility
      */
     public function toMegaByte($str)
     {
-        $str = round(stripslashes($str) / 1024, 1); // Byte => KB 
+        $str = round(stripslashes($str) / 1024, 1); // Byte => KB
         return  ($str > 1024) ? round($str / 1024, 1).' MB' : $str.' KB';
 
     }
-    
-    
+
+
     /**
      * Get Page Generation Time
      *
      * @since   6.2.21
      * @version 6.2.21
      */
-    public function getGenerationTime($startTime) 
+    public function getGenerationTime($startTime)
     {
-        function getMicroseconds($microtime) 
+        function getMicroseconds($microtime)
         {
             $tmpArray = explode(' ', $microtime);
             return (((float)$tmpArray[0]) + ((float)$tmpArray[1]));
         }
 
-        function getLapsedTime($startTime, $finishTime) 
+        function getLapsedTime($startTime, $finishTime)
         {
             return (getMicroseconds($finishTime) - getMicroseconds($startTime));
         }
-        
+
         return number_format(getLapsedTime($startTime, microtime()), 4);
     }
 
@@ -462,17 +462,17 @@ class Loggix_Utility
         $numArgs = func_num_args();
         $args = func_get_args();
         $path = $args[0];
-       
+
         if ( $numArgs > 1 ) {
            for ($i = 1; $i < $numArgs; $i++) {
                $path .= DIRECTORY_SEPARATOR . $args[$i];
            }
         }
-       
+
         return $path;
     }
-    
-    
+
+
     /**
      * @param   str $separator
      * @param   str $newline

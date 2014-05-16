@@ -135,41 +135,41 @@ if ($sessionState == 'on') {
     // DELETE ENTRY
     if (!empty($_GET['id'])) {
         $id = intval($_GET['id']);
-        
+
         // Delete entry
         $app->plugin->doAction('pre-delete-entry', $id);
-        $deleteEntrySql      = 'DELETE FROM ' 
+        $deleteEntrySql      = 'DELETE FROM '
                              .     LOG_TABLE . ' '
                              . 'WHERE '
                              .     "(draft = '1') AND (id = '" . $id . "')";
         $deleteEntryRes = $app->db->query($deleteEntrySql);
-        
+
         // Delete the entry's tag map
-        $deleteTagMapSql     = 'DELETE FROM ' 
+        $deleteTagMapSql     = 'DELETE FROM '
                              .     LOG_TAG_MAP_TABLE . ' '
                              . 'WHERE '
                              .     "log_id = '" . $id . "'";
         $deleteTagMapRes = $app->db->query($deleteTagMapSql);
         $app->plugin->doAction('after-entry-deleted', $id);
-        
+
         // Delete the entry's comments
-        $deleteCommentsSql   = 'DELETE FROM ' 
+        $deleteCommentsSql   = 'DELETE FROM '
                              .     COMMENT_TABLE . ' '
                              . 'WHERE '
                              .     "refer_id = '" . $id . "'";
         $deleteCommentsRes = $app->db->query($deleteCommentsSql);
         $app->plugin->doAction('after-entry-and-comments-deleted', $id);
-        
+
         // Delete the entry's trackbacks
-        $deleteTrackbacksSql = 'DELETE FROM ' 
+        $deleteTrackbacksSql = 'DELETE FROM '
                              .     TRACKBACK_TABLE . ' '
                              . 'WHERE '
                              .     "blog_id = '" . $id . "'";
         $deleteTrackbacksRes = $app->db->query($deleteTrackbacksSql);
         $app->plugin->doAction('after-entry-and-trackbacks-deleted', $id);
-        
-        if ($deleteEntryRes && 
-            $deleteTagMapRes && 
+
+        if ($deleteEntryRes &&
+            $deleteTagMapRes &&
             $deleteCommentsRes &&
             $deleteTrackbacksRes) {
             header('Location: ./drafts.php');
@@ -179,7 +179,7 @@ if ($sessionState == 'on') {
     } elseif ((!empty($_POST['delete_sess_id'])) &&
               (strlen($_POST['delete_sess_id']) == '32')) {
         $deleteSessionId    = $_POST['delete_sess_id'];
-        $deleteSessionIdSql = 'DELETE FROM ' 
+        $deleteSessionIdSql = 'DELETE FROM '
                             .     SESSION_TABLE . ' '
                             . 'WHERE '
                             .     "id = '" . $deleteSessionId . "'";
@@ -189,13 +189,13 @@ if ($sessionState == 'on') {
         }
 
     // FORCED SESSION GARBAGE COLLECTION
-    } elseif ((!empty($_POST['force_sess_gc'])) && 
+    } elseif ((!empty($_POST['force_sess_gc'])) &&
               ($_POST['force_sess_gc'] == '1')) {
         //$sess_gc = $_POST['force_sess_gc'];
         $maxLifeTime = get_cfg_var("session.gc_maxlifetime");
         //$maxlifetime = '30';
         $expirationTime = time() - $maxLifeTime;
-        $sql = 'DELETE FROM ' 
+        $sql = 'DELETE FROM '
              .     SESSION_TABLE . ' '
              . 'WHERE '
              .     "sess_date < '" . $expirationTime . "'";
@@ -204,7 +204,7 @@ if ($sessionState == 'on') {
             header('Location: ./info.php');
         }
     // INITIALIZE
-    } elseif ((!empty($_POST['initialize_all'])) && 
+    } elseif ((!empty($_POST['initialize_all'])) &&
               ($_POST['initialize_all'] == '1')) {
         // Delete all tables
         for ($i = 0; $i < count($uninstallQueries); $i++ ) {
@@ -227,9 +227,9 @@ if ($sessionState == 'on') {
         $draft    = '0';
 
         // First Entry SQL
-        $firstEntrySql = 'INSERT INTO ' 
-                       .     LOG_TABLE 
-                       .         '(' 
+        $firstEntrySql = 'INSERT INTO '
+                       .     LOG_TABLE
+                       .         '('
                        .             'title, '
                        .             'comment, '
                        .             'excerpt, '
@@ -247,26 +247,26 @@ if ($sessionState == 'on') {
                        .             "'" . $draft    . "'"
                        .         ')';
         $firstEntryRes = $app->db->query($firstEntrySql);
-        
+
         // Get the new entry ID.
         $getNewEntryIdSql = 'SELECT MAX(id) FROM ' . LOG_TABLE;
         $getNewEntryIdRes = $app->db->query($getNewEntryIdSql);
         $id   = $getNewEntryIdRes->fetchColumn();
-        
+
         // Add the new entry tag
-        $addTagNameSql = 'INSERT INTO ' 
-                       .     LOG_TAG_TABLE 
+        $addTagNameSql = 'INSERT INTO '
+                       .     LOG_TAG_TABLE
                        .         '(tag_name) '
                        .    'VALUES'
                        .         "('Untagged')";
         $addTagNameRes = $app->db->query($addTagNameSql);
 
         $app->addTag(LOG_TAG_MAP_TABLE, $id);
-        
+
 // ----------------------------------------------
 
-        $addDownloadsTagNameSql = 'INSERT INTO ' 
-                                .     DOWNLOADS_TAG_TABLE 
+        $addDownloadsTagNameSql = 'INSERT INTO '
+                                .     DOWNLOADS_TAG_TABLE
                                 .         '(tag_name) '
                                 .    'VALUES'
                                 .         "('Untagged')";

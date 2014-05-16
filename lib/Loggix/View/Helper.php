@@ -32,14 +32,14 @@ class Loggix_View_Helper {
         }
         if (isset($_POST['style_name'])) {
             $styleName = $_POST['style_name'];
-        } 
+        }
         if (empty($styleName)) {
             $styleName = $config['default_style'];
         }
         setcookie($config['css_cookie_name'], $styleName, time()+$config['css_cookie_time'], '/');
-        
+
         $stylePath = $pathToIndex . self::LOGGIX_CSS_DIR . $styleName . '/';
-        
+
         // Generate CSS path
         // for Mozilla / Gecko Rendering Engine Browsers
         if (strpos($_SERVER['HTTP_USER_AGENT'], 'rv:1')) {
@@ -58,7 +58,7 @@ class Loggix_View_Helper {
         } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'MSIE')) {
             if (strpos($_SERVER['HTTP_USER_AGENT'], 'Mac_PowerPC')) {
                 $style = (file_exists($stylePath . 'mac_ie.css'))
-                         ? 'mac_ie' 
+                         ? 'mac_ie'
                          : 'default';
             } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Windows')) {
                 $style = (file_exists($stylePath . 'win_ie.css'))
@@ -67,17 +67,17 @@ class Loggix_View_Helper {
             }
         // iPhone
         } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'iPhone')) {
-            $style = (file_exists($stylePath . 'iphone.css')) 
-                     ? 'iphone' 
+            $style = (file_exists($stylePath . 'iphone.css'))
+                     ? 'iphone'
                      : 'default';
         // Safari / KHTML
         } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'KHTML')) {
-            $style = (file_exists($stylePath . 'safari.css')) 
-                     ? 'safari' 
+            $style = (file_exists($stylePath . 'safari.css'))
+                     ? 'safari'
                      : 'default';
         // Opera
         } elseif (strpos($_SERVER['HTTP_USER_AGENT'], 'Opera')) {
-            $style = (file_exists($stylePath . 'opera.css')) 
+            $style = (file_exists($stylePath . 'opera.css'))
                      ? 'opera'
                      : 'default';
         } else {
@@ -111,7 +111,7 @@ class Loggix_View_Helper {
                 break;
         }
     }
-    
+
     /**
      * Get XHTML Version Number
      *
@@ -120,7 +120,7 @@ class Loggix_View_Helper {
     public function getXhtmlVersion()
     {
         global $config;
-        
+
         switch ($config['xml_version']) {
             case '1.1':
                 return 'XHTML 1.1';
@@ -163,11 +163,11 @@ class Loggix_View_Helper {
     public function getDTD()
     {
         global $config;
-        
+
         $xmlLang = $this->getXmlLanguage();
-        
+
         // Switch XML DTD (Document Type Definition)
-        if (($config['xml_version'] == '1.1') || 
+        if (($config['xml_version'] == '1.1') ||
             ($config['xml_version'] == '1.1-content-negotiation')) {
             return '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
                       "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
@@ -195,7 +195,7 @@ class Loggix_View_Helper {
 
     /**
      * Get current directory
-     * 
+     *
      * @return string
      */
     public function getDir()

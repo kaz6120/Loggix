@@ -23,7 +23,7 @@ try {
 
     // Cleanup the request array.
     $app->insertSafe();
-    
+
     // (1) Search by Tag, by Keyword, and by Date
     if ((!empty($_GET['t'])) || (!empty($_GET['k'])) || (!empty($_GET['d']))) {
 
@@ -47,7 +47,7 @@ try {
             $countSql = $app->getSearchHitsSql($params);
             $resultTemplate = 'search-result.html';
         }
-        
+
         // Count the number of hit results
         $totalItemsCount = $app->getTotalItemsCount($countSql);
 
@@ -58,8 +58,8 @@ try {
                 (preg_match('/^[0-9]{4}-[0-9]{2}/', $date))) {
                 $result = '';
             } else {
-                $item = $app->setSearchItems($totalItemsCount, 
-                                             $previousItemNumber, 
+                $item = $app->setSearchItems($totalItemsCount,
+                                             $previousItemNumber,
                                              $date);
                 $resultView = new Loggix_View();
                 $templateVars = array('item' => $item,
@@ -68,15 +68,15 @@ try {
                 $resultView->assign($templateVars);
                 $result = $resultView->render($pathToIndex . '/theme/' . $resultTemplate);
             }
-            $title = (!empty($_GET['t'])) 
-                   ? ($app->setTitle(array('Tag', $item['keyword']))) 
+            $title = (!empty($_GET['t']))
+                   ? ($app->setTitle(array('Tag', $item['keyword'])))
                    : ($app->setTitle($lang['archive']));
             // Title , Contents, Pager, and Results
             $item = array('title'    => $title,
                           'contents' => $app->getArchives($sql),
-                          'pager'    => $app->getPager($totalItemsCount, 
-                                                       $pageNumberToShow, 
-                                                       $date, 
+                          'pager'    => $app->getPager($totalItemsCount,
+                                                       $pageNumberToShow,
+                                                       $date,
                                                        $expand),
                           'result'   => $result,
                     );
@@ -113,21 +113,21 @@ try {
             $item = array('title_date' => $titleDate,
                           'title'      => $app->setTitle($item['title']),
                           'contents'   => $app->plugin->applyFilters(
-                                              'permalink-view', 
+                                              'permalink-view',
                                               $contentsView->render($template)
                                           ),
                           'pager'      => '',
                           'result'     => ''
                     );
             $getLastModifiedSql = $getPermalinkSql;
-            
+
         } else {
             $e = new Loggix_Exception();
             $item = $e->getFileNotFoundMessage();
         }
-        
+
     // (3) Index View (Show the Latest Entries)
-    } else {                                
+    } else {
         $getLatestItemsSql  = 'SELECT '
                             . '*'
                             . 'FROM '
@@ -148,9 +148,9 @@ try {
         $item = array(
                     'title'     => $app->setTitle(array()),
                     'contents'  => $app->getArchives($getLatestItemsSql),
-                    'pager'     => $app->getPager($totalItemsCount, 
-                                                  $pageNumberToShow = '1', 
-                                                  $date = '', 
+                    'pager'     => $app->getPager($totalItemsCount,
+                                                  $pageNumberToShow = '1',
+                                                  $date = '',
                                                   $expand = '0'),
                     'result'    => ''
                 );

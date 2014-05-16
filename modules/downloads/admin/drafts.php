@@ -50,10 +50,10 @@ if ($sessionState == 'on') {
         if (isset($_GET['p']))  { $page    = $_GET['p'];  }
         if (isset($_GET['d']))  { $date    = $_GET['d'];  }
         if (isset($_GET['ex'])) { $expand  = $_GET['ex']; }
-        
+
         $sql = 'SELECT '
              .     '* '
-             . 'FROM ' 
+             . 'FROM '
              .     DOWNLOADS_META_TABLE . ' '
              . 'WHERE '
              .     "draft = '1' "
@@ -78,7 +78,7 @@ if ($sessionState == 'on') {
             $contentsView->assign($contentsVars);
             $item['contents'] = $contentsView->render();
         } else { $item['contents'] = ''; }
-    
+
         // Pager
         $countSql = 'SELECT COUNT(id) FROM ' . DOWNLOADS_META_TABLE . " WHERE draft = '1'";
         $countRes = $app->db->query($countSql);

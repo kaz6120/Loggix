@@ -63,10 +63,10 @@ class Loggix_Plugin {
      * @access public
      * @return boolean
      */
-    public function addFilter($tag, $functionToAdd, $priority = 10, $acceptedArgs = 1) 
+    public function addFilter($tag, $functionToAdd, $priority = 10, $acceptedArgs = 1)
     {
         global $filterTable;
-        
+
         if (isset($filterTable[$tag][$priority])) {
             foreach($filterTable[$tag][$priority] as $filter) {
                 if ($filter['function'] == $functionToAdd) {
@@ -76,7 +76,7 @@ class Loggix_Plugin {
         }
 
         $filterTable[$tag][$priority][] = array(
-            'function'     => $functionToAdd, 
+            'function'     => $functionToAdd,
             'acceptedArgs' => $acceptedArgs
         );
         return true;
@@ -88,7 +88,7 @@ class Loggix_Plugin {
      * @access public
      * @return boolean
      */
-    public function removeFilter($tag, $functionToRemove, $priority = 10, $acceptedArgs = 1) 
+    public function removeFilter($tag, $functionToRemove, $priority = 10, $acceptedArgs = 1)
     {
         global $filterTable;
         $toret = false;
@@ -112,7 +112,7 @@ class Loggix_Plugin {
      * @access public
      * @return boolean
      */
-    public function doAction($tag, $arg = array()) 
+    public function doAction($tag, $arg = array())
     {
         global $filterTable;
 
@@ -149,7 +149,7 @@ class Loggix_Plugin {
      * @access public
      * @return boolean
      */
-    public function applyFilters($tag, $string) 
+    public function applyFilters($tag, $string)
     {
         global $filterTable;
 
@@ -191,6 +191,6 @@ class Loggix_Plugin {
     public function removeAction($tag, $functionToRemove, $priority = 10, $acceptedArgs = 1) {
         $this->removeFilter($tag, $functionToRemove, $priority, $acceptedArgs);
     }
-    
+
 
 }

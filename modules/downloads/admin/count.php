@@ -4,7 +4,7 @@
  *
  * @package  Downloads
  * @since    5.5.26
- * @version  8.3.3 
+ * @version  8.3.3
  */
 
 /**
@@ -21,8 +21,8 @@ $config       = $app->getConfigArray();
 if ($sessionState == 'on') {
 
     $items = $app->getNumberOfDownloads();
-    
-    $viewFile = $pathToIndex . LM_Downloads::THEME_PATH 
+
+    $viewFile = $pathToIndex . LM_Downloads::THEME_PATH
               . 'admin/count.html';
     $contentsView = new Loggix_View($viewFile);
     $viewVars     = array('items' => $items,
@@ -34,7 +34,7 @@ if ($sessionState == 'on') {
     // Pager
     $item['pager'] = '';
     $item['result'] = '';
-    
+
     // Title
     $item['title'] = $app->setTitle($lang['dl_tag']);
 

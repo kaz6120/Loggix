@@ -26,8 +26,8 @@
 * {
     margin: 0;
     padding: 0;
-} img { 
-    border: none; 
+} img {
+    border: none;
 }
 
 /* FORM BUTTON */
@@ -45,7 +45,7 @@ input[type="button"] {
 } input[type="submit"]:active,
   input[type="button"]:active {
     background: #dddddd url(./images/button-background-hover.png) top !important;
-} 
+}
 input[type="text"],
 input[type="password"],
 textarea {
@@ -227,9 +227,9 @@ body {
     color: #99CC00;
     font: bold italic 100%/180% Georgia, Times, serif;
     text-align: right;
-} #navigation p, 
-  #navigation ul, 
-  #navigation table, 
+} #navigation p,
+  #navigation ul,
+  #navigation table,
   #css-form {
     padding: 0;
     margin: 10px;
@@ -338,13 +338,13 @@ li.cur-menu {
     background-color: transparent;
     color: #ffff66 !important;
     font-weight: bold;
-    
+
     text-indent:22px !important; /* MARGIN FOR ICON */
     /*background: #ca8300 url(./images/tango-22x22/weather-clear.png) no-repeat 5px 40% !important;*/
     background: #ca8300 url(./images/tango-22x22/start-here.png) no-repeat 5px 40% !important;
-    
+
 } ul.menu a,
-  ul#recent-comments a, 
+  ul#recent-comments a,
   ul#recent-trackbacks a {
     display: block;
     margin: 0;
@@ -359,14 +359,14 @@ li.cur-menu {
     text-decoration: none;
     text-indent: 22px; /* LEFT-SPACE FOR ICON */
 } ul.menu a:hover,
-  ul#recent-comments a:hover, 
+  ul#recent-comments a:hover,
   ul#recent-trackbacks a:hover {
     border-right: 1px solid #99CC00;
     border-left: 1px solid #99CC00;
     background-color: #99CC00 !important;
     color: #ffff66 !important;
     text-decoration: none;
-} ul#recent-comments a, 
+} ul#recent-comments a,
   ul#recent-trackbacks a {
     padding: 2px 5px 0 50px;
     min-height: 45px;

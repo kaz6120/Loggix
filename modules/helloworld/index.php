@@ -5,7 +5,7 @@
  * @package Loggix
  * @author  Loggix Project
  * @since   5.5.16
- * @version 8.1.6 
+ * @version 8.1.6
  */
 
 

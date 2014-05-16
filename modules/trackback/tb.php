@@ -29,14 +29,14 @@ if (!isset($_GET['id'])) {
 } else {
 
     $id = $_GET['id'];
-    
+
     // Check if trackback is allowed
     $checkSql = 'SELECT '
               .     'allow_pings '
-              . 'FROM ' 
+              . 'FROM '
               .     LOG_TABLE . ' '
               . 'WHERE '
-              .     'id = :id';                  
+              .     'id = :id';
     $stmt = $trackback->db->prepare($checkSql);
     $stmt->execute(
                array(
@@ -44,10 +44,10 @@ if (!isset($_GET['id'])) {
                )
            );
     $checkRes = $stmt->fetchColumn();
-    
+
 //    echo var_dump($checkRes);
-    
-    $receiveTrackback = ($checkRes == '1') 
+
+    $receiveTrackback = ($checkRes == '1')
                       ? 'allowed'
                       : 'not_allowed';
 //    echo var_dump($receiveTrackback);
@@ -56,7 +56,7 @@ if (!isset($_GET['id'])) {
         $excerpt = $_POST['excerpt'];
         $url     = $_POST['url'];
         $name    = $_POST['blog_name'];
-	// Receiving Ping from MT doesn't work without this 
+	// Receiving Ping from MT doesn't work without this
     } elseif ($_SERVER['REQUEST_METHOD'] == "GET") {
         if (isset($_GET['title'], $_GET['excerpt'], $_GET['url'], $_GET['blog_name'])) {
             $title   = $_GET['title'];
@@ -72,7 +72,7 @@ if (!isset($_GET['id'])) {
     }
     // Deny when required values are empty
     if (empty($url)     || empty($title) ||
-        empty($excerpt) || empty($name)  || 
+        empty($excerpt) || empty($name)  ||
         ($url == 'http://') ||
         ($receiveTrackback == 'not_allowed')) {
         $error = 1;
@@ -83,28 +83,28 @@ if (!isset($_GET['id'])) {
         $excerpt = $excerpt;
         $url     = $url;
         $name    = $name;
-        
+
         // Spam Blocking
         if ((preg_match($config['block_spam']['keywords'], $title)) ||
             (preg_match($config['block_spam']['keywords'], $excerpt)) ||
             (preg_match($config['block_spam']['keywords'], $url)) ||
             (preg_match($config['block_spam']['keywords'], $name)) ||
-            (($config['block_spam']['deny_1byteonly'] == 'yes') && 
+            (($config['block_spam']['deny_1byteonly'] == 'yes') &&
              (!preg_match('/.*[\x80-\xff]/', $excerpt)))
            ) {
             //echo 'You Are A Spammer!';
             header('Location: ' . $pathToIndex . '/index.php?id=' . $articleId);
             exit;
         }
-        
+
         $trackback->plugin->doAction('before-receive-trackback', $articleId);
-        
+
         // Deny Ping from the same page
         $checkSql = 'SELECT '
                   .     'COUNT(id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     TRACKBACK_TABLE . ' '
-                  . 'WHERE ' 
+                  . 'WHERE '
                   .     '(blog_id = :article_id)'
                   .     ' AND '
                   .     '(url = :url)';
@@ -116,11 +116,11 @@ if (!isset($_GET['id'])) {
                    )
                );
         $checkRow = $stmt->fetchColumn();
-      
+
         // Deny ping if the content is same with previously posted one
         $checkSql2 = 'SELECT '
                    .     'COUNT(id) '
-                   . 'FROM ' 
+                   . 'FROM '
                    .     TRACKBACK_TABLE . ' '
                    . 'WHERE '
                    .     '(title = :title)'
@@ -139,7 +139,7 @@ if (!isset($_GET['id'])) {
             ($checkRow2 == 0)) {
 //            $trackback->db->query('BEGIN;');
             $fdate = gmdate('Y-m-d H:i:s', time() + ($config['tz'] * 3600));
-            $sql = 'INSERT INTO ' 
+            $sql = 'INSERT INTO '
                  .     TRACKBACK_TABLE . ' '
                  .         '(`blog_id`, `title`, `excerpt`, `url`, `name`, `date`)'
                  .         ' VALUES '

@@ -2,8 +2,8 @@
 /*
  これはshowSamplesMenuというプラグインです。navigationの部分のプラグインフィルターを使い、
  Expanderモジュールのサンプル例を紹介するリンクを表示します。
- 
-*/ 
+
+*/
 
 $this->plugin->addFilter('navigation', 'showSamplesMenu');
 
@@ -11,7 +11,7 @@ $this->plugin->addFilter('navigation', 'showSamplesMenu');
 function showSamplesMenu($text)
 {
     global $config, $pathToIndex;
-    
+
     switch ($config['language']) {
         case 'japanese':
             $textParts = array(
@@ -26,7 +26,7 @@ function showSamplesMenu($text)
             );
             break;
     }
- 
+
     return '<h2>References</h2>
 <ul class="menu">
 <li id="api-document">

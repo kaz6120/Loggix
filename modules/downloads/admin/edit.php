@@ -4,7 +4,7 @@
  *
  * @package   LM_Downloads
  * @since     5.7.19
- * @version   10.5.20 
+ * @version   10.5.20
  */
 
 /**
@@ -25,7 +25,7 @@ if ($sessionState == 'on') {
         $sql = 'SELECT * FROM ' . DOWNLOADS_META_TABLE . " WHERE id = {$id}";
         $res = $app->db->query($sql);
         if ($item = $res->fetch()) {
-        
+
             $item['id']        = $item['id'];
             $item['time']      = $app->setDateArray($item['file_date']);
             $item['title']     = stripslashes(htmlspecialchars($item['file_title']));
@@ -33,7 +33,7 @@ if ($sessionState == 'on') {
             $item['file_type'] = stripslashes($item['file_type']);
             $item['file_name'] = stripslashes($item['file_name']);
             $item['file_size'] = $app->toMegaByte($item['file_size']);
-                               
+
             switch ($item['draft']) {
                 case '1':
                     $item['draft_status_1'] = ' checked="checked"';
@@ -48,10 +48,10 @@ if ($sessionState == 'on') {
             // Contents
             $item['attachments'] = $app->setAttachments();
             $item['tag_cloud']   = $app->getTagCloudArray('Downloads');
-            
+
             $smileyButton = new Loggix_View($pathToIndex . '/theme/smiley-button.html');
             $item['smiley_button'] = $smileyButton->render();
-            
+
             $templateFile = $pathToIndex . LM_Downloads::THEME_PATH . 'admin/edit.html';
             $contentsView = new Loggix_View($templateFile);
             $contentsVars = array(
@@ -60,14 +60,14 @@ if ($sessionState == 'on') {
                 'config'  => $config
             );
             $contentsView->assign($contentsVars);
-            
+
             $item = array(
                 'title'    => $app->setTitle(array('Downloads', $lang['edit'], $item['title'])),
                 'contents' => $app->plugin->applyFilters('permalink-view', $contentsView->render()),
                 'pager'    => '',
                 'result'   => ''
             );
-            
+
             $app->display($item, $sessionState);
         }
 

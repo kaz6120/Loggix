@@ -2,7 +2,7 @@
 /**
  * @package   Trackback
  * @since     6.1.29
- * @version   10.6.1 
+ * @version   10.6.1
  */
 
 /**
@@ -17,12 +17,12 @@ $sessionState = $app->getSessionState();
 
 try {
     $_SERVER['QUERY_STRING'] = htmlentities($_SERVER['QUERY_STRING']);
-    
+
     $app->insertSafe();
-    
+
     // (1) Keyword Search, or Archive By Date
     if ((!empty($_GET['c'])) || (!empty($_GET['k'])) || (!empty($_GET['d']))) {
-    
+
         $previousItemNumber  = (empty($_GET['p']))  ? '0' : $_GET['p'];
         $date                = (empty($_GET['d']))  ? ''  : $_GET['d'];
         $expand              = (empty($_GET['ex'])) ? '0' : $_GET['ex'];
@@ -43,7 +43,7 @@ try {
             $sql  = $app->getSearchSql($q);
             $sql2 = $app->getSearchHitsSql($q);
         }
-        
+
         if ($res = $app->db->query($sql)) {
             // Get the number of hit results
             $res2 = $app->db->query($sql2);
@@ -55,29 +55,29 @@ try {
                 // Archive By Date
                 if (preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}/', $date)) {
                     $contents = $app->getArchives($res);
-                    $pager    = $app->getPager($totalItemsCount, 
-                                               $pageNumberToShow, 
-                                               $date, 
+                    $pager    = $app->getPager($totalItemsCount,
+                                               $pageNumberToShow,
+                                               $date,
                                                $expand);
                     $result   = '';
                 } else {
                     $contents = $app->getArchives($res);
-                    $pager    = $app->getPager($totalItemsCount, 
-                                               $pageNumberToShow, 
-                                               $date, 
+                    $pager    = $app->getPager($totalItemsCount,
+                                               $pageNumberToShow,
+                                               $date,
                                                $expand);
                     $result = new Loggix_View($pathToIndex . '/theme/' . $resultViewFile);
                     $item = $app->setSearchItems($totalItemsCount, $previousItemNumber, $date);
                     $result->assign('item', $item);
                     $result->assign('lang', $lang);
                     $result = $result->render();
-                } 
+                }
                 // Contents, Pager, and Results
                 $item['contents'] = $contents;
                 $item['pager']    = $pager;
                 $item['result']   = $result;
-                $item['title'] = (!empty($_GET['c'])) 
-                    ? ($app->setTitle(array($item['keyword'], $lang['archive']))) 
+                $item['title'] = (!empty($_GET['c']))
+                    ? ($app->setTitle(array($item['keyword'], $lang['archive'])))
                     : ($app->setTitle($lang['archive']));
 
             } else {
@@ -85,12 +85,12 @@ try {
                 $item = $e->getArticleNotFoundMessage();
             }
         }
-        
+
     // (2) Index View (Show Recent Entries)
     } else {
         $sql = 'SELECT '
              .     '* '
-             . 'FROM ' 
+             . 'FROM '
              .     TRACKBACK_TABLE . ' '
              . 'GROUP BY '
              .     'blog_id '
@@ -98,10 +98,10 @@ try {
              .     'date DESC '
              . 'LIMIT '
              .     $config['page_max'];
-        
+
         $countTotalItemsSql = 'SELECT '
                             .     'COUNT(id) '
-                            . 'FROM ' 
+                            . 'FROM '
                             .     TRACKBACK_TABLE . ' '
                             . 'GROUP BY '
                             .     'blog_id';
@@ -111,9 +111,9 @@ try {
 //echo $totalItemsCount;
         $item = array('title'    => $app->setTitle('Trackbacks'),
                       'contents' => $app->getArchives($app->db->query($sql)),
-                      'pager'    => $app->getPager($totalItemsCount, 
-                                                   $pageNumberToShow = '1', 
-                                                   $date = '', 
+                      'pager'    => $app->getPager($totalItemsCount,
+                                                   $pageNumberToShow = '1',
+                                                   $date = '',
                                                    $expand = '0'),
                       'result'   => '',
                 );

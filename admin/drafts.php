@@ -18,13 +18,13 @@ if ($sessionState == 'on') {
         $id = intval($_REQUEST['id']);
         $app->db->beginTransaction();
         // Prepare update query
-        $sql = 'UPDATE ' 
+        $sql = 'UPDATE '
              .     LOG_TABLE . ' '
              . 'SET '
              .     'draft = :draft '
              . 'WHERE '
              .     'id = :id';
-        $stmt = $app->db->prepare($sql);        
+        $stmt = $app->db->prepare($sql);
         if (empty($_REQUEST['publish'])) { // Save as draft
             $res = $stmt->execute(
                        array(
@@ -59,10 +59,10 @@ if ($sessionState == 'on') {
         if (isset($_GET['p']))  { $page    = $_GET['p'];  }
         if (isset($_GET['d']))  { $date    = $_GET['d'];  }
         if (isset($_GET['ex'])) { $expand  = $_GET['ex']; }
-        
+
         $sql  = 'SELECT '
                .    '* '
-               . 'FROM ' 
+               . 'FROM '
                .     LOG_TABLE . ' '
                . 'WHERE '
                .     'draft = :draft '

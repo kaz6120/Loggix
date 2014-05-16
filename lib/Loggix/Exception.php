@@ -1,4 +1,4 @@
-<?php 
+<?php
 /**
  * Loggix_Exception - Sub class for Exceptions.
  *
@@ -21,7 +21,7 @@ require_once dirname(__FILE__) . DIRECTORY_SEPARATOR . 'Plugin.php';
  *
  * @package Loggix
  */
-class Loggix_Exception extends Exception 
+class Loggix_Exception extends Exception
 {
 
     /**
@@ -29,14 +29,14 @@ class Loggix_Exception extends Exception
      * @see __construct()
      */
     public $plugin;
-    
+
     public function __construct()
     {
         global $pathToIndex;
-        
+
         $this->plugin = new Loggix_Plugin;
     }
-    
+
     /**
      * @uses   Loggix_Application
      * @uses   Loggix_View
@@ -45,9 +45,9 @@ class Loggix_Exception extends Exception
     public function getArticleNotFoundMessage()
     {
         global $pathToIndex;
-        
+
         $errorView = new Loggix_View($pathToIndex . Loggix_Core::LOGGIX_THEME_DIR . 'errors/article-not-found.html');
-        
+
         return array('contents' => $errorView->render(),
                      'pager'    => '',
                      'result'   => '',
@@ -66,7 +66,7 @@ class Loggix_Exception extends Exception
         global $pathToIndex;
 
         $errorView = new Loggix_View($pathToIndex . Loggix_Core::LOGGIX_THEME_DIR . 'errors/file-not-found.html');
-        
+
         return array('contents' => $errorView->render(),
                      'pager'    => '',
                      'result'   => '',

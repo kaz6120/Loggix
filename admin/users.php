@@ -14,9 +14,9 @@ $config       = $app->getConfigArray();
 if ($sessionState == 'on') {
 
     $app->insertSafe();
-    
+
     // Add New User
-    if ((isset($_POST['action']) == 'add') && 
+    if ((isset($_POST['action']) == 'add') &&
         (!empty($_POST['new_user_name'])) &&
         (!empty($_POST['new_user_pass'])) &&
         (!empty($_POST['new_user_nickname']))) {
@@ -26,7 +26,7 @@ if ($sessionState == 'on') {
         // Check if the posted user name exists
         $checkSql = 'SELECT '
                   .     'COUNT(user_id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     USER_TABLE . ' '
                   . 'WHERE '
                   .     "user_name = '" . $aNewUserName . "'";
@@ -34,8 +34,8 @@ if ($sessionState == 'on') {
         $countId  = $countRes->fetchColumn();
         // If there's no posted user name, then add new user.
         if ($countId == '0') {
-            $sql = 'INSERT INTO ' 
-                 .     USER_TABLE 
+            $sql = 'INSERT INTO '
+                 .     USER_TABLE
                  .         '('
                  .             'user_name, '
                  .             'user_pass, '
@@ -72,14 +72,14 @@ if ($sessionState == 'on') {
         while ($item = $res->fetch()) {
             $sql2 = 'SELECT '
                   .     'COUNT(user_id) '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     USER_TABLE . ' '
                   . 'WHERE '
                   .     "user_id = '" . $item['user_id'] . "'";
             $res2 = $app->db->query($sql2);
             $item['number_of_tag'] = $res2->fetchColumn();
-            $item['disabled_status'] = ($item['user_name'] == $_SESSION['user_name']) 
-                                       ? 'disabled="disabled" ' 
+            $item['disabled_status'] = ($item['user_name'] == $_SESSION['user_name'])
+                                       ? 'disabled="disabled" '
                                        : '';
             $items[] = $item;
         }
@@ -88,14 +88,14 @@ if ($sessionState == 'on') {
         $contentsView->assign('lang', $lang);
         $item['contents'] = $contentsView->render();
     }
-    
+
     // Pager
     $item['pager'] = '';
     $item['result'] = '';
-    
+
     // Title
     $item['title'] = $app->setTitle($lang['log_tag']);
-    
+
     $app->display($item, $sessionState);
 
 } else {

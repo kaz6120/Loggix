@@ -28,7 +28,7 @@ if ($sessionState == 'on') {
         $sessionRow['no'] = $i;
         $sessionRows[] = $sessionRow;
     }
-    
+
     // Database table info
     $sql2 = ($app->db->getAttribute(PDO::ATTR_DRIVER_NAME) == 'mysql')
           ? 'SHOW TABLES'
@@ -43,7 +43,7 @@ if ($sessionState == 'on') {
 
     $res2 = $app->db->query($sql2);
     while ($row = $res2->fetch()) {
-   
+
         if ($row[0] == 'loggix_user') {
             $keyId = 'user_id';
         } else if ($row[0] == 'loggix_config') {
@@ -51,17 +51,17 @@ if ($sessionState == 'on') {
         } else {
             $keyId = 'id';
         }
-        
+
         $countSql = 'SELECT COUNT(' . $keyId . ')  FROM ' . $row[0];
         $countRes = $app->db->query($countSql);
         $countRow = $countRes->fetch();
         $row['count'] = $countRow[0];
-        
+
         $rows[] = $row;
-        
+
     }
-    
-    // Check SQLite    
+
+    // Check SQLite
     $item['php_version']       = phpversion();
     $item['database_type']     = $app->db->getAttribute(PDO::ATTR_DRIVER_NAME);
     $item['database_version']  = $app->db->getAttribute(PDO::ATTR_SERVER_VERSION);

@@ -6,7 +6,7 @@
  * @since   5.5.21
  * @version 9.7.27
  */
- 
+
 $lang = array(
 'permalink'          => 'Permalink',
 'permalink_title_1'  => 'Permanent link of &#34;',

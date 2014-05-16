@@ -19,15 +19,15 @@ function highlightKeywords($text)
 
     if (isset($_GET['k'])) {
         $keyword = $_GET['k'];
-        $keys = (!strrchr($keyword, ' ')) 
-              ? explode(',', $keyword) 
+        $keys = (!strrchr($keyword, ' '))
+              ? explode(',', $keyword)
               : explode(' ', $keyword);
         for ($i = 0; $i < sizeof($keys); $i++) {
             if ($keys[$i] != '') {
                 $key  = stripslashes($keys[$i]);
                 $text = preg_replace(
-                            '/(' . $key . ')/i', 
-                            '<' . $tagName . $tagClass . '>$1</' . $tagName . '>', 
+                            '/(' . $key . ')/i',
+                            '<' . $tagName . $tagClass . '>$1</' . $tagName . '>',
                             $text
                         );
                 $pattern = '/'

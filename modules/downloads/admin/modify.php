@@ -1,6 +1,6 @@
 <?php
 /**
- * Modify Downloads Article 
+ * Modify Downloads Article
  *
  * @package   LM_Downloads
  *
@@ -18,9 +18,9 @@ $app = new LM_Downloads;
 $sessionState = $app->getSessionState();
 
 if ($sessionState == 'on') {
-    
+
     $app->insertTagSafe();
-    
+
     if ((!empty($_POST['title'])) && (!empty($_POST['comment'])) && (!empty($_POST['id']))) {
 
         $id       = $_POST['id'];
@@ -31,7 +31,7 @@ if ($sessionState == 'on') {
         // Upload Attachments
         $app->sendAttachments();
 
-        if (isset($_POST['y'], $_POST['m'], $_POST['d'], 
+        if (isset($_POST['y'], $_POST['m'], $_POST['d'],
                   $_POST['h'], $_POST['i'], $_POST['s'])) {
             $Y = $_POST['y'];
             $m = $_POST['m'];
@@ -47,8 +47,8 @@ if ($sessionState == 'on') {
         }
 
         $app->db->beginTransaction();
-        
-        $sql = 'UPDATE ' 
+
+        $sql = 'UPDATE '
              .     DOWNLOADS_META_TABLE . ' '
              . 'SET '
              .     '`file_title` = :title, '
@@ -69,7 +69,7 @@ if ($sessionState == 'on') {
                        ':draft'          => $draft,
                        ':id'             => $id
                    )
-               );        
+               );
         $app->addTag(DOWNLOADS_TAG_MAP_TABLE, $id);
 
         if ($res) {
@@ -77,7 +77,7 @@ if ($sessionState == 'on') {
             $app->db->commit();
             $sql  = 'SELECT '
                   .     'draft '
-                  . 'FROM ' 
+                  . 'FROM '
                   .     DOWNLOADS_META_TABLE . ' '
                   . 'WHERE '
                   .     'id = :id';
@@ -85,9 +85,9 @@ if ($sessionState == 'on') {
             $stmt->execute(
                        array(
                            'id' => $id
-                       )  
+                       )
                    );
-            $item = $stmt->fetch();            
+            $item = $stmt->fetch();
             if ($item['draft'] == '1') {
                 header('Location: ./drafts.php');
             } else {

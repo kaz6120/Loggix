@@ -4,7 +4,7 @@
  *
  * @package  Calendar
  * @since    6.2.24
- * @version  9.6.1 
+ * @version  9.6.1
  */
 
 $lang['calendar'] = array(

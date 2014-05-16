@@ -9,11 +9,11 @@
  */
 
 html {
-    -webkit-auto-text-size-adjust: 100%; 
+    -webkit-auto-text-size-adjust: 100%;
 }
 
 a {
-    -webkit-tap-highlight-color: rgba(00,33,99,0.60); 
+    -webkit-tap-highlight-color: rgba(00,33,99,0.60);
 }
 
 #body {
